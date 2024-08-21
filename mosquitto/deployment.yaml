@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: mqtt
+  name: mqtt
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mqtt
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mqtt
+    spec:
+      containers:
+      - image: eclipse-mosquitto:2.0.18
+        name: mqtt
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 8883
+            protocol: TCP
+        volumeMounts:
+          - name: config-file
+            mountPath: /mosquitto/config
+          - name: certs
+            mountPath: /mosquitto/certs/
+          - name: data-volume
+            mountPath: /mosquitto/data
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"
+      restartPolicy: Always
+      securityContext:
+        runAsNonRoot: true
+        fsGroup: 1883
+        runAsGroup: 1883
+        runAsUser: 1833
+      volumes:
+        - name: data-volume
+          persistentVolumeClaim:
+            claimName: pvc-mqtt
+        - name: config-file
+          configMap:
+            name: mosquitto-conf
+        - name: certs
+          secret:
+            secretName: my-cert-secret
