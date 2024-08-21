@@ -22,4 +22,4 @@ data:
     #listener 9001
     #protocol websockets
   mosquitto.passwd: |
-    username:generatedpassword
+    {{mosquitto-user}}:{{mosquitto-generated-password}}
