@@ -14,9 +14,16 @@ This is run on a Raspberry Pi Cluster (currently 5x Raspberry PI 4 8Mb).
 - Host own developed apps. 
 
 ## Installed Kubernetes Components
+
+### Generic Device Plugin
+To be able to move Zigbee, Zwave and other devices between nodes.
+
+```[Generic Device Plugin](https://github.com/squat/generic-device-plugin)```
+
 ### Traefik
 Default installation with K3S.
 Sucessfully used for HTTPS, not managed to get TCP to work yet.
+
 ### MetalLB
 Run the following on the master node:
 
@@ -41,9 +48,7 @@ Separate debian linux server hosting:
 ## Hosted Resources (Images)
 ### Container Registry and UI
 For personal application development.
-### Generic Device Plugin
-To be able to move Zigbee, Zwave and other devices between nodes.
-[Generic Device Plugin](https://github.com/squat/generic-device-plugin)
+kubectl apply -f https://raw.githubusercontent.com/squat/generic-device-plugin/main/manifests/generic-device-plugin.yaml
 ### Grafana
 Making nice graphs.
 ### InfluxDB
