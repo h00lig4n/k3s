@@ -1,1 +1,22 @@
-
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: zigbee2mqtt-conf
+  labels:
+    app: zigbee2mqtt
+data:
+  configuration.yaml: |
+  # MQTT settings
+  mqtt:
+      # MQTT base topic for Zigbee2MQTT MQTT messages
+      base_topic: zigbee2mqtt
+      # MQTT server URL
+      server: 'mqtt://localhost'
+      # MQTT server authentication, uncomment if required:
+      user: my_user
+      password: my_password
+  
+  # Serial settings
+  serial:
+      # Location of the adapter (see first step of this guide)
+      port: /dev/ttyACM0
