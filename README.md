@@ -17,6 +17,10 @@ This is run on a Raspberry Pi Cluster (currently 5x Raspberry PI 4 8Mb).
 Default installation with K3S.
 Sucessfully used for HTTPS, not managed to get TCP to work yet.
 ### MetalLB
+Run the following on the master node:
+```kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.13.12/config/manifests/metallb-native.yaml```
+```kubectl apply -f metallb.yaml``` It contains tolerations.
+```kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)```
 ### CertManager for CPanel
 Using subdomain to provide TLS support on internal network.
 ### Longhorn
