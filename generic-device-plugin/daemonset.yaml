@@ -30,8 +30,6 @@ spec:
             - paths:
                 - path: /dev/ttyUSB*
             - paths:
-                - path: /dev/ttyACM*
-            - paths:
                 - path: /dev/tty.usb*
             - paths:
                 - path: /dev/cu.*
@@ -41,46 +39,10 @@ spec:
                 - path: /dev/rfcomm*
         - --device
         - |
-          name: video
+          name: zigbee
           groups:
             - paths:
-                - path: /dev/video0
-        - --device
-        - |
-          name: fuse
-          groups:
-            - count: 10
-              paths:
-                - path: /dev/fuse
-        - --device
-        - |
-          name: audio
-          groups:
-            - count: 10
-              paths:
-                - path: /dev/snd
-        - --device
-        - |
-          name: capture
-          groups:
-            - paths:
-                - path: /dev/snd/controlC0
-                - path: /dev/snd/pcmC0D0c
-            - paths:
-                - path: /dev/snd/controlC1
-                  mountPath: /dev/snd/controlC0
-                - path: /dev/snd/pcmC1D0c
-                  mountPath: /dev/snd/pcmC0D0c
-            - paths:
-                - path: /dev/snd/controlC2
-                  mountPath: /dev/snd/controlC0
-                - path: /dev/snd/pcmC2D0c
-                  mountPath: /dev/snd/pcmC0D0c
-            - paths:
-                - path: /dev/snd/controlC3
-                  mountPath: /dev/snd/controlC0
-                - path: /dev/snd/pcmC3D0c
-                  mountPath: /dev/snd/pcmC0D0c
+                - path: /dev/ttyACM0
         name: generic-device-plugin
         resources:
           requests:
