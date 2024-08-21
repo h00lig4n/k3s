@@ -8,6 +8,7 @@ This is run on a Raspberry Pi Cluster (currently 5x Raspberry PI 4 8Mb).
     - Investigate getting Traefik to work for TCP.
 - Single Control Plane Node (experimented with HA dual Control Plane Nodes and external PostGre DB but had problems).
 - Migrate Home Assistant to an easier to maintain distributed container architecture.
+- Ability to move devices between nodes seamlessly.
 - Migrate existing debian linux server as pure a NAS.
 - Fun with Kubernetes.
 - Host own developed apps. 
@@ -40,6 +41,8 @@ Separate debian linux server hosting:
 ## Hosted Resources (Images)
 ### Container Registry and UI
 For personal application development.
+### Generic Device Plugin
+[Generic Device Plugin](https://github.com/squat/generic-device-plugin)
 ### Grafana
 Making nice graphs.
 ### InfluxDB
