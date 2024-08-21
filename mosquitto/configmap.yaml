@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mosquitto-conf
+  labels:
+    app: mqtt
+data:
+  mosquitto.conf: |
+    persistence true
+    persistence_location /mosquitto/data
+    persistence_file mosquitto.db
+    autosave_interval 60
+    log_dest stdout
+    listener 8883 0.0.0.0
+    protocol mqtt
+    password_file /mosquitto/config/mosquitto.passwd
+    allow_anonymous false
+    tls_version tlsv1.2
+    keyfile /mosquitto/certs/tls.key
+    certfile /mosquitto/certs/tls.crt
+    
+    #listener 9001
+    #protocol websockets
+  mosquitto.passwd: |
+    username:generatedpassword
