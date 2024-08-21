@@ -6,12 +6,16 @@ metadata:
     app: zigbee2mqtt
 data:
   configuration.yaml: |
+  
+  permit_join: true
+  homeassistant: true
+  
   # MQTT settings
   mqtt:
       # MQTT base topic for Zigbee2MQTT MQTT messages
       base_topic: zigbee2mqtt
       # MQTT server URL
-      server: 'mqtt://localhost'
+      server: 'mqtt://localhost' # mqtt://<name_of_pod>.<name_of_namespace> (mosquitto)
       # MQTT server authentication, uncomment if required:
       user: my_user
       password: my_password
@@ -20,3 +24,18 @@ data:
   serial:
       # Location of the adapter (see first step of this guide)
       port: /dev/ttyACM0
+
+  frontend:
+      port: 8080
+
+  advanced:
+    network_key: GENERATE ?????????
+
+    log_level: debug
+    log_output:
+    - console
+    - file
+    
+  ## Map devices to persistent /data directory
+  devices: /data/devices.yaml
+  groups: /data/groups.yaml
