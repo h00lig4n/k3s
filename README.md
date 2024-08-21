@@ -42,6 +42,7 @@ Separate debian linux server hosting:
 ### Container Registry and UI
 For personal application development.
 ### Generic Device Plugin
+To be able to move Zigbee, Zwave and other devices between nodes.
 [Generic Device Plugin](https://github.com/squat/generic-device-plugin)
 ### Grafana
 Making nice graphs.
