@@ -26,7 +26,7 @@ spec:
             protocol: TCP
         - env:
             - name: TZ
-              value: Europe/Berlin
+              value: Europe/Stockholm
             - name: ZIGBEE2MQTT_DATA
               value: "/data" #/config
           resources:
