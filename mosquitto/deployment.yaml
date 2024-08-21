@@ -52,4 +52,4 @@ spec:
             name: mosquitto-conf
         - name: certs
           secret:
-            secretName: my-cert-secret
+            secretName: {{certificate-secret}}
