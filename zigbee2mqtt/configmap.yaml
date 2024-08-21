@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: zigbee2mqtt-conf
+  name: zigbee2mqtt-config
   labels:
     app: zigbee2mqtt
 data:
