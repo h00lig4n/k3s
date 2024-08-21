@@ -25,6 +25,8 @@ Run the following on the master node:
 
 ```kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)```
 
+The bgp config file isn't used yet. Need to connect the cluster to a different port on the Edge Router and setup BGP first.
+
 ### CertManager for CPanel
 Using subdomain to provide TLS support on internal network.
 ### Longhorn
