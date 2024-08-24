@@ -5,7 +5,7 @@ metadata:
   labels:
     app: zigbee2mqtt
   name: zigbee2mqtt-nfs
-  namespace: default
+  namespace: hass
 spec:
   accessModes:
     - ReadWriteOnce
