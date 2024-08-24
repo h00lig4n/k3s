@@ -19,6 +19,6 @@ spec:
                 port:
                   number: 8080
   tls:
-    - secretName: secretname
+    - secretName: {{certificate-secret}}
       hosts:
         - zigbee.{{mydomain}}
