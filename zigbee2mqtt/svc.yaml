@@ -4,6 +4,7 @@ metadata:
   labels:
     app: zigbee2mqtt
   name: zigbee2mqtt
+  namesapce: default
 spec:
   ports:
     - name: zigbee2mqtt
