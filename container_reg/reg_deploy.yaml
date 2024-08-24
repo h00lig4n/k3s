@@ -57,4 +57,4 @@ spec:
           claimName: docker-registry-pv-claim
       - name: cert-volume
         secret:
-          secretName: {{mysecret}}
+          secretName: {{certificate-secret}}
