@@ -45,6 +45,8 @@ Using subdomain to provide TLS support on internal network.
 
 ### Longhorn
 High speed USB sticks in all the worker nodes to host longhorn.
+**NOTE**: This has been to unstable. Need to investigate if USB latency or network is issue.
+
 ### NFS
 Separate debian linux server hosting:
 - slow NFS (magnetic disks)
