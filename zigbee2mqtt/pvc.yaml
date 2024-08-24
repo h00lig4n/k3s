@@ -4,11 +4,11 @@ metadata:
   creationTimestamp: null
   labels:
     app: zigbee2mqtt
-  name: zigbee2mqtt-data
+  name: zigbee2mqtt-nfs
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: longhorn
+  storageClassName: nfs
   resources:
     requests:
       storage: 100Mi
