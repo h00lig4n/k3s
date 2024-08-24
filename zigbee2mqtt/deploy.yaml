@@ -25,10 +25,43 @@ spec:
             containerPort: 8080
             protocol: TCP
         - env:
-            - name: TZ
-              value: Europe/Stockholm
-            - name: ZIGBEE2MQTT_DATA
-              value: "/data" #/config
+          - name: TZ
+            value: Europe/Stockholm
+          - name: ZIGBEE2MQTT_DATA
+            value: "/data"
+          - name: "ZIGBEE2MQTT_CONFIG_MQTT_SERVER"
+            value: "mqtt://mqtt-internal:1883"
+          - name: "ZIGBEE2MQTT_CONFIG_MQTT_BASE_TOPIC"
+            value: "zigbee2mqtt"
+          - name: "ZIGBEE2MQTT_CONFIG_MQTT_USER"
+            valueFrom:
+              secretKeyRef:
+                name: zigbee2mqtt
+                key: username
+          - name: "ZIGBEE2MQTT_CONFIG_MQTT_PASSWORD"
+            valueFrom:
+              secretKeyRef:
+                name: zigbee2mqtt
+                key: password
+          - name: "ZIGBEE2MQTT_CONFIG_PERMIT_JOIN"
+            value: "true"
+          - name: "ZIGBEE2MQTT_CONFIG_HOMEASSISTANT"
+            value: "true"
+          - name: "ZIGBEE2MQTT_CONFIG_SERIAL_ADAPTER"
+            value: "ember"
+          - name: "ZIGBEE2MQTT_CONFIG_SERIAL_PORT"
+            value: "/dev/serial/by-id/usb-ITEAD_SONOFF_Zigbee_3.0_USB_Dongle_Plus_V2_20231031115325-if00"
+          - name: "ZIGBEE2MQTT_CONFIG_ADVANCED_NETWORK_KEY"
+            valueFrom:
+              secretKeyRef:
+                name: zigbee2mqtt
+                key: network_key
+          - name: "ZIGBEE2MQTT_CONFIG_ADVANCED_CHANNEL"
+            value: "25"
+          - name: "ZIGBEE2MQTT_CONFIG_DEVICES"
+            value: "/data/devices.yaml"
+          - name: "ZIGBEE2MQTT_CONFIG_GROUPS"
+            value: "/data/groups.yaml"
           resources:
             limits:
               hass/zigbee: 1
@@ -63,16 +96,24 @@ spec:
             failureThreshold: 30
             timeoutSeconds: 1
             periodSeconds: 5
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/worker
+        operator: Equal
+        value: 'true'
       volumes:
         - name: zigbee2mqtt-data
           persistentVolumeClaim:
-            claimName: zigbee2mqtt-data
+            claimName: zigbee2mqtt-nfs
         - name: zigbee2mqtt-udev
           hostPath:
             path: /run/udev
-        - name: ttyacm
+        - name: adapter
           hostPath:
-            path: /dev/ttyACM0
-        - name: zigbee2mqtt-config
-          configMap:
-            name: zigbee2mqtt-config
+            path: /dev/serial/by-id/usb-ITEAD_SONOFF_Zigbee_3.0_USB_Dongle_Plus_V2_20231031115325-if00
+        - name: localtime
+          hostPath:
+            path: /etc/localtime
