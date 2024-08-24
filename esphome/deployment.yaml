@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: esphome
+  namespace: hass
+  labels:
+    app: esphome
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: esphome
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: esphome
+    spec:
+      containers:
+      - name: esphome
+        image: esphome/esphome:2024.8.0
+        ports:
+          - containerPort: 6052
+        env:
+          - name: TZ
+            value: Europe/Stockholm
+          - name: "USERNAME"
+            valueFrom:
+              secretKeyRef:
+                name: zigbee2mqtt
+                key: username
+          - name: "PASSWORD"
+            valueFrom:
+              secretKeyRef:
+                name: zigbee2mqtt
+                key: password
+        volumeMounts:
+          - name: esphome-pvc
+            mountPath: /config
+          - name: localtime
+            mountPath: /etc/localtime
+            readOnly: true
+        securityContext:
+          privileged: true
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/worker
+        operator: Equal
+        value: 'true'
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+          - {{mydns-server}}
+        searches:
+          - {{mydomain}}
+      volumes:
+        - name: esphome-pvc
+          persistentVolumeClaim:
+            claimName: esphome-pvc
+        - name: localtime
+          hostPath:
+            path: /etc/localtime
