@@ -1,1 +1,25 @@
-
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hass
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: assistant.{{mydomain}}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: hass
+                port:
+                  number: 8123
+  tls:
+    - secretName: tls-certificate
+      hosts:
+        - assistant.{{mydomain}}
