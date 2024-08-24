@@ -59,6 +59,18 @@ For personal application development.
 kubectl apply -f https://raw.githubusercontent.com/squat/generic-device-plugin/main/manifests/generic-device-plugin.yaml
 ### Grafana
 Making nice graphs.
+### Home Assistant
+Refer to [home assistant repository](https://github.com/h00lig4n/hass) for configuration options.
+
+- Traefik Ingress with certificate.
+- Zigbee running as separate container.
+- MQTT running as separate container.
+
+#### HACS Installation
+[HACS](https://hacs.xyz/docs/use/download/download/#to-download-hacs-container) needs to be manually installed. 
+1. Shell into the container: ```kubectl exec --stdin --tty hass-8869787cd-jtxtb -n hass  -- /bin/sh```
+2. Run ```wget -O - https://get.hacs.xyz | bash -``` to download HACS
+
 ### InfluxDB
 For Home Assistant. Used to store sensor data for longer periods of time to see trends.
 ### Minecraft
