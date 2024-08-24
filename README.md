@@ -57,6 +57,14 @@ Separate debian linux server hosting:
 ### Container Registry and UI
 For personal application development.
 kubectl apply -f https://raw.githubusercontent.com/squat/generic-device-plugin/main/manifests/generic-device-plugin.yaml
+### ESP Home
+This is used to connect to [ESPHome](https://esphome.io/) devices. I use the bluetooth proxies.
+
+[Guide](https://esphome.io/guides/getting_started_command_line.html)
+1.Install the container and spin it up.
+2.In Home Assistant add ESP Home Integration.
+3.Set host as esphome and port as 6052.
+
 ### Grafana
 Making nice graphs.
 ### Home Assistant
