@@ -59,4 +59,4 @@ spec:
       - effect: NoSchedule
         key: node-role.kubernetes.io/worker
         operator: Equal
-        value: true 
+        value: 'true'
