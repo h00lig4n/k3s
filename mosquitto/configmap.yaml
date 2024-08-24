@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: mosquitto-conf
-  namespace: default
+  namespace: hass
   labels:
     app: mqtt
 data:
