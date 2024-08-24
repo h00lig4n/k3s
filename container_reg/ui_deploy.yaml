@@ -2,9 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ui-docker-registry
+  namespace: default
   labels:
     app: ui-docker-registry
-    namespace: default
 spec:
   progressDeadlineSeconds: 600
   revisionHistoryLimit: 10
