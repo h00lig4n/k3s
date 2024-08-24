@@ -13,6 +13,10 @@ This is run on a Raspberry Pi Cluster (currently 5x Raspberry PI 4 8Mb).
 - Fun with Kubernetes.
 - Host own developed apps. 
 
+## TODO
+- Namespace. Everything is installed in default at the moment.
+  - Network policy, connected to namespaces. 
+
 ## Installed Kubernetes Components
 
 ### Generic Device Plugin
@@ -37,6 +41,8 @@ The bgp config file isn't used yet. Need to connect the cluster to a different p
 
 ### CertManager for CPanel
 Using subdomain to provide TLS support on internal network.
+[CPanel Plugin](https://github.com/jamesorlakin/cert-manager-cpanel-dns-webhook)
+
 ### Longhorn
 High speed USB sticks in all the worker nodes to host longhorn.
 ### NFS
