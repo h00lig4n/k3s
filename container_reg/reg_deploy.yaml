@@ -8,6 +8,15 @@ metadata:
     app: docker-registry
     namespace: default
 spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: node-role.kubernetes.io/worker
+            operator: In
+            values:
+            - 'true'
   progressDeadlineSeconds: 600
   replicas: 1
   selector:
