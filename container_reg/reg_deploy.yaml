@@ -2,11 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: docker-registry
+  namespace: default
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
   labels:
     app: docker-registry
-    namespace: default
 spec:
   progressDeadlineSeconds: 600
   replicas: 1
