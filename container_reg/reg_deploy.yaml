@@ -57,9 +57,9 @@ spec:
       terminationGracePeriodSeconds: 30
       tolerations:
       - effect: NoSchedule
-        key: role
+        key: node-role.kubernetes.io/worker
         operator: Equal
-        value: worker 
+        value: 'true'
       volumes:
       - name: registry-vol
         persistentVolumeClaim:
