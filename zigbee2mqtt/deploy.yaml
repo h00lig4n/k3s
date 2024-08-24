@@ -1,10 +1,11 @@
+# Should probably look at rootless for this
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: zigbee2mqtt
-  namespace: hass
   labels:
     app: zigbee2mqtt
+  name: zigbee2mqtt
+  namespace: hass
 spec:
   replicas: 1
   selector:
@@ -16,7 +17,7 @@ spec:
     metadata:
       labels:
         app: zigbee2mqtt
-    spec:
+    spec: 
       containers:
       - image: koenkk/zigbee2mqtt:1.39.1
         name: zigbee2mqtt
@@ -25,7 +26,7 @@ spec:
           - name: http
             containerPort: 8080
             protocol: TCP
-        - env:
+        env:
           - name: TZ
             value: Europe/Stockholm
           - name: ZIGBEE2MQTT_DATA
@@ -63,40 +64,47 @@ spec:
             value: "/data/devices.yaml"
           - name: "ZIGBEE2MQTT_CONFIG_GROUPS"
             value: "/data/groups.yaml"
-          resources:
-            limits:
-              hass/zigbee: 1
-          volumeMounts:
-            - name: zigbee2mqtt-data
-              mountPath: /data
-            - name: zigbee2mqtt-config
-              mountPath: /app/configuration.yaml
-              subPath: configuration.yaml
-            - name: zigbee2mqtt-udev
-              mountPath: /run/udev
-            - name: ttyacm
-              mountPath: /dev/ttyACM0
-          livenessProbe:
-            tcpSocket:
-              port: 8080
-            initialDelaySeconds: 0
-            failureThreshold: 3
-            timeoutSeconds: 1
-            periodSeconds: 10
-          readinessProbe:
-            tcpSocket:
-              port: 8080
-            initialDelaySeconds: 0
-            failureThreshold: 3
-            timeoutSeconds: 1
-            periodSeconds: 10
-          startupProbe:
-            tcpSocket:
-              port: 8080
-            initialDelaySeconds: 0
-            failureThreshold: 30
-            timeoutSeconds: 1
-            periodSeconds: 5
+        securityContext:
+          privileged: true
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"
+            squat.ai/zigbee: 1
+        volumeMounts:
+          - name: zigbee2mqtt-data
+            mountPath: /data
+          - name: zigbee2mqtt-udev
+            mountPath: /run/udev
+          - name: localtime
+            mountPath: /etc/localtime
+            readOnly: true
+          - name: adapter
+            mountPath: /dev/serial/by-id/usb-ITEAD_SONOFF_Zigbee_3.0_USB_Dongle_Plus_V2_20231031115325-if00
+        livenessProbe:
+          tcpSocket:
+            port: 8080
+          initialDelaySeconds: 0
+          failureThreshold: 3
+          timeoutSeconds: 1
+          periodSeconds: 10
+        readinessProbe:
+          tcpSocket:
+            port: 8080
+          initialDelaySeconds: 0
+          failureThreshold: 3
+          timeoutSeconds: 1
+          periodSeconds: 10
+        startupProbe:
+          tcpSocket:
+            port: 8080
+          initialDelaySeconds: 0
+          failureThreshold: 30
+          timeoutSeconds: 1
+          periodSeconds: 5
       restartPolicy: Always
       securityContext: {}
       terminationGracePeriodSeconds: 30
@@ -109,6 +117,9 @@ spec:
         - name: zigbee2mqtt-data
           persistentVolumeClaim:
             claimName: zigbee2mqtt-nfs
+        - name: zigbee2mqtt-config
+          configMap:
+            name: zigbee2mqtt-config
         - name: zigbee2mqtt-udev
           hostPath:
             path: /run/udev
