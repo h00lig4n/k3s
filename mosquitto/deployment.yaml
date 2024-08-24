@@ -43,6 +43,12 @@ spec:
         fsGroup: 1883
         runAsGroup: 1883
         runAsUser: 1833
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/worker
+        operator: Equal
+        value: 'true'
       volumes:
         - name: data-volume
           persistentVolumeClaim:
