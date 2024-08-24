@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: default
+  namespace: hass
   labels:
     service: mqtt-external
     app: mqtt
@@ -20,7 +20,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: default
+  namespace: hass
   labels:
     service: mqtt-internal
     app: mqtt
