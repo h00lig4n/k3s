@@ -1,10 +1,12 @@
+---
 apiVersion: v1
 kind: Service
 metadata:
+  namespace: default
   labels:
-    service: mqtt-svc
+    service: mqtt-external
     app: mqtt
-  name: mqtt-svc
+  name: mqtt-external
 spec:
   ports:
   - name:  tls
@@ -14,3 +16,21 @@ spec:
   selector:
     app: mqtt
   type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: default
+  labels:
+    service: mqtt-internal
+    app: mqtt
+  name: mqtt-internal
+spec:
+  ports:
+  - name:  insecure
+    port: 1883
+    targetPort:  1883
+    protocol:  TCP
+  selector:
+    app: mqtt
+  type: ClusterIP
