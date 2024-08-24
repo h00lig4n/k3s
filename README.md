@@ -67,9 +67,18 @@ Refer to [home assistant repository](https://github.com/h00lig4n/hass) for confi
 - MQTT running as separate container.
 
 #### HACS Installation
-[HACS](https://hacs.xyz/docs/use/download/download/#to-download-hacs-container) needs to be manually installed. 
-1. Shell into the container: ```kubectl exec --stdin --tty hass-8869787cd-jtxtb -n hass  -- /bin/sh```
-2. Run ```wget -O - https://get.hacs.xyz | bash -``` to download HACS
+Links:
+- https://hacs.xyz/docs/use/configuration/basic/
+- https://hacs.xyz/docs/use/download/download/#to-download-hacs-container
+  
+HACS needs to be manually installed. 
+1. Shell into the container: ```kubectl exec --stdin --tty hass-8869787cd-jtxtb -n hass  -- /bin/sh```.
+2. Run ```wget -O - https://get.hacs.xyz | bash -``` to download HACS.
+3. Restart Home Assistant.
+4. Clear browser cache and open Home Assistant.
+5. navigate to Settings -> Devices & Services.
+6. Add Integration HACS.
+7. Follow prompts to authorize.
 
 ### InfluxDB
 For Home Assistant. Used to store sensor data for longer periods of time to see trends.
