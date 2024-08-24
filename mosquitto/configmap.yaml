@@ -11,6 +11,8 @@ data:
     persistence_file mosquitto.db
     autosave_interval 60
     log_dest stdout
+    listener 1883 0.0.0.0
+    protocol mqtt
     listener 8883 0.0.0.0
     protocol mqtt
     password_file /mosquitto/config/mosquitto.passwd
