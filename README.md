@@ -19,13 +19,15 @@ This is run on a Raspberry Pi Cluster (currently 5x Raspberry PI 4 8Mb).
 
 ## Installed Kubernetes Components
 
+https://github.com/blake/external-mdns
+
 ### Generic Device Plugin
 To be able to move Zigbee, Zwave and other devices between nodes.
 
 ```[Generic Device Plugin](https://github.com/squat/generic-device-plugin)```
 
 ### Multus CNI
-TODO: Currently using HostNetwork=true
+TODO: Not used as yet, investigating.
 Used for attaching multiple networks. Needed for discovery mechanisms in Home Assistant
 [Multus CNI](https://github.com/k8snetworkplumbingwg/multus-cni)
 
@@ -69,6 +71,8 @@ This is used to connect to [ESPHome](https://esphome.io/) devices. I use the blu
 1.Install the container and spin it up.
 2.In Home Assistant add ESP Home Integration.
 3.Set host as esphome and port as 6052.
+
+**NOTE:** Unless you enable hostNetwork=true then you will need to update domain on every device as it defaults to local and will not resolve.
 
 ### Grafana
 Making nice graphs.
