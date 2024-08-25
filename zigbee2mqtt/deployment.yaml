@@ -1,4 +1,3 @@
-# Should probably look at rootless for this
 apiVersion: apps/v1
 kind: Deployment
 metadata:
