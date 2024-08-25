@@ -21,5 +21,6 @@ spec:
                   number: 8080
   tls:
     - secretName: tls-certificate
-      hosts:
-        - zigbee.{{mydomain}}
+      # Useing wildcare cerificate, comment out if you want one per service
+      # hosts:
+      #  - zigbee.{{mydomain}}
