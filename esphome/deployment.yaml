@@ -23,6 +23,8 @@ spec:
         ports:
           - containerPort: 6052
         env:
+          - name: "ESPHOME_DASHBOARD_USE_PING"
+            value: "true"
           - name: TZ
             value: Europe/Stockholm
           - name: "USERNAME"
