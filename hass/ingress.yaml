@@ -21,5 +21,6 @@ spec:
                   number: 8123
   tls:
     - secretName: tls-certificate
-      hosts:
-        - assistant.{{mydomain}}
+      # Useing wildcare cerificate, comment out if you want one per service
+      # hosts:
+      #  - assistant.{{mydomain}}
