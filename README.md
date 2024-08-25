@@ -24,6 +24,10 @@ To be able to move Zigbee, Zwave and other devices between nodes.
 
 ```[Generic Device Plugin](https://github.com/squat/generic-device-plugin)```
 
+### Multus CNI
+Used for attaching multiple networks. Needed for discovery mechanisms in Home Assistant
+[Multus CNI](https://github.com/k8snetworkplumbingwg/multus-cni)
+
 ### Traefik
 Default installation with K3S.
 Sucessfully used for HTTPS, not managed to get TCP to work yet.
