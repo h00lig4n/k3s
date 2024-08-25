@@ -21,5 +21,6 @@ spec:
                   number: 6052
   tls:
     - secretName: tls-certificate
-      hosts:
-        - esp.{{mydomain}}
+      # Useing wildcare cerificate, comment out if you want one per service
+      # hosts:
+      #  - esp.{{mydomain}}
