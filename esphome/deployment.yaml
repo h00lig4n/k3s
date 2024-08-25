@@ -20,6 +20,7 @@ spec:
       containers:
       - name: esphome
         image: esphome/esphome:2024.8.0
+        imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 6052
         env:
