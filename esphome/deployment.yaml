@@ -52,6 +52,9 @@ spec:
         key: node-role.kubernetes.io/worker
         operator: Equal
         value: 'true'
+      # The following is ugly so not used. Can replace dnsPolicy and dnsConfig if you want to discovery on LAN.
+      #hostNetwork: true
+      #dnsPolicy: ClusterFirstWithHostNet
       dnsPolicy: "None"
       dnsConfig:
         nameservers:
