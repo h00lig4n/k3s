@@ -25,24 +25,12 @@ spec:
         args:
         - --device
         - |
-          name: serial
-          groups:
-            - paths:
-                - path: /dev/ttyUSB*
-            - paths:
-                - path: /dev/tty.usb*
-            - paths:
-                - path: /dev/cu.*
-            - paths:
-                - path: /dev/cuaU*
-            - paths:
-                - path: /dev/rfcomm*
-        - --device
-        - |
           name: zigbee
           groups:
             - paths:
-                - path: /dev/ttyACM0
+                - path: /dev/serial/by-id/usb-ITEAD_SONOFF_Zigbee_3.0_USB_Dongle_Plus_V2_20231031115325-if00
+            - paths:
+                - path: /dev/ttyACM*
         name: generic-device-plugin
         resources:
           requests:
