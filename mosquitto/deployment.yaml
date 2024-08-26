@@ -32,7 +32,7 @@ spec:
           - name: data-volume
             mountPath: /mosquitto/data
           - name: healthcheck
-            mountPath: /mosquitto/data/healthcheck.sh
+            mountPath: /healthcheck/healthcheck.sh
             subPath: healthcheck.sh
             readOnly: true
         resources:
@@ -47,7 +47,7 @@ spec:
             command:
             - /bin/sh
             - -c
-            - ./mosquitto/data/healthcheck.sh
+            - ./healthcheck/healthcheck.sh
           initialDelaySeconds: 5
           periodSeconds: 30
           timeoutSeconds: 10
