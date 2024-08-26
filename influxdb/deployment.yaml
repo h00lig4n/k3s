@@ -35,15 +35,27 @@ spec:
           - name: DOCKER_INFLUXDB_INIT_MODE
             value: setup 
           - name: DOCKER_INFLUXDB_INIT_USERNAME
-            value: ""
+             valueFrom:
+              secretKeyRef:
+                name: influxdb
+                key: username
           - name: DOCKER_INFLUXDB_INIT_PASSWORD
-            value: ""
+             valueFrom:
+              secretKeyRef:
+                name: influxdb
+                key: password
           - name: DOCKER_INFLUXDB_INIT_ORG
-            value: ""
+             valueFrom:
+              secretKeyRef:
+                name: influxdb
+                key: org
           - name: DOCKER_INFLUXDB_INIT_BUCKET
             value: "hass"
           - name: DOCKER_INFLUXDB_INIT_ADMIN_TOKEN
-            value: 
+             valueFrom:
+              secretKeyRef:
+                name: influxdb
+                key: adminToken
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
       dnsPolicy: ClusterFirst
