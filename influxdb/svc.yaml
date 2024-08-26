@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: influxdb
+  name: influxdb
+  namespace: hass
+spec:
+  ports:
+    - port: 8086 
+      targetPort: 8086 
+      name: tcp
+  selector:
+    app: influxdb
+  type: ClusterIP
