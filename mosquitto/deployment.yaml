@@ -31,6 +31,10 @@ spec:
             mountPath: /mosquitto/certs/
           - name: data-volume
             mountPath: /mosquitto/data
+          - name: healthcheck
+            mountPath: /mosquitto/data/healthcheck.sh
+            subPath: healthcheck.sh
+            readOnly: true
         resources:
           requests:
             memory: "64Mi"
@@ -38,6 +42,17 @@ spec:
           limits:
             memory: "1024Mi"
             cpu: "500m"
+        readinessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -c
+            - ./mosquitto/data/healthcheck.sh
+          initialDelaySeconds: 5
+          periodSeconds: 30
+          timeoutSeconds: 10
+          successThreshold: 1
+          failureThreshold: 3
       restartPolicy: Always
       securityContext:
         runAsNonRoot: true
@@ -60,3 +75,7 @@ spec:
         - name: certs
           secret:
             secretName: tls-certificate
+        - name: healthcheck
+          secret:
+            secretName: mqtt
+            defaultMode: 383
