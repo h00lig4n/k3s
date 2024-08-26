@@ -12,7 +12,4 @@ spec:
   - name: esphome
     port: 6052
     targetPort: 6052
-  - name: api
-    port: 6053
-    targetPort: 6053
   type: ClusterIP
