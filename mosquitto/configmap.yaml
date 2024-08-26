@@ -12,6 +12,8 @@ data:
     persistence_file mosquitto.db
     autosave_interval 60
     log_dest stdout
+    per_listener_settings false #Recommended to use per listener settings
+    
     listener 1883 0.0.0.0
     protocol mqtt
     listener 8883 0.0.0.0
