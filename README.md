@@ -101,8 +101,12 @@ HACS needs to be manually installed.
 For Home Assistant. Used to store sensor data for longer periods of time to see trends.
 ### Minecraft
 The kids still play this!
+
 ### Mosquitto Broker
 For Home Assistant. To be able to separate upgrades of Home Assistant from MQTT.
+There is a custom readiness check implemented. It is deployed as a script saved as a secret (it contains user and password).
+This is then mounted into the container and called from the readinessprobe.
+
 ### Prometheus
 ### MySQL
 ### UNMS
