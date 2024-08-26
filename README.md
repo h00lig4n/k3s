@@ -83,6 +83,18 @@ Refer to [home assistant repository](https://github.com/h00lig4n/hass) for confi
 - Zigbee running as separate container.
 - MQTT running as separate container.
 
+**NOTE:** Not using hostNetwork=true. This does mess up Home Assistant discovery mechanisms, but the security trade-off is too high.
+It can be enabled temporarily to get it working, but make sure you add your node to the trusted_proxies list (temporarily).
+
+#### TLS Setup
+Traefik with let's encrypt. Don't forget to add the correct addresses to Configuration.yaml
+```
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 10.42.0.0/16
+```
+
 #### HACS Installation
 Links:
 - https://hacs.xyz/docs/use/configuration/basic/
@@ -104,6 +116,11 @@ The kids still play this!
 
 ### Mosquitto Broker
 For Home Assistant. To be able to separate upgrades of Home Assistant from MQTT.
+The ClusterIP service does not use TLS and is not exposed outside of the cluster.
+The LoadBalancer service only exposes the TLS endpoint.
+
+Wildcard certificate for domain is used and is created separately by CertManager/Let's Encrypt.
+
 There is a custom readiness check implemented. It is deployed as a script saved as a secret (it contains user and password).
 This is then mounted into the container and called from the readinessprobe.
 
