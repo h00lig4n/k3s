@@ -19,36 +19,62 @@ This is run on a Raspberry Pi Cluster (currently 5x Raspberry PI 4 8Mb).
 
 ## Installed Kubernetes Components
 
-https://github.com/blake/external-mdns
-
-### Generic Device Plugin
-To be able to move Zigbee, Zwave and other devices between nodes.
-
-```[Generic Device Plugin](https://github.com/squat/generic-device-plugin)```
-
-### Multus CNI
-TODO: Not used as yet, investigating.
-Used for attaching multiple networks. Needed for discovery mechanisms in Home Assistant
-[Multus CNI](https://github.com/k8snetworkplumbingwg/multus-cni)
-
-### Traefik
-Default installation with K3S.
-Sucessfully used for HTTPS, not managed to get TCP to work yet.
-
-### MetalLB
-Run the following on the master node:
-
-```kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.13.12/config/manifests/metallb-native.yaml```
-
-```kubectl apply -f metallb.yaml``` It contains tolerations.
-
-```kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)```
-
-The bgp config file isn't used yet. Need to connect the cluster to a different port on the Edge Router and setup BGP first.
-
 ### CertManager for CPanel
 Using subdomain to provide TLS support on internal network.
 [CPanel Plugin](https://github.com/jamesorlakin/cert-manager-cpanel-dns-webhook)
+
+This creates a default wildcard certificate, this is an internal cluster so that is fine.
+
+#### Instructions
+  1. kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/<<latest-version>>/cert-manager.yaml
+	2. kubectl apply -f https://raw.githubusercontent.com/jamesorlakin/cert-manager-cpanel-dns-webhook/master/deploy/v0.2.0.yaml
+	3. kubectl apply -f certmanager/cpanel_creds.yaml
+	4. kubectl apply -f certmanager/letsencrypt_prod.yaml
+	5. kubectl apply -f certmanager/letsencrypt_staging.yaml
+	6. kubectl apply -f certmanager/cert.yaml
+
+### Generic Device Plugin
+To be able to move Zigbee, Zwave and other devices between nodes.
+[Generic Device Plugin](https://github.com/squat/generic-device-plugin)
+Update the daemonset with new device addresses.
+
+#### Instructions
+  1. kubectl apply -f generic-device-plugin/daemonset.yaml
+
+### Kubernetes Reflector
+[Kubernetes Reflector](https://github.com/emberstack/kubernetes-reflector) is used to copy resources between namespaces.
+It is used here to copy the wildcard TLS certificate to all namespaces.
+
+#### Instructions
+  **NOTE**: Install this before Cert Manager.
+  1. kubectl -n kube-system apply -f https://github.com/emberstack/kubernetes-reflector/releases/latest/download/reflector.yaml
+
+### MetalLB
+Using MetalLB instead of the default load balancer. Gives us some nice options to expose a service, although prefer Ingress.
+
+#### Installation
+  1. kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/{{latest-metallb-version}}/config/manifests/metallb-native.yaml
+  2. Works on linux only: kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
+  3. kubectl apply -f config.yaml
+
+The bgp config file isn't used yet. Need to connect the cluster to a different port on the Edge Router and setup BGP first. Might do it sometime.
+
+### Traefik
+Default installation with K3S. Sucessfully used for HTTPS and for TCP. 
+Aim is to avoid using MetalLB to expose services outside of the cluster and rely on Ingress.
+#### Instructions
+  **NOTE**: Install MetalLB first otherwise we don't have a Load Balancer.
+  1. kubectl apply -f traefik/secret.yaml
+	2. kubectl apply -f traefik/middleware.yaml
+	3. kubectl apply -f traefik/tls-store.yaml
+	4. kubectl apply -f traefik/ingress.yaml
+	5. On control plane node deploy traefik-config.yaml to /var/lib/rancher/k3s/server/manifests/traefik-config.yaml
+
+
+
+
+
+
 
 ### Longhorn
 High speed USB sticks in all the worker nodes to host longhorn.
