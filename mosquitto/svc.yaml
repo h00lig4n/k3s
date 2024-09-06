@@ -1,37 +1,22 @@
----
 apiVersion: v1
 kind: Service
 metadata:
   namespace: hass
   labels:
-    service: mqtt-external
+    service: mqtt
     app: mqtt
-  name: mqtt-external
-spec:
-  ports:
-  - name:  tls
-    port: 8883
-    targetPort:  8883
-    protocol:  TCP
-  selector:
-    app: mqtt
-  type: LoadBalancer
----
-apiVersion: v1
-kind: Service
-metadata:
-  namespace: hass
-  labels:
-    service: mqtt-internal
-    app: mqtt
-  name: mqtt-internal
+  name: mqtt
 spec:
   ports:
   - name:  insecure
     port: 1883
     targetPort:  1883
     protocol:  TCP
-  - name:  websocket
+  - name:  secure
+    port: 8883
+    targetPort:  8883
+    protocol:  TCP
+  - name:  ws
     port: 9001
     targetPort:  9001
     protocol:  TCP
