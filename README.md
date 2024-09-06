@@ -48,6 +48,14 @@ It is used here to copy the wildcard TLS certificate to all namespaces.
   **NOTE**: Install this before Cert Manager.
   1. kubectl -n kube-system apply -f https://github.com/emberstack/kubernetes-reflector/releases/latest/download/reflector.yaml
 
+### Kube-Vip
+This is used to provide a single IP address for a HA K3S without having an external load balancer.
+Update the IP address in the daemonset.yaml for the common IP address. Can match the first IP in MetalLB IP pool as long as no port conflicts with Traefik.
+
+#### Installation
+   1. kubectl apply -f https://kube-vip.io/manifests/rbac.yaml
+   2. kubectl apply -f kube-vip/daemonset.yaml
+
 ### MetalLB
 Using MetalLB instead of the default load balancer. Gives us some nice options to expose a service, although prefer Ingress.
 
