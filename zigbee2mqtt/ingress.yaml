@@ -4,7 +4,7 @@ metadata:
   name: zigbee2mqtt
   namespace: hass
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-prod
+    # cert-manager.io/cluster-issuer: letsencrypt-prod Issue Would only use this if we wanted to generate on the fly.
     traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
 spec:
   ingressClassName: traefik
@@ -21,6 +21,5 @@ spec:
                   number: 8080
   tls:
     - secretName: tls-certificate
-      # Useing wildcare cerificate, comment out if you want one per service
-      # hosts:
-      #  - zigbee.{{mydomain}}
+       hosts:
+        - zigbee.{{mydomain}}
