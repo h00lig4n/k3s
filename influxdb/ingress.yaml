@@ -21,3 +21,5 @@ spec:
                   number: 8086
   tls:
     - secretName: tls-certificate
+      hosts:
+        - influxdb.{{mydomain}}
