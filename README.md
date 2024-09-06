@@ -19,7 +19,7 @@ This is run on a Raspberry Pi Cluster (currently 5x Raspberry PI 4 8Mb).
 
 ## Installed Kubernetes Components
 
-### CertManager for CPanel
+### CertManager
 Using subdomain to provide TLS support on internal network.
 [CPanel Plugin](https://github.com/jamesorlakin/cert-manager-cpanel-dns-webhook)
 
