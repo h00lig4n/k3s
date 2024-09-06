@@ -48,18 +48,18 @@ It is used here to copy the wildcard TLS certificate to all namespaces.
 
 ## Kube-Vip
 This is used to provide a single IP address for a HA K3S without having an external load balancer.
-Update the IP address in the daemonset.yaml for the common IP address. Can match the first IP in MetalLB IP pool as long as no port conflicts with Traefik.
+Update the IP address in the daemonset.yaml with your common IP address. Can match the first IP in MetalLB IP pool as long as no port conflicts with Traefik.
 
 ### Installation
-   1. kubectl apply -f https://kube-vip.io/manifests/rbac.yaml
+   1. kubectl apply -f https://kube-vip.io/manifests/rbac.yaml<br>
    2. kubectl apply -f kube-vip/daemonset.yaml
 
 ## MetalLB
 Using MetalLB instead of the default load balancer. Gives us some nice options to expose a service, although prefer Ingress.
 
 ### Installation
-  1. kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/{{latest-metallb-version}}/config/manifests/metallb-native.yaml
-  2. Works on linux only: kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
+  1. kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/{{latest-metallb-version}}/config/manifests/metallb-native.yaml<br>
+  2. Works on linux only: kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"<br>
   3. kubectl apply -f config.yaml
 
 The bgp config file isn't used yet. Need to connect the cluster to a different port on the Edge Router and setup BGP first. Might do it sometime.
@@ -88,23 +88,27 @@ Separate debian linux server hosting:
 
 ### Installation
   1. kubectl create namespace external-storage<br>
-  2. Update this as it's helm charts<br>
-  3. Deploy to /var/lib/rancher/k3s/server/manifests/nfs.yaml from nfs/nfs.yaml<br>
-  4. Deploy to /var/lib/rancher/k3s/server/manifests/nfs.yaml from nfs/nfs-slow.yaml<br>
+  2. Deploy to /var/lib/rancher/k3s/server/manifests/nfs.yaml from nfs/nfs.yaml<br>
+  3. Deploy to /var/lib/rancher/k3s/server/manifests/nfs.yaml from nfs/nfs-slow.yaml<br>
   
 # Hosted Resources (Images)
+
 ## Container Registry and UI
 For personal application development.
-kubectl apply -f https://raw.githubusercontent.com/squat/generic-device-plugin/main/manifests/generic-device-plugin.yaml
-### ESP Home
-This is used to connect to [ESPHome](https://esphome.io/) devices. I use the bluetooth proxies.
 
+### Installation
+  1. kubectl apply -f https://raw.githubusercontent.com/squat/generic-device-plugin/main/manifests/generic-device-plugin.yaml
+     
+## ESP Home
+This is used to connect to [ESPHome](https://esphome.io/) devices. I use the bluetooth proxies, mostly.
 [Guide](https://esphome.io/guides/getting_started_command_line.html)
-1.Install the container and spin it up.
-2.In Home Assistant add ESP Home Integration.
-3.Set host as esphome and port as 6052.
 
-**NOTE:** Unless you enable hostNetwork=true then you will need to update domain on every device as it defaults to local and will not resolve.
+### Installation
+  1. Install the container and spin it up.
+  2. In Home Assistant add ESP Home Integration.
+  3. Set host as esphome and port as 6052.
+
+  **NOTE:** Unless you enable hostNetwork=true then you will need to update domain on every device as it defaults to local and will not resolve.
 
 ### Grafana
 Making nice graphs.
