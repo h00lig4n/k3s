@@ -14,8 +14,7 @@ spec:
         expose: false
       mqtt:
         port: 8883
-        expose: true
-        exposedport: 8883
+        expose: false
     logs:
       access:
         enabled: true
