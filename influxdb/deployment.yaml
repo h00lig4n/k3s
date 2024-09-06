@@ -58,17 +58,14 @@ spec:
                 key: token
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
+      nodeSelector:
+        node-role.kubernetes.io/worker: "true"
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext: {}
       terminationGracePeriodSeconds: 30
-      tolerations:
-        - effect: Schedule
-          key: node-role.kubernetes.io/worker
-          operator: Equal
-          value: 'true'
       volumes:
       - name: var-lib-influxdb
         persistentVolumeClaim:
-          claimName: influxdb-pvc
+          claimName: influxdb
