@@ -1,12 +1,11 @@
 # k3s - Bare Metal K3S Setup
 This is run on a Raspberry Pi Cluster (currently 5x Raspberry PI 4 8Mb).
+PostGreSQL and NFS are running on separate Debian box.
 
 # Goals
 - TLS For everything, even if the cluster is not exposed to the Internet.
-  - Traefik ingress for HTTPS.
-  - MetalLB for exposing TCP/UDP over TLS.
-    - Investigate getting Traefik to work for TCP.
-- Single Control Plane Node (experimented with HA dual Control Plane Nodes and external PostGre DB but had problems).
+  - Traefik ingress for HTTPS and TCP.
+- HA dual Control Plane Nodes and external PostGreSQL database.
 - Migrate Home Assistant to an easier to maintain distributed container architecture.
 - Ability to move devices between nodes seamlessly.
 - Migrate existing debian linux server as pure a NAS.
@@ -14,19 +13,18 @@ This is run on a Raspberry Pi Cluster (currently 5x Raspberry PI 4 8Mb).
 - Host own developed apps. 
 
 # TODO
-- Namespace. Everything is installed in default at the moment.
   - Network policy, connected to namespaces. 
 
 # Installed Kubernetes Components
 
-## CertManager
+## Cert Manager
 Using subdomain to provide TLS support on internal network.
 [CPanel Plugin](https://github.com/jamesorlakin/cert-manager-cpanel-dns-webhook)
 
 This creates a default wildcard certificate, this is an internal cluster so that is fine.
 
 ### Instructions
-  1. kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/<<latest-version>>/cert-manager.yaml<br>
+  1. kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/<<latest-version>/cert-manager.yaml<br>
 	2. kubectl apply -f https://raw.githubusercontent.com/jamesorlakin/cert-manager-cpanel-dns-webhook/master/deploy/v0.2.0.yaml<br>
 	3. kubectl apply -f certmanager/secret.yaml<br>
 	4. kubectl apply -f certmanager/issuer.yaml<br>
@@ -67,25 +65,20 @@ Using MetalLB instead of the default load balancer. Gives us some nice options t
 The bgp config file isn't used yet. Need to connect the cluster to a different port on the Edge Router and setup BGP first. Might do it sometime.
 
 ## Traefik
-Default installation with K3S. Sucessfully used for HTTPS and for TCP. 
+Default installation with K3S. Sucessfully used for HTTPS and for TCP. TCP was easy when I actually understood what needed to be done... 
 Aim is to avoid using MetalLB to expose services outside of the cluster and rely on Ingress.
+
 ### Instructions
   **NOTE**: Install MetalLB first otherwise we don't have a Load Balancer.
   1. kubectl apply -f traefik/secret.yaml
-	2. kubectl apply -f traefik/middleware.yaml
-	3. kubectl apply -f traefik/tls-store.yaml
-	4. kubectl apply -f traefik/ingress.yaml
-	5. On control plane node deploy traefik-config.yaml to /var/lib/rancher/k3s/server/manifests/traefik-config.yaml
-
-
-
-
-
-
+	2. kubectl apply -f traefik/middleware.yaml<br>
+	3. kubectl apply -f traefik/tls-store.yaml<br>
+	4. kubectl apply -f traefik/ingress.yaml<br>
+	5. On control plane node deploy traefik-config.yaml to /var/lib/rancher/k3s/server/manifests/traefik-config.yaml<br>
 
 ## Longhorn
 High speed USB sticks in all the worker nodes to host longhorn.
-**NOTE**: This has been to unstable. Need to investigate if USB latency or network is issue.
+**NOTE**: This has been to unstable and I'm not using it right now. Need to investigate if USB latency or network is issue. TODO
 
 ## NFS
 Separate debian linux server hosting:
@@ -93,6 +86,12 @@ Separate debian linux server hosting:
 - faster NFS (SSD disks)
 - Backups
 
+### Installation
+  1. kubectl create namespace external-storage<br>
+  2. Update this as it's helm charts<br>
+  3. Deploy to /var/lib/rancher/k3s/server/manifests/nfs.yaml from nfs/nfs.yaml<br>
+  4. Deploy to /var/lib/rancher/k3s/server/manifests/nfs.yaml from nfs/nfs-slow.yaml<br>
+  
 # Hosted Resources (Images)
 ## Container Registry and UI
 For personal application development.
