@@ -22,7 +22,14 @@ spec:
         name: mqtt
         imagePullPolicy: IfNotPresent
         ports:
+          - containerPort: 1883
+            name: insecure
+            protocol: TCP
           - containerPort: 8883
+            name: secure
+            protocol: TCP
+          - containerPort: 9001
+            name: ws
             protocol: TCP
         volumeMounts:
           - name: config-file
@@ -68,7 +75,7 @@ spec:
       volumes:
         - name: data-volume
           persistentVolumeClaim:
-            claimName: pvc-mqtt
+            claimName: mqtt
         - name: config-file
           configMap:
             name: mosquitto-conf
