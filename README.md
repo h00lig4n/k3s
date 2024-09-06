@@ -25,10 +25,10 @@ This creates a default wildcard certificate, this is an internal cluster so that
 
 ### Instructions
   1. kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/<<latest-version>/cert-manager.yaml<br>
-	2. kubectl apply -f https://raw.githubusercontent.com/jamesorlakin/cert-manager-cpanel-dns-webhook/master/deploy/v0.2.0.yaml<br>
-	3. kubectl apply -f certmanager/secret.yaml<br>
-	4. kubectl apply -f certmanager/issuer.yaml<br>
-	6. kubectl apply -f certmanager/default-cert.yaml<br>
+  2. kubectl apply -f https://raw.githubusercontent.com/jamesorlakin/cert-manager-cpanel-dns-webhook/master/deploy/v0.2.0.yaml<br>
+  3. kubectl apply -f certmanager/secret.yaml<br>
+  4. kubectl apply -f certmanager/issuer.yaml<br>
+  6. kubectl apply -f certmanager/default-cert.yaml<br>
 
 ## Generic Device Plugin
 To be able to move Zigbee, Zwave and other devices between nodes.
