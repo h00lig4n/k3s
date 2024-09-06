@@ -1,7 +1,7 @@
 # k3s - Bare Metal K3S Setup
 This is run on a Raspberry Pi Cluster (currently 5x Raspberry PI 4 8Mb).
 
-## Goals
+# Goals
 - TLS For everything, even if the cluster is not exposed to the Internet.
   - Traefik ingress for HTTPS.
   - MetalLB for exposing TCP/UDP over TLS.
@@ -13,63 +13,63 @@ This is run on a Raspberry Pi Cluster (currently 5x Raspberry PI 4 8Mb).
 - Fun with Kubernetes.
 - Host own developed apps. 
 
-## TODO
+# TODO
 - Namespace. Everything is installed in default at the moment.
   - Network policy, connected to namespaces. 
 
-## Installed Kubernetes Components
+# Installed Kubernetes Components
 
-### CertManager
+## CertManager
 Using subdomain to provide TLS support on internal network.
 [CPanel Plugin](https://github.com/jamesorlakin/cert-manager-cpanel-dns-webhook)
 
 This creates a default wildcard certificate, this is an internal cluster so that is fine.
 
-#### Instructions
+### Instructions
   1. kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/<<latest-version>>/cert-manager.yaml
 	2. kubectl apply -f https://raw.githubusercontent.com/jamesorlakin/cert-manager-cpanel-dns-webhook/master/deploy/v0.2.0.yaml
 	3. kubectl apply -f certmanager/secret.yaml
 	4. kubectl apply -f certmanager/issuer.yaml
 	6. kubectl apply -f certmanager/default-cert.yaml
 
-### Generic Device Plugin
+## Generic Device Plugin
 To be able to move Zigbee, Zwave and other devices between nodes.
 [Generic Device Plugin](https://github.com/squat/generic-device-plugin)
 Update the daemonset with new device addresses.
 
-#### Instructions
+### Instructions
   1. kubectl apply -f generic-device-plugin/daemonset.yaml
 
-### Kubernetes Reflector
+## Kubernetes Reflector
 [Kubernetes Reflector](https://github.com/emberstack/kubernetes-reflector) is used to copy resources between namespaces.
 It is used here to copy the wildcard TLS certificate to all namespaces.
 
-#### Instructions
+### Instructions
   **NOTE**: Install this before Cert Manager.
   1. kubectl -n kube-system apply -f https://github.com/emberstack/kubernetes-reflector/releases/latest/download/reflector.yaml
 
-### Kube-Vip
+## Kube-Vip
 This is used to provide a single IP address for a HA K3S without having an external load balancer.
 Update the IP address in the daemonset.yaml for the common IP address. Can match the first IP in MetalLB IP pool as long as no port conflicts with Traefik.
 
-#### Installation
+### Installation
    1. kubectl apply -f https://kube-vip.io/manifests/rbac.yaml
    2. kubectl apply -f kube-vip/daemonset.yaml
 
-### MetalLB
+## MetalLB
 Using MetalLB instead of the default load balancer. Gives us some nice options to expose a service, although prefer Ingress.
 
-#### Installation
+### Installation
   1. kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/{{latest-metallb-version}}/config/manifests/metallb-native.yaml
   2. Works on linux only: kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
   3. kubectl apply -f config.yaml
 
 The bgp config file isn't used yet. Need to connect the cluster to a different port on the Edge Router and setup BGP first. Might do it sometime.
 
-### Traefik
+## Traefik
 Default installation with K3S. Sucessfully used for HTTPS and for TCP. 
 Aim is to avoid using MetalLB to expose services outside of the cluster and rely on Ingress.
-#### Instructions
+### Instructions
   **NOTE**: Install MetalLB first otherwise we don't have a Load Balancer.
   1. kubectl apply -f traefik/secret.yaml
 	2. kubectl apply -f traefik/middleware.yaml
@@ -83,18 +83,18 @@ Aim is to avoid using MetalLB to expose services outside of the cluster and rely
 
 
 
-### Longhorn
+## Longhorn
 High speed USB sticks in all the worker nodes to host longhorn.
 **NOTE**: This has been to unstable. Need to investigate if USB latency or network is issue.
 
-### NFS
+## NFS
 Separate debian linux server hosting:
 - slow NFS (magnetic disks)
 - faster NFS (SSD disks)
 - Backups
 
-## Hosted Resources (Images)
-### Container Registry and UI
+# Hosted Resources (Images)
+## Container Registry and UI
 For personal application development.
 kubectl apply -f https://raw.githubusercontent.com/squat/generic-device-plugin/main/manifests/generic-device-plugin.yaml
 ### ESP Home
