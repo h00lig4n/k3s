@@ -24,7 +24,7 @@ data:
     keyfile /mosquitto/certs/tls.key
     certfile /mosquitto/certs/tls.crt
     
-    #listener 9001
-    #protocol websockets
+    listener 9001
+    protocol websockets
   mosquitto.passwd: |
     {{mosquitto-user}}:{{mosquitto-generated-password}}
