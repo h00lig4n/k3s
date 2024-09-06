@@ -29,8 +29,20 @@ spec:
           groups:
             - paths:
                 - path: /dev/serial/by-id/usb-ITEAD_SONOFF_Zigbee_3.0_USB_Dongle_Plus_V2_20231031115325-if00
+        - --device
+        - |
+          name: zwave
+          groups:
             - paths:
-                - path: /dev/ttyACM*
+                - path: /dev/serial/by-id/usb-Silicon_Labs_CP2102N_USB_to_UART_Bridge_Controller_487d938b7084ed11a17bd29f9d1cc348-if00-port0
+       # - --device
+       # - |
+       #   name: zigbee
+       #   groups:
+       #     - paths:
+       #         - path: /dev/serial/by-id/usb-ITEAD_SONOFF_Zigbee_3.0_USB_Dongle_Plus_V2_20231031115325-if00
+       #     - paths:
+       #         - path: /dev/ttyACM*
         name: generic-device-plugin
         resources:
           requests:
