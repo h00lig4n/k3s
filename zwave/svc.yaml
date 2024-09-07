@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: zwavejs
+  name: zwavejs
+  namespace: hass
+spec:
+  ports:
+    - port: 8091 
+      targetPort: 8091 
+      name: web
+    - port: 3000 
+      targetPort: 3000 
+      name: websocket
+  selector:
+    app: zwavejs
+  type: ClusterIP
