@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: zwavejs
+  namespace: hass
+  annotations:
+    #cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd, default-dashboard-auth@kubernetescrd
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: zwave.{{MYDOMAIN}}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: zwavejs
+                port:
+                  number: 8091
+  tls:
+    - secretName: tls-certificate
+      hosts:
+        - zwave.{{MYDOMAIN}}
