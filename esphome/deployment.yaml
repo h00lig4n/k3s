@@ -46,13 +46,10 @@ spec:
             readOnly: true
         securityContext:
           privileged: true
+        nodeSelector:
+          node-role.kubernetes.io/worker: "true"
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
-      tolerations:
-      - effect: NoSchedule
-        key: node-role.kubernetes.io/worker
-        operator: Equal
-        value: 'true'
       # The following is ugly so not used. Can replace dnsPolicy and dnsConfig if you want to discovery on LAN.
       #hostNetwork: true
       #dnsPolicy: ClusterFirstWithHostNet
@@ -65,7 +62,7 @@ spec:
       volumes:
         - name: esphome-pvc
           persistentVolumeClaim:
-            claimName: esphome-pvc
+            claimName: esphome
         - name: localtime
           hostPath:
             path: /etc/localtime
