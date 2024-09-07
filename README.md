@@ -71,10 +71,10 @@ Aim is to avoid using MetalLB to expose services outside of the cluster and rely
 ### Instructions
   **NOTE**: Install MetalLB first otherwise we don't have a Load Balancer.
   1. kubectl apply -f traefik/secret.yaml
-	2. kubectl apply -f traefik/middleware.yaml<br>
-	3. kubectl apply -f traefik/tls-store.yaml<br>
-	4. kubectl apply -f traefik/ingress.yaml<br>
-	5. On control plane node deploy traefik-config.yaml to /var/lib/rancher/k3s/server/manifests/traefik-config.yaml<br>
+  2. kubectl apply -f traefik/middleware.yaml<br>
+  3. kubectl apply -f traefik/tls-store.yaml<br>
+  4. kubectl apply -f traefik/ingress.yaml<br>
+  5. On control plane node deploy traefik-config.yaml to /var/lib/rancher/k3s/server/manifests/traefik-config.yaml<br>
 
 ## Longhorn
 High speed USB sticks in all the worker nodes to host longhorn.
@@ -166,6 +166,16 @@ This is then mounted into the container and called from the readinessprobe.
 Ubiquiti network at home.
 ### WordPress
 ### Zigbee to MQTT
-For Home Assistant. To be able to separate upgrades of Home Assistant from Zigbee.
+For Home Assistant. To be able to separate upgrades of Home Assistant from Zigbee.[Zigbee2MQTT](https://www.zigbee2mqtt.io/)<br>
+Make sure
+
+#### Installation
+  **NOTE:** This requires [Generic Device Plugin](#-generic-device-plugin) to be configured and working.
+
+  1. kubectl apply -f zigbee2mqtt/secret.yaml<br>
+  2. kubectl apply -f zigbee2mqtt/pvc.yaml<br>
+  3. kubectl apply -f zigbee2mqtt/deployment.yaml<br>
+  4. kubectl apply -f zigbee2mqtt/ingress.yaml<br>
+  
 ### ZWave
 For Home Assistant. To be able to separate upgrades of Home Assistant from ZWave.
