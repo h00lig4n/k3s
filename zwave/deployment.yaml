@@ -60,7 +60,7 @@ spec:
       volumes:
       - name: zwavejs-data
         persistentVolumeClaim:
-          claimName: zwavejs-pvc
+          claimName: zwavejs
       - name: zwavejs-controller
         hostPath:
           path: /dev/serial/by-id/usb-Silicon_Labs_CP2102N_USB_to_UART_Bridge_Controller_487d938b7084ed11a17bd29f9d1cc348-if00-port0
