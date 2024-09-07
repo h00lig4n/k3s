@@ -9,7 +9,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-    - host: influxdb.{{mydomain}}
+    - host: influxdb.{{MYDOMAIN}}
       http:
         paths:
           - path: /
@@ -22,4 +22,4 @@ spec:
   tls:
     - secretName: tls-certificate
       hosts:
-        - influxdb.{{mydomain}}
+        - influxdb.{{MYDOMAIN}}
