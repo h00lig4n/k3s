@@ -5,7 +5,7 @@ metadata:
   namespace: hass
   annotations:
     # cert-manager.io/cluster-issuer: letsencrypt-prod Issue Would only use this if we wanted to generate on the fly.
-    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd, default-dashboard-auth@kubernetescrd
 spec:
   ingressClassName: traefik
   rules:
