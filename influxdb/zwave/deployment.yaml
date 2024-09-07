@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: zwavejs
+  name: zwavejs
+  namespace: hass
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zwavejs
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: zwavejs
+    spec:
+      containers:
+      - image: zwavejs/zwave-js-ui:9.18.0
+        name: zwavejs
+        imagePullPolicy: IfNotPresent
+        ports:
+          - name: web
+            containerPort: 8091
+            protocol: TCP
+          - name: websocket
+            containerPort: 3000
+            protocol: TCP
+        env:
+          - name: SESSION_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: zigbee2mqtt
+                key: password
+          - name: TZ
+            value: "Europe/Stockholm"
+        securityContext:
+          allowPrivilegeEscalation: true
+          privileged: true
+        resources:
+          limits:
+            cpu: "1"
+            memory: 512Mi
+            squat.ai/zwave: 1
+          requests:
+            cpu: "1"
+            memory: 400Mi 
+        volumeMounts:
+        - name: zwavejs-data
+          mountPath: /usr/src/app/store
+        - name: zwavejs-controller
+          mountPath: /dev/zwave    
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: zwavejs-data
+        persistentVolumeClaim:
+          claimName: zwavejs-pvc
+      - name: zwavejs-controller
+        hostPath:
+          path: /dev/serial/by-id/usb-Silicon_Labs_CP2102N_USB_to_UART_Bridge_Controller_487d938b7084ed11a17bd29f9d1cc348-if00-port0
+          type: CharDevice
