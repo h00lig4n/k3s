@@ -19,10 +19,12 @@ spec:
     spec:
       containers:
       - name: esphome
-        image: esphome/esphome:2024.8.0
+        image: esphome/esphome:2024.8.3
         imagePullPolicy: IfNotPresent
         ports:
-          - containerPort: 6052
+          - name: http
+            protocol: TCP
+            containerPort: 6052
         env:
           - name: "ESPHOME_DASHBOARD_USE_PING"
             value: "true"
@@ -31,12 +33,12 @@ spec:
           - name: "USERNAME"
             valueFrom:
               secretKeyRef:
-                name: esphome
+                name: zigbee2mqtt
                 key: username
           - name: "PASSWORD"
             valueFrom:
               secretKeyRef:
-                name: esphome
+                name: zigbee2mqtt
                 key: password
         volumeMounts:
           - name: esphome-pvc
@@ -44,13 +46,41 @@ spec:
           - name: localtime
             mountPath: /etc/localtime
             readOnly: true
+        livenessProbe:
+          failureThreshold: 3
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 6052
+          timeoutSeconds: 1
+        readinessProbe:
+          failureThreshold: 3
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 6052
+          timeoutSeconds: 1
+        startupProbe:
+          failureThreshold: 30
+          periodSeconds: 5
+          successThreshold: 1
+          tcpSocket:
+            port: 6052
+          timeoutSeconds: 1
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"
         securityContext:
           privileged: true
-        nodeSelector:
-          node-role.kubernetes.io/worker: "true"
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
-      # The following is ugly so not used. Can replace dnsPolicy and dnsConfig if you want to discovery on LAN.
+      nodeSelector:
+        node-role.kubernetes.io/worker: "true"
+      # Ugly to enable the following but it will make it easier to 
       #hostNetwork: true
       #dnsPolicy: ClusterFirstWithHostNet
       dnsPolicy: "None"
