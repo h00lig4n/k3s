@@ -59,9 +59,9 @@ spec:
       dnsPolicy: "None"
       dnsConfig:
         nameservers:
-          - {{mydns-server}}
+          - {{MY-DNS-SERVER}}
         searches:
-          - {{mydomain}}
+          - {{MYDOMAIN}}
       volumes:
         - name: esphome-pvc
           persistentVolumeClaim:
