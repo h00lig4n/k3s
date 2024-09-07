@@ -31,12 +31,12 @@ spec:
           - name: "USERNAME"
             valueFrom:
               secretKeyRef:
-                name: zigbee2mqtt
+                name: esphome
                 key: username
           - name: "PASSWORD"
             valueFrom:
               secretKeyRef:
-                name: zigbee2mqtt
+                name: esphome
                 key: password
         volumeMounts:
           - name: esphome-pvc
