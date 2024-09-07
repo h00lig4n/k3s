@@ -4,7 +4,7 @@ metadata:
   creationTimestamp: null
   labels:
     app: zigbee2mqtt
-  name: zigbee2mqtt-nfs
+  name: zigbee2mqtt
   namespace: hass
 spec:
   accessModes:
