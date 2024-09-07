@@ -7,7 +7,7 @@ spec:
   entryPoints:
     - mqtt
   routes:
-  - match: HostSNI(`mqtt.{{mydomain}}`)
+  - match: HostSNI(`mqtt.{{MYDOMAIN}}`)
     services:
     - name: mqtt
       port: 1883
@@ -16,7 +16,7 @@ spec:
     secretName: tls-certificate
     passthrough: false
     domains:
-      - main: {{mydomain}}
+      - main: {{MYDOMAIN}}
         sans:
-          - "*.{{mydomain}}"
-          - mqtt.{{mydomain}}
+          - "*.{{MYDOMAIN}}"
+          - mqtt.{{MYDOMAIN}}
