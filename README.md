@@ -1,16 +1,19 @@
 # k3s - Bare Metal K3S Setup
 This is run on a Raspberry Pi Cluster (currently 5x Raspberry PI 4 8Mb).
-PostGreSQL and NFS are running on separate Debian box.
+NFS running on separate Debian Linux box.
 
 # Goals
 - TLS For everything, even if the cluster is not exposed to the Internet.
   - Traefik ingress for HTTPS and TCP.
 - HA dual Control Plane Nodes and external PostGreSQL database.
+  - After database connectivity issues I have move to single node with backup of K3S db.
+  - Have installed Galera on cluster nodes and may attempt HA again in the future. Still have single point of failure with NFS anyway.
 - Migrate Home Assistant to an easier to maintain distributed container architecture.
 - Ability to move devices between nodes seamlessly.
 - Migrate existing debian linux server as pure a NAS.
+- AI On Raspberry PI.
 - Fun with Kubernetes.
-- Host own developed apps. 
+- Host own developed apps.
 
 # TODO
   - Network policy, connected to namespaces. 
@@ -24,23 +27,30 @@ Using subdomain to provide TLS support on internal network.
 This creates a default wildcard certificate, this is an internal cluster so that is fine.
 
 ### Instructions
-  1. kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/<<latest-version>/cert-manager.yaml<br>
-  2. kubectl apply -f https://raw.githubusercontent.com/jamesorlakin/cert-manager-cpanel-dns-webhook/master/deploy/v0.2.0.yaml<br>
+  1. kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/<latest-version>/cert-manager.yaml<br>
+  2. kubectl apply -f https://raw.githubusercontent.com/jamesorlakin/cert-manager-cpanel-dns-webhook/master/deploy/<latest-version>.yaml<br>
   3. kubectl apply -f certmanager/secret.yaml<br>
   4. kubectl apply -f certmanager/issuer.yaml<br>
   6. kubectl apply -f certmanager/default-cert.yaml<br>
 
 ## Generic Device Plugin
-To be able to move Zigbee, Zwave and other devices between nodes.
+To be able to move Zigbee, Zwave and other devices between nodesa and have the pods follow.
 [Generic Device Plugin](https://github.com/squat/generic-device-plugin)
 Update the daemonset with new device addresses.
 
 ### Instructions
   1. kubectl apply -f generic-device-plugin/daemonset.yaml
 
+## Sealed Secrets
+Would like to be able to store everything in GIT.
+[Sealed Secrets](https://github.com/bitnami-labs/sealed-secrets)
+
+### Instructions
+kubectl apply -f https://github.com/bitnami-labs/sealed-secrets/releases/download/<<latest-version>/controller.yaml
+
 ## Kubernetes Reflector
 [Kubernetes Reflector](https://github.com/emberstack/kubernetes-reflector) is used to copy resources between namespaces.
-It is used here to copy the wildcard TLS certificate to all namespaces.
+It is used here to copy the wildcard TLS certificate to all namespaces used with Let's Encrypt.
 
 ### Instructions
   **NOTE**: Install this before Cert Manager.
@@ -55,7 +65,8 @@ Update the IP address in the daemonset.yaml with your common IP address. Can mat
    2. kubectl apply -f kube-vip/daemonset.yaml
 
 ## MetalLB
-Using MetalLB instead of the default load balancer. Gives us some nice options to expose a service, although prefer Ingress.
+Using MetalLB instead of the default load balancer. Gives us some nice options to expose a service, although I prefer Ingress.
+**NOTE**: I will probably remove this as since Traefik TCP endpoints are working I don't need to expose services directly.
 
 ### Installation
   1. kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/{{latest-metallb-version}}/config/manifests/metallb-native.yaml<br>
@@ -78,7 +89,8 @@ Aim is to avoid using MetalLB to expose services outside of the cluster and rely
 
 ## Longhorn
 High speed USB sticks in all the worker nodes to host longhorn.
-**NOTE**: This has been to unstable and I'm not using it right now. Need to investigate if USB latency or network is issue. TODO
+**NOTE**: This has been to unstable and I'm not using it right now. Need to investigate if USB latency or network is issue. 
+Probably would be a winner with non-USB high speed storage. 
 
 ## NFS
 Separate debian linux server hosting:
@@ -100,7 +112,7 @@ For personal application development.
   1. kubectl apply -f https://raw.githubusercontent.com/squat/generic-device-plugin/main/manifests/generic-device-plugin.yaml
      
 ## ESP Home
-This is used to connect to [ESPHome](https://esphome.io/) devices. I use the bluetooth proxies, mostly.
+This is used to connect to [ESPHome](https://esphome.io/) devices. I use the bluetooth proxies and voice control.
 [Guide](https://esphome.io/guides/getting_started_command_line.html)
 
 ### Installation
@@ -109,9 +121,11 @@ This is used to connect to [ESPHome](https://esphome.io/) devices. I use the blu
   3. Set host as esphome and port as 6052.
 
   **NOTE:** Unless you enable hostNetwork=true then you will need to update domain on every device as it defaults to local and will not resolve.
+  I don't do this and manually manage it.
 
 ### Grafana
 Making nice graphs.
+
 ### Home Assistant
 Refer to [home assistant repository](https://github.com/h00lig4n/hass) for configuration options.
 
