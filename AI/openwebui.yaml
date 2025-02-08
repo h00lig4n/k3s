@@ -1,0 +1,99 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openwebui
+  namespace: ai
+  labels:
+    app: openwebui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: openwebui
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: openwebui
+    spec:
+      containers:
+      - name: openwebui
+        image: ghcr.io/open-webui/open-webui:main
+        imagePullPolicy: IfNotPresent
+        ports:
+          - name: http
+            containerPort: 8080
+            protocol: TCP
+        env:
+          - name: OLLAMA_BASE_URL
+            value: "http://ollama:11434"
+          - name: RAG_EMBEDDING_ENGINE
+            value: ollama
+          - name: AUDIO_STT_ENGINE
+            value: openai
+          - name: CONTENT_EXTRACTION_ENGINE
+            value: tika
+          - name: TIKA_SERVER_URL
+            value: http://tika:9998
+        tty: true
+        volumeMounts:
+          - name: openwebui-pvc
+            mountPath: /app/backend/data 
+        securityContext: {}
+        resources:
+          requests:
+            memory: "500Mi"
+            cpu: "500m"
+          limits:
+            memory: "1Gi"
+            cpu: "1000m"
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      nodeSelector:
+        node-role.kubernetes.io/worker: "true"
+      volumes:
+        - name: openwebui-pvc
+          persistentVolumeClaim:
+            claimName: openwebui
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: openwebui
+  name: openwebui
+  namespace: ai
+spec:
+  selector:
+    app: openwebui
+  ports:
+  - port: 8080
+    targetPort: 8080
+  type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: openwebui
+  namespace: ai
+  annotations:
+    #cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: ai.home.thomason.nu
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: openwebui
+                port:
+                  number: 8080
+  tls:
+    - secretName: tls-certificate
+      hosts:
+        - ai.home.thomason.nu
