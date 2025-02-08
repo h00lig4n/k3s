@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ollama
+  namespace: ai
+  labels:
+    app: ollama
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ollama
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: ollama
+    spec:
+      containers:
+      - name: ollama
+        image: ollama/ollama:0.5.7
+        imagePullPolicy: IfNotPresent
+        ports:
+          - name: http
+            protocol: TCP
+            containerPort: 11434
+        volumeMounts:
+          - name: ollama-pvc
+            mountPath: /root/.ollama
+          - name: localtime
+            mountPath: /etc/localtime
+            readOnly: true
+        livenessProbe:
+          failureThreshold: 3
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 11434
+          timeoutSeconds: 1
+        securityContext: {}
+        resources:
+          requests:
+            memory: "4Gi"
+            cpu: "1000m"
+          limits:
+            memory: "7Gi"
+            cpu: "5000m"
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      nodeSelector:
+        node-role.kubernetes.io/ai: "true"
+      volumes:
+        - name: ollama-pvc
+          persistentVolumeClaim:
+            claimName: ollama
+        - name: localtime
+          hostPath:
+            path: /etc/localtime
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: ollama
+  name: ollama
+  namespace: ai
+spec:
+  selector:
+    app: ollama
+  ports:
+  - port: 11434
+    name: http
+    targetPort: http
+  type: ClusterIP
