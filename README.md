@@ -27,12 +27,13 @@ Using subdomain to provide TLS support on internal network.
 This creates a default wildcard certificate, this is an internal cluster so that is fine.
 
 ### Instructions
-  1. ```kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/<latest-version>/cert-manager.yaml```<br>
-  2. ```kubectl apply -f https://raw.githubusercontent.com/jamesorlakin/cert-manager-cpanel-dns-webhook/master/deploy/<latest-version>.yaml```<br>
-  3. ```kubectl apply -f certmanager/secret.yaml```<br>
-  4. ```kubectl apply -f certmanager/issuer.yaml```<br>
-  6. ```kubectl apply -f certmanager/default-cert.yaml```<br>
-
+```
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/<latest-version>/cert-manager.yaml
+kubectl apply -f https://raw.githubusercontent.com/jamesorlakin/cert-manager-cpanel-dns-webhook/master/deploy/<latest-version>.yaml
+kubectl apply -f certmanager/secret.yaml
+kubectl apply -f certmanager/issuer.yaml
+kubectl apply -f certmanager/default-cert.yaml
+```
 ## Generic Device Plugin
 To be able to move Zigbee, Zwave and other devices between nodesa and have the pods follow.
 [Generic Device Plugin](https://github.com/squat/generic-device-plugin)
@@ -46,7 +47,6 @@ Would like to be able to store everything in GIT.
 [Sealed Secrets](https://github.com/bitnami-labs/sealed-secrets)
 
 ### Instructions
-
 Installed client as extension to VSCode or kubeseal via documentation.
 Run the follow. Keep the keys backed-up, but somewhere secure. Public key will be needed to encrypt.
 ```
