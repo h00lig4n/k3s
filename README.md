@@ -47,6 +47,7 @@ Would like to be able to store everything in GIT.
 
 ### Instructions
 kubectl apply -f https://github.com/bitnami-labs/sealed-secrets/releases/download/<<latest-version>/controller.yaml
+Installed client as extension to VSCode.
 
 ## Kubernetes Reflector
 [Kubernetes Reflector](https://github.com/emberstack/kubernetes-reflector) is used to copy resources between namespaces.
