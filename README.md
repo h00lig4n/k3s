@@ -48,7 +48,7 @@ Would like to be able to store everything in GIT.
 
 ### Instructions
 Installed client as extension to VSCode or kubeseal via documentation.
-Run the follow. Keep the keys backed-up, but somewhere secure. Public key will be needed to encrypt.
+Run the follow, updating [<latest-version>](https://github.com/bitnami-labs/sealed-secrets/releases) from here. Keep the keys backed-up, but somewhere secure. Public key will be needed to encrypt.
 ```
 openssl req -x509 -days 730 -nodes -newkey rsa:4096 -keyout sealed-secret.key -out sealed-secret.crt -subj "/CN=sealed-secret/O=sealed-secret"
 kubectl apply -f https://github.com/bitnami-labs/sealed-secrets/releases/download/<latest-version>/controller.yaml
