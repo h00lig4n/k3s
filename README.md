@@ -34,13 +34,16 @@ kubectl apply -f certmanager/secret.yaml
 kubectl apply -f certmanager/issuer.yaml
 kubectl apply -f certmanager/default-cert.yaml
 ```
+
 ## Generic Device Plugin
-To be able to move Zigbee, Zwave and other devices between nodesa and have the pods follow.
+To be able to move Zigbee, Zwave and other devices between nodes and have the pods follow.
 [Generic Device Plugin](https://github.com/squat/generic-device-plugin)
 Update the daemonset with new device addresses.
 
 ### Instructions
-  1. ```kubectl apply -f generic-device-plugin/daemonset.yaml```
+```
+kubectl apply -f generic-device-plugin/daemonset.yaml
+```
 
 ## Sealed Secrets
 Would like to be able to store everything in GIT.
@@ -58,42 +61,54 @@ kubectl -n kube-system label secret sealed-secret-keys sealedsecrets.bitnami.com
 
 ## Kubernetes Reflector
 [Kubernetes Reflector](https://github.com/emberstack/kubernetes-reflector) is used to copy resources between namespaces.
-It is used here to copy the wildcard TLS certificate to all namespaces used with Let's Encrypt.
+It is used here to copy the wildcard TLS certificate to all namespaces.
 
 ### Instructions
-  **NOTE**: Install this before Cert Manager.
-  1. kubectl -n kube-system apply -f https://github.com/emberstack/kubernetes-reflector/releases/latest/download/reflector.yaml
+  **NOTE**: Install this **before** Cert Manager.
+```
+kubectl -n kube-system apply -f https://github.com/emberstack/kubernetes-reflector/releases/latest/download/reflector.yaml
+```
 
 ## Kube-Vip
 This is used to provide a single IP address for a HA K3S without having an external load balancer.
 Update the IP address in the daemonset.yaml with your common IP address. Can match the first IP in MetalLB IP pool as long as no port conflicts with Traefik.
 
+**NOTE: This is ONLY needed with HA K3S setup.
+
 ### Installation
-   1. kubectl apply -f https://kube-vip.io/manifests/rbac.yaml<br>
-   2. kubectl apply -f kube-vip/daemonset.yaml
+```
+kubectl apply -f https://kube-vip.io/manifests/rbac.yaml<br>
+kubectl apply -f kube-vip/daemonset.yaml
+```
 
 ## MetalLB
 Using MetalLB instead of the default load balancer. Gives us some nice options to expose a service, although I prefer Ingress.
 **NOTE**: I will probably remove this as since Traefik TCP endpoints are working I don't need to expose services directly.
 
 ### Installation
-  1. kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/{{latest-metallb-version}}/config/manifests/metallb-native.yaml<br>
-  2. Works on linux only: kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"<br>
-  3. kubectl apply -f config.yaml
+**NOTE:** The openssl command works only on linux. 
+```
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/{{latest-metallb-version}}/config/manifests/metallb-native.yaml
+kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
+kubectl apply -f config.yaml
+```
 
 The bgp config file isn't used yet. Need to connect the cluster to a different port on the Edge Router and setup BGP first. Might do it sometime.
 
 ## Traefik
 Default installation with K3S. Sucessfully used for HTTPS and for TCP. TCP was easy when I actually understood what needed to be done... 
-Aim is to avoid using MetalLB to expose services outside of the cluster and rely on Ingress.
+Aim is to avoid using MetalLB to expose services outside of the cluster and rely solely on Ingress.
 
 ### Instructions
-  **NOTE**: Install MetalLB first otherwise we don't have a Load Balancer.
-  1. kubectl apply -f traefik/secret.yaml
-  2. kubectl apply -f traefik/middleware.yaml<br>
-  3. kubectl apply -f traefik/tls-store.yaml<br>
-  4. kubectl apply -f traefik/ingress.yaml<br>
-  5. On control plane node deploy traefik-config.yaml to /var/lib/rancher/k3s/server/manifests/traefik-config.yaml<br>
+  **NOTE**: Install MetalLB first otherwise we don't have a Load Balancer. Perhaps because I removed the default one?
+```
+kubectl apply -f traefik/secret.yaml
+kubectl apply -f traefik/middleware.yaml
+kubectl apply -f traefik/tls-store.yaml
+kubectl apply -f traefik/ingress.yaml
+```
+The following needs to be done on the control plane node, not through remote kubectl:
+```On control plane node deploy traefik-config.yaml to /var/lib/rancher/k3s/server/manifests/traefik-config.yaml```
 
 ## Longhorn
 High speed USB sticks in all the worker nodes to host longhorn.
