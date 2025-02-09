@@ -12,6 +12,7 @@ NFS running on separate Debian Linux box.
 - Ability to move devices between nodes seamlessly.
 - Migrate existing debian linux server as pure a NAS.
 - AI On Raspberry PI.
+- Gitops
 - Fun with Kubernetes.
 - Host own developed apps.
 
@@ -19,6 +20,13 @@ NFS running on separate Debian Linux box.
   - Network policy, connected to namespaces. 
 
 # Installed Kubernetes Components
+
+## Argo CD
+[Argo CD](https://argo-cd.readthedocs.io/en/stable/getting_started/)
+```
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+```
 
 ## Cert Manager
 Using subdomain to provide TLS support on internal network.
