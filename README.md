@@ -27,11 +27,11 @@ Using subdomain to provide TLS support on internal network.
 This creates a default wildcard certificate, this is an internal cluster so that is fine.
 
 ### Instructions
-  1. kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/<latest-version>/cert-manager.yaml<br>
-  2. kubectl apply -f https://raw.githubusercontent.com/jamesorlakin/cert-manager-cpanel-dns-webhook/master/deploy/<latest-version>.yaml<br>
-  3. kubectl apply -f certmanager/secret.yaml<br>
-  4. kubectl apply -f certmanager/issuer.yaml<br>
-  6. kubectl apply -f certmanager/default-cert.yaml<br>
+  1. ```kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/<latest-version>/cert-manager.yaml```<br>
+  2. ```kubectl apply -f https://raw.githubusercontent.com/jamesorlakin/cert-manager-cpanel-dns-webhook/master/deploy/<latest-version>.yaml```<br>
+  3. ```kubectl apply -f certmanager/secret.yaml```<br>
+  4. ```kubectl apply -f certmanager/issuer.yaml```<br>
+  6. ```kubectl apply -f certmanager/default-cert.yaml```<br>
 
 ## Generic Device Plugin
 To be able to move Zigbee, Zwave and other devices between nodesa and have the pods follow.
@@ -39,19 +39,19 @@ To be able to move Zigbee, Zwave and other devices between nodesa and have the p
 Update the daemonset with new device addresses.
 
 ### Instructions
-  1. kubectl apply -f generic-device-plugin/daemonset.yaml
+  1. ```kubectl apply -f generic-device-plugin/daemonset.yaml```
 
 ## Sealed Secrets
 Would like to be able to store everything in GIT.
 [Sealed Secrets](https://github.com/bitnami-labs/sealed-secrets)
 
 ### Instructions
-kubectl apply -f https://github.com/bitnami-labs/sealed-secrets/releases/download/<<latest-version>/controller.yaml
-Installed client as extension to VSCode or kubeseal via documentation.
 
+Installed client as extension to VSCode or kubeseal via documentation.
 Run the follow. Keep the keys backed-up, but somewhere secure. Public key will be needed to encrypt.
 ```
 openssl req -x509 -days 730 -nodes -newkey rsa:4096 -keyout sealed-secret.key -out sealed-secret.crt -subj "/CN=sealed-secret/O=sealed-secret"
+kubectl apply -f https://github.com/bitnami-labs/sealed-secrets/releases/download/<latest-version>/controller.yaml
 kubectl -n kube-system create secret tls sealed-secret-keys --cert=sealed-secret.crt --key=sealed-secret.key
 kubectl -n kube-system label secret sealed-secret-keys sealedsecrets.bitnami.com/sealed-secrets-key=active
 ```
