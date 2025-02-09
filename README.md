@@ -47,7 +47,14 @@ Would like to be able to store everything in GIT.
 
 ### Instructions
 kubectl apply -f https://github.com/bitnami-labs/sealed-secrets/releases/download/<<latest-version>/controller.yaml
-Installed client as extension to VSCode.
+Installed client as extension to VSCode or kubeseal via documentation.
+
+Run the follow. Keep the keys backed-up, but somewhere secure. Public key will be needed to encrypt.
+```
+openssl req -x509 -days 730 -nodes -newkey rsa:4096 -keyout sealed-secret.key -out sealed-secret.crt -subj "/CN=sealed-secret/O=sealed-secret"
+kubectl -n kube-system create secret tls sealed-secret-keys --cert=sealed-secret.crt --key=sealed-secret.key
+kubectl -n kube-system label secret sealed-secret-keys sealedsecrets.bitnami.com/sealed-secrets-key=active
+```
 
 ## Kubernetes Reflector
 [Kubernetes Reflector](https://github.com/emberstack/kubernetes-reflector) is used to copy resources between namespaces.
