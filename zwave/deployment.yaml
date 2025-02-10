@@ -1,3 +1,4 @@
+#
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -18,7 +19,7 @@ spec:
         app: zwavejs
     spec:
       containers:
-      - image: zwavejs/zwave-js-ui:9.18.1
+      - image: zwavejs/zwave-js-ui:9.27
         name: zwavejs
         imagePullPolicy: IfNotPresent
         ports:
@@ -50,8 +51,31 @@ spec:
         volumeMounts:
         - name: zwavejs-data
           mountPath: /usr/src/app/store
-        - name: zwavejs-controller
-          mountPath: /dev/zwave    
+        - name: zwavestick
+          mountPath: /dev/zwave
+        livenessProbe:
+          failureThreshold: 10
+          httpGet:
+            httpHeaders:
+            - name: Accept
+              value: text/plain
+            path: /health
+            port: web
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        readinessProbe:
+          httpGet:
+            httpHeaders:
+              - name: Accept
+                value: text/plain
+            path: /health
+            port: web
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          failureThreshold: 3
+          timeoutSeconds: 1
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
       restartPolicy: Always
@@ -61,7 +85,7 @@ spec:
       - name: zwavejs-data
         persistentVolumeClaim:
           claimName: zwavejs
-      - name: zwavejs-controller
+      - name: zwavestick
         hostPath:
           path: /dev/serial/by-id/usb-Silicon_Labs_CP2102N_USB_to_UART_Bridge_Controller_487d938b7084ed11a17bd29f9d1cc348-if00-port0
           type: CharDevice
