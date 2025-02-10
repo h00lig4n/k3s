@@ -1,1 +1,99 @@
-
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hass
+  namespace: hass
+  labels:
+    app: hass
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hass
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: hass
+    spec:
+      containers:
+      - name: hass
+        image: homeassistant/home-assistant:2024.12
+        ports:
+          - name: web
+            containerPort: 8123
+            protocol: TCP
+          - name: sonos
+            containerPort: 1400
+            protocol: TCP
+        env:
+          - name: NODE_IP
+            valueFrom:
+              fieldRef: 
+                fieldPath: status.hostIP
+          - name: TZ
+            value: Europe/Stockholm
+        volumeMounts:
+          - name: hass-pvc
+            mountPath: /config
+          - name: hass-media-pvc
+            mountPath: /media
+          - name: localtime
+            mountPath: /etc/localtime
+            readOnly: true
+          - mountPath: /etc/cont-init.d/
+            name: pre-script
+            readOnly: true
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "2048Mi"
+            cpu: "1000m"
+        securityContext:
+      #    privileged: true
+          capabilities:
+            add:
+              - NET_ADMIN
+              - NET_RAW
+              - NET_BROADCAST
+#        readinessProbe:
+#          exec:
+#            command:
+#            - /bin/sh
+#            - -c
+#            - .curl --connect-timeout 10 --silent -f http://127.0.0.1:8123/ || exit 1
+#          initialDelaySeconds: 5
+#          periodSeconds: 10
+#          failureThreshold: 3
+#          timeoutSeconds: 1
+      nodeSelector:
+        node-role.kubernetes.io/worker: "true"
+      restartPolicy: Always
+      #hostNetwork: true
+#      dnsPolicy: None
+#      dnsConfig:
+#        nameservers:
+#          - 10.43.0.10
+ #         - 192.168.0.1
+ #       searches:
+#          - svc.cluster.local
+#          - cluster.local
+  #        - @@MYDOMAIN@@
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: hass-pvc
+          persistentVolumeClaim:
+            claimName: hass
+        - name: hass-media-pvc
+          persistentVolumeClaim:
+            claimName: hass-media
+        - name: localtime
+          hostPath:
+            path: /etc/localtime
+        - name: pre-script
+          configMap:
+            name: hass-pre-script
+            defaultMode: 0755
