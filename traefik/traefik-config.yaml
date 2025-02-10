@@ -14,7 +14,16 @@ spec:
         expose: false
       mqtt:
         port: 8883
-        expose: false
+        expose: true
+        exposedport: 8883
+      mqtt-insecure:
+        port: 1883
+        expose: true
+        exposedport: 1883
+      sonos:
+        port: 1400
+        expose: true
+        exposedport: 1400
     logs:
       access:
         enabled: true
