@@ -9,7 +9,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-    - host: zigbee.{{MYDOMAIN}}
+    - host: zigbee.@@MYDOMAIN@@
       http:
         paths:
           - path: /
@@ -22,4 +22,4 @@ spec:
   tls:
     - secretName: tls-certificate
        hosts:
-        - zigbee.{{MYDOMAIN}}
+        - zigbee.@@MYDOMAIN@@
