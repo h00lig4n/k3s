@@ -5,8 +5,8 @@ metadata:
   namespace: default
 spec:
   dnsNames:
-    - "*.@@mydomain@@"
-  commonName: "*.@@mydomain@@"
+    - "*.@@MYDOMAIN@@"
+  commonName: "*.@@MYDOMAIN@@"
   issuerRef:
     group: cert-manager.io
     kind: ClusterIssuer
