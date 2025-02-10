@@ -7,7 +7,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`traefik.{{MYDOMAIN}}`) && PathPrefix(`/api`) || PathPrefix(`/dashboard`)
+    - match: Host(`traefik.@@MYDOMAIN@@`) && PathPrefix(`/api`) || PathPrefix(`/dashboard`)
       kind: Rule
       middlewares:
         - name: dashboard-auth
