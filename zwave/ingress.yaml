@@ -9,7 +9,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-    - host: zwave.{{MYDOMAIN}}
+    - host: zwave.@@MYDOMAIN@@
       http:
         paths:
           - path: /
@@ -22,4 +22,4 @@ spec:
   tls:
     - secretName: tls-certificate
       hosts:
-        - zwave.{{MYDOMAIN}}
+        - zwave.@@MYDOMAIN@@
