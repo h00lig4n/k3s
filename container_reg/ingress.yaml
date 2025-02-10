@@ -20,6 +20,6 @@ spec:
                 port:
                   number: 80
   tls:
-    - secretName: {{certificate-secret}}
+    - secretName: tls-certificate
       hosts:
         - dockerui.@@MYDOMAIN@@
