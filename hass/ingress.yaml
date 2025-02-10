@@ -9,7 +9,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-    - host: assistant.{{mydomain}}
+    - host: assistant.@@MYDOMAIN@@
       http:
         paths:
           - path: /
@@ -21,6 +21,5 @@ spec:
                   number: 8123
   tls:
     - secretName: tls-certificate
-      # Useing wildcare cerificate, comment out if you want one per service
-      # hosts:
-      #  - assistant.{{mydomain}}
+      hosts:
+        - assistant.@@MYDOMAIN@@
