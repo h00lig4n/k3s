@@ -53,7 +53,7 @@ spec:
         - name: vip_retryperiod
           value: "1"
         - name: address
-          value: {{K3S-IP-ADDRESS}}
+          value: @@K3S_IPADRESS@@
         image: ghcr.io/kube-vip/kube-vip:v0.8.2
         imagePullPolicy: Always
         name: kube-vip
