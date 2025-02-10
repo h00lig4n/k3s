@@ -7,7 +7,7 @@ spec:
   entryPoints:
     - mqtt
   routes:
-  - match: HostSNI(`mqtt.{{MYDOMAIN}}`)
+  - match: HostSNI(`mqtt.@@MYDOMAIN@@`)
     services:
     - name: mqtt
       port: 1883
@@ -16,7 +16,22 @@ spec:
     secretName: tls-certificate
     passthrough: false
     domains:
-      - main: {{MYDOMAIN}}
+      - main: @@MYDOMAIN@@
         sans:
-          - "*.{{MYDOMAIN}}"
-          - mqtt.{{MYDOMAIN}}
+          - "*.@@MYDOMAIN@@"
+          - mqtt.@@MYDOMAIN@@
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: mqtt-insecure
+  namespace: hass
+spec:
+  entryPoints:
+    - mqtt-insecure
+  routes:
+  - match: HostSNI(`*`)
+    services:
+    - name: mqtt
+      port: 1883
+      nativeLB: true
