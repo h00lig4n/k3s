@@ -1,0 +1,32 @@
+{
+  "kind": "SealedSecret",
+  "apiVersion": "bitnami.com/v1alpha1",
+  "metadata": {
+    "name": "cpanel-credentials",
+    "namespace": "cert-manager",
+    "creationTimestamp": null,
+    "annotations": {
+      "sealedsecrets.bitnami.com/cluster-wide": "true"
+    }
+  },
+  "spec": {
+    "template": {
+      "metadata": {
+        "name": "cpanel-credentials",
+        "namespace": "cert-manager",
+        "creationTimestamp": null,
+        "annotations": {
+          "sealedsecrets.bitnami.com/cluster-wide": "true"
+        }
+      },
+      "type": "Opaque"
+    },
+    "encryptedData": {
+      "apiToken": "AgAUt/6GliCnj9hk1zwNN2Lu6UARaZc//65gJofFjeL5c7xCs3bl66epfdAbVVpfPKU0AIv16DHnXmUpNN/SJ0sQ4om9duhpdEZItucU0glzZvd2Rl6vM1QEMvFKPdiXJry8/M0/INiH8ZSW4m+8tgr97ilCZkVnZxRUQpVjynezQGe4NA+KfEbAGFPWqWp/X96d2PiW4EhaKWasbqZVO29U3npCUGzwV/SM0JHeX4srpAvL5NsbxCX/7bJnIifYVS/rzXvbUwqJfM8imtz2TB2S03rXolrWLJ/8LvWZbGXjPrmqFINrpRwGO7hCJJI3Ja/QFW15CS0HV+sCNSLrWynoMaLJUB69lb8sbzy+XT4RpLwPa/vep475VqBI5SuL86chIPIL8jkrQUoDH4U16a95h0Ey8wpPzZvbjiNqFklR8sO0cThSF7Z+CZOwXd65hzRYa/uzLvLUq/NgxmknYWLOqjKoxHTqsB9/gKiRE5yUfQLz8YNP+pN9r6g4VzIa2c/91Jp3dzw8uP2fV7d+WX8xisOh4sFRUTWs5mlkzDhvLv2YZXVKzqijSuy59cu0EuUMPVM7VZE6xHuSNUBwzOmCnAfL9ZEAY5SbO5aQoXjrnWQrWl2Tu0LvsAYSngnIQpiyLG6D6ZoIcnr3eHK5+T3fcSoWbHuiqn8HZqEop9FBuPhQCJgu27DQ/q0f2p/cDY3zAW0X0fMKAGAv13nsqT/QIycZIZ4pYTLCFoMBBjzmrQ==",
+      "username": "AgA9VKkctMZ38p2y4+O2nkUuirzoaRvjns3ZC+kZSpBofAR4X12NtwjNwQlR5p9ca8zzjiRU4KxL3zOhkWOaTgCcYNQyS1LDrCiwLwi20TNIINoXKtluQ5luYfnVOYm+fCPokUFh2VHt+S1uFSjPlAZFy4T/Gd+QWur5OfDJsWE2DoK0TjqM4GSc2RGSJoLyZkQPz1zAwaFp3KEFUIFh62L41DttEif9aoSD0OnhdIpef1wX9r840d7y816FcSqDvRhLeQCJpmCjNhHK3L/Eu8yZYNSkhiSaS3ku5SA33Ih8b84Ss/4UgKVuspAGo2EcxO1uOh59vvdDqrVu6JjbGuUJVfkZuDggTzXagOV9RIGzaZEX/ERdohoxCRJ/8z4S7wj5YXVgl+Zqz7IDry0qqg9DCPD8Tc7JxDPWi5QvbP51AsrG/EcZ5U0GFB01dAqaToT123yfPyf6mhpnc/VT8/t4jsgnZiZjJOz/DJJCAPfQ2HM5/F//wZI0kxfBAiGl8TdcWsXo5hTxOz37OQjat516biiYkpwbq78tOrLL0gMHckV3eyTQIgdJiPsLs+MxFOwotXqyebSg2OkWGCqRmW9isYMOM+5LJBDXagek2vduNNVVToRWQ2e1/kSPt0Ug4z8S9bflKyakmU1eD//6TXnL6pq3Z3TjMijKpQZX2QBukVOOJg6bvVjkBOeqdXniVim7+vrTYlnhxQ=="
+    }
+  },
+  "status": {
+    
+  }
+}
