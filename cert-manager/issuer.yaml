@@ -12,7 +12,7 @@ spec:
     - dns01:
         webhook:
           config:
-            cpanelUrl: {{@@CPANEL_URL}}
+            cpanelUrl: @@CPANEL_URL@@
             secretRef: cert-manager/cpanel-credentials
           groupName: jameslakin.co.uk
           solverName: cpanel-solver
