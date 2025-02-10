@@ -4,12 +4,12 @@ metadata:
   name: ui-docker-registry
   namespace: default
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-prod
+    #cert-manager.io/cluster-issuer: letsencrypt-prod
     traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
 spec:
   ingressClassName: traefik
   rules:
-    - host: dockerui.{{mydomain}}
+    - host: dockerui.@@MYDOMAIN@@
       http:
         paths:
           - path: /
@@ -22,4 +22,4 @@ spec:
   tls:
     - secretName: {{certificate-secret}}
       hosts:
-        - dockerui.{{mydomain}}
+        - dockerui.@@MYDOMAIN@@
