@@ -8,13 +8,13 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`argocd.@@mydomain@@`)
+      match: Host(`argocd.@@MYDOMAIN@@`)
       priority: 10
       services:
         - name: argocd-server
           port: 80
     - kind: Rule
-      match: Host(`argocd.@@mydomain@@`) && Headers(`Content-Type`, `application/grpc`)
+      match: Host(`argocd.@@MYDOMAIN@@`) && Headers(`Content-Type`, `application/grpc`)
       priority: 11
       services:
         - name: argocd-server
@@ -23,7 +23,7 @@ spec:
   tls:
     secretName: tls-certificate
     domains:
-      - main: @@mydomain@@
+      - main: @@MYDOMAIN@@
         sans:
-          - "*.@@mydomain@@"
-          - argocd.@@mydomain@@
+          - "*.@@MYDOMAIN@@"
+          - argocd.@@MYDOMAIN@@
