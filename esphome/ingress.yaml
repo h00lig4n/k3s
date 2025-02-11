@@ -9,7 +9,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-    - host: esp.@@MYDOMAIN@@
+    - host: esp.$DOMAIN_NAME
       http:
         paths:
           - path: /
@@ -22,4 +22,4 @@ spec:
   tls:
     - secretName: tls-certificate
       hosts:
-        - esp.@@MYDOMAIN@@
+        - esp.$DOMAIN_NAME
