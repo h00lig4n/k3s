@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: esphome-pvc
+  name: esphome
   namespace: hass
   labels:
     app: esphome
