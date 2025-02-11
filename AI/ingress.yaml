@@ -9,7 +9,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-    - host: ai.$DOMAIN_NAME
+    - host: ai.$ARGOCD_DOMAIN_NAME
       http:
         paths:
           - path: /
@@ -22,4 +22,4 @@ spec:
   tls:
     - secretName: tls-certificate
       hosts:
-        - ai.$DOMAIN_NAME
+        - ai.$ARGOCD_DOMAIN_NAME
