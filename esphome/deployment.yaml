@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: esphome
-        image: esphome/esphome:2024.8.3
+        image: esphome/esphome:2024.11.1
         imagePullPolicy: IfNotPresent
         ports:
           - name: http
@@ -37,12 +37,12 @@ spec:
           - name: "USERNAME"
             valueFrom:
               secretKeyRef:
-                name: zigbee2mqtt
+                name: esphome
                 key: username
           - name: "PASSWORD"
             valueFrom:
               secretKeyRef:
-                name: zigbee2mqtt
+                name: esphome
                 key: password
         volumeMounts:
           - name: esphome-pvc
@@ -71,6 +71,8 @@ spec:
           tcpSocket:
             port: 6052
           timeoutSeconds: 1
+        securityContext:
+          privileged: true
         resources:
           requests:
             memory: "64Mi"
@@ -78,8 +80,6 @@ spec:
           limits:
             memory: "1024Mi"
             cpu: "500m"
-        securityContext:
-          privileged: true
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       nodeSelector:
