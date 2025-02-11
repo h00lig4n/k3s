@@ -22,4 +22,4 @@ spec:
   tls:
     - secretName: tls-certificate
       hosts:
-        - ai.$ARGOCD_ENV_DOMAIN_NAME
+        - ai.$DOMAIN_NAME
