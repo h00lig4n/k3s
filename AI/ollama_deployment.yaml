@@ -57,3 +57,19 @@ spec:
         - name: localtime
           hostPath:
             path: /etc/localtime
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: ollama
+  name: ollama
+  namespace: ai
+spec:
+  selector:
+    app: ollama
+  ports:
+  - port: 11434
+    name: http
+    targetPort: http
+  type: ClusterIP
