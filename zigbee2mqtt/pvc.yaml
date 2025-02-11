@@ -1,11 +1,10 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  creationTimestamp: null
-  labels:
-    app: zigbee2mqtt
   name: zigbee2mqtt
   namespace: hass
+  labels:
+    app: zigbee2mqtt
 spec:
   accessModes:
     - ReadWriteOnce
