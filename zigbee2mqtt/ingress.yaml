@@ -4,12 +4,12 @@ metadata:
   name: zigbee2mqtt
   namespace: hass
   annotations:
-    # cert-manager.io/cluster-issuer: letsencrypt-prod Issue Would only use this if we wanted to generate on the fly.
+    #cert-manager.io/cluster-issuer: letsencrypt-prod
     traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd, default-dashboard-auth@kubernetescrd
 spec:
   ingressClassName: traefik
   rules:
-    - host: zigbee.@@MYDOMAIN@@
+    - host: zigbee.$DOMAIN_NAME
       http:
         paths:
           - path: /
@@ -21,5 +21,5 @@ spec:
                   number: 8080
   tls:
     - secretName: tls-certificate
-       hosts:
-        - zigbee.@@MYDOMAIN@@
+      hosts:
+        - zigbee.$DOMAIN_NAME
