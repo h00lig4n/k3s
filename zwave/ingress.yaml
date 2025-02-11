@@ -5,11 +5,11 @@ metadata:
   namespace: hass
   annotations:
     #cert-manager.io/cluster-issuer: letsencrypt-prod
-    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd, default-dashboard-auth@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
 spec:
   ingressClassName: traefik
   rules:
-    - host: zwave.@@MYDOMAIN@@
+    - host: zwave.$DOMAIN_NAME
       http:
         paths:
           - path: /
@@ -22,4 +22,4 @@ spec:
   tls:
     - secretName: tls-certificate
       hosts:
-        - zwave.@@MYDOMAIN@@
+        - zwave.$DOMAIN_NAME
