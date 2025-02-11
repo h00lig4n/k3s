@@ -81,7 +81,7 @@ spec:
  #       searches:
 #          - svc.cluster.local
 #          - cluster.local
-  #        - @@MYDOMAIN@@
+  #        - $DOMAIN_NAME
       terminationGracePeriodSeconds: 30
       volumes:
         - name: hass-pvc
