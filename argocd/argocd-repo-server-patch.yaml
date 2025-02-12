@@ -4,6 +4,8 @@
         env:
         - name: DOMAIN_NAME
           value: replace-with-domain-name
+        - name: EMAIL
+          value: replace-with-email
         image: your-registry/envsubst-cmp-plugin:latest
         imagePullPolicy: Always
         name: envsubst
