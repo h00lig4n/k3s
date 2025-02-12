@@ -6,6 +6,8 @@
           value: replace-with-domain-name
         - name: EMAIL
           value: replace-with-email
+        - name: CPANEL_URL
+          value: replace-with-url
         image: your-registry/envsubst-cmp-plugin:latest
         imagePullPolicy: Always
         name: envsubst
