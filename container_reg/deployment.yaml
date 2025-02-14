@@ -82,7 +82,7 @@ spec:
             - name: SINGLE_REGISTRY
               value: "true"
             - name: REGISTRY_URL
-              value: https://registry.$DOMAIN_NAME:443
+              value: http://container-registry:5000
             - name: REGISTRY_TITLE
               value: Home Container Registry
             - name: DELETE_IMAGES
@@ -91,8 +91,6 @@ spec:
               value: "true"
             - name: SHOW_CATALOG_NB_TAGS
               value: "true"
-            - name: NGINX_PROXY_PASS_URL
-              value: https://registry.$DOMAIN_NAME:443
             - name: CATALOG_MIN_BRANCHES
               value: "1"
             - name: CATALOG_MAX_BRANCHES
