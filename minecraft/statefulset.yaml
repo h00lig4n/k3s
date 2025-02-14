@@ -1,0 +1,117 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app: minecraft
+  name: minecraft
+spec:
+  replicas: 0
+  serviceName: minecraft
+  selector:
+    matchLabels:
+      app: minecraft
+  template:
+    metadata:
+      labels:
+        app: minecraft
+    spec:
+      containers:
+        - name: mc
+          image: itzg/minecraft-server
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: game
+              containerPort: 25565
+              protocol: TCP
+            - name: rcon
+              containerPort: 25575
+              protocol: TCP
+          env:
+            - name: EULA
+              value: "true"
+            - name: MOTD
+              value: "Be a minin' an' a craftin'"
+            - name: SERVER_NAME
+              value: "The Postmaster World"
+            - name: DIFFICULTY
+              value: "easy"
+            - name: LEVEL_TYPE
+              value: "AMPLIFIED"
+            - name: MAX_PLAYERS
+              value: "7"
+            - name: ALLOW_NETHER
+              value: "false"
+            - name: PVP
+              value: "false"
+            - name: ALLOW_FLIGHT
+              value: "false"
+            - name: INIT_MEMORY
+              value: "1G"
+            - name: MAX_MEMORY
+              value: "4G"
+            - name: ENABLE_ROLLING_LOGS
+              value: "true"
+            - name: TZ
+              value: "Europe/Stockholm"              
+            - name: ENABLE_COMMAND_BLOCK
+              value: "true"
+            - name: OPS
+              value: "H00l1g4n"
+          volumeMounts:
+            - mountPath: /data
+              name: data
+          readinessProbe:
+            exec:
+              command:
+                - mc-monitor 
+                - status 
+                - --host 
+                - localhost 
+                - --port
+                - "25565"
+            initialDelaySeconds: 30
+            periodSeconds: 5
+            failureThreshold: 18
+#        - name: backup
+#          image: itzg/mc-backup
+#          imagePullPolicy: IfNotPresent
+#          env:
+#            - name: BACKUP_INTERVAL
+#              value: "12h"
+#            - name: INITIAL_DELAY
+#              value: "4m"
+#            - name: RCON_PASSWORD
+#              value: "t1bont4b"
+#            - name: TZ
+#              value: "Europe/Stockholm" 
+#          volumeMounts:
+#            - mountPath: /data
+#              name: data
+#              readOnly: true
+#            - mountPath: /backups
+#              name: backups
+      nodeSelector:
+        node-role.kubernetes.io/worker: "true"
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+        labels:
+          app: minecraft
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        storageClassName: nfs
+        resources:
+          requests:
+            storage: 50Gi
+#    - metadata:
+#        name: backups
+#        labels:
+#          app: minecraft
+#      spec:
+#        accessModes:
+#          - ReadWriteOnce
+#        storageClassName: nfs-slow
+#        resources:
+#          requests:
+#            storage: 10Gi
