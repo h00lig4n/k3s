@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: minecraft
+    service: minecraft
+  name: minecraft
+spec:
+  ports:
+    - port: 25565
+      targetPort: 25565
+      name: game
+    - port: 25575
+      targetPort: 25575
+      name: rcon
+  selector:
+    app: minecraft
+  type: ClusterIP
