@@ -25,5 +25,5 @@ spec:
     domains:
       - main: argocd.$DOMAIN_NAME
         sans:
-          - "*.@@MYDOMAIN@@"
+          - "*.$DOMAIN_NAME"
           - argocd.$DOMAIN_NAME
