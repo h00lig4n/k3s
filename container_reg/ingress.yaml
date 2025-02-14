@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ui-docker-registry
+  name: container-registry
   namespace: default
   annotations:
     #cert-manager.io/cluster-issuer: letsencrypt-prod
@@ -9,17 +9,43 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-    - host: dockerui.@@MYDOMAIN@@
+    - host: registry.$DOMAIN_NAME
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: ui-docker-registry
+                name: container-registry
+                port:
+                  number: 5000
+  tls:
+    - secretName: tls-certificate
+      hosts:
+        - registry.$DOMAIN_NAME
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: default
+  name: ui-container-registry
+  annotations:
+    #cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: dockerui.$DOMAIN_NAME
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ui-container-registry
                 port:
                   number: 80
   tls:
     - secretName: tls-certificate
       hosts:
-        - dockerui.@@MYDOMAIN@@
+        - dockerui.$DOMAIN_NAME
