@@ -1,2 +1,0 @@
-[ "https://github.com/cert-manager/cert-manager/releases/download/v1.17.0/cert-manager.yaml",
-  "https://raw.githubusercontent.com/jamesorlakin/cert-manager-cpanel-dns-webhook/master/deploy/v0.3.0.yaml" ]
