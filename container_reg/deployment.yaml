@@ -81,7 +81,7 @@ spec:
           env:
             - name: SINGLE_REGISTRY
               value: "true"
-            - name: REGISTRY_URL
+            - name: GINX_PROXY_PASS_URL
               value: http://container-registry:5000
             - name: REGISTRY_TITLE
               value: Home Container Registry
