@@ -25,11 +25,6 @@ spec:
           name: registry
           ports:
             - containerPort: 5000
-          env:
-            - name: REGISTRY_HTTP_HEADERS_ACCESS_CONTROL_ALLOW_ORIGIN
-              value: "*"
-            - name: REGISTRY_STORAGE_DELETE_ENABLED
-              value: "true"
           volumeMounts:
           - name: registry-vol
             mountPath: /var/lib/registry
