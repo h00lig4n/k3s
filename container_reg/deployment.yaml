@@ -34,7 +34,7 @@ spec:
           - name: registry-vol
             mountPath: /var/lib/registry
           - name: configuration
-            mountPath: /etc/distribution/config.yml
+            mountPath: /etc/distribution
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
       dnsPolicy: ClusterFirst
