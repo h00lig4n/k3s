@@ -33,8 +33,8 @@ spec:
           volumeMounts:
           - name: registry-vol
             mountPath: /var/lib/registry
-          - mountPath: /etc/distribution/config.yml
-            name: configuration
+          - name: configuration
+            mountPath: /etc/distribution/config.yml
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
       dnsPolicy: ClusterFirst
