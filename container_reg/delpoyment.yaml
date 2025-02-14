@@ -1,0 +1,122 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: container-registry
+  namespace: default
+  labels:
+    app: container-registry
+spec:
+  progressDeadlineSeconds: 600
+  revisionHistoryLimit: 10
+  replicas: 1
+  selector:
+    matchLabels:
+      app: container-registry
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: container-registry
+    spec:
+      containers:
+        - image: registry:2.8.3
+          imagePullPolicy: IfNotPresent
+          name: registry
+          ports:
+            - containerPort: 5000
+          env:
+            - name: REGISTRY_HTTP_HEADERS_ACCESS_CONTROL_ALLOW_ORIGIN
+              value: "*"
+            - name: REGISTRY_STORAGE_DELETE_ENABLED
+              value: "true"
+          volumeMounts:
+          - name: registry-vol
+            mountPath: /var/lib/registry
+          - mountPath: /etc/distribution/config.yml
+            name: configuration
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/worker
+        operator: Equal
+        value: 'true'
+      volumes:
+      - name: registry-vol
+        persistentVolumeClaim:
+          claimName: container-registry
+      - name: configuration
+        configMap:
+          name: container-registry
+          defaultMode: 0755
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ui-container-registry
+  namespace: default
+  labels:
+    app: ui-container-registry
+spec:
+  progressDeadlineSeconds: 600
+  revisionHistoryLimit: 10
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ui-container-registry
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: ui-container-registry
+    spec:
+      containers:
+        - image: joxit/docker-registry-ui:main
+          imagePullPolicy: Always
+          name: ui-container-registry
+          ports:
+            - containerPort: 80
+          env:
+            - name: SINGLE_REGISTRY
+              value: "true"
+            - name: REGISTRY_URL
+              value: https://registry.$DOMAIN_NAME:443
+            - name: REGISTRY_TITLE
+              value: Home Container Registry
+            - name: DELETE_IMAGES
+              value: "true"          
+            - name: SHOW_CONTENT_DIGEST
+              value: "true"
+            - name: SHOW_CATALOG_NB_TAGS
+              value: "true"
+            - name: NGINX_PROXY_PASS_URL
+              value: https://registry.$DOMAIN_NAME:443
+            - name: CATALOG_MIN_BRANCHES
+              value: "1"
+            - name: CATALOG_MAX_BRANCHES
+              value: "1"            
+            - name: TAGLIST_PAGE_SIZE
+              value: "100"
+            - name: REGISTRY_SECURED
+              value: "false"
+            - name: CATALOG_ELEMENTS_LIMIT
+              value: "1000"
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/worker
+        operator: Equal
+        value: 'true'
