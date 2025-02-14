@@ -1,27 +1,27 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: docker-registry
+  name: container-registry
   namespace: default
 spec:
   ports:
-    - port: 443
+    - port: 5000
       targetPort: 5000
       name: registry
   selector:
-    app: docker-registry
-  type: LoadBalancer
+    app: container-registry
+  type: ClusterIP
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: ui-docker-registry
+  name: ui-container-registry
   namespace: default
 spec:
   ports:
     - port: 80
       targetPort: 80
-      name: ui-docker-registry
+      name: ui-container-registry
   selector:
-    app: ui-docker-registry
+    app: ui-container-registry
   type: ClusterIP
