@@ -25,6 +25,9 @@ spec:
           - name: http
             protocol: TCP
             containerPort: 11434
+        env:
+            - name: WEBUI_URL
+              value: "http:searxng:8080"
         volumeMounts:
           - name: ollama-pvc
             mountPath: /root/.ollama
