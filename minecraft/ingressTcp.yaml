@@ -5,7 +5,7 @@ metadata:
   namespace: default
 spec:
   entryPoints:
-    - mqtt
+    - minecraft-game
   routes:
   - match: HostSNI(`minecraft.$DOMAIN_NAME`)
     services:
@@ -28,7 +28,7 @@ metadata:
   namespace: default
 spec:
   entryPoints:
-    - mqtt
+    - minecraft-rcon
   routes:
   - match: HostSNI(`*`)
     services:
