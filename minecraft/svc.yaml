@@ -5,6 +5,7 @@ metadata:
     app: minecraft
     service: minecraft
   name: minecraft
+  namespace: default
 spec:
   ports:
     - port: 25565
