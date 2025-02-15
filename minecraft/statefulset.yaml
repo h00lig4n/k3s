@@ -4,6 +4,7 @@ metadata:
   labels:
     app: minecraft
   name: minecraft
+  namespace: default
 spec:
   replicas: 0
   serviceName: minecraft
@@ -95,6 +96,7 @@ spec:
   volumeClaimTemplates:
     - metadata:
         name: data
+        namespace: default
         labels:
           app: minecraft
       spec:
