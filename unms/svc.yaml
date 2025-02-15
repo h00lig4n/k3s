@@ -1,0 +1,36 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: unms
+  name: unms
+  namespace: default
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      name: http
+    - port: 443
+      targetPort: 443
+      name: https
+  selector:
+    app: unms
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: unms-nf
+  name: unms-nf
+  namespace: default
+spec:
+  ports:
+    - port: 2055
+      targetPort: 2055
+      protocol: UDP
+      name: netflow
+  selector:
+    app: unms
+  type: ClusterIP
