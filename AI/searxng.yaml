@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: searxng
+  namespace: ai
+  labels:
+    app: searxng
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: searxng
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: searxng
+    spec:
+      containers:
+      - name: searxng
+        image: searxng/searxng
+        imagePullPolicy: IfNotPresent
+        ports:
+          - name: http
+            protocol: TCP
+            containerPort: 8080
+        env:
+          - name: INSTANCE_NAME
+            value: "searxng"
+          - name: BASE_URL
+            value: "http://localhost:8080" 
+        volumeMounts:
+          - name: searxng-pvc
+            mountPath: /etc/searxng
+        securityContext: {}
+        resources:
+          requests:
+            memory: "250Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      nodeSelector:
+        node-role.kubernetes.io/worker: "true"
+      volumes:
+        - name: searxng-pvc
+          persistentVolumeClaim:
+            claimName: searxng
+        - name: localtime
+          hostPath:
+            path: /etc/localtime
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: searxng
+  name: searxng
+  namespace: ai
+spec:
+  selector:
+    app: searxng
+  ports:
+  - port: 8080
+    name: http
+    targetPort: 8080
+  type: ClusterIP
