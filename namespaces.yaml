@@ -1,0 +1,41 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: hass
+  labels:
+    name: hass
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: shared
+  labels:
+    name: shared
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: dev
+  labels:
+    name: dev
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: argocd
+  labels:
+    name: argocd
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: common
+  labels:
+    name: common
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: ai
+  labels:
+    name: ai
