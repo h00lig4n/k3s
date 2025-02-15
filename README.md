@@ -6,18 +6,20 @@ NFS running on separate Debian Linux box.
 - TLS For everything, even if the cluster is not exposed to the Internet.
   - Traefik ingress for HTTPS and TCP.
 - HA dual Control Plane Nodes and external PostGreSQL database.
-  - After database connectivity issues I have move to single node with backup of K3S db.
+  - After database connectivity issues I have move to single node with backup focus and fast recovery.
   - Have installed Galera on cluster nodes and may attempt HA again in the future. Still have single point of failure with NFS anyway.
 - Migrate Home Assistant to an easier to maintain distributed container architecture.
 - Ability to move devices between nodes seamlessly.
 - Migrate existing debian linux server as pure a NAS.
 - AI On Raspberry PI.
-- Gitops
+- Gitops with ArgoCD.
 - Fun with Kubernetes.
 - Host own developed apps.
 
 # TODO
   - Network policy, connected to namespaces. 
+
+# Installation Order
 
 # Installed Kubernetes Components
 
