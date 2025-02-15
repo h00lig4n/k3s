@@ -1,0 +1,77 @@
+#user 911 required
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  labels:
+    app: unms
+  name: unms
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: unms
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: unms
+    spec:
+      nodeSelector:
+        node-role.kubernetes.io/worker: "true"
+      containers:
+        - name: unms
+          image: docker.io/nico640/docker-unms:latest
+          env:
+            - name: TZ
+              value: Europe/Stockholm
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+            - name: https
+              containerPort: 443
+              protocol: TCP
+            - name: netflow
+              containerPort: 2055
+              protocol: UDP
+          resources: {}
+          volumeMounts:
+            - name: unms-storage
+              mountPath: /config
+          livenessProbe:
+            httpGet:
+              path: /nms
+              port: http
+              scheme: HTTP
+            timeoutSeconds: 2
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /nms
+              port: http
+              scheme: HTTP
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          startupProbe:
+            httpGet:
+              path: /nms
+              port: http
+              scheme: HTTP
+            initialDelaySeconds: 300
+            timeoutSeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 45
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+      volumes:
+        - name: unms-storage
+          persistentVolumeClaim:
+            claimName: unms
