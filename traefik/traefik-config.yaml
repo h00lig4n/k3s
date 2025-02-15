@@ -20,6 +20,14 @@ spec:
         port: 1883
         expose: true
         exposedport: 1883
+      minecraft-game:
+        port: 25565
+        expose: true
+        exposedport: 25565
+      minecraft-rcon:
+        port: 25575
+        expose: true
+        exposedport: 25575
       sonos:
         port: 1400
         expose: true
