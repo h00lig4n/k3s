@@ -39,3 +39,10 @@ metadata:
   name: ai
   labels:
     name: ai
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: external-storage
+  labels:
+    name: external-storage
