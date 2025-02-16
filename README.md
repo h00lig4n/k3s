@@ -51,26 +51,26 @@ Prepare SD card
     --tls-san k3s.$DOMAIN_NAME --node-taint CriticalAddonsOnly=true:NoExecute --disable servicelb
     ```
 5. Setup kubectl on PC.
-    a. Create .kube folder
-    b. Create Config file
-    b. Copy contents of cat /etc/rancher/k3s/k3s.yaml from master node to config file
-    d. download kubectl to this folder
-    e. update PATH in environment variables with this folder
-    f. On master node get your K3S token: ```sudo k3s kubectl -n kubernetes-dashboard describe secret admin-user-token | grep '^token'```
-    g. Update kubeconfig on your PC, add Token: <tokenhere> to user section.
+    a. Create .kube folder<br>
+    b. Create Config file<br>
+    b. Copy contents of cat /etc/rancher/k3s/k3s.yaml from master node to config file<br>
+    d. download kubectl to this folder<br>
+    e. update PATH in environment variables with this folder<br>
+    f. On master node get your K3S token: ```sudo k3s kubectl -n kubernetes-dashboard describe secret admin-user-token | grep '^token'```<br>
+    g. Update kubeconfig on your PC, add Token: <tokenhere> to user section.<br>
 
 6. Install NFS client on NAS (should already be installed) apt-get install -y nfs-common
 
 ## K3S Installation Order.
 Since moving to ArgoCD I am in the process of deciding the optimum installation order.
 This is my best guess to get ArgoCD installation in place as quickly as possible.
-1. Setup namespaces: ```kubectl apply --f namespaces.yaml```
-2. Setup NFS. The ```nfs/nfs.yaml``` needs to be place here: ```/var/lib/rancher/k3s/server/manifests/nfs.yaml```
-3. Setup [#sealed-secrets](Sealed Secrets).
-3. Setup [#kubernetes-reflector](Kubernetes Relector)
-3. Setup [#cert-manager]
-4. Configure [#traefik]
-5. Setup ArgoCD
+1. Setup namespaces: ```kubectl apply --f namespaces.yaml```<br>
+2. Setup NFS. The ```nfs/nfs.yaml``` needs to be place here: ```/var/lib/rancher/k3s/server/manifests/nfs.yaml```<br>
+3. Setup [#sealed-secrets](Sealed Secrets).<br>
+3. Setup [#kubernetes-reflector](Kubernetes Relector)<br>
+3. Setup [#cert-manager]<br>
+4. Configure [#traefik]<br>
+5. Setup ArgoCD<br>
 
 ## Installed Kubernetes Components
 ### Argo CD
