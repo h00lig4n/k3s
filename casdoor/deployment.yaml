@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: casdoor
+  namespace: default
+  labels:
+    app: casdoor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: casdoor
+  template:
+    metadata:
+      labels:
+        app: casdoor
+    spec:
+      containers:
+        - name: casdoor
+          image: casbin/casdoor:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+          volumeMounts:
+            - mountPath: /conf
+              name: conf
+          env:       
+            - name: RUNNING_IN_DOCKER
+              value: "true"
+      #if you want to deploy this in real prod env, consider the config map
+      volumes:
+        - name: conf
+          hostPath:
+            #EDIT IT: the mounted directory path in THE HOST
+            path: /conf
