@@ -32,7 +32,7 @@ Prepare SD card
   - Set user root user and password
   - set hostname
   - enable ssh and paste public key
-  - OS Debian Headless 64
+  - OS Raspberry PI OS Lite 64
 2. Boot Up.
   - Update /boot/cmdline.txt by adding the cgroups line to this file. 	cgroup_memory=1 cgroup_enable=memory
   - Update config.txt set dtparam=audio=off 
