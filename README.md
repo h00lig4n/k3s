@@ -81,7 +81,11 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 kubectl apply -n argocd -f argocd/ingressroute.yaml
 kubectl apply -n argocd -f argocd/argocd-cmd-params.yaml
 ```
-
+Argo CD Image updater.
+https://argocd-image-updater.readthedocs.io/en/stable/install/installation/
+```
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj-labs/argocd-image-updater/stable/manifests/install.yaml
+```
 ### Cert Manager
 Using subdomain to provide TLS support on internal network.
 [CPanel Plugin](https://github.com/jamesorlakin/cert-manager-cpanel-dns-webhook)
