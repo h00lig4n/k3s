@@ -66,7 +66,7 @@ Make sure the URL matches your Control Plane node URL.
 You can apply roles as labels to your nodes. I prefer to avoid running workloads on the control plane.
 ```
 curl -sfL https://get.k3s.io | K3S_URL="https://192.168.0.20:6443" K3S_TOKEN="$TOKEN GOES HERE" sh -
-kubectl label node k3s2 node-role.kubernetes.io/worker=true
+kubectl label node your-agent-node node-role.kubernetes.io/worker=true
 ```
 
 ## K3S Installation Order.
