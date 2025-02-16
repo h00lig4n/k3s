@@ -22,14 +22,14 @@ spec:
           ports:
             - containerPort: 8000
           volumeMounts:
-            - mountPath: /conf
-              name: conf
+            - mountPath: /init_data.json
+              name: casdoor-init-data-volume
+              subPath: init_data.json
           env:       
             - name: RUNNING_IN_DOCKER
               value: "true"
       #if you want to deploy this in real prod env, consider the config map
       volumes:
-        - name: conf
-          hostPath:
-            #EDIT IT: the mounted directory path in THE HOST
-            path: /conf
+        - configMap:
+            name: casdoor
+          name: casdoor-init-data-volume
