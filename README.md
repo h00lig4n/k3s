@@ -28,22 +28,22 @@ In progress ...
 
 Prepare SD card
 1. SD Card Preparation using Raspberry PI Imager
-  - shift control x to get att advanced.
-  - Set user root user and password
-  - set hostname
-  - enable ssh and paste public key
-  - OS Raspberry PI OS Lite 64
+    - shift control x to get att advanced.
+    - Set user root user and password
+    - set hostname
+    - enable ssh and paste public key
+    - OS Raspberry PI OS Lite 64
 2. Boot Up.
-  - Update /boot/cmdline.txt by adding the cgroups line to this file. 	cgroup_memory=1 cgroup_enable=memory
-  - Update config.txt set dtparam=audio=off 
-  - Update IP Tables as shown below, and then reboot.
-    ```
-    sudo apt install iptables -y
-  	sudo iptables -F
-  	sudo update-alternatives --set iptables /usr/sbin/iptables-legacy
-  	sudo update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
-  	sudo reboot
-    ```
+    - Update /boot/cmdline.txt by adding the cgroups line to this file. 	cgroup_memory=1 cgroup_enable=memory
+    - Update config.txt set dtparam=audio=off 
+    - Update IP Tables as shown below, and then reboot.
+      ```
+      sudo apt install iptables -y
+    	sudo iptables -F
+    	sudo update-alternatives --set iptables /usr/sbin/iptables-legacy
+    	sudo update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
+    	sudo reboot
+      ```
 4. K3S Inital Setup
   i. Single Control Plane
     ```
