@@ -64,13 +64,14 @@ Prepare SD card
 ## K3S Installation Order.
 Since moving to ArgoCD I am in the process of deciding the optimum installation order.
 This is my best guess to get ArgoCD installation in place as quickly as possible.
-    1. Setup namespaces: ```kubectl apply --f namespaces.yaml```<br>
-    2. Setup NFS. The ```nfs/nfs.yaml``` needs to be place here: ```/var/lib/rancher/k3s/server/manifests/nfs.yaml```<br>
-    3. Setup [#sealed-secrets](Sealed Secrets).<br>
-    3. Setup [#kubernetes-reflector](Kubernetes Relector)<br>
-    3. Setup [#cert-manager]<br>
-    4. Configure [#traefik]<br>
-    5. Setup ArgoCD<br>
+
+1. Setup namespaces: ```kubectl apply --f namespaces.yaml```<br>
+2. Setup NFS. The ```nfs/nfs.yaml``` needs to be place here: ```/var/lib/rancher/k3s/server/manifests/nfs.yaml```<br>
+3. Setup [#sealed-secrets](Sealed Secrets).<br>
+3. Setup [#kubernetes-reflector](Kubernetes Relector)<br>
+3. Setup [#cert-manager]<br>
+4. Configure [#traefik]<br>
+5. Setup ArgoCD<br>
 
 ## Installed Kubernetes Components
 ### Argo CD
