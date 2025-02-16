@@ -93,7 +93,7 @@ This creates a default wildcard certificate, this is an internal cluster so that
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/<latest-version>/cert-manager.yaml
 kubectl apply -f https://raw.githubusercontent.com/jamesorlakin/cert-manager-cpanel-dns-webhook/master/deploy/<latest-version>.yaml
 ```
-Then apply the files in the cert-amanger folder.
+Then apply the files in the cert-manager folder.
 
 ### Generic Device Plugin
 To be able to move Zigbee, Zwave and other devices between nodes and have the pods follow.
