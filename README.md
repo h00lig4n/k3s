@@ -47,19 +47,27 @@ Prepare SD card
 4. K3S Inital Setup
     Single Control Plane
     ```
-    curl -sfL https://get.k3s.io | sh -s - --token "$KEY GOES HERE" --write-kubeconfig-mode 644 --tls-san 192.168.0.200 --tls-san k3s \
+    curl -sfL https://get.k3s.io | sh -s - --token "$TOKEN GOES HERE" --write-kubeconfig-mode 644 --tls-san 192.168.0.200 --tls-san k3s \
     --tls-san k3s.$DOMAIN_NAME --node-taint CriticalAddonsOnly=true:NoExecute --disable servicelb
     ```
-5. Setup kubectl on PC.
+5. Setup kubectl on PC.<br>
     a. Create .kube folder<br>
     b. Create Config file<br>
     b. Copy contents of cat /etc/rancher/k3s/k3s.yaml from master node to config file<br>
     d. download kubectl to this folder<br>
     e. update PATH in environment variables with this folder<br>
-    f. On master node get your K3S token: ```sudo k3s kubectl -n kubernetes-dashboard describe secret admin-user-token | grep '^token'```<br>
+    f. On master node get your K3S token: ```cat /var/lib/rancher/k3s/server/node-token```<br>
     g. Update kubeconfig on your PC, add Token: <tokenhere> to user section.<br>
 
 6. Install NFS client on NAS (should already be installed) apt-get install -y nfs-common
+
+7. Install worker nodes.
+Make sure the URL matches your Control Plane node URL.
+You can apply roles as labels to your nodes. I prefer to avoid running workloads on the control plane.
+```
+curl -sfL https://get.k3s.io | K3S_URL="https://192.168.0.20:6443" K3S_TOKEN="$TOKEN GOES HERE" sh -
+kubectl label node k3s2 node-role.kubernetes.io/worker=true
+```
 
 ## K3S Installation Order.
 Since moving to ArgoCD I am in the process of deciding the optimum installation order.
