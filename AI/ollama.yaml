@@ -22,6 +22,9 @@ spec:
     metadata:
       labels:
         app: ollama
+        app.kubernetes.io/component: ollama
+        app.kubernetes.io/name: ollama
+        app.kubernetes.io/part-of: ai
     spec:
       containers:
       - name: ollama
