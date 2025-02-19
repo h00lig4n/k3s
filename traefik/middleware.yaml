@@ -1,6 +1,16 @@
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
+  name: locked
+spec:
+  chain:
+    middlewares:
+    - name: redirect-https
+    - name: auth
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
   name: redirect-https
 spec:
   redirectScheme:
@@ -10,7 +20,7 @@ spec:
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
-  name: dashboard-auth
+  name: auth
 spec:
   basicAuth:
     headerField: X-WebAuth-User
