@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ai
+spec:
+  destination:
+    namespace: ai
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: AI
+    repoURL: https://github.com/h00lig4n/k3s.git
+    targetRevision: HEAD

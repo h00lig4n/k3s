@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: zwavejs
+spec:
+  destination:
+    namespace: hass
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: zwave
+    repoURL: https://github.com/h00lig4n/k3s.git
+    targetRevision: HEAD
