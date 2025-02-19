@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+spec:
+  destination:
+    namespace: cert-manager
+    server: https://kubernetes.default.svc
+  project: default
+  sources:
+  - chart: cert-manager
+    helm:
+      parameters:
+      - name: installCRDs
+        value: "true"
+      releaseName: cert-manager
+    repoURL: https://charts.jetstack.io
+    targetRevision: v1.17.1
+  - path: cert-manager
+    repoURL: https://github.com/h00lig4n/k3s.git
+    targetRevision: HEAD
