@@ -5,11 +5,17 @@ metadata:
   namespace: ai
   labels:
     app: ollama
+    app.kubernetes.io/component: ollama
+    app.kubernetes.io/part-of: ai
+    app.kubernetes.io/name: ollama
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: ollama
+      app.kubernetes.io/component: ollama
+      app.kubernetes.io/name: ollama
+      app.kubernetes.io/part-of: ai
   strategy:
     type: Recreate
   template:
@@ -66,11 +72,17 @@ kind: Service
 metadata:
   labels:
     app: ollama
+    app.kubernetes.io/component: ollama
+    app.kubernetes.io/name: ollama
+    app.kubernetes.io/part-of: ai
   name: ollama
   namespace: ai
 spec:
   selector:
     app: ollama
+    app.kubernetes.io/component: ollama
+    app.kubernetes.io/name: ollama
+    app.kubernetes.io/part-of: ai
   ports:
   - port: 11434
     name: http
