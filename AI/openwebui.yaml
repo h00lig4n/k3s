@@ -22,6 +22,9 @@ spec:
     metadata:
       labels:
         app: openwebui
+        app.kubernetes.io/component: openwebui
+        app.kubernetes.io/part-of: ai
+        app.kubernetes.io/name: openwebui
     spec:
       containers:
       - name: openwebui
