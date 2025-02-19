@@ -5,17 +5,26 @@ metadata:
   namespace: ai
   labels:
     app: tika
+    app.kubernetes.io/component: tika
+    app.kubernetes.io/name: tika
+    app.kubernetes.io/part-of: ai
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: tika
+      app.kubernetes.io/component: tika
+      app.kubernetes.io/name: tika
+      app.kubernetes.io/part-of: ai
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
         app: tika
+        app.kubernetes.io/component: tika
+        app.kubernetes.io/name: tika
+        app.kubernetes.io/part-of: ai
     spec:
       containers:
       - name: tika
@@ -43,11 +52,17 @@ kind: Service
 metadata:
   labels:
     app: tika
+    app.kubernetes.io/component: tika
+    app.kubernetes.io/name: tika
+    app.kubernetes.io/part-of: ai
   name: tika
   namespace: ai
 spec:
   selector:
     app: tika
+    app.kubernetes.io/component: tika
+    app.kubernetes.io/name: tika
+    app.kubernetes.io/part-of: ai
   ports:
   - port: 9998
     name: http
