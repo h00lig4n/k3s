@@ -23,6 +23,9 @@ spec:
       - image: prom/prometheus-linux-arm64:main
         imagePullPolicy: IfNotPresent
         name: prometheus
+        args:
+          - "--config.file=/etc/prometheus/prometheus.yml"
+          - "--storage.tsdb.path=/prometheus/"
         ports:
           - containerPort: 9090
             protocol: TCP
