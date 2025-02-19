@@ -5,6 +5,9 @@ metadata:
   namespace: ai
   labels:
     app: ollama
+    app.kubernetes.io/component: ollama
+    app.kubernetes.io/part-of: ai
+    app.kubernetes.io/name: ollama
 spec:
   accessModes:
     - ReadWriteOnce
@@ -20,6 +23,9 @@ metadata:
   namespace: ai
   labels:
     app: openwebui
+    app.kubernetes.io/component: openwebui
+    app.kubernetes.io/part-of: ai
+    app.kubernetes.io/name: openwebui
 spec:
   accessModes:
     - ReadWriteOnce
@@ -35,6 +41,9 @@ metadata:
   namespace: ai
   labels:
     app: searxng
+    app.kubernetes.io/component: searxng
+    app.kubernetes.io/part-of: ai
+    app.kubernetes.io/name: searxng 
 spec:
   accessModes:
     - ReadWriteOnce
