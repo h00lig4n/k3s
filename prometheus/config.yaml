@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: prometheus
-  namespace: common
+  namespace: monitoring
 data:
   prometheus.yml: |
     global:
@@ -20,21 +20,14 @@ data:
       external_labels:
         monitor: prometheus
   
-    #rule_files:
-      #  - "first.rules"
-      #  - "my/*.rules"
-  
-  
+ 
     scrape_configs:
-      - job_name: k8s
+  # The job name is added as a label `job=` to any timeseries scraped from this config.
+  - job_name: 'prometheus'
 
-            refresh_interval: 10m
-          - files:
-              - bar/*.yaml
-  
-        static_configs:
-          - targets: ["localhost:9090", "localhost:9191"]
-            labels:
-              my: label
-              your: label
+    # Override the global default and scrape targets from this job every 5 seconds.
+    scrape_interval: 60s
+
+    static_configs:
+      - targets: ['localhost:9090']
 
