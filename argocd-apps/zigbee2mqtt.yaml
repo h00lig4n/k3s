@@ -11,3 +11,6 @@ spec:
     path: zigbee2mqtt
     repoURL: https://github.com/h00lig4n/k3s.git
     targetRevision: HEAD
+  - path: zigbee2mqtt
+    repoURL: https://github.com/h00lig4n/k3s-private.git
+    targetRevision: HEAD
