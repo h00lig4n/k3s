@@ -6,7 +6,7 @@ spec:
   destination:
     namespace: hass
     server: https://kubernetes.default.svc
-  project: default
+  project: hass
   source:
     path: mosquitto
     repoURL: https://github.com/h00lig4n/k3s.git

@@ -6,7 +6,7 @@ spec:
   destination:
     namespace: kube-system
     server: https://kubernetes.default.svc
-  project: default
+  project: infrastructure
   source:
     path: generic-device-plugin
     repoURL: https://github.com/h00lig4n/k3s.git

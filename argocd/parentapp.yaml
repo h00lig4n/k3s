@@ -1,13 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: container-registry
+  name: k3s-root-app
+  namespace: argocd
 spec:
   destination:
     namespace: default
     server: https://kubernetes.default.svc
-  project: common
+  project: default
   source:
-    path: container-registry
+    path: argocd-apps
     repoURL: https://github.com/h00lig4n/k3s.git
     targetRevision: HEAD
