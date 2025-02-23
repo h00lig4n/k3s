@@ -2,6 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: ai
+  namespace: argocd
 spec:
   destination:
     namespace: ai
