@@ -7,10 +7,10 @@ spec:
     namespace: hass
     server: https://kubernetes.default.svc
   project: hass
-  source:
-    path: zwave
-    repoURL: https://github.com/h00lig4n/k3s.git
-    targetRevision: HEAD
-  - path: zwave
-    repoURL: https://github.com/h00lig4n/k3s-private.git
-    targetRevision: HEAD
+  sources:
+    - path: zwave
+      repoURL: https://github.com/h00lig4n/k3s.git
+      targetRevision: HEAD
+    - path: zwave
+      repoURL: https://github.com/h00lig4n/k3s-private.git
+      targetRevision: HEAD
