@@ -8,7 +8,7 @@ spec:
     namespace: hass
     server: https://kubernetes.default.svc
   project: common
-  source:
+  sources:
     path: grafana
     repoURL: https://github.com/h00lig4n/k3s.git
     targetRevision: HEAD
