@@ -9,9 +9,9 @@ spec:
     server: https://kubernetes.default.svc
   project: common
   sources:
-   - path: grafana
-     repoURL: https://github.com/h00lig4n/k3s.git
-     targetRevision: HEAD
-   - path: grafana
-     repoURL: https://github.com/h00lig4n/k3s-private.git
-     targetRevision: HEAD
+    - path: grafana
+      repoURL: https://github.com/h00lig4n/k3s.git
+      targetRevision: HEAD
+    - path: grafana
+      repoURL: https://github.com/h00lig4n/k3s-private.git
+      targetRevision: HEAD
