@@ -32,13 +32,13 @@ spec:
             name: ws
             protocol: TCP
         volumeMounts:
-          - name: config-file
+          - name: config-volume
             mountPath: /mosquitto/config
           - name: certs
             mountPath: /mosquitto/certs/
           - name: data-volume
             mountPath: /mosquitto/data
-          - name: healthcheck
+          - name: password-healthcheck
             mountPath: /healthcheck/healthcheck.sh
             subPath: healthcheck.sh
             readOnly: true
@@ -77,13 +77,17 @@ spec:
         - name: data-volume
           persistentVolumeClaim:
             claimName: mqtt
-        - name: config-file
-          configMap:
-            name: mosquitto-conf
+        - name: config-volume
+          projected:
+            sources:
+              - configMap:
+                  name: mosquitto-conf
+              - secret:
+                  name: mqtt
         - name: certs
           secret:
             secretName: tls-certificate
-        - name: healthcheck
+        - name: password-healthcheck
           secret:
             secretName: mqtt
             defaultMode: 383
