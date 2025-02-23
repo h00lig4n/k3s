@@ -12,6 +12,6 @@ spec:
     - path: esphome
       repoURL: https://github.com/h00lig4n/k3s-private.git
       targetRevision: HEAD
-   -  path: esphome
+    - path: esphome
       repoURL: https://github.com/h00lig4n/k3s.git
       targetRevision: HEAD
