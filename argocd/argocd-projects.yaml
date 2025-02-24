@@ -12,6 +12,9 @@ spec:
   destinations:
   - namespace: '*'
     server: '*'
+  namespaceResourceWhitelist:
+  - group: '*'
+    kind: '*'
   clusterResourceWhitelist:
   - group: '*'
     kind: '*'
@@ -30,6 +33,9 @@ spec:
   destinations:
   - namespace: '*'
     server: '*'
+  namespaceResourceWhitelist:
+  - group: '*'
+    kind: '*'
   clusterResourceWhitelist:
   - group: '*'
     kind: '*'
@@ -42,12 +48,15 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  description: Reusable Stuff
+  description: Shared Stuff
   sourceRepos:
   - '*'
   destinations:
   - namespace: '*'
     server: '*'
+  namespaceResourceWhitelist:
+  - group: '*'
+    kind: '*'
   clusterResourceWhitelist:
   - group: '*'
     kind: '*'
@@ -66,6 +75,9 @@ spec:
   destinations:
   - namespace: '*'
     server: '*'
+  namespaceResourceWhitelist:
+  - group: '*'
+    kind: '*'
   clusterResourceWhitelist:
   - group: '*'
     kind: '*'
