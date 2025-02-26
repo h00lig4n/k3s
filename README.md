@@ -301,3 +301,9 @@ Kubectl Apply the yaml files in the corresponding folder.
 For Home Assistant. To be able to separate upgrades of Home Assistant from ZWave.
 **NOTE:** This requires [Generic Device Plugin](#-generic-device-plugin) to be configured and working.
 Kubectl Apply the yaml files in the corresponding folder.
+
+# Mentions
+This setup has been pieced together over a couple of years.
+
+Here are links to some sites that have been influencial in this journey.
+[K3S Rocks](https://k3s.rocks/)
