@@ -1,6 +1,13 @@
 nodeSelector:
   - node-role.kubernetes.io/worker: "true"
 
+defaultRules:
+  rules:
+    etcd: false
+
+kubeEtcd:
+  enabled: false
+
 kubeControllerManager:
   enabled: true
   endpoints: ['192.168.0.20']
@@ -52,21 +59,28 @@ alertmanager:
         cpu: 25m
         memory: 32Mi
     priorityClassName: high-priority
+    storage: {}
+    volumeClaimTemplate:
+       spec:
+         storageClassName: nfs
+         accessModes: ["ReadWriteOnce"]
+         resources:
+           requests:
+             storage: 5Gi
 
 prometheus:
   prometheusSpec:
     retention: 3d
-
     replicas: 1
     podAntiAffinity: "hard"
     storageSpec:
       volumeClaimTemplate:
         spec:
           accessModes: ["ReadWriteOnce"]
+          storageClassName: nfs
           resources:
             requests:
               storage: 10Gi
-
     resources:
       limits:
         cpu: "1"
@@ -88,7 +102,6 @@ grafana:
     requests:
       cpu: 25m
       memory: 64Mi
-
   sidecar:
     resources:
       limits:
