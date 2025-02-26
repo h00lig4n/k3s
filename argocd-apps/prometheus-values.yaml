@@ -1,0 +1,26 @@
+kubeApiServer:
+  enabled: true
+kubeControllerManager:
+  enabled: true
+  endpoints:
+  - 192.168.0.1
+  service:
+    enabled: true
+    port: 10252
+    targetPort: 10252
+kubeScheduler:
+  enabled: true
+  endpoints:
+  - 192.168.0.1
+  service:
+    enabled: true
+    port: 10252
+    targetPort: 10252
+kubeProxy:
+  enabled: true
+  endpoints:
+  - 192.168.0.1
+  service:
+    enabled: true
+    port: 10252
+    targetPort: 10252
