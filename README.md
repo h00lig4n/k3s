@@ -50,8 +50,18 @@ Prepare SD card
     curl -sfL https://get.k3s.io | sh -s - --token "$TOKEN GOES HERE" --write-kubeconfig-mode 644 --tls-san 192.168.0.200 --tls-san k3s \
     --tls-san k3s.$DOMAIN_NAME --node-taint CriticalAddonsOnly=true:NoExecute --disable servicelb
     ```
-    
-5. Setup kubectl on PC.<br>
+    If you want to scrape metrics with Prometheus then you need to create thie file ```/etc/rancher/k3s/config.yaml``` on your control plane node as follows:
+    ```
+    kube-controller-manager-arg:
+    - "bind-address=0.0.0.0"
+    kube-proxy-arg:
+    - "metrics-bind-address=0.0.0.0"
+    kube-scheduler-arg:
+    - "bind-address=0.0.0.0"
+    etcd-expose-metrics: true
+    ```
+    Don't forget to restart k3s service after applying it ```systemctl restart k3s```.
+6. Setup kubectl on PC.<br>
     a. Create .kube folder<br>
     b. Create Config file<br>
     b. Copy contents of cat /etc/rancher/k3s/k3s.yaml from master node to config file<br>
@@ -60,9 +70,9 @@ Prepare SD card
     f. On master node get your K3S token: ```cat /var/lib/rancher/k3s/server/node-token```<br>
     g. Update kubeconfig on your PC, add Token: <tokenhere> to user section.<br>
 
-6. Install NFS client on NAS (should already be installed) apt-get install -y nfs-common
+7. Install NFS client on NAS (should already be installed) apt-get install -y nfs-common
 
-7. Install worker nodes.
+8. Install worker nodes.
 Make sure the URL matches your Control Plane node URL.
 You can apply roles as labels to your nodes. I prefer to avoid running workloads on the control plane.
 ```
