@@ -307,3 +307,4 @@ This setup has been pieced together over a couple of years.
 
 Here are links to some sites that have been influencial in this journey.
 [K3S Rocks](https://k3s.rocks/)
+[k3s-cluster-kvm](https://github.com/fabianlee/k3s-cluster-kvm/tree/main)
