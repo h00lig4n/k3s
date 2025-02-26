@@ -50,6 +50,7 @@ Prepare SD card
     curl -sfL https://get.k3s.io | sh -s - --token "$TOKEN GOES HERE" --write-kubeconfig-mode 644 --tls-san 192.168.0.200 --tls-san k3s \
     --tls-san k3s.$DOMAIN_NAME --node-taint CriticalAddonsOnly=true:NoExecute --disable servicelb
     ```
+    
 5. Setup kubectl on PC.<br>
     a. Create .kube folder<br>
     b. Create Config file<br>
