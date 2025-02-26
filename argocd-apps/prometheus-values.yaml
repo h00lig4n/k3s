@@ -1,27 +1,27 @@
-# Disable etcd monitoring. See https://github.com/cablespaghetti/k3s-monitoring/issues/4
-kubeEtcd:
-  enabled: false
+namespaceOverride: "common"
+
+nodeSelector:
+  - node-role.kubernetes.io/worker: "true"
 
 kubeControllerManager:
   enabled: true
   endpoints: ['192.168.0.20']
   service:
     enabled: true
-    port: 10252
-    targetPort: 10252
+    port: 10257
+    targetPort: 10257
   serviceMonitor:
     enabled: true
     https: true
     insecureSkipVerify: true
 
-  
 kubeScheduler:
   enabled: true
   endpoints: ['192.168.0.20']
   service:
     enabled: true
-    port: 10251
-    targetPort: 10251
+    port: 10259
+    targetPort: 10259
   serviceMonitor:
     enabled: true
     https: true
@@ -76,11 +76,9 @@ prometheus:
       requests:
         cpu: 100m
         memory: Mi
-#    priorityClassName: high-priority
-#
-#  service:
-#    sessionAffinity: "ClientIP"
-#
+    priorityClassName: high-priority
+  service:
+    sessionAffinity: "ClientIP"
 
 grafana:
   plugins:
