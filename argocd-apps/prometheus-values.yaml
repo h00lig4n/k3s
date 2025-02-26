@@ -1,5 +1,3 @@
-namespaceOverride: "common"
-
 nodeSelector:
   - node-role.kubernetes.io/worker: "true"
 
