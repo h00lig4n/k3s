@@ -11,9 +11,5 @@ spec:
   sources:
   - chart: prometheus-community
     helm:
-      parameters:
-      - name: installCRDs
-        value: "true"
-      releaseName: cert-manager
     repoURL: https://prometheus-community.github.io/helm-charts
     targetRevision: v1.17.1
