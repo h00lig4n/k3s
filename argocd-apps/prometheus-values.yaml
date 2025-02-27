@@ -42,34 +42,6 @@ kubeProxy:
     port: 10249
     targetPort: 10249
 
-alertmanager:
-  alertmanagerSpec:
-    replicas: 1
-    podAntiAffinity: "soft"
-    storage:
-      volumeClaimTemplate:
-        spec:
-          accessModes: ["ReadWriteOnce"]
-          resources:
-            requests:
-              storage: 1Gi
-    resources:
-      limits:
-        cpu: 250m
-        memory: 64Mi
-      requests:
-        cpu: 25m
-        memory: 32Mi
-    priorityClassName: high-priority
-    storage: {}
-    volumeClaimTemplate:
-       spec:
-         storageClassName: nfs
-         accessModes: ["ReadWriteOnce"]
-         resources:
-           requests:
-             storage: 5Gi
-
 prometheus:
   prometheusSpec:
     retention: 3d
