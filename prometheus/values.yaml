@@ -1,0 +1,108 @@
+namespaceOverride: "Commmon"
+
+nodeSelector:
+  - node-role.kubernetes.io/worker: "true"
+
+defaultRules:
+  rules:
+    etcd: false
+
+kubeEtcd:
+  enabled: false
+
+kubeControllerManager:
+  enabled: true
+  endpoints: ['192.168.0.20']
+  service:
+    enabled: true
+    port: 10257
+    targetPort: 10257
+  serviceMonitor:
+    enabled: true
+    https: true
+    insecureSkipVerify: true
+
+kubeScheduler:
+  enabled: true
+  endpoints: ['192.168.0.20']
+  service:
+    enabled: true
+    port: 10259
+    targetPort: 10259
+  serviceMonitor:
+    enabled: true
+    https: true
+    insecureSkipVerify: true
+
+kubeProxy:
+  enabled: true
+  endpoints: ['192.168.0.20']
+  service:
+    enabled: true
+    port: 10249
+    targetPort: 10249
+
+prometheus:
+  prometheusSpec:
+    retention: 3d
+    replicas: 1
+    podAntiAffinity: "hard"
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          accessModes: ["ReadWriteOnce"]
+          storageClassName: nfs
+          resources:
+            requests:
+              storage: 10Gi
+    resources:
+      limits:
+        cpu: "1"
+        memory: 500Mi
+      requests:
+        cpu: 100m
+        memory: Mi
+    priorityClassName: high-priority
+  service:
+    sessionAffinity: "ClientIP"
+
+grafana:
+  plugins:
+    - grafana-piechart-panel
+  resources:
+    limits:
+      cpu: 250m
+      memory: 128Mi
+    requests:
+      cpu: 25m
+      memory: 64Mi
+
+prometheusOperator:
+  resources:
+    limits:
+      cpu: 1
+      memory: 512Mi
+    requests:
+      cpu: 50m
+      memory: 128Mi
+  priorityClassName: high-priority
+
+prometheus-node-exporter:
+  resources:
+    limits:
+      cpu: 50m
+      memory: 50Mi
+    requests:
+      cpu: 5m
+      memory: 16Mi
+  priorityClassName: high-priority
+
+kube-state-metrics:
+  resources:
+    limits:
+      cpu: 1
+      memory: 512Mi
+    requests:
+      cpu: 5m
+      memory: 128Mi
+  priorityClassName: high-priority
