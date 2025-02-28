@@ -13,4 +13,4 @@ spec:
     helm:
     repoURL: https://prometheus-community.github.io/helm-charts
     valueFiles:
-      - ../prometheus/values.yaml
+      - "../prometheus/values.yaml"
