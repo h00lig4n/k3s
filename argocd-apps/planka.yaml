@@ -16,7 +16,7 @@ spec:
     repoURL: http://plankanban.github.io/planka
     targetRevision: 0.2.20
     helm:
-      valuesObject: |
+      values: |
         existingSecretkeySecret: "planka"
         existingAdminCredsSecret: "planka"
         nodeSelector:
