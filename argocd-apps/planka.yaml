@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: planka
+  namespace: argocd
+spec:
+  destination:
+    namespace: planka
+    server: https://kubernetes.default.svc
+  project: common
+  sources:
+  - path: planka
+    repoURL: https://github.com/h00lig4n/k3s-private.git
+    targetRevision: HEAD
+  - chart: planka
+    helm:
+      parameters:
+      - name: installCRDs
+        value: "true"
+      releaseName: 
+    repoURL: http://plankanban.github.io/planka
+    targetRevision: v1.17.1
