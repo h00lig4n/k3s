@@ -18,9 +18,15 @@ spec:
         image: postgres:17.4
         env:
           - name: POSTGRES_USER
-            value: "thisshouldberandommaybe"
+            valueFrom:
+              secretKeyRef:
+                name: postgresql
+                key: POSTGRES_USER
           - name: POSTGRES_PASSWORD
-            value: "thisaswellandverylongandcomplicated"
+            valueFrom:
+              secretKeyRef:
+                name: postgresql
+                key: POSTGRES_PASSWORD
           - name: POSTGRES_DB
             value: "postgres"
         ports:
