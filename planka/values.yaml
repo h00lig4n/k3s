@@ -1,0 +1,17 @@
+existingSecretkeySecret: "planka"
+existingAdminCredsSecret: "planka"
+nodeSelector: {}
+resources:
+  limits:
+     cpu: 500m
+     memory: 500Mi
+  requests:
+     cpu: 100m
+     memory: 128Mi
+postgresql.auth.password: "$PLANKA_PASSWORD"
+#persistence:
+#  enabled: true
+#  existingClaim: planka
+#  storageClass: "nfs"
+#  accessMode: ReadWriteOnce
+#  size: 10Gi
