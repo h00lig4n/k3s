@@ -26,5 +26,3 @@ data:
     
     listener 9001
     protocol websockets
-  mosquitto.passwd: |
-    {{mosquitto-user}}:{{mosquitto-generated-password}}

@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hass
+  namespace: argocd
+spec:
+  destination:
+    namespace: hass
+    server: https://kubernetes.default.svc
+  project: hass
+  source:
+    path: hass
+    repoURL: https://github.com/h00lig4n/k3s.git
+    targetRevision: HEAD
