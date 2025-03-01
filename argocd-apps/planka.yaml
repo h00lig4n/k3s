@@ -5,18 +5,34 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    namespace: planka
+    namespace: default
     server: https://kubernetes.default.svc
-  project: common
+  project: default
   sources:
   - path: planka
     repoURL: https://github.com/h00lig4n/k3s-private.git
     targetRevision: HEAD
   - chart: planka
-    helm:
-      parameters:
-      - name: installCRDs
-        value: "true"
-      releaseName: 
     repoURL: http://plankanban.github.io/planka
     targetRevision: v1.17.1
+    helm:
+      valuesObject: |
+        existingSecretkeySecret: "planka"
+        existingAdminCredsSecret: "planka"
+        nodeSelector:
+          node-role.kubernetes.io/worker: "true"
+        resources:
+          limits:
+             cpu: 500m
+             memory: 500Mi
+          requests:
+             cpu: 100m
+             memory: 128Mi
+        postgresql.auth.password: "$PLANKA_PASSWORD"
+        #persistence:
+        #  enabled: true
+        #  existingClaim: planka
+        #  storageClass: "nfs"
+        #  accessMode: ReadWriteOnce
+        #  size: 10Gi
+            
