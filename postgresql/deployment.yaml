@@ -26,9 +26,9 @@ spec:
         ports:
         - containerPort: 5432
         volumeMounts:
-        - name: my-postgres-longhorn-volume
+        - name: postgres-volume
           mountPath: /var/lib/ghost/content
       volumes:
-      - name: my-postgres-longhorn-volume
+      - name: postgres-volume
         persistentVolumeClaim:
-          claimName: postgres-longhorn-pvc
+          claimName: postgresc
