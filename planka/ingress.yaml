@@ -16,9 +16,9 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: esphome
+                name: planka
                 port:
-                  number: 6052
+                  number: 1337
   tls:
     - secretName: tls-certificate
       hosts:
