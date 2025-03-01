@@ -32,10 +32,10 @@ spec:
              cpu: 100m
              memory: 128Mi
         postgresql.auth.password: "$PLANKA_PASSWORD"
-        #persistence:
-        #  enabled: true
-        #  existingClaim: planka
-        #  storageClass: "nfs"
-        #  accessMode: ReadWriteOnce
-        #  size: 10Gi
+        persistence:
+          enabled: true
+          existingClaim: planka
+          storageClass: "nfs"
+          accessMode: ReadWriteOnce
+          size: 10Gi
             
