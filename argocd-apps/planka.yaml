@@ -14,7 +14,7 @@ spec:
     targetRevision: HEAD
   - chart: planka
     repoURL: http://plankanban.github.io/planka
-    targetRevision: v1.17.1
+    targetRevision: 0.2.20
     helm:
       valuesObject: |
         existingSecretkeySecret: "planka"
