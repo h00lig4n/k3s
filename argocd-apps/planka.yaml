@@ -31,7 +31,9 @@ spec:
           requests:
              cpu: 100m
              memory: 128Mi
-        postgresql.auth.password: "$PLANKA_PASSWORD"
+        postgresql:
+          auth:
+            password: "$PLANKA_PASSWORD"
         persistence:
           enabled: true
           existingClaim: planka
