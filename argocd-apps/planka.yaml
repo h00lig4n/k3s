@@ -40,7 +40,7 @@ spec:
           size: 10Gi
         ingress:
           enabled:true
-          ClassName: traefik
+          className: traefik
           hosts:
             - host: plan.$DOMAIN_NAME
               paths:
