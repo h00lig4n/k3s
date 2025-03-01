@@ -1,6 +1,7 @@
 existingSecretkeySecret: "planka"
 existingAdminCredsSecret: "planka"
-nodeSelector: {}
+nodeSelector:
+  node-role.kubernetes.io/worker: "true"
 resources:
   limits:
      cpu: 500m
