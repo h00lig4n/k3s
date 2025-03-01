@@ -27,7 +27,7 @@ spec:
         - containerPort: 5432
         volumeMounts:
         - name: postgresql-volume
-          mountPath: /var/lib/ghost/content
+          mountPath: /var/lib/postgresql/data
       nodeSelector:
         node-role.kubernetes.io/worker: "true"
       volumes:
