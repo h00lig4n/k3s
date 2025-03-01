@@ -14,7 +14,7 @@ spec:
         app: postgresql
     spec:
       containers:
-      - name: postgres
+      - name: postgresql
         image: postgres:17.4
         env:
           - name: POSTGRES_USER
@@ -26,9 +26,11 @@ spec:
         ports:
         - containerPort: 5432
         volumeMounts:
-        - name: postgres-volume
+        - name: postgresql-volume
           mountPath: /var/lib/ghost/content
+      nodeSelector:
+        node-role.kubernetes.io/worker: "true"
       volumes:
-      - name: postgres-volume
+      - name: postgresql-volume
         persistentVolumeClaim:
-          claimName: postgresc
+          claimName: postgresql
