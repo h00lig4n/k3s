@@ -38,4 +38,16 @@ spec:
           storageClass: "nfs"
           accessMode: ReadWriteOnce
           size: 10Gi
+        ingress:
+          enabled:true
+          ingressClassName: traefik
+          hosts:
+            - host: plan.$DOMAIN_NAME
+              paths:
+                - path: /
+                  pathType: Prefix
+          tls:
+            - secretName: tls-certificate
+              hosts:
+                - plan.$DOMAIN_NAME
             
