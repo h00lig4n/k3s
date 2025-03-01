@@ -39,7 +39,7 @@ spec:
           accessMode: ReadWriteOnce
           size: 10Gi
         ingress:
-          enabled:true
+          enabled: true
           className: traefik
           hosts:
             - host: plan.$DOMAIN_NAME
