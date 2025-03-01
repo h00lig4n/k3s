@@ -22,7 +22,7 @@ spec:
           - name: POSTGRES_PASSWORD
             value: "thisaswellandverylongandcomplicated"
           - name: POSTGRES_DB
-            value: "mydatabase"
+            value: "postgres"
         ports:
         - containerPort: 5432
         volumeMounts:
