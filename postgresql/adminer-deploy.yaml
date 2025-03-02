@@ -14,14 +14,17 @@ spec:
         app: adminer
     spec:
       containers:
-      - name: postgresql
-        image: postgres:17.4
+      - name: adminer
+        image: adminer:4.17.1
         env:
           - name: ADMINER_DEFAULT_SERVER 
             value: "postgresql" 
         ports:
         - containerPort: 5432
         resources:
+          requests:
+            memory: "256Mi"
+            cpu: "64m"
           limits:
             memory: "256Mi"
             cpu: "500m"
