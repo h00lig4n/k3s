@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: webnut
+  namespace: common
+  annotations:
+    #cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: nut.$DOMAIN
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: webnut
+                port:
+                  number: 6543
+  tls:
+    - secretName: tls-certificate
+      hosts:
+        - nut.$DOMAIN
