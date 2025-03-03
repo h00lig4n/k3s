@@ -9,7 +9,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-    - host: nut.$DOMAIN
+    - host: nut.$DOMAIN_NAME
       http:
         paths:
           - path: /
@@ -22,4 +22,4 @@ spec:
   tls:
     - secretName: tls-certificate
       hosts:
-        - nut.$DOMAIN
+        - nut.$DOMAIN_NAME
