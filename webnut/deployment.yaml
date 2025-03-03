@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webnut
+  namespace: common
+  labels:
+    app: webnut
+spec:
+  progressDeadlineSeconds: 600
+  revisionHistoryLimit: 10
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webnut
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: webnut
+    spec:
+      initContainers:
+        - name: config-data
+          image: busybox:musl
+          command: ["/bin/sh", "-c", "cp /data/config.py /app/webNUT/webnut/config/config.py"]
+          volumeMounts:
+          - mountPath: /data/
+            name: configuration
+          - name: config-py
+            mountPath: /app/webNUT/webnut/config/
+      containers:
+        - image: devzwf/webnut-docker:latest
+          imagePullPolicy: Always
+          name: webnut
+          ports:
+            - containerPort: 6543
+          volumeMounts:
+          - name: config-py
+            mountPath: /app/webNUT/webnut/config
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/worker
+        operator: Equal
+        value: 'true'
+      volumes:
+      - name: config-py
+        emptyDir: {}
+      - name: configuration
+        configMap:
+          name: webnut
