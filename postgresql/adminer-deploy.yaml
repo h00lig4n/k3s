@@ -3,15 +3,23 @@ kind: Deployment
 metadata:
   name: adminer
   namespace: common
+  labels:
+    app.kubernetes.io/component: ui
+    app.kubernetes.io/part-of: postgresql
+    app.kubernetes.io/name: adminer
 spec:
   selector:
     matchLabels:
-      app: adminer
+      app.kubernetes.io/component: ui
+      app.kubernetes.io/part-of: postgresql
+      app.kubernetes.io/name: adminer
   replicas: 1
   template:
     metadata:
       labels:
-        app: adminer
+        app.kubernetes.io/component: ui
+        app.kubernetes.io/part-of: postgresql
+        app.kubernetes.io/name: adminer
     spec:
       containers:
       - name: adminer
@@ -20,7 +28,7 @@ spec:
           - name: ADMINER_DEFAULT_SERVER 
             value: "postgresql" 
         ports:
-        - containerPort: 5432
+        - containerPort: 8080
         resources:
           requests:
             memory: "256Mi"
