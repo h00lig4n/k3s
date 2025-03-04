@@ -1,25 +1,33 @@
-project: infrastructure
-source:
-  repoURL: https://charts.rancher.io
-  targetRevision: 103.0.1
-  helm:
-    values: |
-      metricsPort: 10249
-      component: kube-proxy
-      serviceMonitor:
-        enabled: false
-      clients:
-        port: 10013
-        useLocalhost: true
-        https:
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: pushprox
+  namespace: argocd
+spec:
+  project: infrastructure
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: common
+  source:
+    repoURL: https://charts.rancher.io
+    targetRevision: 103.0.1
+    chart: rancher-pushprox
+    helm:
+      values: |
+        metricsPort: 10249
+        component: kube-proxy
+        serviceMonitor:
           enabled: false
-        nodeSelector:
-          node-role.kubernetes.io/worker: "true"
-        tolerations:
-          - effect: "NoExecute"
-            operator: "Exists"
-          - effect: "NoSchedule"
-            operator: "Exists"
-  chart: rancher-pushprox
-destination:
-  server: https://kubernetes.default.svc
+        clients:
+          port: 10013
+          useLocalhost: true
+          https:
+            enabled: false
+          nodeSelector:
+            node-role.kubernetes.io/worker: "true"
+          tolerations:
+            - effect: "NoExecute"
+              operator: "Exists"
+            - effect: "NoSchedule"
+              operator: "Exists"
+
