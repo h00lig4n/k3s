@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: reflector
+  namespace: argocd
+spec:
+  destination:
+    namespace: kube-system
+    server: https://kubernetes.default.svc
+  project: infrastructure
+  sources:
+  - chart: reflector
+    helm:
+      releaseName: cert-manager
+    repoURL: https://emberstack.github.io/helm-charts
+    targetRevision: v1.17.1
