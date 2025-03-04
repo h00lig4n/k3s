@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  sources:
+  - chart: prometheus-community/prometheus
+    helm:
+		valueFiles:
+		  - prometheus-values.yaml
+      releaseName: cert-manager
+    repoURL: https://prometheus-community.github.io/helm-charts
+    targetRevision: v3.1.0
+#  - path: prometheus
+#    repoURL: https://github.com/h00lig4n/k3s.git
+#    targetRevision: HEAD
