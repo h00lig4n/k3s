@@ -20,8 +20,8 @@ spec:
     targetRevision: 0.2.20
     helm:
       values: |
-        existingSecretkeySecret: "planka"
-        existingAdminCredsSecret: "planka"
+        existingSecretkeySecret: planka
+        existingAdminCredsSecret: planka
         nodeSelector:
           node-role.kubernetes.io/worker: "true"
         resources:
@@ -32,8 +32,8 @@ spec:
              cpu: 100m
              memory: 128Mi
         postgresql:
-          auth:
-            password: "$PLANKA_PASSWORD"
+          enabled: false
+        existingDburlSecret: planka
         persistence:
           enabled: true
           existingClaim: planka
