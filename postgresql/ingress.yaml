@@ -1,1 +1,29 @@
-
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: openwebui
+  labels:
+    app.kubernetes.io/component: ui
+    app.kubernetes.io/part-of: postgresql
+    app.kubernetes.io/name: adminer
+  namespace: common
+  annotations:
+    #cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: sql.$DOMAIN_NAME
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: adminer
+                port:
+                  number: 8080
+  tls:
+    - secretName: tls-certificate
+      hosts:
+        - sql.$DOMAIN_NAME
