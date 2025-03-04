@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: postgresql
+  namespace: argocd
+spec:
+  destination:
+    namespace: common
+    server: https://kubernetes.default.svc
+  sources:
+    - repoURL: https://github.com/h00lig4n/k3s.git
+      path: postgresql
+    - repoURL: https://github.com/h00lig4n/k3s-private.git
+      path: postgresql
+  project: common
