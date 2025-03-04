@@ -13,4 +13,4 @@ spec:
     helm:
       releaseName: cert-manager
     repoURL: https://emberstack.github.io/helm-charts
-    targetRevision: 0.1.0
+    targetRevision: 9.0.318
