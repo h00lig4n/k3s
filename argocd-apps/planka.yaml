@@ -25,7 +25,7 @@ spec:
         admin_name: "Demo Demo"
         admin_username: "demo"
         existingSecretkeySecret: planka
-        # existingAdminCredsSecret: planka
+        existingAdminCredsSecret: planka
         nodeSelector:
           node-role.kubernetes.io/worker: "true"
         resources:
