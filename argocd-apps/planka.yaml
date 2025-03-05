@@ -21,9 +21,9 @@ spec:
     helm:
       values: |
         admin_email: "$EMAIL" #Limitation of Planka. Create new admin
-        #admin_password: "demo"
-        #admin_name: "Admin"
-        #admin_username: "demo"
+        admin_password: "demo"
+        admin_name: "Admin"
+        admin_username: "admin"
         existingSecretkeySecret: planka
         existingAdminCredsSecret: planka
         nodeSelector:
