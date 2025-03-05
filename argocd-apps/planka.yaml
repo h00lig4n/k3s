@@ -20,7 +20,7 @@ spec:
     targetRevision: 0.2.20
     helm:
       values: |
-        admin_email: "demo@demo.com" #Limitation of Planka. Create new admin
+        admin_email: "$EMAIL" #Limitation of Planka. Create new admin
         admin_password: "demo"
         admin_name: "Admin"
         admin_username: "admin"
