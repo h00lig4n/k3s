@@ -22,7 +22,7 @@ spec:
       values: |
         admin_email: "notmy.email@spam.me" #Limitation of Planka. Create new admin
         #admin_password: "demo"
-        #admin_name: "Admin"
+        admin_name: "Admin"
         #admin_username: "admin"
         existingSecretkeySecret: planka
         existingAdminCredsSecret: planka
