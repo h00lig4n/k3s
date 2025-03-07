@@ -50,7 +50,7 @@ Prepare SD card
     curl -sfL https://get.k3s.io | sh -s - --token "$TOKEN GOES HERE" --write-kubeconfig-mode 644 --tls-san 192.168.0.200 --tls-san k3s \
     --tls-san k3s.$DOMAIN_NAME --node-taint CriticalAddonsOnly=true:NoExecute --disable servicelb
     ```
-    If you want to scrape metrics with Prometheus then you need to create thie file ```/etc/rancher/k3s/config.yaml``` on your control plane node as follows:
+    If you want to scrape metrics with Prometheus then you need to create thie file ```/etc/rancher/k3s/config.yaml``` on your control plane node as follows:  ----PushProx instead----
     ```
     kube-controller-manager-arg:
     - "bind-address=0.0.0.0"
