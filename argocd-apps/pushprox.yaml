@@ -24,7 +24,7 @@ spec:
           https:
             enabled: false
           nodeSelector:
-            node-role.kubernetes.io/monitor=true
+            node-role.kubernetes.io/monitor: "true"
           tolerations:
             - effect: "NoExecute"
               operator: "Exists"
