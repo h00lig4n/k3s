@@ -17,7 +17,7 @@ spec:
       releaseName: pushprox-kube-proxy
       values: |
         metricsPort: 10249
-        component: kube-proxy
+        component: kube-state-metrics
         serviceMonitor:
           enabled: false
         clients:
