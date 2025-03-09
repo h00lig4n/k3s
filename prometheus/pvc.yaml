@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: prometheus
-  namespace: common
+  namespace: monitoring
   labels:
     app: prometheus
 spec:
