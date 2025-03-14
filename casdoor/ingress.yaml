@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: casdoor
+  namespace: common
+  annotations:
+    #cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: auth.$DOMAIN_NAME
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: casdoor
+                port:
+                  number: 8000
+  tls:
+    - secretName: tls-certificate
+      hosts:
+        - auth.$DOMAIN_NAME

@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: casdoor
+  namespace: argocd
+spec:
+  destination:
+    namespace: common
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: true
+  project: common
+  sources:
+    - path: casdoor
+      repoURL: https://github.com/h00lig4n/k3s.git
+      targetRevision: HEAD
+    - path: casdoor
+      repoURL: https://github.com/h00lig4n/k3s-private.git
+      targetRevision: HEAD
