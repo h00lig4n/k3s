@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: pushprox
+  namespace: argocd
+spec:
+  project: infrastructure
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: monitoring
+  source:
+    namespaceOverride: monitoring
+    repoURL: https://charts.rancher.io
+    targetRevision: 103.0.1
+    chart: rancher-pushprox
+    helm:
+      releaseName: pushprox-kube-proxy
+      values: |
+        metricsPort: 10249
+        component: kube-state-metrics
+        serviceMonitor:
+          enabled: false
+        clients:
+          port: 10013
+          useLocalhost: true
+          https:
+            enabled: false
+          nodeSelector:
+            node-role.kubernetes.io/monitor: "true"
+          tolerations:
+            - effect: "NoExecute"
+              operator: "Exists"
+            - effect: "NoSchedule"
+              operator: "Exists"
+

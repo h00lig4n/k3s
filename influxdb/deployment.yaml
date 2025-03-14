@@ -20,7 +20,7 @@ spec:
         app: influxdb
     spec:         
       containers:
-      - image: docker.io/influxdb:2.7.10
+      - image: docker.io/influxdb:2.7.11
         imagePullPolicy: IfNotPresent
         name: influxdb
         ports:

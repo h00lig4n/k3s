@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: webnut
+  namespace: common
+data:
+  config.py: |
+    from .webnut import NUTServer
+
+    servers = [
+        NUTServer('192.168.0.5', 3493, None, None)
+    ]

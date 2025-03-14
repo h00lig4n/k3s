@@ -6,6 +6,12 @@ metadata:
   namespace: kube-system
 spec:
   valuesContent: |-
+    metrics:
+      prometheus:
+        entryPoint: metrics
+        addEntryPointsLabels: true
+        addServicesLabels: true
+        addRoutersLabels: true
     api:
       insecure: false
       dashboard: true
@@ -14,24 +20,27 @@ spec:
         expose: false
       mqtt:
         port: 8883
-        expose: true
+        expose: 
+          default: true
         exposedport: 8883
       mqtt-insecure:
         port: 1883
-        expose: true
-        exposedport: 1883
-      minecraft-game:
-        port: 25565
-        expose: true
-        exposedport: 25565
-      minecraft-rcon:
-        port: 25575
-        expose: true
-        exposedport: 25575
+        expose:
+          default: true
+        exposedPort: 1883
+      hass:
+        port: 8123
+        expose:
+          default: true
+        exposedPort: 8123
       sonos:
         port: 1400
-        expose: true
-        exposedport: 1400
+        expose:
+          default: true
+        exposedPort: 1400
+    providers:
+      kubernetesCRD:
+        allowCrossNamespace: true
     logs:
       access:
         enabled: true

@@ -1,0 +1,30 @@
+# Use this to patch in Sidecar to ArgoCD Repo Server
+apiVersion: apps/v1
+kind: Deployment
+spec:
+  template:
+    spec:
+      containers:
+      - name: envsubst
+        command: [/var/run/argocd/argocd-cmp-server]
+        image: h00lig4n/argocd-envsubst-plugin:latest
+        env:
+          - name: DOMAIN_NAME
+            value: replaceme
+          - name: EMAIL
+            value: replaceme
+          - name: CPANEL_URL
+            value: replaceme
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 999
+        volumeMounts:
+          - mountPath: /var/run/argocd
+            name: var-files
+          - mountPath: /home/argocd/cmp-server/plugins
+            name: plugins
+          - mountPath: /tmp
+            name: cmp-tmp
+      volumes:
+        - emptyDir: {}
+          name: cmp-tmp

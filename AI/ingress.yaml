@@ -2,6 +2,10 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: openwebui
+  labels:
+    app.kubernetes.io/component: openwebui
+    app.kubernetes.io/name: openwebui
+    app.kubernetes.io/part-of: ai
   namespace: ai
   annotations:
     #cert-manager.io/cluster-issuer: letsencrypt-prod
