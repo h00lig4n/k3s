@@ -9,22 +9,31 @@ spec:
     server: https://kubernetes.default.svc
     namespace: monitoring
   source:
-    namespaceOverride: monitoring
     repoURL: https://charts.rancher.io
     targetRevision: 103.0.1
     chart: rancher-pushprox
     helm:
       releaseName: pushprox-kube-proxy
       values: |
+        namespaceOverride: monitoring
         metricsPort: 10249
-        component: kube-state-metrics
+        component: k3s-server
         serviceMonitor:
-          enabled: false
+          enabled: true
         clients:
           port: 10013
           useLocalhost: true
           https:
-            enabled: false
+            enabled: true
+            useServiceAccountCredentials: true
+            insecureSkipVerify: true
+        rbac:
+          additionalRules:
+          - nonResourceURLs: ["/metrics/cadvisor"]
+            verbs: ["get"]
+          - apiGroups: [""]
+            resources: ["nodes/metrics"]
+            verbs: ["get"]
           nodeSelector:
             node-role.kubernetes.io/monitor: "true"
           tolerations:
@@ -32,4 +41,3 @@ spec:
               operator: "Exists"
             - effect: "NoSchedule"
               operator: "Exists"
-
