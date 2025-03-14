@@ -25,7 +25,7 @@ spec:
         prometheus.io/port: "9090"
     spec:
       containers:
-      - image: prom/prometheus-linux-arm64:main
+      - image: prom/prometheus:main
         imagePullPolicy: IfNotPresent
         name: prometheus
         args:
@@ -50,6 +50,7 @@ spec:
         terminationMessagePolicy: File
       nodeSelector:
         node-role.kubernetes.io/worker: "true"
+      serviceAccountName: prometheus
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
