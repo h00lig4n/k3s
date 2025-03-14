@@ -18,7 +18,7 @@ spec:
         app: zwavejs
     spec:
       containers:
-      - image: zwavejs/zwave-js-ui:9.27
+      - image: zwavejs/zwave-js-ui:9.33
         name: zwavejs
         imagePullPolicy: IfNotPresent
         ports:
