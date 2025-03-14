@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: casdoor
-  namespace: default
+  namespace: common
   labels:
     app: casdoor
 data:
