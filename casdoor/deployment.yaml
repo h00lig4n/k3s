@@ -21,6 +21,16 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
+          env:
+            - name: driverName
+              value: postgres
+            - name: dbName
+              value: casdoor
+            - name: dataSourceName
+              valueFrom:
+                secretKeyRef:
+                  name: casdoor
+                  key: dataSourceName
           volumeMounts:
             - mountPath: /init_data.json
               name: casdoor-init-data-volume
