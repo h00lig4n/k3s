@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: hass
-        image: homeassistant/home-assistant:2025.3.2
+        image: homeassistant/home-assistant:2025.3.1
         ports:
           - name: web
             containerPort: 8123
