@@ -7,6 +7,9 @@ spec:
   destination:
     namespace: ai
     server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: true
   project: ai
   source:
     path: AI
