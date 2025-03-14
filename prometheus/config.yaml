@@ -33,6 +33,11 @@ data:
         static_configs:
         - targets: ['argocd-metrics.argocd.svc.cluster.local:8082']
 
+      - job_name: 'casdoor'
+        static_configs:
+          - targets: ['casdoor.common.svc.cluster.local:8000'] 
+        metrics_path: '/api/metrics'
+
       - job_name: 'kubernetes-pods'
         # proxy_url: 'http://pushprox-k3s-server-proxy.monitoring.svc.cluster.local:8080'
         honor_labels: true
