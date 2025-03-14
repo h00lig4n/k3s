@@ -7,6 +7,9 @@ spec:
   destination:
     namespace: hass
     server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: true
   project: hass
   source:
     path: hass
