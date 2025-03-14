@@ -18,7 +18,7 @@ spec:
         app: mqtt
     spec:
       containers:
-      - image: eclipse-mosquitto:2.0.20
+      - image: eclipse-mosquitto:2.0.21
         name: mqtt
         imagePullPolicy: IfNotPresent
         ports:
