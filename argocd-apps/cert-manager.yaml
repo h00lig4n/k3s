@@ -7,6 +7,9 @@ spec:
   destination:
     namespace: cert-manager
     server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: true
   project: infrastructure
   sources:
   - chart: cert-manager
