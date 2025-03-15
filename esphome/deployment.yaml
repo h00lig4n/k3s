@@ -78,8 +78,8 @@ spec:
             memory: "64Mi"
             cpu: "250m"
           limits:
-            memory: "1024Mi"
-            cpu: "500m"
+            memory: "2048Mi"
+            cpu: "1000m"
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       nodeSelector:
