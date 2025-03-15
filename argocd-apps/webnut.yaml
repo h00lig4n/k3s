@@ -14,4 +14,4 @@ spec:
   sources:
     - path: webnut
       repoURL: https://github.com/h00lig4n/k3s.git
-      targetRevision: kusto
+      targetRevision: HEAD
