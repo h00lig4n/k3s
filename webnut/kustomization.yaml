@@ -1,3 +1,4 @@
+# kustomization.yaml
 resources:
   - configmap.yaml
   - deployment.yaml
