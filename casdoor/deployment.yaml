@@ -42,7 +42,7 @@ spec:
             - mountPath: /init_data.json
               name: casdoor-conf
               subPath: init_data.json
-            - mountPath: /conf
+            - mountPath: /conf/app.conf
               name: casdoor-conf
               subPath: app.conf
           env:       
