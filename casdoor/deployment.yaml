@@ -40,10 +40,10 @@ spec:
                   key: dataSourceName
           volumeMounts:
             - mountPath: /init_data.json
-              name: casdoor-init-data-volume
+              name: casdoor-conf
               subPath: init_data.json
             - mountPath: /conf
-              name: conf
+              name: casdoor-conf
               subPath: app.conf
           env:       
             - name: RUNNING_IN_DOCKER
@@ -51,4 +51,4 @@ spec:
       volumes:
         - configMap:
             name: casdoor
-          name: casdoor-init-data-volume
+          name: casdoor-conf
