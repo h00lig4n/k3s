@@ -12,7 +12,7 @@ data:
     runmode = dev
     copyrequestbody = true
     driverName = mysql
-    dataSourceName = root:123456@tcp(localhost:3306)/
+    dataSourceName = root:123456@tcp(localhost:9999)/
     dbName = casdoor
     tableNamePrefix =
     showSql = false
