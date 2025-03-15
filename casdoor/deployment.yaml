@@ -22,9 +22,11 @@ spec:
           ports:
             - containerPort: 8000
           env:
-            - name: DRIVER
-              value: "postgres"
-            - name: DATA_SOURCE_NAME
+            - name: dbName 
+              value: casdoor
+            - name: driverName
+              value: postgres
+            - name: dataSourceName 
               valueFrom:
                 secretKeyRef:
                   name: casdoor
@@ -38,9 +40,6 @@ spec:
             - mountPath: /conf/app.conf
               name: casdoor-conf
               subPath: app.conf
-          env:       
-            - name: RUNNING_IN_DOCKER
-              value: "true"
       volumes:
         - configMap:
             name: casdoor
