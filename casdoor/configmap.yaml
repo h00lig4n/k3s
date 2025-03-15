@@ -11,7 +11,7 @@ data:
     httpport = 8000
     runmode = dev
     copyrequestbody = true
-    driverName = postgresql
+    driverName = postgres
     dataSourceName = 
     dbName = casdoor
     tableNamePrefix =
