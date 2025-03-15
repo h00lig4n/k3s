@@ -22,6 +22,8 @@ spec:
           ports:
             - containerPort: 8000
           env:
+            - name: RUNNING_IN_DOCKER
+              value: "true"
             - name: driverName
               value: postgres
             - name: dbName
