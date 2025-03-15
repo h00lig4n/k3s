@@ -11,8 +11,8 @@ data:
     httpport = 8000
     runmode = dev
     copyrequestbody = true
-    driverName = postgres
-    dataSourceName = 
+    driverName = mysql
+    dataSourceName = root:123456@tcp(localhost:3306)/
     dbName = casdoor
     tableNamePrefix =
     showSql = false
