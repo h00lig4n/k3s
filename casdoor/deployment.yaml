@@ -24,18 +24,8 @@ spec:
           env:
             - name: RUNNING_IN_DOCKER
               value: "true"
-            - name: httpport 
-              value: "8000"  
-            - name: runmode  
-              value: "dev"  
-            #- name: driverName
-            #  value: postgres
-            - name: dbName
-              value: casdoor
-            #- name: dataSourceName
             - name: DRIVER
               value: "postgres"
-            #- name: dataSourceName
             - name: DATA_SOURCE_NAME
               valueFrom:
                 secretKeyRef:
