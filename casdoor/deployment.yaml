@@ -24,6 +24,11 @@ spec:
           env:
             - name: RUNNING_IN_DOCKER
               value: "true"
+            - name: httpport 
+              value: "8000"  
+            - name: runmode  
+              value: "prod"  
+              
             - name: driverName
               value: postgres
             - name: dbName
@@ -37,8 +42,8 @@ spec:
             - mountPath: /init_data.json
               name: casdoor-init-data-volume
               subPath: init_data.json
-            #- mountPath: /conf
-            #  name: conf
+            - mountPath: /conf
+              name: conf
           env:       
             - name: RUNNING_IN_DOCKER
               value: "true"
@@ -46,6 +51,6 @@ spec:
         - configMap:
             name: casdoor
           name: casdoor-init-data-volume
-        #- name: conf
-        #  hostPath:
-        #    path: /conf
+        - name: conf
+          hostPath:
+            path: /conf
