@@ -5,6 +5,8 @@ metadata:
   namespace: default
   labels:
     app: planka
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
 spec:
   accessModes:
     - ReadWriteOnce
