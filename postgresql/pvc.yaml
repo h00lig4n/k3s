@@ -5,6 +5,8 @@ metadata:
   namespace: common
   labels:
     app: postgresql
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
 spec:
   accessModes:
     - ReadWriteOnce
