@@ -5,6 +5,8 @@ metadata:
   namespace: monitoring
   labels:
     app: prometheus
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
 spec:
   accessModes:
     - ReadWriteMany
