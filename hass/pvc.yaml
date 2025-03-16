@@ -5,6 +5,8 @@ metadata:
   namespace: hass
   labels:
     app: hass
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
 spec:
   accessModes:
     - ReadWriteOnce
@@ -20,6 +22,8 @@ metadata:
   namespace: hass
   labels:
     app: hass
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
 spec:
   accessModes:
     - ReadWriteOnce
