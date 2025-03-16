@@ -8,6 +8,8 @@ metadata:
     app.kubernetes.io/component: ollama
     app.kubernetes.io/part-of: ai
     app.kubernetes.io/name: ollama
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
 spec:
   accessModes:
     - ReadWriteOnce
