@@ -5,6 +5,8 @@ metadata:
   namespace: hass
   labels:
     app: mqtt
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
 spec:
   accessModes:
     - ReadWriteOnce
