@@ -5,6 +5,8 @@ metadata:
   namespace: hass
   labels:
     app: esphome
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
 spec:
   accessModes:
     - ReadWriteOnce
