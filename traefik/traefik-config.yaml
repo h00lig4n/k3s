@@ -28,6 +28,11 @@ spec:
         expose:
           default: true
         exposedPort: 1883
+      netflow:
+        port: 2055
+        expose:
+          default: true
+        exposedPort: 2055
       hass:
         port: 8123
         expose:
