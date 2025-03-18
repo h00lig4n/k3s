@@ -47,11 +47,8 @@ spec:
       schedulerName: default-scheduler
       securityContext: {}
       terminationGracePeriodSeconds: 30
-      tolerations:
-      - effect: NoSchedule
-        key: node-role.kubernetes.io/worker
-        operator: Equal
-        value: 'true'
+      nodeSelector:
+        node-role.kubernetes.io/worker: "true"
       volumes:
       - name: registry-vol
         persistentVolumeClaim:
@@ -118,8 +115,5 @@ spec:
       schedulerName: default-scheduler
       securityContext: {}
       terminationGracePeriodSeconds: 30
-      tolerations:
-      - effect: NoSchedule
-        key: node-role.kubernetes.io/worker
-        operator: Equal
-        value: 'true'
+      nodeSelector:
+        node-role.kubernetes.io/worker: "true"
