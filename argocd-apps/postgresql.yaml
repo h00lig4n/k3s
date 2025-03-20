@@ -7,9 +7,9 @@ spec:
   destination:
     namespace: common
     server: https://kubernetes.default.svc
-#  syncPolicy:
-#    automated:
-#      selfHeal: true
+  syncPolicy:
+    automated:
+      selfHeal: true
   sources:
     - repoURL: https://github.com/h00lig4n/k3s.git
       path: postgresql
