@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: uisp
+  namespace: default
+  labels:
+    app.kubernetes.io/component: uisp
+    app.kubernetes.io/part-of: ubiquiti
+    app.kubernetes.io/name: ubiquiti
+  annotations:
+    #cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: uisp.$DOMAIN_NAME
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: uisp
+                port:
+                  number: 443
+  tls:
+    - secretName: tls-certificate
+      hosts:
+        - uisp.$DOMAIN_NAME
