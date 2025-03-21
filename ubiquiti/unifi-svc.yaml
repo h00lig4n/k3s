@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/component: unifi
+    app.kubernetes.io/part-of: ubiquiti
+    app.kubernetes.io/name: ubiquiti
+  name: unifi
+  namespace: default
+  annotations:
+    traefik.ingress.kubernetes.io/service.serversscheme: https
+    traefik.ingress.kubernetes.io/service.serverstransport: default-skipverify@kubernetescrd
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+      name: http
+    - port: 8443
+      targetPort: 8443
+      name: https
+    - port: 3478
+      targetPort: 3478
+      protocol: UDP
+      name: stun
+  selector:
+    app.kubernetes.io/component: unifi
+    app.kubernetes.io/part-of: ubiquiti
+    app.kubernetes.io/name: ubiquiti
+  type: ClusterIP
