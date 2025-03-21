@@ -1,0 +1,16 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRouteUDP
+metadata:
+  name: uisp
+  namespace: default
+  labels:
+    app.kubernetes.io/component: uisp
+    app.kubernetes.io/part-of: ubiquiti
+    app.kubernetes.io/name: ubiquiti
+spec:
+  entryPoints:
+    - netflow
+  routes:
+  - services:
+    - name: uisp
+      port: 2055
