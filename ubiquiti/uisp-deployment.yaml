@@ -1,0 +1,82 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  labels:
+    app.kubernetes.io/component: uisp
+    app.kubernetes.io/part-of: ubiquiti
+    app.kubernetes.io/name: ubiquiti
+  name: uisp
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: uisp
+      app.kubernetes.io/part-of: ubiquiti
+      app.kubernetes.io/name: ubiquiti
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: uisp
+        app.kubernetes.io/part-of: ubiquiti
+        app.kubernetes.io/name: ubiquiti
+    spec:
+      nodeSelector:
+        node-role.kubernetes.io/worker: "true"
+      containers:
+        - name: uisp
+          image: docker.io/nico640/docker-unms:2.4.188
+          env:
+            - name: TZ
+              value: Europe/Stockholm
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+            - name: https
+              containerPort: 443
+              protocol: TCP
+            - name: netflow
+              containerPort: 2055
+              protocol: UDP
+          resources: {}
+          volumeMounts:
+            - name: uisp-storage
+              mountPath: /config
+          livenessProbe:
+            httpGet:
+              path: /nms
+              port: http
+              scheme: HTTP
+            timeoutSeconds: 2
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /nms
+              port: http
+              scheme: HTTP
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          startupProbe:
+            httpGet:
+              path: /nms
+              port: http
+              scheme: HTTP
+            initialDelaySeconds: 300
+            timeoutSeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 45
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+      volumes:
+        - name: uisp-storage
+          persistentVolumeClaim:
+            claimName: uisp
