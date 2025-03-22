@@ -28,7 +28,7 @@ spec:
           imagePullPolicy: Always
           env:
             - name: HOMEPAGE_ALLOWED_HOSTS
-              value: start.home.thomason.nu
+              value: start.$DOMAIN_NAME
           ports:
             - name: http
               containerPort: 3000
