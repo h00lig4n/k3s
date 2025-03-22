@@ -6,14 +6,16 @@ metadata:
   labels:
     app.kubernetes.io/name: homepage
   annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
     gethomepage.dev/description: Dynamically Detected Homepage
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Cluster Management
     gethomepage.dev/icon: homepage.png
     gethomepage.dev/name: Homepage
 spec:
+  ingressClassName: traefik
   rules:
-    - host: "homepage.my.network"
+    - host: start.$DOMAIN_NAME
       http:
         paths:
           - path: "/"
@@ -23,3 +25,7 @@ spec:
                 name: homepage
                 port:
                   number: 3000
+  tls:
+    - secretName: tls-certificate
+      hosts:
+        - uisp.$DOMAIN_NAME
