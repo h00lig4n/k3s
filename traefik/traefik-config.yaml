@@ -21,34 +21,34 @@ spec:
       mqtt:
         port: 8883
         expose: 
-          default: true
+          default: false
         exposedport: 8883
       mqtt-insecure:
         port: 1883
         expose:
-          default: true
+          default: false
         exposedPort: 1883
       netflow:
         port: 2055
         expose:
-          default: true
+          default: false
         exposedPort: 2055
         protocol: UDP
       stun:
         port: 3478
         expose:
-          default: true
+          default: false
         exposedPort: 3478
         protocol: UDP
       hass:
         port: 8123
         expose:
-          default: true
+          default: false
         exposedPort: 8123
       sonos:
         port: 1400
         expose:
-          default: true
+          default: false
         exposedPort: 1400
     providers:
       kubernetesCRD:
