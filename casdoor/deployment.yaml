@@ -34,9 +34,9 @@ spec:
             - name: RUNNING_IN_DOCKER
               value: "true"
           volumeMounts:
-            - mountPath: /init_data.json
-              name: casdoor-conf
-              subPath: init_data.json
+            #- mountPath: /init_data.json
+            #  name: casdoor-conf
+            #  subPath: init_data.json
             - mountPath: /conf/app.conf
               name: casdoor-conf
               subPath: app.conf
