@@ -6,6 +6,11 @@ metadata:
   annotations:
     #cert-manager.io/cluster-issuer: letsencrypt-prod
     traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/description: Home Automation
+    gethomepage.dev/group: Home Assistant
+    gethomepage.dev/icon: emby.png
+    gethomepage.dev/name: Home Assitant
 spec:
   ingressClassName: traefik
   rules:
