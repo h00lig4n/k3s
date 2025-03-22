@@ -1,14 +1,16 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: unms
+  name: unifi
   namespace: default
   labels:
-    app: unms
+    app.kubernetes.io/component: unifi
+    app.kubernetes.io/part-of: ubiquiti
+    app.kubernetes.io/name: ubiquiti
 spec:
   accessModes:
     - ReadWriteOnce
   storageClassName: nfs
   resources:
     requests:
-      storage: 1Gi
+      storage: 10Gi
