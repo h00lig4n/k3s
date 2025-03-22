@@ -34,6 +34,12 @@ spec:
           default: true
         exposedPort: 2055
         protocol: UDP
+      stun:
+        port: 3478
+        expose:
+          default: true
+        exposedPort: 3478
+        protocol: UDP
       hass:
         port: 8123
         expose:
