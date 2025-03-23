@@ -46,6 +46,6 @@ data:
         memory: true
         network: default
     - search:
-        provider: duckduckgo
+        provider: brave
         target: _blank
   docker.yaml: ""
