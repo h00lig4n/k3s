@@ -8,7 +8,7 @@ metadata:
   annotations:
     #cert-manager.io/cluster-issuer: letsencrypt-prod
     traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd, default-dashboard-auth@kubernetescrd
-        gethomepage.dev/enabled: "true"
+    gethomepage.dev/enabled: "true"
     gethomepage.dev/description: Zigbee Controller
     gethomepage.dev/group: Home Automation
     gethomepage.dev/name: Zigbee2MQTT
