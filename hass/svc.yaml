@@ -3,11 +3,13 @@ kind: Service
 metadata:
   labels:
     app: hass
+    app.kubernetes.io/name: hass
   name: hass
   namespace: hass
 spec:
   selector:
     app: hass
+    app.kubernetes.io/name: hass
   ports:
   - name: hass
     port: 8123
