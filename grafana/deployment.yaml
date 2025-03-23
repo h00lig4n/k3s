@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: grafana
+    app.kubernetes.io/name: hass
   name: grafana
   namespace: hass
 spec:
@@ -11,13 +11,13 @@ spec:
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app: grafana
+      app.kubernetes.io/name: hass
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: grafana
+        app.kubernetes.io/name: hass
     spec:
       containers:
       - image: grafana/grafana-oss:11.5.2
