@@ -14,3 +14,4 @@ spec:
   - services:
     - name: uisp
       port: 2055
+      nativeLB: true
