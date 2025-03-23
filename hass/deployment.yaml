@@ -5,17 +5,20 @@ metadata:
   namespace: hass
   labels:
     app: hass
+    app.kubernetes.io/name: hass
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: hass
+      app.kubernetes.io/name: hass
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
         app: hass
+        app.kubernetes.io/name: hass
     spec:
       containers:
       - name: hass
