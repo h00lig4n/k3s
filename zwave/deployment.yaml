@@ -2,20 +2,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: zwavejs
+    app.kubernetes.io/name: zwavejs
   name: zwavejs
   namespace: hass
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: zwavejs
+      app.kubernetes.io/name: zwavejs
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: zwavejs
+        app.kubernetes.io/name: zwavejs
     spec:
       containers:
       - image: zwavejs/zwave-js-ui:9.33
