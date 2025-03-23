@@ -22,7 +22,7 @@ data:
             - abbr: GH
               href: https://github.com/
   services.yaml: |
-    - Home Automation:
+    - Home Asistant:
         - Home Assistant:
             href: https://assistant.$DOMAIN_NAME/
             description: This the hub
