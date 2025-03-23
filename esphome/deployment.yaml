@@ -4,18 +4,18 @@ metadata:
   name: esphome
   namespace: hass
   labels:
-    app: esphome
+    app.kubernetes.io/name: hass
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: esphome
+      app.kubernetes.io/name: hass
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: esphome
+        app.kubernetes.io/name: hass
     spec:
       containers:
       - name: esphome
