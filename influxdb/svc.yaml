@@ -11,5 +11,5 @@ spec:
       targetPort: 8086 
       name: tcp
   selector:
-    app: influxdb
+    app.kubernetes.io/name: influxdb
   type: ClusterIP
