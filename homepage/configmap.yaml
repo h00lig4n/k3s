@@ -22,10 +22,10 @@ data:
             - abbr: GH
               href: https://github.com/
   services.yaml: |
-    - Home Automation:
-        - Home Assistant:
+    - Other Stuff:
+        - My Other Application:
             href: https://assistant.$DOMAIN_NAME/
-            description: This the hub
+            description: To be defined
   widgets.yaml: |
     - kubernetes:
         cluster:
