@@ -49,6 +49,10 @@ data:
           cpu: true
           memory: true
           showLabel: true
+    - traefik
+        url: http://traefik.$DOMAIN_NAME
+        username: username # optional
+        password: password # optional
     - resources:
         backend: resources
         expanded: true
