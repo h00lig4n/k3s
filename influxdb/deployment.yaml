@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: influxdb
+    app.kubernetes.io/name: influxdb
   name: influxdb
   namespace: hass
 spec:
@@ -11,13 +11,13 @@ spec:
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app: influxdb
+      app.kubernetes.io/name: influxdb
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: influxdb
+        app.kubernetes.io/name: influxdb
     spec:         
       containers:
       - image: docker.io/influxdb:2.7.11
