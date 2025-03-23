@@ -3,6 +3,8 @@ kind: Ingress
 metadata:
   name: zigbee2mqtt
   namespace: hass
+  labels:
+    app.kubernetes.io/name: zigbee2mqtt
   annotations:
     #cert-manager.io/cluster-issuer: letsencrypt-prod
     traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd, default-dashboard-auth@kubernetescrd
