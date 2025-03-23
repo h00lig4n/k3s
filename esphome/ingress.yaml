@@ -6,6 +6,12 @@ metadata:
   annotations:
     #cert-manager.io/cluster-issuer: letsencrypt-prod
     traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/description: Home Automation Hub
+    gethomepage.dev/group: Home Automation
+    gethomepage.dev/name: ESP Home
+    gethomepage.dev/widget.type: esphome
+    gethomepage.dev/widget.url: https://esp.$DOMAIN_NAME/
 spec:
   ingressClassName: traefik
   rules:
