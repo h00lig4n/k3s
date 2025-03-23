@@ -13,6 +13,7 @@ metadata:
     gethomepage.dev/group: Home Automation
     gethomepage.dev/icon: si-influxdb
     gethomepage.dev/name: InfluxDB
+    gethomepage.dev/widget.url: https://influx.$DOMAIN_NAME
 spec:
   ingressClassName: traefik
   rules:
