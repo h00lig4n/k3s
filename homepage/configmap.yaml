@@ -48,8 +48,4 @@ data:
     - search:
         provider: duckduckgo
         target: _blank
-    - traefik
-        url: https://traefik.$DOMAIN_NAME
-        username: username # optional
-        password: password # optional
   docker.yaml: ""
