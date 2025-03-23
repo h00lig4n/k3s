@@ -11,7 +11,7 @@ metadata:
     gethomepage.dev/group: Home Automation
     gethomepage.dev/name: ESP Home
     gethomepage.dev/widget.type: esphome
-    gethomepage.dev/widget.url: https://esp.$DOMAIN_NAME/
+    gethomepage.dev/widget.url: https://esp.$DOMAIN_NAME
 spec:
   ingressClassName: traefik
   rules:
