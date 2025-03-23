@@ -4,7 +4,7 @@ metadata:
   name: mosquitto-conf
   namespace: hass
   labels:
-    app: mqtt
+    app.kubernetes.io/name: mqtt
 data:
   mosquitto.conf: |
     persistence true
