@@ -12,7 +12,7 @@ metadata:
     gethomepage.dev/description: Home Automation Hub
     gethomepage.dev/group: Home Automation
     gethomepage.dev/name: Home Assitant
-    gethomepage.dev/icon: si-18BCF2
+    gethomepage.dev/icon: si-homeassistant
     gethomepage.dev/widget.type: homeassistant
     gethomepage.dev/widget.url: https://assistant.$DOMAIN_NAME
 spec:
