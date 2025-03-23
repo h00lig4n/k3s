@@ -3,7 +3,7 @@ kind: Service
 metadata:
   labels:
     service: grafana
-    app.kubernetes.io/name: hass
+    app.kubernetes.io/name: grafana
   name: grafana
   namespace: hass
 spec:
@@ -12,5 +12,5 @@ spec:
       targetPort: 3000 
       name: tcp
   selector:
-    app.kubernetes.io/name: hass
+    app.kubernetes.io/name: grafana
   type: ClusterIP
