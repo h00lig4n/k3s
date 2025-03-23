@@ -22,10 +22,10 @@ data:
             - abbr: GH
               href: https://github.com/
   services.yaml: |
-    - My First Group:
-        - My First Service:
-            href: http://localhost/
-            description: Homepage is awesome
+    - Home Automation:
+        - Home Assistant:
+            href: https://assistant.$DOMAIN_NAME/
+            description: This the hub
 
     - My Second Group:
         - My Second Service:
