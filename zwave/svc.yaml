@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: zwavejs
+    app.kubernetes.io/name: zwavejs
   name: zwavejs
   namespace: hass
 spec:
@@ -14,5 +14,5 @@ spec:
       targetPort: 3000 
       name: websocket
   selector:
-    app: zwavejs
+    app.kubernetes.io/name: zwavejs
   type: ClusterIP
