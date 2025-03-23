@@ -13,7 +13,7 @@ metadata:
     gethomepage.dev/group: Home Automation
     gethomepage.dev/name: Zigbee2MQTT
     gethomepage.dev/icon: si-zigbee2mqtt
-    gethomepage.dev/widget.type: influxdb
+    gethomepage.dev/widget.type: influx
     gethomepage.dev/widget.url: https://zigbee.$DOMAIN_NAME
 spec:
   ingressClassName: traefik
