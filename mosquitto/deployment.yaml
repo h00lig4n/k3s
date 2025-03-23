@@ -2,20 +2,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: mqtt
+    app.kubernetes.io/name: mqtt
   name: mqtt
   namespace: hass
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mqtt
+      app.kubernetes.io/name: mqtt
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: mqtt
+        app.kubernetes.io/name: mqtt
     spec:
       containers:
       - image: eclipse-mosquitto:2.0.21
