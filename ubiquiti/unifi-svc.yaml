@@ -45,6 +45,10 @@ spec:
     - port: 6789
       targetPort: 6789
       name: speed
+    - port: 10001
+      targetPort: 10001
+      protocol: UDP
+      name: discovery
   selector:
     app.kubernetes.io/component: unifi
     app.kubernetes.io/part-of: ubiquiti
