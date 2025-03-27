@@ -48,5 +48,6 @@ spec:
   selector:
     app.kubernetes.io/component: unifi
     app.kubernetes.io/part-of: ubiquiti
-    app.kubernetes.io/name: svc-loadbalancer
+    app.kubernetes.io/name: ubiquiti
+    app.kubernetes.io/instance: svc-loadbalancer
   type: LoadBalancer
