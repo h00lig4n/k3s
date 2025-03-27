@@ -47,9 +47,9 @@ spec:
             - name: discovery
               containerPort: 10001
               protocol: UDP
-            - port: 6789
-              targetPort: 6789
-              name: speed
+            - name: speed
+              containerPort: 6789
+              protocol: TCP
           volumeMounts:
             - name: unifi-storage
               mountPath: /unifi
