@@ -5,6 +5,7 @@ metadata:
     app.kubernetes.io/component: unifi
     app.kubernetes.io/part-of: ubiquiti
     app.kubernetes.io/name: ubiquiti
+    app.kubernetes.io/instance: svc-clusterip
   name: unifi
   namespace: default
   annotations:
@@ -12,18 +13,40 @@ metadata:
     traefik.ingress.kubernetes.io/service.serverstransport: default-skipverify@kubernetescrd
 spec:
   ports:
-    - port: 8080
-      targetPort: 8080
-      name: http
     - port: 8443
       targetPort: 8443
       name: https
-    - port: 3478
-      targetPort: 3478
-      protocol: UDP
-      name: stun
   selector:
     app.kubernetes.io/component: unifi
     app.kubernetes.io/part-of: ubiquiti
     app.kubernetes.io/name: ubiquiti
+    app.kubernetes.io/instance: svc-clusterip
   type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/component: unifi
+    app.kubernetes.io/part-of: ubiquiti
+    app.kubernetes.io/name: ubiquiti
+    app.kubernetes.io/instance: svc-loadbalancer
+  name: unifi
+  namespace: default
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+      name: http
+    - port: 3478
+      targetPort: 3478
+      protocol: UDP
+      name: stun
+    - port: 6789
+      targetPort: 6789
+      name: speed
+  selector:
+    app.kubernetes.io/component: unifi
+    app.kubernetes.io/part-of: ubiquiti
+    app.kubernetes.io/name: svc-loadbalancer
+  type: LoadBalancer
