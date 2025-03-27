@@ -13,7 +13,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-    - host: uni.$DOMAIN_NAME
+    - host: unifi.$DOMAIN_NAME
       http:
         paths:
           - path: /
@@ -26,4 +26,4 @@ spec:
   tls:
     - secretName: tls-certificate
       hosts:
-        - uni.$DOMAIN_NAME
+        - unifi.$DOMAIN_NAME
