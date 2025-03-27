@@ -31,7 +31,7 @@ metadata:
     app.kubernetes.io/part-of: ubiquiti
     app.kubernetes.io/name: ubiquiti
     app.kubernetes.io/instance: svc-loadbalancer
-  name: unifi
+  name: unifi2
   namespace: default
 spec:
   ports:
