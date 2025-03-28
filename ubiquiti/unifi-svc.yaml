@@ -27,7 +27,7 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app.kubernetes.io/component: unifi
+    app.kubernetes.io/component: unifi2
     app.kubernetes.io/part-of: ubiquiti
     app.kubernetes.io/name: ubiquiti
     app.kubernetes.io/instance: svc-loadbalancer
@@ -50,7 +50,7 @@ spec:
       protocol: UDP
       name: discovery
   selector:
-    app.kubernetes.io/component: unifi
+    app.kubernetes.io/component: unifi2
     app.kubernetes.io/part-of: ubiquiti
     app.kubernetes.io/name: ubiquiti
     app.kubernetes.io/instance: svc-loadbalancer
