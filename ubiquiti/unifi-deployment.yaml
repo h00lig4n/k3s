@@ -34,12 +34,20 @@ spec:
               value: unifi
             - name: name
               value: unifi
+            - name: LOTSOFDEVICES 
+              value: "true"
           ports:
             - name: http
               containerPort: 8080
               protocol: TCP
             - name: https
               containerPort: 8443
+              protocol: TCP
+            - name: portal
+              containerPort: 80
+              protocol: TCP
+            - name: portal-https
+              containerPort: 8843
               protocol: TCP
             - name: stun
               containerPort: 3478
