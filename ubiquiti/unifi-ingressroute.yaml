@@ -12,5 +12,5 @@ spec:
     - stun
   routes:
   - services:
-    - name: unifi
+    - name: unifi2
       port: 3478
