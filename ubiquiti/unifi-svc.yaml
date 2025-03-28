@@ -37,6 +37,12 @@ spec:
     - port: 8080
       targetPort: 8080
       name: http
+    - port: 8843
+      targetPort: 80
+      name: portal
+    - port: 8843
+      targetPort: 8843
+      name: portal-https
     - port: 3478
       targetPort: 3478
       protocol: UDP
