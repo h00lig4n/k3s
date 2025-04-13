@@ -10,7 +10,7 @@ spec:
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
-  name: ip-pool-vlan
+  name: ip-pool-vlan30
   namespace: metallb-system
 spec:
   addresses:
