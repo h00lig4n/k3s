@@ -60,7 +60,7 @@ spec:
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       nodeSelector:
-        node-role.kubernetes.io/worker: "true"
+        node-role.kubernetes.io/ai: "true"
       volumes:
         - name: openwebui-pvc
           persistentVolumeClaim:
