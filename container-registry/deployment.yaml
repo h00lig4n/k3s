@@ -8,7 +8,7 @@ metadata:
 spec:
   progressDeadlineSeconds: 600
   revisionHistoryLimit: 10
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: container-registry
@@ -68,7 +68,7 @@ metadata:
 spec:
   progressDeadlineSeconds: 600
   revisionHistoryLimit: 10
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: ui-container-registry
