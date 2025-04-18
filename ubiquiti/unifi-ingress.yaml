@@ -9,7 +9,8 @@ metadata:
     app.kubernetes.io/name: ubiquiti
   annotations:
     #cert-manager.io/cluster-issuer: letsencrypt-prod
-    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
+    #traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: redirect-https@kubernetescrd
 spec:
   ingressClassName: traefik
   rules:
