@@ -31,7 +31,7 @@ metadata:
     app.kubernetes.io/name: ubiquiti
     app.kubernetes.io/instance: svc-loadbalancer
   annotations:
-    metallb.universe.tf/loadBalancerIPs: 192.168.0.201
+    metallb.universe.tf/loadBalancerIPs: 192.168.30.51
   name: unifi2
   namespace: default
 spec:
