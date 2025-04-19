@@ -2,15 +2,13 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: traefik-dashboard
-  namespace: kube-system
+  namespace: default
 spec:
-  entryPoints:
-    - websecure
   routes:
     - match: Host(`traefik.$DOMAIN_NAME`) && PathPrefix(`/api`) || PathPrefix(`/dashboard`)
       kind: Rule
       middlewares:
-        - name: dashboard-auth
+        - name: auth
           namespace: default 
       services:
         - name: api@internal
