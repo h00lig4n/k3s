@@ -63,8 +63,8 @@ spec:
               mountPath: /unifi
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
-#      nodeSelector:
-#        node-role.kubernetes.io/worker: "true"
+      nodeSelector:
+        node-role.kubernetes.io/worker: "true"
       volumes:
         - name: unifi-storage
           persistentVolumeClaim:
