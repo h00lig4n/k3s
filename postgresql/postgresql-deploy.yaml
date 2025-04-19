@@ -13,7 +13,7 @@ spec:
       app.kubernetes.io/component: db
       app.kubernetes.io/part-of: postgresql
       app.kubernetes.io/name: postgresql
-  replicas: 0
+  replicas: 1
   template:
     metadata:
       labels:
