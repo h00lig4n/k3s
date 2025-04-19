@@ -8,5 +8,5 @@ data:
     from .webnut import NUTServer
 
     servers = [
-        NUTServer('192.168.0.5', 3493, None, None)
+        NUTServer('192.168.30.15', 3493, None, None)
     ]
