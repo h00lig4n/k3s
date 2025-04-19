@@ -62,6 +62,8 @@ spec:
               subPath: widgets.yaml
             - mountPath: /app/config/logs
               name: logs
+      nodeSelector:
+        node-role.kubernetes.io/worker: "true"
       volumes:
         - name: homepage-config
           configMap:
