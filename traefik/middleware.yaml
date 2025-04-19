@@ -6,12 +6,13 @@ spec:
   chain:
     middlewares:
     - name: redirect-https
-    - name: auth
+    - name: auth-users
 ---
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
   name: redirect-https
+  namespace: default
 spec:
   redirectScheme:
     scheme: https
@@ -21,6 +22,17 @@ apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
   name: auth
+  namespace: default
+spec:
+  basicAuth:
+    headerField: X-WebAuth-User
+    secret: authsecret
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: dashboard-auth
+  namespace: default
 spec:
   basicAuth:
     headerField: X-WebAuth-User
@@ -30,6 +42,7 @@ apiVersion: traefik.io/v1alpha1
 kind: MiddlewareTCP
 metadata:
   name: address-whitelist
+  namespace: default
 spec:
   ipAllowList:
     sourceRange:
