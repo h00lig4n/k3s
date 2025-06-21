@@ -29,7 +29,7 @@ spec:
           - name: config-py
             mountPath: /app/webNUT/webnut/config/
       containers:
-        - image: devzwf/webnut-docker:latest
+        - image: devzwf/webnut-docker:2024.10.0
           imagePullPolicy: Always
           name: webnut
           ports:
