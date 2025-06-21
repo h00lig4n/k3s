@@ -19,7 +19,7 @@ spec:
         app.kubernetes.io/name: zigbee2mqtt
     spec: 
       containers:
-      - image: koenkk/zigbee2mqtt:2.40.0
+      - image: koenkk/zigbee2mqtt:2.4.0
         name: zigbee2mqtt
         imagePullPolicy: IfNotPresent
         ports:
