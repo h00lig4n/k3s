@@ -20,7 +20,7 @@ spec:
         app: container-registry
     spec:
       containers:
-        - image: registry:3.0.0
+        - image: registry:2.8
           imagePullPolicy: IfNotPresent
           name: registry
           ports:
