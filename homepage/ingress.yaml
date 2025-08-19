@@ -28,4 +28,4 @@ spec:
   tls:
     - secretName: tls-certificate
       hosts:
-        - uisp.$DOMAIN_NAME
+        - start.$DOMAIN_NAME
