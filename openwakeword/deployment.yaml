@@ -70,7 +70,7 @@ spec:
       dnsPolicy: "None"
       dnsConfig:
         nameservers:
-          - 192.168.0.1
+          - 192.168.20.1
         searches:
           - $DOMAIN_NAME
       volumes:
