@@ -18,7 +18,7 @@ spec:
         app.kubernetes.io/name: mqtt
     spec:
       containers:
-      - image: eclipse-mosquitto:2.0.21
+      - image: eclipse-mosquitto:2.0.22
         name: mqtt
         imagePullPolicy: IfNotPresent
         ports:
