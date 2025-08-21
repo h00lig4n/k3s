@@ -45,13 +45,13 @@ spec:
           - name: localtime
             mountPath: /etc/localtime
             readOnly: true
-        livenessProbe:
-          failureThreshold: 3
-          periodSeconds: 10
-          successThreshold: 1
-          tcpSocket:
-            port: 10400
-          timeoutSeconds: 1
+        #livenessProbe:
+        #  failureThreshold: 3
+        #  periodSeconds: 10
+        #  successThreshold: 1
+        #  tcpSocket:
+        #    port: 10400
+        #  timeoutSeconds: 1
         securityContext: {}
         resources:
           requests:
