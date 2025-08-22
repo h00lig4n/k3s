@@ -5,7 +5,8 @@ metadata:
     app: hass
     app.kubernetes.io/name: hass
   name: hass
-  namespace: hass
+  annotations:
+    metallb.universe.tf/loadBalancerIPs: 192.168.30.51
 spec:
   selector:
     app: hass
@@ -17,4 +18,5 @@ spec:
   - name: sonos
     port: 1400
     targetPort: 1400
-  type: ClusterIP
+  type: LoadBalancer
+  loadBalancerIP: 
