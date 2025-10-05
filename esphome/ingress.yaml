@@ -15,8 +15,6 @@ metadata:
     gethomepage.dev/icon: si-esphome
     gethomepage.dev/widget.type: esphome
     gethomepage.dev/widget.url: https://esp.$DOMAIN_NAME
-    gethomepage.dev/username: {{USERNAME}}
-    gethomepage.dev/password: {{PASSWORD}}
 spec:
   ingressClassName: traefik
   rules:
