@@ -21,13 +21,15 @@ spec:
       - name: piper
         image: rhasspy/wyoming-piper:1.6.3
         imagePullPolicy: IfNotPresent
-        args: ["$(voice)"]
+        args: ["$(voice)","$(voice_name)"]
         ports:
           - protocol: TCP
             containerPort: 10200
         env:
           - name: voice
-            value: "--voice en_GB-northern_english_male-medium"
+            value: "--voice"
+          - name: voice_name
+            value: "en_GB-northern_english_male-medium"
         volumeMounts:
           - name: piper-pvc
             mountPath: /data
