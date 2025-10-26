@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: piper
+  name: piper
+  namespace: hass
+spec:
+  ports:
+    - name: piper
+      port: 10200
+      protocol: TCP
+  selector:
+    app: piper
+  type: ClusterIP
