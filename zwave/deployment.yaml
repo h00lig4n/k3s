@@ -18,7 +18,7 @@ spec:
         app.kubernetes.io/name: zwavejs
     spec:
       containers:
-      - image: zwavejs/zwave-js-ui:11
+      - image: zwavejs/zwave-js-ui:11.5.2
         name: zwavejs
         imagePullPolicy: IfNotPresent
         ports:
