@@ -1,0 +1,104 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frigate
+  namespace: hass
+  labels:
+    app.kubernetes.io/name: frigate
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: frigate
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: frigate
+    spec:
+      containers:
+      - name: frigate
+        image: blakeblackshear/frigate:0.11.1
+        imagePullPolicy: IfNotPresent
+        ports:
+          - name: http
+            protocol: TCP
+            containerPort: 6052
+        env:
+          - name: NODE_IP
+            valueFrom:
+              fieldRef: 
+                fieldPath: status.hostIP
+          - name: "ESPHOME_DASHBOARD_USE_PING"
+            value: "true"
+          - name: TZ
+            value: Europe/Stockholm
+          - name: "USERNAME"
+            valueFrom:
+              secretKeyRef:
+                name: frigate
+                key: username
+          - name: "PASSWORD"
+            valueFrom:
+              secretKeyRef:
+                name: frigate
+                key: password
+        volumeMounts:
+          - name: frigate-config
+            mountPath: /config
+          - name: localtime
+            mountPath: /etc/localtime
+            readOnly: true
+        livenessProbe:
+          failureThreshold: 3
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 6052
+          timeoutSeconds: 1
+        readinessProbe:
+          failureThreshold: 3
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 6052
+          timeoutSeconds: 1
+        startupProbe:
+          failureThreshold: 30
+          periodSeconds: 5
+          successThreshold: 1
+          tcpSocket:
+            port: 6052
+          timeoutSeconds: 1
+        securityContext:
+          privileged: true
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "2048Mi"
+            cpu: "2000m"
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      nodeSelector:
+        node-role.kubernetes.io/worker: "true"
+      # Ugly to enable the following but it will make it easier to 
+      #hostNetwork: true
+      #dnsPolicy: ClusterFirstWithHostNet
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+          - 192.168.30.1
+          - 192.168.0.1
+          - 192.168.20.1
+        searches:
+          - $DOMAIN_NAME
+      volumes:
+        - name: frigate-pvc
+          persistentVolumeClaim:
+            claimName: frigate
+        - name: localtime
+          hostPath:
+            path: /etc/localtime
