@@ -22,6 +22,7 @@ spec:
           ports:
             - containerPort: 3001
           volumeMounts:
+            # Test without PVC
             #- name: uptime-kuma-pvc
             #  mountPath: /app/data
             - name: localtime
