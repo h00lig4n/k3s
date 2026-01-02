@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: esphome
-        image: esphome/esphome:2025.10
+        image: esphome/esphome:2025.12.4
         imagePullPolicy: IfNotPresent
         ports:
           - name: http
