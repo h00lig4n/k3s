@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: piper
-        image: rhasspy/wyoming-piper:1.6.3
+        image: rhasspy/wyoming-piper:2.1.2
         imagePullPolicy: IfNotPresent
         args: ["$(voice)","$(voice_name)"]
         ports:
