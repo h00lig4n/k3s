@@ -15,6 +15,6 @@ spec:
     - path: AI
       repoURL: https://github.com/h00lig4n/k3s.git
       targetRevision: HEAD
-    - path: casdoor
+    - path: AI
       repoURL: https://github.com/h00lig4n/k3s-private.git
       targetRevision: HEAD
