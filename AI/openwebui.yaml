@@ -9,7 +9,7 @@ metadata:
     app.kubernetes.io/part-of: ai
     app.kubernetes.io/name: openwebui
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: openwebui
