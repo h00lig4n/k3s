@@ -9,7 +9,7 @@ metadata:
     app.kubernetes.io/name: searxng
     app.kubernetes.io/part-of: ai
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: searxng
