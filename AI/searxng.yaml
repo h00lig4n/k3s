@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
       - name: searxng
-        image: searxng/searxng
+        image: searxng/searxng:latest
         imagePullPolicy: IfNotPresent
         ports:
           - name: http
