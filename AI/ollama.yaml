@@ -9,7 +9,7 @@ metadata:
     app.kubernetes.io/part-of: ai
     app.kubernetes.io/name: ollama
 spec:
-  replicas: 0
+  replicas: 1
   selector:
     matchLabels:
       app: ollama
