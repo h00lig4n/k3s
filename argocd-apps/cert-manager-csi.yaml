@@ -12,13 +12,6 @@ spec:
     helm:
       releaseName: cert-manager-csi
       values: |
-        installCRDs: false
-        driver:
-          enabled: true
-        syncSecret:
-          enabled: true
-        nodeDriverRegistrar:
-          enabled: true
         resources:
           requests:
             cpu: 20m
