@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cert-writer
+  namespace: cert-manager
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cert-writer
+  template:
+    metadata:
+      labels:
+        app: cert-writer
+    spec:
+      containers:
+      - name: writer
+        image: alpine
+        command: ["sleep","infinity"]
+        volumeMounts:
+        - name: pvc
+          mountPath: /exports
+        - name: cm
+          mountPath: /certs
+      volumes:
+      - name: pvc
+        persistentVolumeClaim:
+          claimName: certs-pvc
+      - name: cm
+        csi:
+          driver: csi.cert-manager.io
+          readOnly: true
+          volumeAttributes:
+            csi.cert-manager.io/certificate-name: tls-certificate
+            csi.cert-manager.io/certificate-namespace: default
+            csi.cert-manager.io/issuer-name: letsencrypt-prod
+            csi.cert-manager.io/issuer-kind: ClusterIssuer   # or Issuer
+            csi.cert-manager.io/destination-path: tls-certificate
