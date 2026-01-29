@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://charts.jetstack.io
     chart: cert-manager-csi-driver
-    targetRevision: v0.8.1   # example – you can bump later
+    targetRevision: v0.9.*   # example – you can bump later
     helm:
       releaseName: cert-manager-csi
       values: |
@@ -19,6 +19,12 @@ spec:
           enabled: true
         nodeDriverRegistrar:
           enabled: true
+        resources:
+          requests:
+            cpu: 20m
+            memory: 64Mi
+          limits:
+            memory: 128Mi
   destination:
     server: https://kubernetes.default.svc
     namespace: cert-manager
