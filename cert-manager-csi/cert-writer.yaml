@@ -4,7 +4,7 @@ metadata:
   name: cert-writer
   namespace: cert-manager
 spec:
-  replicas: 0
+  replicas: 1
   selector:
     matchLabels:
       app: cert-writer
@@ -15,30 +15,32 @@ spec:
     spec:
       containers:
       - name: writer
-        image: alpine
-        command: ["sleep","infinity"]
-        volumeMounts:
-        - name: pvc
-          mountPath: /exports
-        - name: cm
-          mountPath: /certs
+        image: alpine:latest
+        command: ["sleep", "infinity"]
         resources:
           requests:
             cpu: 10m
             memory: 32Mi
           limits:
             memory: 64Mi
+        volumeMounts:
+        # NFS-backed PVC (destination)
+        - name: pvc
+          mountPath: /exports
+        # CSI Secret mount (source)
+        - name: cm
+          mountPath: /certs
+          readOnly: true
       volumes:
+      # Your existing NFS PVC
       - name: pvc
         persistentVolumeClaim:
           claimName: certs-pvc
+      # CSI Secret projection (NO CERT ISSUANCE)
       - name: cm
         csi:
           driver: csi.cert-manager.io
           readOnly: true
           volumeAttributes:
-            csi.cert-manager.io/certificate-name: tls-certificate
-            csi.cert-manager.io/certificate-namespace: default
-            csi.cert-manager.io/issuer-name: letsencrypt-prod
-            csi.cert-manager.io/issuer-kind: ClusterIssuer   # or Issuer
-            csi.cert-manager.io/destination-path: tls-certificate
+            csi.cert-manager.io/secret-name: tls-certificate
+            csi.cert-manager.io/secret-namespace: default
