@@ -22,6 +22,12 @@ spec:
           mountPath: /exports
         - name: cm
           mountPath: /certs
+        resources:
+          requests:
+            cpu: 10m
+            memory: 32Mi
+          limits:
+            memory: 64Mi
       volumes:
       - name: pvc
         persistentVolumeClaim:
