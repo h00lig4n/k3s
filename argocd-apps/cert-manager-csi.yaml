@@ -5,19 +5,22 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
-    repoURL: https://charts.jetstack.io
-    chart: cert-manager-csi-driver
-    targetRevision: v0.9.*   # example – you can bump later
-    helm:
-      releaseName: cert-manager-csi
-      values: |
-        resources:
-          requests:
-            cpu: 20m
-            memory: 64Mi
-          limits:
-            memory: 128Mi
+  sources:
+    - chart: cert-manager-csi-driver
+      repoURL: https://charts.jetstack.io
+      targetRevision: v0.9.*   # example – you can bump later
+      helm:
+        releaseName: cert-manager-csi
+        values: |
+          resources:
+            requests:
+              cpu: 20m
+              memory: 64Mi
+            limits:
+              memory: 128Mi
+    - path: cert-manager
+      repoURL: https://github.com/h00lig4n/k3s.git
+      targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
     namespace: cert-manager
