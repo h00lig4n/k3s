@@ -18,7 +18,7 @@ spec:
               memory: 64Mi
             limits:
               memory: 128Mi
-    - path: cert-manager
+    - path: cert-manager-csi
       repoURL: https://github.com/h00lig4n/k3s.git
       targetRevision: HEAD
   destination:
