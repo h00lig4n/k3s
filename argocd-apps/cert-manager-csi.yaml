@@ -12,6 +12,8 @@ spec:
       helm:
         releaseName: cert-manager-csi
         values: |
+          syncSecret:
+            enabled: true
           resources:
             requests:
               cpu: 20m
