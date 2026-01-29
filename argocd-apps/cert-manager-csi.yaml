@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager-csi
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://charts.jetstack.io
+    chart: cert-manager-csi-driver
+    targetRevision: v0.8.1   # example – you can bump later
+    helm:
+      releaseName: cert-manager-csi
+      values: |
+        installCRDs: false
+        driver:
+          enabled: true
+        syncSecret:
+          enabled: true
+        nodeDriverRegistrar:
+          enabled: true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cert-manager
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
