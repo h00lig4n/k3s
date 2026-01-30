@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: certs-pvc
-  namespace: cert-manager
+  namespace: common
   annotations:
     argocd.argoproj.io/sync-options: Delete=true
 spec:
