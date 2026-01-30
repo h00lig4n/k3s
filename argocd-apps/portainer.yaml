@@ -10,7 +10,7 @@ spec:
   syncPolicy:
     automated:
       selfHeal: true
-  project: default
+  project: external
   sources:
     - path: portainer
       repoURL: https://github.com/h00lig4n/k3s.git
