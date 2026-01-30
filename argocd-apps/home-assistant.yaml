@@ -10,7 +10,7 @@ spec:
   syncPolicy:
     automated:
       selfHeal: true
-  project: hass
+  project: external
   source:
     path: hass
     repoURL: https://github.com/h00lig4n/k3s.git
