@@ -8,6 +8,13 @@ metadata:
 kind: Namespace
 apiVersion: v1
 metadata:
+  name: portainer
+  labels:
+    name: portainer
+---
+kind: Namespace
+apiVersion: v1
+metadata:
   name: monitoring
   labels:
     name: monitoring 
