@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cert-writer
+  namespace: ccommon
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cert-writer
+  template:
+    metadata:
+      labels:
+        app: cert-writer
+    spec:
+      containers:
+      - name: writer
+        image: alpine:latest
+        command:
+        - /bin/sh
+        - -c
+        - |
+          mkdir -p /exports/tls-certificate &&
+          while true; do
+            cp -f /certs/* /exports/tls-certificate/
+            sleep 60
+          done
+        resources:
+          requests:
+            cpu: 10m
+            memory: 32Mi
+          limits:
+            memory: 64Mi
+        volumeMounts:
+        - name: pvc
+          mountPath: /exports
+        - name: cm
+          mountPath: /certs
+          readOnly: true
+      volumes:
+      - name: pvc
+        persistentVolumeClaim:
+          claimName: certs-pvc
+      - name: cm
+        secret:
+          secretName: tls-certificate
