@@ -1,0 +1,18 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: unifi
+  namespace: portainer
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`unifi.$DOMAIN_NAME`)
+      kind: Rule
+      services:
+        - name: unifi
+          kind: Service
+          servers:
+            - url: "https://portainer.$DOMAIN_NAME:8443"
+  tls:
+    secretName: tls-certificate
