@@ -10,7 +10,8 @@ spec:
     - match: Host(`unifi.$DOMAIN_NAME`)
       kind: Rule
       services:
-        - loadBalancer:
+        - name: unifi-external
+          loadBalancer:
             servers:
             - url: "https://portainer.$DOMAIN_NAME:8443"
   tls:
