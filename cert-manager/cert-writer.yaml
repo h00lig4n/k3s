@@ -43,12 +43,10 @@ spec:
               if [ "$NEWSUM" != "$OLDSUM" ]; then
                 echo "Certificate changed, syncing to EdgeRouter..."
         
-                scp -i /root/.ssh/id_ed25519 -o StrictHostKeyChecking=no \
-                  "$PEM" "$EDGE_USER@$EDGE_HOST:/config/auth/certificates/server.pem"
+                scp -i /root/.ssh/id_ed25519 -o StrictHostKeyChecking=no "$PEM" "$EDGE_USER@$EDGE_HOST:/config/auth/certificates/server.pem"
 
                 # Restart EdgeRouter GUI AFTER new cert is in place
-                ssh -i /root/.ssh/id_ed25519 -o StrictHostKeyChecking=no \
-                  "$EDGE_USER@$EDGE_HOST" "restart gui"
+                ssh -i /root/.ssh/id_ed25519 -o StrictHostKeyChecking=no "$EDGE_USER@$EDGE_HOST" "restart gui"
         
                 echo "$NEWSUM" > "$SUMFILE"
               else
