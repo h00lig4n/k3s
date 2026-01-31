@@ -20,6 +20,7 @@ spec:
         - /bin/sh
         - -c
         - |
+          apk add --no-cache openssh &&
           mkdir -p /exports/tls-certificate &&
           while true; do
             # Copy cert-manager outputs
