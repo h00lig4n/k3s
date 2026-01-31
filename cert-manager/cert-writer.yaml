@@ -30,7 +30,6 @@ spec:
               cat /exports/tls-certificate/tls.crt /exports/tls-certificate/tls.key > /exports/tls-certificate/server.pem
               chmod 600 /exports/tls-certificate/server.pem
             fi
-        
             sleep 60
           done
         resources:
@@ -45,6 +44,9 @@ spec:
         - name: cm
           mountPath: /certs
           readOnly: true
+        - name: sshkey
+          mountPath: /root/.ssh
+          readOnly: true
       volumes:
       - name: pvc
         persistentVolumeClaim:
@@ -52,3 +54,7 @@ spec:
       - name: cm
         secret:
           secretName: tls-certificate
+      - name: sshkey
+        secret:
+          secretName: edge-ssh-key
+          defaultMode: 0600
