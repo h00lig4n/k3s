@@ -33,6 +33,17 @@ spec:
             fi
             sleep 60
           done
+        env:
+          - name: EDGE_USER
+            valueFrom:
+              secretKeyRef:
+                name: edge-router
+                key: EDGE_USER
+          - name: EDGE_HOST
+            valueFrom:
+              secretKeyRef:
+                name: edge-router
+                key: EDGE_HOST
         resources:
           requests:
             cpu: 10m
