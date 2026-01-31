@@ -23,6 +23,7 @@ spec:
           apk add --no-cache openssh coreutils &&
           mkdir -p /exports/tls-certificate &&
           while true; do
+            echo "cert-writer loop running..."
             # Always copy cert-manager outputs to NFS
             cp -f /certs/* /exports/tls-certificate/ 2>/dev/null || true
         
