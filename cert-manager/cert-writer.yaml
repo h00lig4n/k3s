@@ -22,7 +22,15 @@ spec:
         - |
           mkdir -p /exports/tls-certificate &&
           while true; do
-            cp -f /certs/* /exports/tls-certificate/
+            # Copy cert-manager outputs
+            cp -f /certs/* /exports/tls-certificate/ 2>/dev/null || true
+        
+            # Build EdgeRouter-compatible PEM (cert + key)
+            if [ -f /exports/tls-certificate/tls.crt ] && [ -f /exports/tls-certificate/tls.key ]; then
+              cat /exports/tls-certificate/tls.crt /exports/tls-certificate/tls.key > /exports/tls-certificate/server.pem
+              chmod 600 /exports/tls-certificate/server.pem
+            fi
+        
             sleep 60
           done
         resources:
