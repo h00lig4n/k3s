@@ -26,7 +26,7 @@ spec:
           while true; do
             echo "cert-writer loop running..."
         
-            cp -f /certs/* /exports/tls-certificate/ 2>/dev/null || true
+            cp -Lf /certs/* /exports/tls-certificate/ 2>/dev/null || true
         
             CERT_DIR=/exports/tls-certificate
             PEM=$CERT_DIR/server.pem
