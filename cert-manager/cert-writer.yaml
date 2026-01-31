@@ -57,6 +57,7 @@ spec:
             fi
         
             sleep 3600
+          done
         env:
           - name: EDGE_USER
             valueFrom:
