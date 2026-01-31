@@ -57,23 +57,6 @@ spec:
             fi
         
             sleep 3600
-
-        
-          apk add --no-cache openssh &&
-          mkdir -p /exports/tls-certificate &&
-          while true; do
-            # Copy cert-manager outputs
-            cp -f /certs/* /exports/tls-certificate/ 2>/dev/null || true
-        
-            # Build EdgeRouter-compatible PEM (cert + key)
-            if [ -f /exports/tls-certificate/tls.crt ] && [ -f /exports/tls-certificate/tls.key ]; then
-              cat /exports/tls-certificate/tls.crt /exports/tls-certificate/tls.key > /exports/tls-certificate/server.pem
-              chmod 600 /exports/tls-certificate/server.pem
-
-              scp -i /root/.ssh/id_ed25519 -o StrictHostKeyChecking=no /exports/tls-certificate/server.pem "$EDGE_USER@$EDGE_HOST:/config/auth/certificates/server.pem"
-            fi
-            sleep 3600
-          done
         env:
           - name: EDGE_USER
             valueFrom:
