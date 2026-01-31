@@ -20,6 +20,45 @@ spec:
         - /bin/sh
         - -c
         - |
+          apk add --no-cache openssh coreutils &&
+          mkdir -p /exports/tls-certificate &&
+          while true; do
+            # Always copy cert-manager outputs to NFS
+            cp -f /certs/* /exports/tls-certificate/ 2>/dev/null || true
+        
+            CERT_DIR=/exports/tls-certificate
+            PEM=$CERT_DIR/server.pem
+            SUMFILE=$CERT_DIR/.server.pem.sha256
+        
+            if [ -f "$CERT_DIR/tls.crt" ] && [ -f "$CERT_DIR/tls.key" ]; then
+              # Build PEM
+              cat "$CERT_DIR/tls.crt" "$CERT_DIR/tls.key" > "$PEM"
+              chmod 600 "$PEM"
+        
+              # Calculate checksum
+              NEWSUM=$(sha256sum "$PEM" | awk '{print $1}')
+              OLDSUM=""
+              [ -f "$SUMFILE" ] && OLDSUM=$(cat "$SUMFILE")
+        
+              if [ "$NEWSUM" != "$OLDSUM" ]; then
+                echo "Certificate changed, syncing to EdgeRouter..."
+        
+                scp -i /root/.ssh/id_ed25519 -o StrictHostKeyChecking=no \
+                  "$PEM" "$EDGE_USER@$EDGE_HOST:/config/auth/certificates/server.pem"
+
+                # Restart EdgeRouter GUI AFTER new cert is in place
+                ssh -i /root/.ssh/id_ed25519 -o StrictHostKeyChecking=no \
+                  "$EDGE_USER@$EDGE_HOST" "restart gui"
+        
+                echo "$NEWSUM" > "$SUMFILE"
+              else
+                echo "Certificate unchanged."
+              fi
+            fi
+        
+            sleep 3600
+
+        
           apk add --no-cache openssh &&
           mkdir -p /exports/tls-certificate &&
           while true; do
@@ -30,8 +69,10 @@ spec:
             if [ -f /exports/tls-certificate/tls.crt ] && [ -f /exports/tls-certificate/tls.key ]; then
               cat /exports/tls-certificate/tls.crt /exports/tls-certificate/tls.key > /exports/tls-certificate/server.pem
               chmod 600 /exports/tls-certificate/server.pem
+
+              scp -i /root/.ssh/id_ed25519 -o StrictHostKeyChecking=no /exports/tls-certificate/server.pem "$EDGE_USER@$EDGE_HOST:/config/auth/certificates/server.pem"
             fi
-            sleep 60
+            sleep 3600
           done
         env:
           - name: EDGE_USER
