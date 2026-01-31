@@ -32,6 +32,7 @@ spec:
             SUMFILE=$CERT_DIR/.server.pem.sha256
         
             if [ -f "$CERT_DIR/tls.crt" ] && [ -f "$CERT_DIR/tls.key" ]; then
+              echo "Certificate changed, syncing to EdgeRouter..."
               # Build PEM
               cat "$CERT_DIR/tls.crt" "$CERT_DIR/tls.key" > "$PEM"
               chmod 600 "$PEM"
