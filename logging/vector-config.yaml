@@ -3,6 +3,10 @@ kind: ConfigMap
 metadata:
   name: vector-config
   namespace: monitoring
+  labels:
+    app.kubernetes.io/component: ingest
+    app.kubernetes.io/part-of: logging
+    app.kubernetes.io/name: vector
 data:
   vector.toml: |
     [sources.udp_logs]
