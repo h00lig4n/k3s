@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vector-config
+  namespace: monitoring
+  labels:
+    app.kubernetes.io/component: ingest
+    app.kubernetes.io/part-of: logging
+    app.kubernetes.io/name: vector
+data:
+  vector.toml: |
+    [sources.udp_logs]
+    type = "udp"
+    address = "0.0.0.0:5140"
+
+    [transforms.add_labels]
+    type = "remap"
+    inputs = ["udp_logs"]
+    source = '''
+    .host = get_hostname!()
+    
+    [sinks.loki]
+    type = "loki"
+    inputs = ["add_labels"]
+    endpoint = "http://loki:3100"
+    encoding.codec = "json"
+
+    [sinks.loki.labels]
+    host = "{{ host }}"
