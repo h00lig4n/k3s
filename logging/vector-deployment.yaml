@@ -3,6 +3,10 @@ kind: Deployment
 metadata:
   name: vector
   namespace: monitoring
+  labels:
+    app.kubernetes.io/component: ingest
+    app.kubernetes.io/part-of: logging
+    app.kubernetes.io/name: vector
 spec:
   replicas: 1
   selector:
