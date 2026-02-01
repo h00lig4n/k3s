@@ -26,4 +26,4 @@ data:
     encoding.codec = "json"
 
     [sinks.loki.labels]
-    host = "{{ host }}"
+    host = '{{ host }}'
