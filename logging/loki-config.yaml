@@ -2,7 +2,11 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: loki-config
-  namespace: observability
+  namespace: monitoring
+  labels:
+    app.kubernetes.io/component: aggregator
+    app.kubernetes.io/part-of: logging
+    app.kubernetes.io/name: loki
 data:
   loki.yaml: |
     auth_enabled: false
