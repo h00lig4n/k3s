@@ -10,7 +10,8 @@ metadata:
 data:
   vector.toml: |
     [sources.udp_logs]
-    type = "udp"
+    type = "socket"
+    mode = "udp"
     address = "0.0.0.0:5140"
 
     [transforms.add_labels]
