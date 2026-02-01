@@ -18,8 +18,14 @@ data:
       chunk_idle_period: 5m
       chunk_target_size: 1048576   # 1 MB
 
+    memberlist:
+      join_members: []
+
     common:
       path_prefix: /loki
+      ring:
+        kvstore:
+          store: inmemory
       storage:
         filesystem:
           chunks_directory: /loki/chunks
