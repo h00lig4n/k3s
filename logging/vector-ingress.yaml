@@ -1,7 +1,7 @@
 apiVersion: traefik.io/v1alpha1
 kind: IngressRouteUDP
 metadata:
-  name: vector-udp
+  name: vector
   namespace: monitoring
   labels:
     app.kubernetes.io/component: ingest
@@ -12,5 +12,5 @@ spec:
     - udp-logs
   routes:
     - services:
-        - name: vector-udp
+        - name: vector
           port: 5140
