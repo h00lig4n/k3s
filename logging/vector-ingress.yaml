@@ -3,6 +3,10 @@ kind: IngressRouteUDP
 metadata:
   name: vector-udp
   namespace: monitoring
+  labels:
+    app.kubernetes.io/component: ingest
+    app.kubernetes.io/part-of: logging
+    app.kubernetes.io/name: vector
 spec:
   entryPoints:
     - udp-logs
