@@ -1,0 +1,12 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRouteUDP
+metadata:
+  name: vector-udp
+  namespace: monitoring
+spec:
+  entryPoints:
+    - udp-logs
+  routes:
+    - services:
+        - name: vector-udp
+          port: 5140
