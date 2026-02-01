@@ -9,7 +9,7 @@ metadata:
     app.kubernetes.io/name: vector
 spec:
   entryPoints:
-    - udp-logs
+    - vector-logs
   routes:
     - services:
         - name: vector
