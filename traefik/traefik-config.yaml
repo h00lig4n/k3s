@@ -18,6 +18,12 @@ spec:
     ports:
       traefik:
         expose: false
+      vector-logs:
+        port: 5140
+        expose:
+          default: false
+        exposedPort: 5140
+        protocol: UDP
       mqtt:
         port: 8883
         expose: 
