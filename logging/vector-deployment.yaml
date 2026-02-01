@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vector
+  namespace: monitoring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vector
+  template:
+    metadata:
+      labels:
+        app: vector
+    spec:
+      containers:
+        - name: vector
+          image: timberio/vector:latest
+          args:
+            - "--config"
+            - "/etc/vector/vector.toml"
+          ports:
+            - containerPort: 5140
+              protocol: UDP
+          volumeMounts:
+            - name: vector-config
+              mountPath: /etc/vector
+          resources:
+            requests:
+              cpu: 50m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi
+      volumes:
+        - name: vector-config
+          configMap:
+            name: vector-config
