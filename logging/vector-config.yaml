@@ -18,6 +18,7 @@ data:
     inputs = ["udp_logs"]
     source = '''
     .host = get_hostname!()
+    '''
     
     [sinks.loki]
     type = "loki"
