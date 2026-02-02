@@ -20,46 +20,46 @@ spec:
         - /bin/sh
         - -c
         - |
-          apk add --no-cache openssh coreutils
-          mkdir -p /exports/tls-certificate
-        
-          while true; do
-            echo "cert-writer loop running..."
-        
-            cp -Lf /certs/* /exports/tls-certificate/ 2>/dev/null || true
-        
-            CERT_DIR=/exports/tls-certificate
-            PEM=$CERT_DIR/server.pem
-            SUMFILE=$CERT_DIR/.server.pem.sha256
-
-            echo "cert dir: $$$CERT_DIR"
-        
-            if [ -f "$CERT_DIR/tls.crt" ] && [ -f "$CERT_DIR/tls.key" ]; then
-              cat "$CERT_DIR/tls.crt" "$CERT_DIR/tls.key" > "$PEM"
-              chmod 600 "$PEM"
-        
-              NEWSUM=$(sha256sum "$PEM" | awk '{print $1}')
-              OLDSUM=""
-              [ -f "$SUMFILE" ] && OLDSUM=$(cat "$SUMFILE")
-        
-              if [ "$NEWSUM" != "$OLDSUM" ]; then
-                echo "Certificate changed, syncing to EdgeRouter..."
-                echo "Target: $EDGE_USER@$EDGE_HOST"
-        
-                scp -v -i /root/.ssh/id_ed25519 -o StrictHostKeyChecking=no "$PEM" "$EDGE_USER@$EDGE_HOST:/config/auth/certificates/server.pem"
-        
-                ssh -v -i /root/.ssh/id_ed25519 -o StrictHostKeyChecking=no "$EDGE_USER@$EDGE_HOST" "restart gui"
-        
-                echo "$NEWSUM" > "$SUMFILE"
+            apk add --no-cache openssh coreutils
+            mkdir -p /exports/tls-certificate
+          
+            while true; do
+              echo "cert-writer loop running..."
+          
+              cp -Lf /certs/* /exports/tls-certificate/ 2>/dev/null || true
+          
+              CERT_DIR=/exports/tls-certificate
+              PEM=$CERT_DIR/server.pem
+              SUMFILE=$CERT_DIR/.server.pem.sha256
+  
+              echo "cert dir: $CERT_DIR ${CERT_DIR}"
+              echo "user: ${EDGE_USER}"
+              if [ -f "$CERT_DIR/tls.crt" ] && [ -f "$CERT_DIR/tls.key" ]; then
+                cat "$CERT_DIR/tls.crt" "$CERT_DIR/tls.key" > "$PEM"
+                chmod 600 "$PEM"
+          
+                NEWSUM=$(sha256sum "$PEM" | awk '{print $1}')
+                OLDSUM=""
+                [ -f "$SUMFILE" ] && OLDSUM=$(cat "$SUMFILE")
+          
+                if [ "$NEWSUM" != "$OLDSUM" ]; then
+                  echo "Certificate changed, syncing to EdgeRouter..."
+                  echo "Target: $EDGE_USER@$EDGE_HOST"
+          
+                  scp -v -i /root/.ssh/id_ed25519 -o StrictHostKeyChecking=no "$PEM" "$EDGE_USER@$EDGE_HOST:/config/auth/certificates/server.pem"
+          
+                  ssh -v -i /root/.ssh/id_ed25519 -o StrictHostKeyChecking=no "$EDGE_USER@$EDGE_HOST" "restart gui"
+          
+                  echo "$NEWSUM" > "$SUMFILE"
+                else
+                  echo "Certificate unchanged."
+                fi
               else
-                echo "Certificate unchanged."
+                echo "tls.crt or tls.key missing in $CERT_DIR"
               fi
-            else
-              echo "tls.crt or tls.key missing in $CERT_DIR"
-            fi
-        
-            sleep 3600
-          done
+          
+              sleep 3600
+            done
         env:
           - name: EDGE_USER
             valueFrom:
