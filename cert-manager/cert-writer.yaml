@@ -31,6 +31,8 @@ spec:
             CERT_DIR=/exports/tls-certificate
             PEM=$CERT_DIR/server.pem
             SUMFILE=$CERT_DIR/.server.pem.sha256
+
+            echo "cert dir: $$CERT_DIR"
         
             if [ -f "$CERT_DIR/tls.crt" ] && [ -f "$CERT_DIR/tls.key" ]; then
               cat "$CERT_DIR/tls.crt" "$CERT_DIR/tls.key" > "$PEM"
