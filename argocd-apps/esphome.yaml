@@ -12,9 +12,12 @@ spec:
       selfHeal: true
   project: hass
   sources:
-    - path: esphome
-      repoURL: https://github.com/h00lig4n/k3s-private.git
-      targetRevision: HEAD
-    - path: esphome
-      repoURL: https://github.com/h00lig4n/k3s.git
-      targetRevision: HEAD
+    - repoURL: https://github.com/h00lig4n/k3s.git
+      path: esphome/base
+      targetRevision: argocd-path-path
+    - repoURL: https://github.com/h00lig4n/k3s-private.git
+      targetRevision: argocd-path-path
+      path: esphome/overlays/prod
+  kustomize:
+    resources:
+      - $base
