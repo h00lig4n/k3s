@@ -3,6 +3,8 @@ kind: ConfigMap
 metadata:
   name: cert-writer-config
   namespace: common
+  annotations:
+    argocd-envsubst/skip: "true"
 data:
   run.sh: |
     #!/bin/sh
