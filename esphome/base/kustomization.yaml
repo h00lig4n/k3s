@@ -1,5 +1,5 @@
 resources:
   - ingress.yaml
   - deployment.yaml
-  - service.yaml
+  - svc.yaml
   - pvc.yaml
