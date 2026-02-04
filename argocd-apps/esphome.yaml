@@ -15,6 +15,7 @@ spec:
     - repoURL: https://github.com/h00lig4n/k3s.git
       path: esphome/base
       targetRevision: argocd-path-patch
+      ref: base
     - repoURL: https://github.com/h00lig4n/k3s-private.git
       targetRevision: argocd-path-patch
       path: esphome/overlays/prod
