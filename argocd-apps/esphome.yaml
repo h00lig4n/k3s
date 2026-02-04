@@ -14,9 +14,9 @@ spec:
   sources:
     - repoURL: https://github.com/h00lig4n/k3s.git
       path: esphome/base
-      targetRevision: argocd-path-path
+      targetRevision: HEAD
     - repoURL: https://github.com/h00lig4n/k3s-private.git
-      targetRevision: argocd-path-path
+      targetRevision: HEAD
       path: esphome/overlays/prod
   kustomize:
     resources:
