@@ -19,3 +19,6 @@ spec:
     - repoURL: https://github.com/h00lig4n/k3s-private.git
       targetRevision: argocd-path-patch
       path: esphome/overlays/prod
+  kustomize:
+    resources:
+      - $base
