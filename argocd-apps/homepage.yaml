@@ -12,6 +12,9 @@ spec:
       selfHeal: true
   project: default
   sources:
-    - path: homepage
-      repoURL: https://github.com/h00lig4n/k3s.git
+    - repoURL: https://github.com/h00lig4n/k3s-private.git
       targetRevision: HEAD
+      path: homepage/overlays/prod
+  kustomize:
+    resources:
+      - $base
