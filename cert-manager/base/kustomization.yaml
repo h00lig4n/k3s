@@ -5,4 +5,4 @@ resources:
   - certs-pvc.yaml
   - issuer.yaml
   - staging-certificate.yaml
- #- cert-writer.yaml
+  #   - cert-writer.yaml
