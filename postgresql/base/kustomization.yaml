@@ -1,0 +1,7 @@
+resources:
+  - adminer-deploy.yaml
+  - adminer-svc.yaml
+  - ingress.yaml
+  - postgres-deploy.yaml
+  - postgres-svc.yaml
+  - pvc.yaml
