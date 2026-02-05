@@ -12,17 +12,17 @@ spec:
       selfHeal: true
   project: infrastructure
   sources:
-  - chart: cert-manager
-    helm:
-      parameters:
-      - name: installCRDs
-        value: "true"
-      releaseName: cert-manager
-    repoURL: https://charts.jetstack.io
-    targetRevision: v1.18.0
-  - path: cert-manager
-    repoURL: https://github.com/h00lig4n/k3s.git
-    targetRevision: HEAD
-  - path: cert-manager
-    repoURL: https://github.com/h00lig4n/k3s-private.git
-    targetRevision: HEAD
+    - chart: cert-manager
+      helm:
+        parameters:
+        - name: installCRDs
+          value: "true"
+        releaseName: cert-manager
+      repoURL: https://charts.jetstack.io
+      targetRevision: v1.18.0
+    - repoURL: https://github.com/h00lig4n/k3s-private.git
+      path: cert-manager/overlays/prod
+      targetRevision: argocd-patch-path
+  kustomize:
+    resources:
+      - $base
