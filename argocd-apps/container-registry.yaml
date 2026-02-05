@@ -14,7 +14,7 @@ spec:
   sources:
     - repoURL: https://github.com/h00lig4n/k3s-private.git
       targetRevision: HEAD
-      path: esphome/overlays/prod
+      path: container-registry/overlays/prod
   kustomize:
     resources:
       - $base
