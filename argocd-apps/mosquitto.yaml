@@ -12,9 +12,9 @@ spec:
       selfHeal: true
   project: hass
   sources:
-    - path: mosquitto
-      repoURL: https://github.com/h00lig4n/k3s.git
-      targetRevision: HEAD
-    - path: mosquitto
-      repoURL: https://github.com/h00lig4n/k3s-private.git
-      targetRevision: HEAD
+    - repoURL: https://github.com/h00lig4n/k3s-private.git
+      targetRevision: argocd-patch-path
+      path: mosquitto/overlays/prod
+  kustomize:
+    resources:
+      - $base
