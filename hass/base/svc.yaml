@@ -19,4 +19,3 @@ spec:
     port: 1400
     targetPort: 1400
   type: LoadBalancer
-  loadBalancerIP: 
