@@ -9,7 +9,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-    - host: registry.$DOMAIN_NAME
+    - host: mydomain.com
       http:
         paths:
           - path: /
@@ -22,7 +22,7 @@ spec:
   tls:
     - secretName: tls-certificate
       hosts:
-        - registry.$DOMAIN_NAME
+        - mydomain.com
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -35,7 +35,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-    - host: dockerui.$DOMAIN_NAME
+    - host: mydomain.com
       http:
         paths:
           - path: /
@@ -48,4 +48,4 @@ spec:
   tls:
     - secretName: tls-certificate
       hosts:
-        - dockerui.$DOMAIN_NAME
+        - mydomain.com

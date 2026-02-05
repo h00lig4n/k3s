@@ -42,6 +42,13 @@ spec:
             mountPath: /etc/distribution
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
+          resources:
+            requests:
+              cpu: 50m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
@@ -108,6 +115,13 @@ spec:
               value: "false"
             - name: CATALOG_ELEMENTS_LIMIT
               value: "1000"
+          resources:
+            requests:
+              cpu: 10m
+              memory: 32Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
       dnsPolicy: ClusterFirst
