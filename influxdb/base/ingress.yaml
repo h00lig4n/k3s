@@ -13,11 +13,11 @@ metadata:
     gethomepage.dev/group: Home Automation
     gethomepage.dev/icon: si-influxdb
     gethomepage.dev/name: InfluxDB
-    gethomepage.dev/widget.url: https://influx.$DOMAIN_NAME
+    gethomepage.dev/widget.url: https://mydomain.com
 spec:
   ingressClassName: traefik
   rules:
-    - host: influxdb.$DOMAIN_NAME
+    - host: https://mydomain.com
       http:
         paths:
           - path: /
@@ -30,4 +30,4 @@ spec:
   tls:
     - secretName: tls-certificate
       hosts:
-        - influxdb.$DOMAIN_NAME
+        - https://mydomain.com

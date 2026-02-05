@@ -12,9 +12,9 @@ spec:
       selfHeal: true
   project: hass
   sources:
-    - path: influxdb
-      repoURL: https://github.com/h00lig4n/k3s.git
+    - repoURL: https://github.com/h00lig4n/k3s-private.git
       targetRevision: HEAD
-    - path: influxdb
-      repoURL: https://github.com/h00lig4n/k3s-private.git
-      targetRevision: HEAD
+      path: influxdb/overlays/prod
+  kustomize:
+    resources:
+      - $base
