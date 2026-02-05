@@ -12,9 +12,9 @@ spec:
       selfHeal: true
   project: common
   sources:
-    - path: grafana
-      repoURL: https://github.com/h00lig4n/k3s.git
+    - repoURL: https://github.com/h00lig4n/k3s-private.git
       targetRevision: HEAD
-    - path: grafana
-      repoURL: https://github.com/h00lig4n/k3s-private.git
-      targetRevision: HEAD
+      path: grafana/overlays/prod
+  kustomize:
+    resources:
+      - $base
