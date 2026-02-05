@@ -14,11 +14,11 @@ metadata:
     gethomepage.dev/name: Grafana
     gethomepage.dev/icon: grafana
     gethomepage.dev/widget.type: grafana
-    gethomepage.dev/widget.url: https://grafana.$DOMAIN_NAME
+    gethomepage.dev/widget.url: https://mydomain.com
 spec:
   ingressClassName: traefik
   rules:
-    - host: grafana.$DOMAIN_NAME
+    - host: https://mydomain.com
       http:
         paths:
           - path: /
@@ -31,4 +31,4 @@ spec:
   tls:
     - secretName: tls-certificate
       hosts:
-        - grafana.$DOMAIN_NAME
+        - https://mydomain.com
