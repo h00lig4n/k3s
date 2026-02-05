@@ -12,9 +12,9 @@ spec:
       selfHeal: true
   project: hass
   sources:
-    - path: zwave
-      repoURL: https://github.com/h00lig4n/k3s.git
-      targetRevision: HEAD
-    - path: zwave
-      repoURL: https://github.com/h00lig4n/k3s-private.git
-      targetRevision: HEAD
+    - repoURL: https://github.com/h00lig4n/k3s-private.git
+      targetRevision: argocd-path-patch
+      path: zwave/overlays/prod
+  kustomize:
+    resources:
+      - $base
