@@ -13,11 +13,11 @@ metadata:
     gethomepage.dev/group: Home Automation
     gethomepage.dev/name: Zigbee2MQTT
     gethomepage.dev/icon: si-zigbee2mqtt
-    gethomepage.dev/widget.url: https://zigbee.$DOMAIN_NAME
+    gethomepage.dev/widget.url: https://mydomain.com
 spec:
   ingressClassName: traefik
   rules:
-    - host: zigbee.$DOMAIN_NAME
+    - host: mydomain.com
       http:
         paths:
           - path: /
@@ -30,4 +30,4 @@ spec:
   tls:
     - secretName: tls-certificate
       hosts:
-        - zigbee.$DOMAIN_NAME
+        - mydomain.com

@@ -12,9 +12,9 @@ spec:
       selfHeal: true
   project: hass
   sources:
-    - path: zigbee2mqtt
-      repoURL: https://github.com/h00lig4n/k3s.git
+    - repoURL: https://github.com/h00lig4n/k3s-private.git
       targetRevision: HEAD
-    - path: zigbee2mqtt
-      repoURL: https://github.com/h00lig4n/k3s-private.git
-      targetRevision: HEAD
+      path: zigbee2mqtt/overlays/prod
+  kustomize:
+    resources:
+      - $base

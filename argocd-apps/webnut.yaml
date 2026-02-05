@@ -12,6 +12,9 @@ spec:
       selfHeal: true
   project: infrastructure
   sources:
-    - path: webnut
-      repoURL: https://github.com/h00lig4n/k3s.git
+    - repoURL: https://github.com/h00lig4n/k3s-private.git
       targetRevision: HEAD
+      path: webnut/overlays/prod
+  kustomize:
+    resources:
+      - $base

@@ -12,11 +12,11 @@ metadata:
     gethomepage.dev/description: ZWave Controller
     gethomepage.dev/group: Home Automation
     gethomepage.dev/name: ZWave
-    gethomepage.dev/widget.url: https://zwave.$DOMAIN_NAME
+    gethomepage.dev/widget.url: https://mydomain.com
 spec:
   ingressClassName: traefik
   rules:
-    - host: zwave.$DOMAIN_NAME
+    - host: mydomain.com
       http:
         paths:
           - path: /
@@ -29,4 +29,4 @@ spec:
   tls:
     - secretName: tls-certificate
       hosts:
-        - zwave.$DOMAIN_NAME
+        - mydomain.com
