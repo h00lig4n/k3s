@@ -7,12 +7,15 @@ spec:
   destination:
     namespace: common
     server: https://kubernetes.default.svc
+  project: common
   syncPolicy:
     automated:
       selfHeal: true
   sources:
-    - repoURL: https://github.com/h00lig4n/k3s.git
-      path: postgresql
     - repoURL: https://github.com/h00lig4n/k3s-private.git
-      path: postgresql
-  project: common
+      targetRevision: argocd-path-patch
+      path: postgresql/overlays/prod
+  kustomize:
+    resources:
+      - $base
+
