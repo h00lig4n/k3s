@@ -12,9 +12,6 @@ spec:
       selfHeal: true
   project: hass
   sources:
-    - repoURL: https://github.com/h00lig4n/k3s.git
-      path: esphome/base
-      targetRevision: HEAD
     - repoURL: https://github.com/h00lig4n/k3s-private.git
       targetRevision: HEAD
       path: esphome/overlays/prod
