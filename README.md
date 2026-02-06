@@ -11,7 +11,8 @@ NFS running on separate Debian Linux box.
 - Migrate Home Assistant to an easier to maintain distributed container architecture.
 - Ability to move devices between nodes seamlessly.
 - Migrate existing debian linux server as pure a NAS.
-- AI On Raspberry PI.
+- AI Setup using OpwnWebUI, Ollama, Tika and SearXNG.
+  - Moving Ollama to run on a amd64 node with a GPU as Raspberry PI didn't cut it.
 - Gitops with ArgoCD.
 - Fun with Kubernetes.
 - Host own developed apps.
@@ -30,10 +31,21 @@ kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 ```
 
+Applications are stored in /argocd-apps
+- base is stored in this repo
+- overlays are stored in a private repo. 
+- Sealed Secrets are used for extra security layer.
+
+Overlays looks like this:
+```
+resources:
+  - https://github.com/h00lig4n/k3s.git//folder/base?ref=main
+patches:
+```
+
 ## Cert Manager
 Using subdomain to provide TLS support on internal network.
 [CPanel Plugin](https://github.com/jamesorlakin/cert-manager-cpanel-dns-webhook)
-
 This creates a default wildcard certificate, this is an internal cluster so that is fine.
 
 ### Instructions
@@ -103,7 +115,7 @@ kubectl create secret generic -n metallb-system memberlist --from-literal=secret
 kubectl apply -f config.yaml
 ```
 
-The bgp config file isn't used yet. Need to connect the cluster to a different port on the Edge Router and setup BGP first. Might do it sometime.
+The bgp config file isn't used yet. I have VLAN segmentation now and don't see the need.
 
 ## Traefik
 Default installation with K3S. Sucessfully used for HTTPS and for TCP. TCP was easy when I actually understood what needed to be done... 
@@ -141,8 +153,10 @@ Separate debian linux server hosting:
 ## Container Registry and UI
 For personal application development.
 
-### Installation
-  1. kubectl apply -f https://raw.githubusercontent.com/squat/generic-device-plugin/main/manifests/generic-device-plugin.yaml
+
+
+## AI
+More to follow...
      
 ## ESP Home
 This is used to connect to [ESPHome](https://esphome.io/) devices. I use the bluetooth proxies and voice control.
@@ -194,6 +208,7 @@ HACS needs to be manually installed.
 
 ### InfluxDB
 For Home Assistant. Used to store sensor data for longer periods of time to see trends.
+
 ### Minecraft
 The kids still play this!
 
@@ -207,22 +222,34 @@ Wildcard certificate for domain is used and is created separately by CertManager
 There is a custom readiness check implemented. It is deployed as a script saved as a secret (it contains user and password).
 This is then mounted into the container and called from the readinessprobe.
 
+### OpenWakeWord
+Used for voice assistant in home assistant
+
+### Piper
+Used for voice assistant in home assistant
+
+### Planka
+Somewhere to keep track of stuff.
+
+### Postgresql and Adminer
+Ability to run a database in cluster with UI.
+
 ### Prometheus
-### MySQL
-### UNMS
-Ubiquiti network at home.
-### WordPress
+Currently not setup
+
+### Reloader
+For getting pods to reload when configs or secrets change.
+
+### Uptime Kuma
+Not running yet...
+
+### Webnut
+For monitoring UPS.
+
 ### Zigbee to MQTT
 For Home Assistant. To be able to separate upgrades of Home Assistant from Zigbee.[Zigbee2MQTT](https://www.zigbee2mqtt.io/)<br>
-Make sure
 
-#### Installation
-  **NOTE:** This requires [Generic Device Plugin](#-generic-device-plugin) to be configured and working.
+**NOTE:** This requires [Generic Device Plugin](#-generic-device-plugin) to be configured and working.
 
-  1. kubectl apply -f zigbee2mqtt/secret.yaml<br>
-  2. kubectl apply -f zigbee2mqtt/pvc.yaml<br>
-  3. kubectl apply -f zigbee2mqtt/deployment.yaml<br>
-  4. kubectl apply -f zigbee2mqtt/ingress.yaml<br>
-  
 ### ZWave
 For Home Assistant. To be able to separate upgrades of Home Assistant from ZWave.
