@@ -13,4 +13,4 @@ spec:
   source:
     path: argocd/apps
     repoURL: https://github.com/h00lig4n/k3s.git
-    targetRevision: HEAD
+    targetRevision: main
