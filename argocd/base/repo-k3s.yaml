@@ -1,13 +1,10 @@
-# Managed as Sealed Secret in Private Repo
+# This is a not very secret secret
 apiVersion: v1
 kind: Secret
 metadata:
-  name: name
+  name: k3s
   namespace: argocd
   labels:
     argocd.argoproj.io/secret-type: repository
 stringData:
-  url: url
-  type: git
-  password: token
-  username: username
+  url: https://github.com/h00lig4n/k3s.git
