@@ -13,5 +13,5 @@ spec:
   project: common
   sources:
     - repoURL: https://github.com/h00lig4n/k3s-private.git
-      targetRevision: main
+      targetRevision: HEAD
       path: container-registry/overlays/prod

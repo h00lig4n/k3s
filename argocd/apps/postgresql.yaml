@@ -11,11 +11,7 @@ spec:
   syncPolicy:
     automated:
       selfHeal: true
-  project: common
   sources:
     - repoURL: https://github.com/h00lig4n/k3s-private.git
       targetRevision: HEAD
       path: postgresql/overlays/prod
-  kustomize:
-    resources:
-      - $base
