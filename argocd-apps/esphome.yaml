@@ -13,5 +13,8 @@ spec:
   project: hass
   sources:
     - repoURL: https://github.com/h00lig4n/k3s-private.git
-      targetRevision: argocd-path-patch
+      targetRevision: HEAD
       path: esphome/overlays/prod
+  kustomize:
+    resources:
+      - $base

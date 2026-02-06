@@ -22,7 +22,7 @@ spec:
       targetRevision: v1.18.0
     - repoURL: https://github.com/h00lig4n/k3s-private.git
       path: cert-manager/overlays/prod
-      targetRevision: argocd-path-patch
+      targetRevision: HEAD
   kustomize:
     resources:
       - $base

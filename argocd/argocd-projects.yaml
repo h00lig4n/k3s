@@ -81,24 +81,3 @@ spec:
   clusterResourceWhitelist:
   - group: '*'
     kind: '*'
----
-apiVersion: argoproj.io/v1alpha1
-kind: AppProject
-metadata:
-  name: external
-  namespace: portainer
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-spec:
-  description: Ingress For External Hosts
-  sourceRepos:
-  - '*'
-  destinations:
-  - namespace: '*'
-    server: '*'
-  namespaceResourceWhitelist:
-  - group: '*'
-    kind: '*'
-  clusterResourceWhitelist:
-  - group: '*'
-    kind: '*'

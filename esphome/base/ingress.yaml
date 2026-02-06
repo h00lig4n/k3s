@@ -1,0 +1,34 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: esphome
+  namespace: hass
+  labels:
+    app.kubernetes.io/name: esphome
+  annotations:
+    #cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/description: ESP32 Controllers
+    gethomepage.dev/group: Home Automation
+    gethomepage.dev/name: ESP Home
+    gethomepage.dev/icon: si-esphome
+    gethomepage.dev/widget.type: esphome
+    gethomepage.dev/widget.url: https://mydomain.com
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: mydomain.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: esphome
+                port:
+                  number: 6052
+  tls:
+    - secretName: tls-certificate
+      hosts:
+        - mydomain.com

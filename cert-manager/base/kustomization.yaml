@@ -1,0 +1,8 @@
+resources:
+  - cert-manager-cpanel-dns-webhook.yaml
+  - cert-writer-config.yaml
+  - certificate.yaml
+  - certs-pvc.yaml
+  - issuer.yaml
+  - staging-certificate.yaml
+  #   - cert-writer.yaml

@@ -13,7 +13,7 @@ spec:
   project: default
   sources:
     - repoURL: https://github.com/h00lig4n/k3s-private.git
-      targetRevision: argocd-path-patch
+      targetRevision: HEAD
       path: homepage/overlays/prod
   kustomize:
     resources:
