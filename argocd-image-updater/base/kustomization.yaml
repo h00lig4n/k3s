@@ -1,0 +1,17 @@
+resources:
+  - https://raw.githubusercontent.com/argoproj-labs/argocd-image-updater/stable/config/install.yaml
+patches:
+  - target:
+      kind: Deployment
+      name: argocd-image-updater
+      namespace: argocd
+    patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/resources
+        value:
+          requests:
+            cpu: 50m
+            memory: 64Mi
+          limits:
+            cpu: 200m
+            memory: 128Mi
