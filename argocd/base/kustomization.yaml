@@ -1,7 +1,8 @@
 resources:
 - https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
-- argocd-cmd-params-cm.yaml
 - argocd-projects.yaml
 - ingressroute.yaml
 - repo-k3s.yaml
 - parentapp.yaml
+patches:
+  - path: argocd-cmd-params-cm-patch.yaml
