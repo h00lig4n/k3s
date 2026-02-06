@@ -16,7 +16,7 @@ spec:
       containers:
       - name: writer
         image: alpine:latest
-        command: /run/run.sh
+        command: ["/run/run.sh"]
         env:
           - name: EDGE_USER
             valueFrom:
