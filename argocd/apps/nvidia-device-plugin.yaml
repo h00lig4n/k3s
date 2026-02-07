@@ -11,16 +11,9 @@ spec:
     targetRevision: 0.17.1
     helm:
       values: |
-        devicePlugin:
-          enabled: true
-          daemonset:
-            nodeSelector:
-              node-role.kubernetes.io/ai: "true"
-            tolerations:
-              - key: nvidia.com/gpu
-                operator: Exists
-                effect: NoSchedule
-            affinity: {}
+        nodeSelector:
+          node-role.kubernetes.io/ai: "true"
+        affinity: {}
         gfd:
           enabled: false
         nfd:
