@@ -9,7 +9,7 @@ metadata:
     app.kubernetes.io/part-of: ai
     app.kubernetes.io/name: ollama
 spec:
-  replicas: 0
+  replicas: 1
   selector:
     matchLabels:
       app: ollama
@@ -26,6 +26,9 @@ spec:
         app.kubernetes.io/name: ollama
         app.kubernetes.io/part-of: ai
     spec:
+      runtimeClassName: nvidia
+      nodeSelector:
+        node-role.kubernetes.io/ai: "true"
       containers:
       - name: ollama
         image: ollama/ollama:0.15.1
@@ -66,8 +69,6 @@ spec:
             nvidia.com/gpu: "1"
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
-      nodeSelector:
-        node-role.kubernetes.io/ai: "true"
       volumes:
         - name: ollama-pvc
           persistentVolumeClaim:
