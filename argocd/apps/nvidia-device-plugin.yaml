@@ -8,18 +8,12 @@ spec:
   sources:
     - chart: nvidia-device-plugin
       repoURL: https://nvidia.github.io/k8s-device-plugin
-      targetRevision: 0.18.2
+      targetRevision: 0.14.5
       helm:
         values: |
-          devicePlugin:
-            enabled: true
-            nodeSelector:
-              node-role.kubernetes.io/ai: "true"
-          gfd:
-            enabled: false
-          nfd:
-            enabled: false
-          affinity: {}
+          nodeSelector:
+            node-role.kubernetes.io/ai: "true"
+         
           # Allow running on the GPU-tainted node
           tolerations:
             - key: nvidia.com/gpu
