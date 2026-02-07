@@ -12,9 +12,9 @@ spec:
     helm:
       values: |
         gfd:
-          enabled: false
+          enabled: true
         nfd:
-          enabled: false
+          enabled: true
         mps:
           enabled: false
   destination:
