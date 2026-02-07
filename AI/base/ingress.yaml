@@ -13,7 +13,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-    - host: ai.$DOMAIN_NAME
+    - host: mydomain.com
       http:
         paths:
           - path: /
@@ -26,4 +26,4 @@ spec:
   tls:
     - secretName: tls-certificate
       hosts:
-        - ai.$DOMAIN_NAME
+        - mydomain.com
