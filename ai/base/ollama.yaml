@@ -37,6 +37,10 @@ spec:
         env:
           - name: WEBUI_URL
             value: "http:searxng:8080"
+          - name: OLLAMA_NUM_PARALLEL
+            value: "2"
+          - name: OLLAMA_MAX_LOADED_MODELS
+            value: "1" 
         volumeMounts:
           - name: ollama-pvc
             mountPath: /root/.ollama
@@ -53,11 +57,13 @@ spec:
         securityContext: {}
         resources:
           requests:
-            memory: "4Gi"
-            cpu: "1000m"
+            memory: "8Gi"
+            cpu: "2"
+            nvidia.com/gpu: 1
           limits:
-            memory: "7Gi"
-            cpu: "5000m"
+            memory: "16Gi"
+            cpu: "4"
+            nvidia.com/gpu: 1
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       nodeSelector:
