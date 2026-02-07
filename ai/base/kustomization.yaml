@@ -1,15 +1,8 @@
 resources:
   - ns.yaml
-#  - https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/main/deployments/static/nvidia-device-plugin.yml
   - ingress.yaml
   - ollama.yaml
   - openwebui.yaml
   - pvc.yaml
   - searxng.yaml
   - tika.yaml
-#patches:
-#  - target:
-#      kind: DaemonSet
-#      name: nvidia-device-plugin-daemonset
-#      namespace: kube-system
-#    path: nvidia-device-plugin-patch.yaml
