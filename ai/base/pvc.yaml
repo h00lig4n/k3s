@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: ollama
+  name: ollama-local
   namespace: ai
   labels:
     app: ollama

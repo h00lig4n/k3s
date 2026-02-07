@@ -71,7 +71,7 @@ spec:
       volumes:
         - name: ollama-pvc
           persistentVolumeClaim:
-            claimName: ollama
+            claimName: ollama-local
         - name: localtime
           hostPath:
             path: /etc/localtime
