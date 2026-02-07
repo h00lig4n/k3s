@@ -11,6 +11,7 @@ spec:
     targetRevision: 0.17.1
     helm:
       values: |
+        runtimeClassName: nvidia
         deviceDiscoveryStrategy: nvml
         nodeSelector:
           node-role.kubernetes.io/ai: "true"
