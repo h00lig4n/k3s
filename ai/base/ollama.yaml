@@ -59,11 +59,11 @@ spec:
           requests:
             memory: "8Gi"
             cpu: "2"
-            nvidia.com/gpu: 1
+            nvidia.com/gpu: "1"
           limits:
             memory: "16Gi"
             cpu: "4"
-            nvidia.com/gpu: 1
+            nvidia.com/gpu: "1"
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       nodeSelector:
