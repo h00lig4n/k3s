@@ -13,8 +13,6 @@ spec:
       values: |
         gfd:
           enabled: true
-        nfd:
-          enabled: true
         mps:
           enabled: false
   destination:
