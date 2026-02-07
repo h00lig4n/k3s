@@ -8,7 +8,7 @@ spec:
   sources:
     - chart: nvidia-device-plugin
       repoURL: https://nvidia.github.io/k8s-device-plugin
-      targetRevision: 0.18.0
+      targetRevision: 0.17.1
       helm:
         values: |
           devicePlugin:
@@ -22,13 +22,14 @@ spec:
                 operator: Exists
                 effect: NoSchedule
 
-            # 🔑 This is the missing piece
             affinity: {}
 
           gfd:
             enabled: false
+
           nfd:
             enabled: false
+
           mps:
             enabled: false
   destination:
