@@ -13,8 +13,13 @@ spec:
       values: |
         gfd:
           enabled: true
-        mps:
-          enabled: false
+        nfd:
+           worker:
+            tolerations:
+            - key: "nvidia.com/gpu"
+              operator: "Equal"
+              value: "true"
+              effect: "NoSchedule"
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system
