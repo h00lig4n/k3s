@@ -15,6 +15,9 @@ spec:
             enabled: true
           gfd:
             enabled: false
+          nfd:
+            enabled: false
+          affinity: {}
           nodeSelector:
             node-role.kubernetes.io/ai: "true"
           # Allow running on the GPU-tainted node
