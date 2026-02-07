@@ -15,7 +15,11 @@ spec:
             enabled: true
           gfd:
             enabled: true
-          affinity: {}
+          # Explicitly target the GPU node
+          nodeSelector:
+            node-role.kubernetes.io/ai: "true"
+
+          # Allow running on the GPU-tainted node
           tolerations:
             - key: nvidia.com/gpu
               operator: Exists
