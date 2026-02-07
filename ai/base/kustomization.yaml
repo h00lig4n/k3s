@@ -7,3 +7,9 @@ resources:
   - pvc.yaml
   - searxng.yaml
   - tika.yaml
+patches:
+  - target:
+      kind: DaemonSet
+      name: nvidia-device-plugin-daemonset
+      namespace: kube-system
+    path: nvidia-device-plugin-patch.yaml
