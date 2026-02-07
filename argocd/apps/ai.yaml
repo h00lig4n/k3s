@@ -12,6 +12,17 @@ spec:
       selfHeal: true
   project: ai
   sources:
+    - chart: nvidia-device-plugin
+      repoURL: https://nvidia.github.io/k8s-device-plugin
+      targetRevision: 0.18.2
+      helm:
+        values: |
+          nodeSelector:
+            node-role.kubernetes.io/ai: "true"
+          tolerations:
+            - key: nvidia.com/gpu
+              operator: Exists
+              effect: NoSchedule
     - repoURL: https://github.com/h00lig4n/k3s-private.git
       targetRevision: HEAD
       path: ai/overlays/prod
