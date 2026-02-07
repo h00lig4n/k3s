@@ -1,0 +1,23 @@
+apiVersion: argocd-image-updater.argoproj.io/v1alpha1
+kind: ImageUpdater
+metadata:
+  name: k3s-image-updater
+  namespace: argocd
+spec:
+  namespace: argocd
+  applicationRefs:
+    - namePattern: "esphome"
+      labelSelectors:
+        tagformat: yymmdd
+        matchLabels:
+          app.kubernetes.io/name: esphome
+      images:
+        - alias: "esphome"
+          imageName: "esphome/esphome:stable"
+      commonUpdateSettings:
+        updateStrategy: "digest"
+      writeBackConfig:
+        method: "git"
+#        gitConfig:
+#          repository: "https://github.com/h00lig4n/k3s.git"
+#          branch: "argocd"

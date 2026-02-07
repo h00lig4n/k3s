@@ -1,5 +1,6 @@
 resources:
   - https://raw.githubusercontent.com/argoproj-labs/argocd-image-updater/stable/config/install.yaml
+  - image-updater.yaml
 patches:
   - target:
       kind: Deployment
