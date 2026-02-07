@@ -11,28 +11,28 @@ spec:
       targetRevision: 0.17.1
       helm:
         values: |
-          devicePlugin:
-            enabled: true
+                devicePlugin:
+                  enabled: true
 
-            daemonset:
-              nodeSelector:
-                node-role.kubernetes.io/ai: "true"
+                  daemonset:
+                    nodeSelector:
+                      node-role.kubernetes.io/ai: "true"
 
-              tolerations:
-                - key: nvidia.com/gpu
-                  operator: Exists
-                  effect: NoSchedule
+                    tolerations:
+                      - key: nvidia.com/gpu
+                        operator: Exists
+                        effect: NoSchedule
 
-              affinity: {}
+                    affinity: {}
 
-          gfd:
-            enabled: false
+                gfd:
+                  enabled: false
 
-          nfd:
-            enabled: false
+                nfd:
+                  enabled: false
 
-          mps:
-            enabled: false
+                mps:
+                  enabled: false
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system
