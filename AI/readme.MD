@@ -1,5 +1,5 @@
 # AI Setup K3S Raspberry PI
-Models chosen that will run on a Raspberry PI 4 8Gb.
+This is old and needs updating
 
 ## Components
 - searxng for WebSearch.
@@ -16,6 +16,7 @@ Models chosen that will run on a Raspberry PI 4 8Gb.
 
 #### OpenWebUI Settings
 ##### Documents
+Old settings
 - Embedding Model Engine: Ollama
 - Batch size:1
 - Hybrid: Off
@@ -34,3 +35,4 @@ Models chosen that will run on a Raspberry PI 4 8Gb.
 Configure OpenWebUi to use Tika with correct model.
 
 
+Qdrant ...
