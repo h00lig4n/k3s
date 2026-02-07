@@ -13,13 +13,13 @@ spec:
         values: |
           devicePlugin:
             enabled: true
+            nodeSelector:
+              node-role.kubernetes.io/ai: "true"
           gfd:
             enabled: false
           nfd:
             enabled: false
           affinity: {}
-          nodeSelector:
-            node-role.kubernetes.io/ai: "true"
           # Allow running on the GPU-tainted node
           tolerations:
             - key: nvidia.com/gpu
