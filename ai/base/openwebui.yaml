@@ -45,6 +45,8 @@ spec:
             value: tika
           - name: TIKA_SERVER_URL
             value: http://tika:9998
+          - name: ENABLE_WEB_SEARCH
+            value: "true"
           - name: WEB_SEARCH_ENGINE
             value: "searxng"
           - name: SEARXNG_QUERY_URL
