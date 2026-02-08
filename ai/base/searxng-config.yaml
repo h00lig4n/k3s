@@ -8,10 +8,9 @@ data:
     use_default_settings: true
 
     server:
-      bind_address: 0.0.0.0
+      bind_address: "0.0.0.0"
       port: 8080
 
-    engines: []
   limiter.toml: |
     [botdetection.ip_limit]
     link_token = true
