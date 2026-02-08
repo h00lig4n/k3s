@@ -40,9 +40,11 @@ spec:
           - name: SEARXNG_PORT
             value: "8080"
           - name: SEARXNG_BIND_ADDRESS
-            value: "0.0.0.0" 
-          - name: SEARXNG_SETTINGS_PATH
-            value: /etc/searxng/settings.yml
+            value: "0.0.0.0"
+          - name: SEARXNG_DISABLED_ENGINES
+            value: "ahmia,torch"
+          #- name: SEARXNG_SETTINGS_PATH
+          #  value: /etc/searxng/settings.yml
           - name: SEARXNG_LIMITER
             value: /etc/searxng/limiter.toml
           - name: SEARXNG_SECRET_KEY
@@ -51,14 +53,14 @@ spec:
                 name: searxng-secret
                 key: SEARXNG_SECRET_KEY
         volumeMounts:
-        #  - name: searxng-pvc
-        #    mountPath: /etc/searxng
+          - name: searxng-pvc
+            mountPath: /etc/searxng
         #  - name: searxng-pvc
         #    mountPath: /var/cache/searxng
-          - name: settings
-            mountPath: /etc/searxng/settings.yml
-            subPath: settings.yml
-            readOnly: true
+        #  - name: settings
+        #    mountPath: /etc/searxng/settings.yml
+        #    subPath: settings.yml
+        #    readOnly: true
           - name: settings
             mountPath: /etc/searxng/limiter.toml
             subPath: limiter.toml
