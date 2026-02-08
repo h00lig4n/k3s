@@ -6,19 +6,12 @@ metadata:
 data:
   settings.yml: |
     use_default_settings: true
+
     server:
-      secret_key: "will-replace-once-working"
+      bind_address: 0.0.0.0
       port: 8080
-      bind_address: "0.0.0.0"
-    search:
-      formats:
-        - html
-        - json
 
+    engines: []
   limiter.toml: |
-    [general]
-    enabled = false
-
-    [botdetection.ip_rate]
-    limit = 15
-    window = 60
+    [botdetection.ip_limit]
+    link_token = true
