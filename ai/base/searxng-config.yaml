@@ -11,33 +11,10 @@ data:
       bind_address: 0.0.0.0
       port: 8080
 
-    ui:
-      static_use_hash: true
-      lang_selector: false
-
     system:
       logging:
         level: info
 
-    engines:
-      general:
-        disabled: false
-      google:
-        disabled: true
-      bing:
-        disabled: true
-      duckduckgo:
-        disabled: false
-      yahoo:
-        disabled: true
-      brave:
-        disabled: true
-      ecosia:
-        disabled: false
-      qwant:
-        disabled: false
-      searxng:
-        disabled: false
   limiter.toml: |
     [general]
     enabled = true
