@@ -6,21 +6,20 @@ metadata:
 data:
   settings.yml: |
     use_default_settings: true
+
     server:
-      secret_key: "temp-test-key" 
-      limiter: false
-      image_proxy: true
+      bind_address: 0.0.0.0
+      secret_key: "will-replace-once-working" 
       port: 8080
-      bind_address: "0.0.0.0"
+
     ui:
       static_use_hash: true
-    search:
-      safe_search: 0
-      autocomplete: ""
-      default_lang: ""
-      formats:
-        - html
-        - json
+
+    engines:
+      - name: ahmia
+        disabled: true
+      - name: torch
+        disabled: true
 
   limiter.toml: |
     [general]
