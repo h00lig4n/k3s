@@ -7,13 +7,20 @@ data:
   settings.yml: |
     use_default_settings: true
 
-    server:
-      bind_address: 0.0.0.0
-      port: 8080
+    general:
+      debug: false
+      instance_name: "SearXNG"
 
-    system:
-      logging:
-        level: info
+    search:
+      safe_search: 2
+      autocomplete: 'duckduckgo'
+      formats:
+        - html
+
+    server:
+      secret_key: "ultrasecretkey"
+      limiter: false
+      image_proxy: true
 
   limiter.toml: |
     [general]
