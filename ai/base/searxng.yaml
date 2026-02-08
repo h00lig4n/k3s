@@ -26,6 +26,10 @@ spec:
         app.kubernetes.io/name: searxng
         app.kubernetes.io/part-of: ai
     spec:
+      securityContext:
+        runAsUser: 977
+        runAsGroup: 977
+        fsGroup: 977
       containers:
       - name: searxng
         image: searxng/searxng:latest
