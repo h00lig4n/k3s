@@ -17,7 +17,7 @@ data:
 
   limiter.toml: |
     [general]
-    enabled = true
+    enabled = false
 
     [botdetection.ip_rate]
     limit = 15
