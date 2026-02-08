@@ -47,6 +47,8 @@ spec:
           #  value: /etc/searxng/settings.yml
           #- name: SEARXNG_LIMITER
           #  value: /etc/searxng/limiter.toml
+          - name: SEARXNG_TRUSTED_PROXIES
+            value: "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16"
           - name: SEARXNG_SECRET_KEY
             valueFrom:
               secretKeyRef:
