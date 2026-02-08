@@ -6,20 +6,13 @@ metadata:
 data:
   settings.yml: |
     use_default_settings: true
-
     server:
-      bind_address: 0.0.0.0
       secret_key: "will-replace-once-working" 
-      port: 8080
-
-    ui:
-      static_use_hash: true
-
-    engines:
-      - name: ahmia
-        disabled: true
-      - name: torch
-        disabled: true
+      bind_address: "0.0.0.0"
+    search:
+      formats:
+        - html
+        - json
 
   limiter.toml: |
     [general]
