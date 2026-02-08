@@ -13,10 +13,4 @@ data:
 
   limiter.toml: |
     [general]
-    enabled = true
-
-    [botdetection.ip_rate]
-    enabled = false
-
-    [botdetection.ip_limit]
     enabled = false
