@@ -57,7 +57,7 @@ spec:
             mountPath: /etc/searxng/settings.yml
             subPath: settings.yml
             readOnly: true
-          - name: limiter
+          - name: settings
             mountPath: /etc/searxng/limiter.toml
             subPath: limiter.toml
             readOnly: true
@@ -75,9 +75,6 @@ spec:
         node-role.kubernetes.io/worker: "true"
       volumes:
         - name: settings
-          configMap:
-            name: searxng-settings
-        - name: limiter
           configMap:
             name: searxng-settings
         - name: searxng-pvc
