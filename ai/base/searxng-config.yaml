@@ -13,16 +13,31 @@ data:
 
     ui:
       static_use_hash: true
+      lang_selector: false
 
-    search:
-      safe_search: 0
-      autocomplete: ""
+    system:
+      logging:
+        level: info
 
     engines:
-      - name: ahmia
+      general:
+        disabled: false
+      google:
         disabled: true
-      - name: torch
+      bing:
         disabled: true
+      duckduckgo:
+        disabled: false
+      yahoo:
+        disabled: true
+      brave:
+        disabled: true
+      ecosia:
+        disabled: false
+      qwant:
+        disabled: false
+      searxng:
+        disabled: false
   limiter.toml: |
     [general]
     enabled = true
