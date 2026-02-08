@@ -8,9 +8,9 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
-#  syncPolicy:
-#    automated:
-#      selfHeal: true
+  syncPolicy:
+    automated:
+      selfHeal: true
   source:
     repoURL: https://charts.rancher.io
     targetRevision: 103.0.1

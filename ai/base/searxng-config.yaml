@@ -7,7 +7,8 @@ data:
   settings.yml: |
     use_default_settings: true
     server:
-      secret_key: "will-replace-once-working" 
+      secret_key: "will-replace-once-working"
+      port: 8080
       bind_address: "0.0.0.0"
     search:
       formats:

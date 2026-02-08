@@ -1,0 +1,34 @@
+admin_email: "example@mydomain.com"
+admin_name: "Admin"
+existingSecretkeySecret: planka
+existingAdminCredsSecret: planka
+nodeSelector:
+  node-role.kubernetes.io/worker: "true"
+resources:
+  limits:
+      cpu: 500m
+      memory: 500Mi
+  requests:
+      cpu: 100m
+      memory: 128Mi
+postgresql:
+  enabled: false
+existingDburlSecret: planka
+persistence:
+  enabled: true
+  existingClaim: planka
+  storageClass: "nfs"
+  accessMode: ReadWriteOnce
+  size: 10Gi
+ingress:
+  enabled: true
+  className: traefik
+  hosts:
+    - host: mydomain.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: tls-certificate
+      hosts:
+        - mydomain.com
