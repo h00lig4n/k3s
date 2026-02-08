@@ -44,11 +44,11 @@ spec:
             containerPort: 11434
         env:
           - name: WEBUI_URL
-            value: "http:searxng:8080"
+            value: "http://searxng:8080"
           - name: OLLAMA_NUM_PARALLEL
-            value: "2"
+            value: "3"
           - name: OLLAMA_MAX_LOADED_MODELS
-            value: "1" 
+            value: "2" 
         volumeMounts:
           - name: ollama-pvc
             mountPath: /root/.ollama
