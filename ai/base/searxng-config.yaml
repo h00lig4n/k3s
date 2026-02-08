@@ -12,5 +12,4 @@ data:
       port: 8080
 
   limiter.toml: |
-    [general]
-    enabled = false
+    # empty on purpose
