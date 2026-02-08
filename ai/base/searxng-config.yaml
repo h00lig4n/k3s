@@ -12,5 +12,11 @@ data:
       port: 8080
 
   limiter.toml: |
+    [general]
+    enabled = true
+
+    [botdetection.ip_rate]
+    enabled = false
+
     [botdetection.ip_limit]
-    link_token = true
+    enabled = false
