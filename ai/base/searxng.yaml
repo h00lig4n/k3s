@@ -57,10 +57,10 @@ spec:
             mountPath: /etc/searxng/settings.yml
             subPath: settings.yml
             readOnly: true
-          - name: settings
-            mountPath: /etc/searxng/limiter.toml
-            subPath: limiter.toml
-            readOnly: true
+         # - name: settings
+         #   mountPath: /etc/searxng/limiter.toml
+         #   subPath: limiter.toml
+         #   readOnly: true
         securityContext: {}
         resources:
           requests:
