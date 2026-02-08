@@ -45,9 +45,9 @@ spec:
             value: tika
           - name: TIKA_SERVER_URL
             value: http://tika:9998
-          - name: WEBUI_SEARCH_PROVIDER
+          - name: WEB_SEARCH_ENGINE
             value: "searxng"
-          - name: WEBUI_SEARCH_SEARXNG_BASE_URL
+          - name: SEARXNG_QUERY_URL
             value: "http://searxng:8080"
           - name: OPENAI_API_KEY
             valueFrom:
