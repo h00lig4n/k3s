@@ -50,7 +50,7 @@ spec:
           - name: WEB_SEARCH_ENGINE
             value: "searxng"
           - name: SEARXNG_QUERY_URL
-            value: "http://searxng:8080"
+            value: "http://searxng:8080/search?q=<query>"
           - name: OPENAI_API_KEY
             valueFrom:
               secretKeyRef:
