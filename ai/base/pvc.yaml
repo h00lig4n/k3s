@@ -57,3 +57,23 @@ spec:
   resources:
     requests:
       storage: 5Gi
+#---
+#apiVersion: v1
+#kind: PersistentVolumeClaim
+#metadata:
+#  name: sd-webui-data
+#  namespace: ai
+#  labels:
+#    app: sd-webui
+#    app.kubernetes.io/component: sd-webui
+#    app.kubernetes.io/part-of: ai
+#    app.kubernetes.io/name: sd-webui
+#  annotations:
+#    argocd.argoproj.io/sync-options: Delete=false
+#spec:
+#  accessModes:
+#    - ReadWriteOnce
+#  storageClassName: nfs
+#  resources:
+#    requests:
+#      storage: 50Gi

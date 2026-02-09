@@ -1,0 +1,48 @@
+# SDXL Turbo model or Flux.1 Schnell
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sd-webui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sd-webui
+  template:
+    metadata:
+      labels:
+        app: sd-webui
+    spec:
+      runtimeClassName: nvidia
+      containers:
+        - name: sd-webui
+          image: ghcr.io/ai-dock/stable-diffusion-webui:latest-cuda
+          env:
+            - name: WEBUI_ARGS
+              value: "--api --listen --xformers --enable-insecure-extension-access"
+          ports:
+            - containerPort: 7860
+          resources:
+            limits:
+              nvidia.com/gpu: "1"
+            requests:
+              cpu: "2"
+              memory: "8Gi"
+          volumeMounts:
+            - name: data
+              mountPath: /workspace
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: sd-webui-data
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sd-webui-service
+spec:
+  ports:
+    - port: 7860
+      targetPort: 7860
+  selector:
+    app: sd-webui
