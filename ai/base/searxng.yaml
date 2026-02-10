@@ -59,6 +59,8 @@ spec:
         volumeMounts:
         #  - name: searxng-pvc
         #    mountPath: /etc/searxng
+          - name: etc
+            mountPath: /etc/searxng
         #  - name: searxng-pvc
         #    mountPath: /var/cache/searxng
           - name: settings
@@ -82,6 +84,8 @@ spec:
       nodeSelector:
         node-role.kubernetes.io/worker: "true"
       volumes:
+        - name: etc
+          emptyDir: {}
         - name: settings
           configMap:
             name: searxng-settings
