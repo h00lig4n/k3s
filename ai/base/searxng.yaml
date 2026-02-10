@@ -66,7 +66,7 @@ spec:
           - name: settings
             mountPath: /etc/searxng/settings.yml
             subPath: settings.yml
-            readOnly: true
+            readOnly: false
           - name: settings
             mountPath: /etc/searxng/limiter.toml
             subPath: limiter.toml
