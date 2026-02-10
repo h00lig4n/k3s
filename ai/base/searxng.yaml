@@ -63,14 +63,14 @@ spec:
             mountPath: /etc/searxng
         #  - name: searxng-pvc
         #    mountPath: /var/cache/searxng
-          - name: settings
-            mountPath: /etc/searxng/settings.yml
-            subPath: settings.yml
-            readOnly: false
+         # - name: settings
+         #   mountPath: /etc/searxng/settings.yml
+         #   subPath: settings.yml
+         #   readOnly: false
           - name: settings
             mountPath: /etc/searxng/limiter.toml
             subPath: limiter.toml
-            readOnly: true
+            readOnly: false
         securityContext: {}
         resources:
           requests:
