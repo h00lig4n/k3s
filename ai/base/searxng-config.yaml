@@ -12,4 +12,17 @@ data:
       port: 8080
 
   limiter.toml: |
-    # empty on purpose
+    [botdetection]
+
+    ipv4_prefix = 32
+    ipv6_prefix = 48
+
+    trusted_proxies = [
+      '127.0.0.0/8',
+      '::1',
+      '192.168.0.0/16',
+      '172.16.0.0/12',
+      '10.42.0.0/16',
+      '10.42.1.0/24',
+      'fd00::/8',
+    ]
