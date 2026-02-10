@@ -48,7 +48,6 @@ spec:
           #- name: SEARXNG_LIMITER
           #  value: /etc/searxng/limiter.toml
           #- name: SEARXNG_ENABLE_BOT_DETECTION
-          #  value: "false"
           #- name: SEARXNG_TRUSTED_PROXIES
           #  value: "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,10.42.0.0/16,10.42.1.0/24"
           - name: SEARXNG_SECRET #SEARXNG_SECRET_KEY
@@ -63,10 +62,10 @@ spec:
             mountPath: /etc/searxng
         #  - name: searxng-pvc
         #    mountPath: /var/cache/searxng
-         # - name: settings
-         #   mountPath: /etc/searxng/settings.yml
-         #   subPath: settings.yml
-         #   readOnly: false
+          - name: settings
+            mountPath: /etc/searxng/settings.yml
+            subPath: settings.yml
+            readOnly: false
           - name: settings
             mountPath: /etc/searxng/limiter.toml
             subPath: limiter.toml
