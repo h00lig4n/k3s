@@ -83,14 +83,14 @@ spec:
       nodeSelector:
         node-role.kubernetes.io/worker: "true"
       volumes:
-        - name: etc
-          emptyDir: {}
-        - name: settings
-          configMap:
-            name: searxng-settings
-        #- name: searxng-pvc
-        #  persistentVolumeClaim:
-        #    claimName: searxng
+        #- name: etc
+        #  emptyDir: {}
+        #- name: settings
+        #  configMap:
+        #    name: searxng-settings
+        - name: searxng-pvc
+          persistentVolumeClaim:
+            claimName: searxng
         - name: localtime
           hostPath:
             path: /etc/localtime
