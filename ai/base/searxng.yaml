@@ -43,10 +43,10 @@ spec:
             value: "0.0.0.0"
           #- name: SEARXNG_DISABLED_ENGINES
           #  value: "ahmia,torch"
-          #- name: SEARXNG_SETTINGS_PATH
-          #  value: /etc/searxng/settings.yml
-          #- name: SEARXNG_LIMITER
-          #  value: /etc/searxng/limiter.toml
+          - name: SEARXNG_SETTINGS_PATH
+            value: /etc/searxng/settings.yml
+          - name: SEARXNG_LIMITER
+            value: /etc/searxng/limiter.toml
           #- name: SEARXNG_ENABLE_BOT_DETECTION
           #  value: "false"
           #- name: SEARXNG_TRUSTED_PROXIES
