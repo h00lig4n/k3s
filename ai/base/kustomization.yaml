@@ -5,5 +5,4 @@ resources:
   - openwebui.yaml
   - pvc.yaml
   - searxng.yaml
-  - searxng-config.yaml
   - tika.yaml
