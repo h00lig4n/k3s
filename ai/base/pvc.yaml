@@ -41,7 +41,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: searxng
+  name: searxng-config
   namespace: ai
   labels:
     app: searxng
@@ -56,7 +56,7 @@ spec:
   storageClassName: nfs
   resources:
     requests:
-      storage: 5Gi
+      storage: 100Mi
 #---
 #apiVersion: v1
 #kind: PersistentVolumeClaim

@@ -43,10 +43,10 @@ spec:
             value: "0.0.0.0"
           #- name: SEARXNG_DISABLED_ENGINES
           #  value: "ahmia,torch"
-          - name: SEARXNG_SETTINGS_PATH
-            value: /etc/searxng/settings.yml
-          - name: SEARXNG_LIMITER
-            value: /etc/searxng/limiter.toml
+          #- name: SEARXNG_SETTINGS_PATH
+          #  value: /etc/searxng/settings.yml
+          #- name: SEARXNG_LIMITER
+          #  value: /etc/searxng/limiter.toml
           #- name: SEARXNG_ENABLE_BOT_DETECTION
           #- name: SEARXNG_TRUSTED_PROXIES
           #  value: "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,10.42.0.0/16,10.42.1.0/24"
@@ -56,8 +56,10 @@ spec:
                 name: searxng-secret
                 key: SEARXNG_SECRET_KEY
         volumeMounts:
-          - name: searxng-pvc
+          - name: searxng-config-pvc
             mountPath: /etc/searxng
+          - name: searxng-cache
+            mountPath: /var/cache/searxng
         #  - name: etc
         #    mountPath: /etc/searxng
         #  - name: searxng-pvc
@@ -83,14 +85,14 @@ spec:
       nodeSelector:
         node-role.kubernetes.io/worker: "true"
       volumes:
-        #- name: etc
-        #  emptyDir: {}
+        - name: searxng-cache
+          emptyDir: {}
         #- name: settings
         #  configMap:
         #    name: searxng-settings
-        - name: searxng-pvc
+        - name: searxng-config-pvc
           persistentVolumeClaim:
-            claimName: searxng
+            claimName: searxng-config
         - name: localtime
           hostPath:
             path: /etc/localtime
