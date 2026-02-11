@@ -39,8 +39,10 @@ spec:
             value: "searxng"
           - name: SEARXNG_PORT
             value: "8080"
-          - name: SEARXNG_BIND_ADDRESS
-            value: "0.0.0.0"
+          - name: SEARXNG_UWSGI_WORKERS
+            value: "4"
+          - name: SEARXNG_UWSGI_THREADS
+            value: "4"
           #- name: SEARXNG_DISABLED_ENGINES
           #  value: "ahmia,torch"
           #- name: SEARXNG_SETTINGS_PATH
