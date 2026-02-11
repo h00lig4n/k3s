@@ -4,5 +4,6 @@ resources:
   - ollama.yaml
   - openwebui.yaml
   - pvc.yaml
+  - qdrant.yaml
   - searxng.yaml
   - tika.yaml

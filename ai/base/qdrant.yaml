@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qdrant
+  namespace: ai
+  labels:
+    app: qdrant
+    app.kubernetes.io/component: qdrant
+    app.kubernetes.io/part-of: ai
+    app.kubernetes.io/name: qdrant
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: qdrant
+      app.kubernetes.io/component: qdrant
+      app.kubernetes.io/name: qdrant
+      app.kubernetes.io/part-of: ai
+  template:
+    metadata:
+      labels:
+        app: qdrant
+        app.kubernetes.io/component: qdrant
+        app.kubernetes.io/name: qdrant
+        app.kubernetes.io/part-of: ai
+    spec:
+      containers:
+        - name: qdrant
+          image: qdrant/qdrant:latest
+          ports:
+            - containerPort: 6333
+              name: http
+          volumeMounts:
+            - name: qdrant-storage
+              mountPath: /qdrant/storage
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "2Gi"
+      volumes:
+        - name: qdrant-storage
+          persistentVolumeClaim:
+            claimName: qdrant-data
