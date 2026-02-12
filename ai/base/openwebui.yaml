@@ -51,6 +51,8 @@ spec:
             value: "searxng"
           - name: SEARXNG_QUERY_URL
             value: "http://searxng:8080/search?q=<query>"
+          - name: ENABLE_RAG
+            value: "true"
           - name: VECTOR_DB
             value: qdrant
           - name: QDRANT_URI
