@@ -11,7 +11,7 @@ NFS running on separate Debian Linux box.
 - Migrate Home Assistant to an easier to maintain distributed container architecture.
 - Ability to move devices between nodes seamlessly.
 - Migrate existing debian linux server as pure a NAS.
-- AI Setup using OpwnWebUI, Ollama, Tika and SearXNG.
+- AI Setup using OpenWebUI, Ollama, Tika and SearXNG.
   - Moving Ollama to run on a amd64 node with a GPU as Raspberry PI didn't cut it.
 - Gitops with ArgoCD.
 - Fun with Kubernetes.
@@ -23,6 +23,10 @@ NFS running on separate Debian Linux box.
 # Installation Order
 
 # Installed Kubernetes Components
+
+## AI
+Refer to [/ai/README.md]
+
 
 ## Argo CD
 [Argo CD](https://argo-cd.readthedocs.io/en/stable/getting_started/)
