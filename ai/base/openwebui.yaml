@@ -39,6 +39,8 @@ spec:
             value: "http://ollama:11434"
           - name: RAG_EMBEDDING_ENGINE
             value: ollama
+          - name: EMBEDDING_MODEL
+            value: "nomic-embed-text"
           - name: AUDIO_STT_ENGINE
             value: openai
           - name: CONTENT_EXTRACTION_ENGINE
