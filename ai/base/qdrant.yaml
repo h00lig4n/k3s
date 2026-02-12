@@ -43,3 +43,25 @@ spec:
         - name: qdrant-storage
           persistentVolumeClaim:
             claimName: qdrant
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: qdrant
+  namespace: ai
+  labels:
+    app: qdrant
+    app.kubernetes.io/component: qdrant
+    app.kubernetes.io/part-of: ai
+    app.kubernetes.io/name: qdrant
+spec:
+  type: ClusterIP
+  selector:
+    app: qdrant
+    app.kubernetes.io/component: qdrant
+    app.kubernetes.io/part-of: ai
+    app.kubernetes.io/name: qdrant
+  ports:
+    - port: 6333
+      targetPort: http
+      protocol: TCP
