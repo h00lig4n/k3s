@@ -1,12 +1,6 @@
 # AI Setup K3S
 This is old and needs updating
 
-## Components
-- searxng for WebSearch.
-- Tika for document transcription.
-- Ollama for AI.
-- OpenWebUI for UI with chat and prompt.
-
 ## Ollama
 
 ### K3S Node Setup
