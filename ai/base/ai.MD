@@ -18,6 +18,8 @@ TODO Vector Database ....
 
 ## Searxng
 This is used for doing web searches.
+I have spent alot of time trying to optimize.
+
 
 ### Installation
 Not the easiest item to setup. 
