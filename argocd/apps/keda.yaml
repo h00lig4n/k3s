@@ -45,7 +45,7 @@ spec:
                 operator: "Equal"
                 value: "true"
                 effect: "NoExecute"
-    - chart: keda-http-add-on 
+    - chart: keda-add-ons-http
       repoURL: https://kedacore.github.io/charts
       targetRevision: 0.12.1
       helm:
