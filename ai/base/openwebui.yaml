@@ -74,8 +74,8 @@ spec:
             memory: "500Mi"
             cpu: "500m"
           limits:
-            memory: "2000Mi"
-            cpu: "3000m"
+            memory: "1500Mi"
+            cpu: "1500m"
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       nodeSelector:

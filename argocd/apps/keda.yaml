@@ -1,0 +1,46 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: keda
+  namespace: argocd
+spec:
+  destination:
+    namespace: keda
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+      - CreateNamespace=true 
+  project: infrastructure
+  sources:
+    - repoURL: https://github.com/kedacore/keda
+      targetRevision: v2.19.0
+      path: config/crd
+    - chart: keda 
+      repoURL: https://kedacore.github.io/charts
+      targetRevision: 2.19.0
+      helm:
+        releaseName: keda
+        values: |
+          crds:
+            install: false
+
+          metricsServer:
+            enabled: false
+
+          podDisruptionBudget:
+            create: true
+
+          operator:
+            replicaCount: 1
+            logLevel: info
+            nodeSelector:
+              node-role.kubernetes.io/control-plane: "true"
+
+            tolerations:
+              - key: "CriticalAddonsOnly"
+                operator: "Equal"
+                value: "true"
+                effect: "NoExecute"
