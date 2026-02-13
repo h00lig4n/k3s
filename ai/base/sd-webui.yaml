@@ -5,6 +5,7 @@ metadata:
   name: sd-webui
 spec:
   replicas: 1
+  revisionHistoryLimit: 3
   selector:
     matchLabels:
       app: sd-webui

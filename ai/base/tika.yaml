@@ -10,6 +10,7 @@ metadata:
     app.kubernetes.io/part-of: ai
 spec:
   replicas: 1
+  revisionHistoryLimit: 3
   selector:
     matchLabels:
       app: tika
