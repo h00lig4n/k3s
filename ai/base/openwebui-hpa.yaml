@@ -1,0 +1,19 @@
+apiVersion: http.keda.sh/v1alpha1
+kind: HTTPScaledObject
+metadata:
+  name: openwebui-hpa
+  namespace: ai
+  labels:
+    app: openwebui
+    app.kubernetes.io/component: openwebui
+    app.kubernetes.io/part-of: ai
+    app.kubernetes.io/name: openwebui
+spec:
+  scaleTargetRef:
+    deployment: openwebui
+    service: openwebui
+    port: 8080
+  replicas:
+    min: 0
+    max: 1
+  scaledownPeriod: 1800   # 30 minutes

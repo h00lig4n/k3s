@@ -20,7 +20,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: openwebui
+                name: keda-add-ons-http-interceptor-proxy
                 port:
                   number: 8080
   tls:

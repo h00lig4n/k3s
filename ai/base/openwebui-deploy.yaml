@@ -64,6 +64,12 @@ spec:
               secretKeyRef:
                 name: openai
                 key: api-key
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
         tty: true
         volumeMounts:
           - name: openwebui-pvc
@@ -84,24 +90,4 @@ spec:
         - name: openwebui-pvc
           persistentVolumeClaim:
             claimName: openwebui
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: openwebui
-    app.kubernetes.io/component: openwebui
-    app.kubernetes.io/part-of: ai
-    app.kubernetes.io/name: openwebui
-  name: openwebui
-  namespace: ai
-spec:
-  selector:
-    app: openwebui
-    app.kubernetes.io/component: openwebui
-    app.kubernetes.io/part-of: ai
-    app.kubernetes.io/name: openwebui
-  ports:
-  - port: 8080
-    targetPort: 8080
-  type: ClusterIP
+

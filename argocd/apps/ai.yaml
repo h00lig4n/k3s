@@ -15,3 +15,8 @@ spec:
     - repoURL: https://github.com/h00lig4n/k3s-private.git
       targetRevision: HEAD
       path: ai/overlays/prod
+  ignoreDifferences:
+    - group: apps
+      kind: Deployment
+      jsonPointers:
+        - /spec/replicas§

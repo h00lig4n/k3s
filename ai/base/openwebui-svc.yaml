@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: openwebui
+    app.kubernetes.io/component: openwebui
+    app.kubernetes.io/part-of: ai
+    app.kubernetes.io/name: openwebui
+  name: openwebui
+  namespace: ai
+spec:
+  selector:
+    app: openwebui
+    app.kubernetes.io/component: openwebui
+    app.kubernetes.io/part-of: ai
+    app.kubernetes.io/name: openwebui
+  ports:
+  - port: 8080
+    targetPort: 8080
+  type: ClusterIP
