@@ -12,6 +12,7 @@ spec:
   scaleTargetRef:
     name: openwebui
     kind: deployment
+    apiVersion: apps/v1
     service: openwebui
     port: 8080
   replicas:

@@ -4,6 +4,7 @@ resources:
   - ollama.yaml
   - openwebui-deploy.yaml
   - openwebui-hpa.yaml
+  - openwebui-ingress.yaml
   - openwebui-svc.yaml
   - pvc.yaml
   - qdrant.yaml

@@ -65,12 +65,18 @@ spec:
               secretKeyRef:
                 name: openai
                 key: api-key
+        startupProbe:
+          httpGet:
+            path: /
+            port: 8080
+          failureThreshold: 30
+          periodSeconds: 10
         readinessProbe:
           httpGet:
             path: /
             port: 8080
-          initialDelaySeconds: 5
-          periodSeconds: 5
+          initialDelaySeconds: 10
+          periodSeconds: 10
         tty: true
         volumeMounts:
           - name: openwebui-pvc

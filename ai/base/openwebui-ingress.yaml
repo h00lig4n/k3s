@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: openwebui
+  labels:
+    app.kubernetes.io/component: openwebui
+    app.kubernetes.io/name: openwebui
+    app.kubernetes.io/part-of: ai
+  namespace: ai
+  annotations:
+    #cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: mydomain.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: openwebui #keda-add-ons-http-interceptor-proxy
+                port:
+                  number: 8080
+  tls:
+    - secretName: tls-certificate
+      hosts:
+        - mydomain.com
