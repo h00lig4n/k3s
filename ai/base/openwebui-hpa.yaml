@@ -9,6 +9,8 @@ metadata:
     app.kubernetes.io/part-of: ai
     app.kubernetes.io/name: openwebui
 spec:
+  hosts:
+    - ai.mydomain.com
   scaleTargetRef:
     name: openwebui
     kind: deployment
