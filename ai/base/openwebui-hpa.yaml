@@ -10,7 +10,8 @@ metadata:
     app.kubernetes.io/name: openwebui
 spec:
   scaleTargetRef:
-    deployment: openwebui
+    name: openwebui
+    kind: deployment
     service: openwebui
     port: 8080
   replicas:
