@@ -47,6 +47,6 @@ spec:
                 effect: "NoExecute"
     - chart: keda-http-add-on 
       repoURL: https://kedacore.github.io/charts
-      targetRevision: 2.19.0
+      targetRevision: 0.12.1
       helm:
         releaseName: keda-http-add-on
