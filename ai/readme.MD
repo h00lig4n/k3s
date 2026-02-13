@@ -1,5 +1,6 @@
 # AI Setup K3S
-This is old and needs updating
+
+
 
 ## Ollama
 
@@ -43,10 +44,12 @@ Specialized NVidia node is used instead.
 ### Maintainance
 
 if nvidia-smi stops working:
+
 1. ```sudo apt install --reinstall nvidia-driver```
 2. ```sudo reboot```
 
 Kernel Upgrade:
+
 1. Unhold ```sudo apt-mark unhold linux-image-amd64 linux-headers-amd64```
 2. Normal apy update/upgrad
 

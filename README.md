@@ -85,6 +85,9 @@ kubectl -n kube-system create secret tls sealed-secret-keys --cert=sealed-secret
 kubectl -n kube-system label secret sealed-secret-keys sealedsecrets.bitnami.com/sealed-secrets-key=active
 ```
 
+## KEDA
+To be able scale down resources to zero on schedules, triggers.
+
 ## Kubernetes Reflector
 [Kubernetes Reflector](https://github.com/emberstack/kubernetes-reflector) is used to copy resources between namespaces.
 It is used here to copy the wildcard TLS certificate to all namespaces.
