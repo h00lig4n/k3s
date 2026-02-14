@@ -1,38 +1,14 @@
 apiVersion: argocd-image-updater.argoproj.io/v1alpha1
-kind: ImageUpdateAutomation
+kind: ImageUpdater
 metadata:
-  name: esphome-image-updater
+  name: esphome-updater
   namespace: argocd
-  annotations:
-    argocd.argoproj.io/sync-wave: "10"
 spec:
-  application:
-    name: esphome
-  source:
-    repoURL: https://github.com/h00lig4n/k3s-private.git
-    targetRevision: main
-    path: esphome/overlays/prod
-
-  git:
-    checkoutBranch: main
-    branch: image-updates/esphome
-    commit:
-      authorName: Argo CD Image Updater
-      authorEmail: image-updater@local
-      messageTemplate: |
-        chore(esphome): update image to {{ .NewTag }}
-
-    pullRequest:
-      create: true
-      targetBranch: main
-      labels:
-        - dependencies
-        - automated
-
-  images:
-    - name: docker.io/esphome/esphome
-      updateStrategy: semver
-      semver:
-        constraint: "~2026.1"
-      kustomize:
-        imageName: docker.io/esphome/esphome
+  namespace: argocd
+  applicationRefs:
+    - namePattern: "esphome"
+      images:
+        - alias: "esphome"
+          imageName: "esphome/esphome:2026.1.x"
+          commonUpdateSettings:
+            updateStrategy: "semver"
