@@ -1,0 +1,18 @@
+# apiVersion: keda.sh/v1alpha1
+# kind: ScaledObject
+# metadata:
+#   name: ollama
+#   namespace: ai
+# spec:
+#   scaleTargetRef:
+#     name: ollama
+#   minReplicaCount: 0
+#   maxReplicaCount: 1
+#   cooldownPeriod: 300
+#   triggers:
+#     # Trigger 2 — Node must exist
+#     - type: kubernetes
+#       metadata:
+#         kind: Node
+#         name: gpu-node
+#         value: "1"
