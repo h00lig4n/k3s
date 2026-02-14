@@ -13,7 +13,17 @@ spec:
     name: ollama
   minReplicaCount: 0
   maxReplicaCount: 1
+  cooldownPeriod: 1000 
   triggers:
+    - type: prometheus
+      metadata:
+        serverAddress: http://prometheus-server.monitoring.svc.cluster.local
+        metricName: ollama_requests
+        query: |
+          rate(traefik_service_requests_total{
+            service="ollama@kubernetescrd"
+          }[2m])
+        threshold: "0.1"
     - type: prometheus
       metadata:
         serverAddress: http://prometheus-server.monitoring.svc.cluster.local
