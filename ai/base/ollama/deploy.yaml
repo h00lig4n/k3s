@@ -6,11 +6,11 @@ metadata:
   labels:
     app: ollama
     app.kubernetes.io/component: agent
-    app.kubernetes.io/part-of: ai
     app.kubernetes.io/name: ollama
+    app.kubernetes.io/part-of: ai
 spec:
   revisionHistoryLimit: 3
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: ollama
