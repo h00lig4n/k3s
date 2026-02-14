@@ -10,7 +10,7 @@ metadata:
     app.kubernetes.io/part-of: ai
 spec:
   revisionHistoryLimit: 3
-  replicas: 0
+  replicas: 1
   selector:
     matchLabels:
       app: ollama
