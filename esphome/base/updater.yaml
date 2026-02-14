@@ -12,3 +12,9 @@ spec:
           imageName: "esphome/esphome:2026.1.x"
           commonUpdateSettings:
             updateStrategy: "semver"
+      writeBackConfig:
+        method: git
+        gitConfig:
+          repository: "https://github.com/h00lig4n/k3s-private.git"
+          branch: "main:version-updates"
+          writeBackTarget: "kustomization"
