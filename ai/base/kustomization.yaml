@@ -1,9 +1,6 @@
 resources:
   - ns.yaml
-  - ollama/deploy.yaml
-  - ollama/ingress.yaml
-  - ollama/pvc.yaml
-  - ollama/svc.yaml
+  - ollama/
   - openwebui/
   - pvc.yaml
   - qdrant.yaml
