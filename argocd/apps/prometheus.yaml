@@ -49,10 +49,8 @@ spec:
           nodeExporter:
             enabled: false
 
-          serverFiles:
-            prometheus.yml:
-              scrape_configs:
-                - job_name: 'traefik'
-                  static_configs:
-                    - targets:
-                        - traefik.kube-system.svc.cluster.local:9100
+          extraScrapeConfigs: |
+            - job_name: 'traefik'
+              static_configs:
+                - targets:
+                    - traefik.kube-system.svc.cluster.local:9100

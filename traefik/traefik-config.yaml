@@ -18,6 +18,11 @@ spec:
     ports:
       traefik:
         expose: false
+      metrics:
+        port: 9100
+        expose:
+          default: true
+        exposedPort: 9100
       vector-logs:
         port: 5140
         expose:
