@@ -3,7 +3,7 @@ kind: Service
 metadata:
   labels:
     app: searxng
-    app.kubernetes.io/component: searxng
+    app.kubernetes.io/component: websearch
     app.kubernetes.io/name: searxng
     app.kubernetes.io/part-of: ai
   name: searxng
@@ -11,7 +11,7 @@ metadata:
 spec:
   selector:
     app: searxng
-    app.kubernetes.io/component: searxng
+    app.kubernetes.io/component: websearch
     app.kubernetes.io/name: searxng
     app.kubernetes.io/part-of: ai
   ports:

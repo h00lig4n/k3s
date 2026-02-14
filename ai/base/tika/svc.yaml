@@ -3,7 +3,7 @@ kind: Service
 metadata:
   labels:
     app: tika
-    app.kubernetes.io/component: tika
+    app.kubernetes.io/component: content-analysis
     app.kubernetes.io/name: tika
     app.kubernetes.io/part-of: ai
   name: tika
@@ -11,7 +11,7 @@ metadata:
 spec:
   selector:
     app: tika
-    app.kubernetes.io/component: tika
+    app.kubernetes.io/component: content-analysis
     app.kubernetes.io/name: tika
     app.kubernetes.io/part-of: ai
   ports:

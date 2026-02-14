@@ -5,7 +5,7 @@ metadata:
   namespace: ai
   labels:
     app: tika
-    app.kubernetes.io/component: tika
+    app.kubernetes.io/component: content-analysis
     app.kubernetes.io/name: tika
     app.kubernetes.io/part-of: ai
 spec:
@@ -14,7 +14,7 @@ spec:
   selector:
     matchLabels:
       app: tika
-      app.kubernetes.io/component: tika
+      app.kubernetes.io/component: content-analysis
       app.kubernetes.io/name: tika
       app.kubernetes.io/part-of: ai
   strategy:
@@ -23,7 +23,7 @@ spec:
     metadata:
       labels:
         app: tika
-        app.kubernetes.io/component: tika
+        app.kubernetes.io/component: content-analysis
         app.kubernetes.io/name: tika
         app.kubernetes.io/part-of: ai
     spec:

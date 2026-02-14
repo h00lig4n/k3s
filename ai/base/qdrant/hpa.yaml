@@ -1,16 +1,16 @@
 apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
-  name: tika
+  name: qdrant
   namespace: ai
   labels:
-    app: tika
-    app.kubernetes.io/component: content-analysis
-    app.kubernetes.io/name: tika
+    app: qdrant
+    app.kubernetes.io/component: vector
+    app.kubernetes.io/name: qdrant
     app.kubernetes.io/part-of: ai
 spec:
   scaleTargetRef:
-    name: tika
+    name: qdrant
   minReplicaCount: 0
   maxReplicaCount: 1
   cooldownPeriod: 60

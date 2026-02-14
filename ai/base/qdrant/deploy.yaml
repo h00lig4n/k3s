@@ -5,7 +5,7 @@ metadata:
   namespace: ai
   labels:
     app: qdrant
-    app.kubernetes.io/component: qdrant
+    app.kubernetes.io/component: vector
     app.kubernetes.io/part-of: ai
     app.kubernetes.io/name: qdrant
 spec:
@@ -14,14 +14,14 @@ spec:
   selector:
     matchLabels:
       app: qdrant
-      app.kubernetes.io/component: qdrant
+      app.kubernetes.io/component: vector
       app.kubernetes.io/name: qdrant
       app.kubernetes.io/part-of: ai
   template:
     metadata:
       labels:
         app: qdrant
-        app.kubernetes.io/component: qdrant
+        app.kubernetes.io/component: vector
         app.kubernetes.io/name: qdrant
         app.kubernetes.io/part-of: ai
     spec:
@@ -44,25 +44,3 @@ spec:
         - name: qdrant-storage
           persistentVolumeClaim:
             claimName: qdrant
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: qdrant
-  namespace: ai
-  labels:
-    app: qdrant
-    app.kubernetes.io/component: qdrant
-    app.kubernetes.io/part-of: ai
-    app.kubernetes.io/name: qdrant
-spec:
-  type: ClusterIP
-  selector:
-    app: qdrant
-    app.kubernetes.io/component: qdrant
-    app.kubernetes.io/part-of: ai
-    app.kubernetes.io/name: qdrant
-  ports:
-    - port: 6333
-      targetPort: http
-      protocol: TCP

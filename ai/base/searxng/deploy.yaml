@@ -5,7 +5,7 @@ metadata:
   namespace: ai
   labels:
     app: searxng
-    app.kubernetes.io/component: searxng
+    app.kubernetes.io/component: websearch
     app.kubernetes.io/name: searxng
     app.kubernetes.io/part-of: ai
 spec:
@@ -14,7 +14,7 @@ spec:
   selector:
     matchLabels:
       app: searxng
-      app.kubernetes.io/component: searxng
+      app.kubernetes.io/component: websearch
       app.kubernetes.io/name: searxng
       app.kubernetes.io/part-of: ai
   strategy:
@@ -23,7 +23,7 @@ spec:
     metadata:
       labels:
         app: searxng
-        app.kubernetes.io/component: searxng
+        app.kubernetes.io/component: websearch
         app.kubernetes.io/name: searxng
         app.kubernetes.io/part-of: ai
     spec:

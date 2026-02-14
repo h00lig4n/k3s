@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: ollama
   labels:
-    app.kubernetes.io/component: ollama
+    app.kubernetes.io/component: agent
     app.kubernetes.io/name: ollama
     app.kubernetes.io/part-of: ai
   namespace: ai

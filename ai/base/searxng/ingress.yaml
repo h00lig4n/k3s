@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: searxng
   labels:
-    app.kubernetes.io/component: searxng
+    app.kubernetes.io/component: websearch
     app.kubernetes.io/name: searxng
     app.kubernetes.io/part-of: ai
   namespace: ai

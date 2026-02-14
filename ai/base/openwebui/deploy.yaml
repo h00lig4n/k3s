@@ -5,7 +5,7 @@ metadata:
   namespace: ai
   labels:
     app: openwebui
-    app.kubernetes.io/component: openwebui
+    app.kubernetes.io/component: gui
     app.kubernetes.io/part-of: ai
     app.kubernetes.io/name: openwebui
 spec:
@@ -14,7 +14,7 @@ spec:
   selector:
     matchLabels:
       app: openwebui
-      app.kubernetes.io/component: openwebui
+      app.kubernetes.io/component: gui
       app.kubernetes.io/part-of: ai
       app.kubernetes.io/name: openwebui
   strategy:
@@ -23,7 +23,7 @@ spec:
     metadata:
       labels:
         app: openwebui
-        app.kubernetes.io/component: openwebui
+        app.kubernetes.io/component: gui
         app.kubernetes.io/part-of: ai
         app.kubernetes.io/name: openwebui
     spec:

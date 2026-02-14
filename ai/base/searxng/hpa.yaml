@@ -1,16 +1,16 @@
 apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
-  name: tika
+  name: searxng
   namespace: ai
   labels:
-    app: tika
-    app.kubernetes.io/component: content-analysis
-    app.kubernetes.io/name: tika
+    app: searxng
+    app.kubernetes.io/component: websearch
+    app.kubernetes.io/name: tsearxnga
     app.kubernetes.io/part-of: ai
 spec:
   scaleTargetRef:
-    name: tika
+    name: searxng
   minReplicaCount: 0
   maxReplicaCount: 1
   cooldownPeriod: 60

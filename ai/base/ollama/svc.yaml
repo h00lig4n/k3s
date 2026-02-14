@@ -3,7 +3,7 @@ kind: Service
 metadata:
   labels:
     app: ollama
-    app.kubernetes.io/component: ollama
+    app.kubernetes.io/component: agent
     app.kubernetes.io/name: ollama
     app.kubernetes.io/part-of: ai
   name: ollama
@@ -11,7 +11,7 @@ metadata:
 spec:
   selector:
     app: ollama
-    app.kubernetes.io/component: ollama
+    app.kubernetes.io/component: agent
     app.kubernetes.io/name: ollama
     app.kubernetes.io/part-of: ai
   ports:

@@ -5,7 +5,7 @@ metadata:
   namespace: ai
   labels:
     app: searxng
-    app.kubernetes.io/component: searxng
+    app.kubernetes.io/component: websearch
     app.kubernetes.io/part-of: ai
     app.kubernetes.io/name: searxng
   annotations:

@@ -4,6 +4,10 @@ kind: IngressRoute
 metadata:
   name: openwebui
   namespace: ai
+  labels:
+    app.kubernetes.io/component: gui
+    app.kubernetes.io/name: ollama
+    app.kubernetes.io/part-of: ai
 spec:
   entryPoints:
     - websecure
