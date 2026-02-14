@@ -10,6 +10,6 @@ resources:
   - pvc.yaml
   - qdrant.yaml
   - searxng.yaml
-  - tika/tika-deploy.yaml
-  - tika/tika-svc.yaml
-  - tika/tika-hpa.yaml
+  - tika/deploy.yaml
+  - tika/svc.yaml
+  - tika/hpa.yaml
