@@ -21,26 +21,6 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: openwebui
-  namespace: ai
-  labels:
-    app: openwebui
-    app.kubernetes.io/component: openwebui
-    app.kubernetes.io/part-of: ai
-    app.kubernetes.io/name: openwebui
-  annotations:
-    argocd.argoproj.io/sync-options: Delete=false
-spec:
-  accessModes:
-    - ReadWriteOnce
-  storageClassName: nfs
-  resources:
-    requests:
-      storage: 5Gi
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
   name: searxng-config
   namespace: ai
   labels:

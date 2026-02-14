@@ -47,25 +47,3 @@ spec:
       terminationGracePeriodSeconds: 30
       nodeSelector:
         node-role.kubernetes.io/worker: "true"
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: tika
-    app.kubernetes.io/component: tika
-    app.kubernetes.io/name: tika
-    app.kubernetes.io/part-of: ai
-  name: tika
-  namespace: ai
-spec:
-  selector:
-    app: tika
-    app.kubernetes.io/component: tika
-    app.kubernetes.io/name: tika
-    app.kubernetes.io/part-of: ai
-  ports:
-  - port: 9998
-    name: http
-    targetPort: 9998
-  type: ClusterIP

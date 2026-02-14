@@ -1,0 +1,21 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: tika
+  namespace: ai
+  labels:
+    app: tika
+    app.kubernetes.io/component: tika
+    app.kubernetes.io/name: tika
+    app.kubernetes.io/part-of: ai
+spec:
+  scaleTargetRef:
+    name: tika
+  minReplicaCount: 0
+  maxReplicaCount: 1
+  cooldownPeriod: 60
+  triggers:
+    - type: kubernetes-workload
+      metadata:
+        podSelector: app=openwebui
+        value: "1"
