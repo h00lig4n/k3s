@@ -1,6 +1,9 @@
 # AI Setup K3S
 
+The [nvidia-device-plugin](https://github.com/NVIDIA/k8s-device-plugin) app is used to prevent pods deploying on the GPU
+node when they they don't need to.
 
+Want the ability to run models at home, experiment and combine different tool sets for other use cases.
 
 ## Ollama
 
@@ -58,6 +61,8 @@ Kernel Upgrade:
 Documentation pending
 
 ### OpenWebUI Settings
+
+
 
 ### Documents
 
