@@ -2,7 +2,7 @@ apiVersion: argocd-image-updater.argoproj.io/v1alpha1
 kind: ImageUpdateAutomation
 metadata:
   name: esphome-image-updater
-  namespace: hass
+  namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "10"
 spec:
