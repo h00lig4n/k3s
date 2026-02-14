@@ -1,18 +1,27 @@
-# apiVersion: keda.sh/v1alpha1
-# kind: ScaledObject
-# metadata:
-#   name: ollama
-#   namespace: ai
-# spec:
-#   scaleTargetRef:
-#     name: ollama
-#   minReplicaCount: 0
-#   maxReplicaCount: 1
-#   cooldownPeriod: 300
-#   triggers:
-#     # Trigger 2 — Node must exist
-#     - type: kubernetes
-#       metadata:
-#         kind: Node
-#         name: gpu-node
-#         value: "1"
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: ollama
+  namespace: ai
+  labels:
+    app: ollama
+    app.kubernetes.io/component: agent
+    app.kubernetes.io/name: ollama
+    app.kubernetes.io/part-of: ai
+spec:
+  scaleTargetRef:
+    name: ollama
+  minReplicaCount: 0
+  maxReplicaCount: 1
+  triggers:
+    - type: prometheus
+      metadata:
+        serverAddress: http://prometheus-server.monitoring.svc.cluster.local
+        metricName: gpu_node_ready
+        query: |
+          kube_node_status_condition{
+            node="k3s6",
+            condition="Ready",
+            status="true"
+          }
+        threshold: "1"
