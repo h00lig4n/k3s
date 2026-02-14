@@ -84,25 +84,3 @@ spec:
         - name: localtime
           hostPath:
             path: /etc/localtime
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: ollama
-    app.kubernetes.io/component: ollama
-    app.kubernetes.io/name: ollama
-    app.kubernetes.io/part-of: ai
-  name: ollama
-  namespace: ai
-spec:
-  selector:
-    app: ollama
-    app.kubernetes.io/component: ollama
-    app.kubernetes.io/name: ollama
-    app.kubernetes.io/part-of: ai
-  ports:
-  - port: 11434
-    name: http
-    targetPort: http
-  type: ClusterIP

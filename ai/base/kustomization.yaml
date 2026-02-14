@@ -1,15 +1,16 @@
 resources:
   - ns.yaml
-  - ingress.yaml
-  - ollama.yaml
-  - openwebui/deploy.yaml
-  - openwebui/hpa.yaml
-  - openwebui/ingress.yaml
-  - openwebui/pvc.yaml
-  - openwebui/svc.yaml
+  - ollama/deploy.yaml
+  - ollama/ingress.yaml
+  - ollama/pvc.yaml
+  - ollama/svc.yaml
+  - openwebui/
   - pvc.yaml
   - qdrant.yaml
-  - searxng.yaml
+  - searxng/deploy.yaml
+  - searxng/ingress.yaml
+  - searxng/pvc.yaml
+  - searxng/svc.yaml
   - tika/deploy.yaml
   - tika/svc.yaml
   - tika/hpa.yaml
