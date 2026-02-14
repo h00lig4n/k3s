@@ -62,8 +62,6 @@ Documentation pending
 
 ### OpenWebUI Settings
 
-
-
 ### Documents
 
 ## Qdrant
