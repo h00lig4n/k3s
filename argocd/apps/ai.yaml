@@ -15,11 +15,6 @@ spec:
       kind: Deployment
       jsonPointers:
         - /spec/replicas
-  resourceExclusions:
-    - apiGroups:
-        - keda.sh
-      kinds:
-        - ScaledObject
   project: ai
   sources:
     - repoURL: https://github.com/h00lig4n/k3s-private.git
