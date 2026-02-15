@@ -15,4 +15,4 @@ spec:
     path: generic-device-plugin
     repoURL: https://github.com/h00lig4n/k3s.git
     targetRevision: HEAD
-# TODO Would be nice to patch the orginal daemonset
+# TODO Would be nice to patch the orginal daemonset when I can be bothered
