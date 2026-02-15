@@ -13,8 +13,16 @@ spec:
       writeBackTarget: "kustomization"
   applicationRefs:
     - namePattern: "esphome"
+      labelSelectors:
+        matchLabels:
+          environment: "production"
       images:
         - alias: "esphome"
           imageName: "esphome/esphome:2026.1.x"
           commonUpdateSettings:
             updateStrategy: "semver"
+        - alias: "hass"
+          imageName: "homeassistant/home-assistant:2026.2.x"
+          commonUpdateSettings:
+            updateStrategy: "semver"
+# Will use labels for this one.
