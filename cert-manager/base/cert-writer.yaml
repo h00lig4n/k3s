@@ -45,7 +45,8 @@ spec:
           mountPath: /root/.ssh
           readOnly: true
         - name: script
-          mountPath: /run
+          mountPath: /run/run.sh
+          subPath: run.sh
       volumes:
       - name: pvc
         persistentVolumeClaim:
