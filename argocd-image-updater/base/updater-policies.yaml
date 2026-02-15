@@ -12,6 +12,19 @@ spec:
       branch: "main:version-updates"
       writeBackTarget: "kustomization"
   applicationRefs:
+    - namePattern: "*"
+      labelSelectors:
+        matchLabels:
+          image-policy: semver
+      images:
+        - alias: "docker"
+          imageName: "registry:3.x.x"
+          commonUpdateSettings:
+            updateStrategy: "semver"
+        - alias: "dockerui"
+          imageName: "joxit/docker-registry-ui:2.x.x"
+          commonUpdateSettings:
+            updateStrategy: "semver"
     - namePattern: "esphome"
       labelSelectors:
         matchLabels:

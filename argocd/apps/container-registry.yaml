@@ -3,6 +3,7 @@ kind: Application
 metadata:
   name: container-registry
   namespace: argocd
+  image-policy: semver
 spec:
   destination:
     namespace: default
