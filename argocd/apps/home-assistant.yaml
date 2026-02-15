@@ -3,7 +3,6 @@ kind: Application
 metadata:
   name: hass
   namespace: argocd
-  image-policy: year-series
 spec:
   destination:
     namespace: hass
