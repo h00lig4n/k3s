@@ -8,7 +8,7 @@ spec:
   commonUpdateSettings:
     updateStrategy: "semver"
   writeBackConfig:
-    method: git
+    method: "git:secret:argocd/image-updater-git-creds"
     gitConfig:
       repository: "https://github.com/h00lig4n/k3s-private.git"
       branch: "main:version-updates"
