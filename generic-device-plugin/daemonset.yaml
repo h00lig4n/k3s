@@ -22,6 +22,8 @@ spec:
               - matchExpressions:
                   - key: node-role.kubernetes.io/control-plane
                     operator: DoesNotExist
+                  - key: node-role.kubernetes.io/ai
+                    operator: DoesNotExist
                   - key: nvidia.com/gpu
                     operator: DoesNotExist
       tolerations:
