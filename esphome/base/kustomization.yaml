@@ -3,4 +3,3 @@ resources:
   - ingress.yaml
   - pvc.yaml
   - svc.yaml
-  - updater.yaml
