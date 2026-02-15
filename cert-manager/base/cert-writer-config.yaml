@@ -41,19 +41,32 @@ data:
       [ -f /exports/tls-certificate/.server.pem.sha256 ] && OLDSUM=$(cat /exports/tls-certificate/.server.pem.sha256)
 
       if [ "$NEWSUM" != "$OLDSUM" ]; then
-        echo "Certificate changed, syncing to EdgeRouter..."
-        echo "Target: $EDGE_USER@$EDGE_HOST"
+          echo "Certificate changed, syncing to EdgeRouter..."
+          echo "Target: $EDGE_USER@$EDGE_HOST"
 
-        scp -v -i /root/.ssh/id_ed25519 -o StrictHostKeyChecking=no \
-          /exports/tls-certificate/server.pem "$EDGE_USER@$EDGE_HOST:/config/auth/certificates/server.pem"
+          # Upload via SSH: use stdin -> sudo tee to allow writing where necessary
+          ssh -i /root/.ssh/id_ed25519 \
+            -o StrictHostKeyChecking=no \
+            "$EDGE_USER@$EDGE_HOST" \
+            "cat > /tmp/server.pem" < /exports/tls-certificate/server.pem
 
-        ssh -v -i /root/.ssh/id_ed25519 -o StrictHostKeyChecking=no \
-          "$EDGE_USER@$EDGE_HOST" "restart gui"
+          # Move cert into place with sudo
+          ssh -i /root/.ssh/id_ed25519 \
+            -o StrictHostKeyChecking=no \
+            "$EDGE_USER@$EDGE_HOST" \
+            "sudo mv /tmp/server.pem /config/auth/certificates/server.pem && sudo chmod 600 /config/auth/certificates/server.pem"
 
-        echo "$NEWSUM" > /exports/tls-certificate/.server.pem.sha256
-      else
-        echo "Certificate unchanged."
-      fi
+          # Optionally restart the GUI service
+          ssh -i /root/.ssh/id_ed25519 \
+            -o StrictHostKeyChecking=no \
+            "$EDGE_USER@$EDGE_HOST" \
+            "sudo restart gui || true"
+
+          # Save the new sum
+          echo "$NEWSUM" > /exports/tls-certificate/.server.pem.sha256
+        else
+          echo "Certificate unchanged."
+        fi
 
       sleep 3600
     done
