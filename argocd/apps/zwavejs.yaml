@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: zwavejs
   namespace: argocd
+  labels:
+    image-policy: semver
 spec:
   destination:
     namespace: hass
