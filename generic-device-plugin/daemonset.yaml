@@ -15,6 +15,15 @@ spec:
         app.kubernetes.io/name: generic-device-plugin
     spec:
       priorityClassName: system-node-critical
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: node-role.kubernetes.io/control-plane
+                    operator: DoesNotExist
+                  - key: nvidia.com/gpu
+                    operator: DoesNotExist
       tolerations:
       - operator: "Exists"
         effect: "NoExecute"
