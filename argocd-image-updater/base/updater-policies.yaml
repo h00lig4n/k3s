@@ -5,6 +5,8 @@ metadata:
   namespace: argocd
 spec:
   namespace: argocd
+  commonUpdateSettings:
+    updateStrategy: "semver"
   writeBackConfig:
     method: git
     gitConfig:
@@ -19,12 +21,12 @@ spec:
       images:
         - alias: "docker"
           imageName: "registry:3.x.x"
-          commonUpdateSettings:
-            updateStrategy: "semver"
         - alias: "dockerui"
           imageName: "joxit/docker-registry-ui:2.x.x"
-          commonUpdateSettings:
-            updateStrategy: "semver"
+        - alias: "grafana"
+          imageName: "grafana/grafana-oss:12.3.x"
+        - alias: "esphome"
+          imageName: "esphome/esphome:2026.1.x"
     - namePattern: "esphome"
       labelSelectors:
         matchLabels:
