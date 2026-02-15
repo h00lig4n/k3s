@@ -20,7 +20,7 @@ spec:
           image-policy: semver
       images:
         - alias: "docker"
-          imageName: "registry:3.x.x"
+          imageName: "registry:2.x.x"
         - alias: "dockerui"
           imageName: "joxit/docker-registry-ui:2.x.x"
         - alias: "grafana"
