@@ -6,7 +6,7 @@ metadata:
   labels:
     app: casdoor
 spec:
-  replicas: 0
+  replicas: 1
   selector:
     matchLabels:
       app: casdoor
@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: casdoor
-          image: casbin/casdoor:latest
+          image: casbin/casdoor:2.270.0
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
@@ -33,14 +33,24 @@ spec:
                   key: dataSourceName
             - name: RUNNING_IN_DOCKER
               value: "true"
-          volumeMounts:
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "250m"
+            limits:
+              memory: "1024Mi"
+              cpu: "500m"
+          #volumeMounts:
             #- mountPath: /init_data.json
-            #  name: casdoor-conf
+            #  name: casdoor-init
             #  subPath: init_data.json
-            - mountPath: /conf/app.conf
-              name: casdoor-conf
-              subPath: app.conf
+            #- mountPath: /conf/app.conf
+            #  name: casdoor-conf
+            #  subPath: app.conf
       volumes:
         - configMap:
             name: casdoor
           name: casdoor-conf
+        #- configMap:
+        #    name: casdoor-init
+        #  name: casdoor-init

@@ -1,5 +1,5 @@
 resources:
-  - configmap.yaml
+ # - configmap.yaml
   - deployment.yaml
   - ingress.yaml
   - svc.yaml

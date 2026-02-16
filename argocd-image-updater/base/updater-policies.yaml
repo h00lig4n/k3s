@@ -19,6 +19,8 @@ spec:
         matchLabels:
           image-policy: semver
       images:
+        #- alias: "casdoor" 
+        #  imageName: "casbin/casdoor:2.x.x"
         - alias: "docker"
           imageName: "registry:2.x.x"
         - alias: "dockerui"
