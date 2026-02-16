@@ -47,3 +47,4 @@ spec:
           imageName: "koenkk/zigbee2mqtt:2.8.x"
         - alias: "zwave" 
           imageName: "zwavejs/zwave-js-ui:11.x.x"
+# When fixing th GPU node don't forget to override platforms: "linux/amd64"
