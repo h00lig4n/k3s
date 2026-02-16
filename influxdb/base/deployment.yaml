@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   labels:
     app.kubernetes.io/name: influxdb
+    app.kubernetes.io/component: stats
+    app.kubernetes.io/part-of: hass
   name: influxdb
   namespace: hass
 spec:

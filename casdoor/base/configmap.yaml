@@ -49,8 +49,8 @@ data:
       "organizations": [
         {
           "owner": "",
-          "name": "Thomason",
-          "displayName": "Thomason",
+          "name": "Jansson",
+          "displayName": "Jansson",
           "websiteUrl": "",
           "favicon": "",
           "passwordType": "plain",
@@ -69,8 +69,8 @@ data:
             "en",
             "sv"
           ],
-          "masterPassword": "t1bont4b",
-          "defaultPassword": "passw0rd",
+          "masterPassword": "s3bdnt2b",
+          "defaultPassword": "passw1rd",
           "initScore": 2000,
           "enableSoftDeletion": false,
           "isProfilePublic": true,

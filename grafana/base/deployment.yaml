@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   labels:
     app.kubernetes.io/name: grafana
+    app.kubernetes.io/component: graphs
+    app.kubernetes.io/part-of: hass
   name: grafana
   namespace: hass
 spec:
