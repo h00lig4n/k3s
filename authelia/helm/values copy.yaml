@@ -21,9 +21,9 @@ env:
         key: OIDC_PRIVATE_KEY
 
 configMap:
-  enabled: true
-  content:
+  configuration.yml: |
     theme: dark
+
     server:
       address: tcp://0.0.0.0:9091
 
