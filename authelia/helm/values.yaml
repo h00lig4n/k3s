@@ -1,6 +1,9 @@
 image:
   tag: 4.38.8
 
+ingress:
+  enabled: true
+
 env:
   - name: JWT_SECRET
     valueFrom:
@@ -61,6 +64,3 @@ configMap:
     identity_providers:
       oidc:
         issuer_private_key: ${OIDC_PRIVATE_KEY}
-
-ingress:
-  enabled: true
