@@ -1,0 +1,66 @@
+image:
+  tag: 4.38.8
+
+env:
+  - name: JWT_SECRET
+    valueFrom:
+      secretKeyRef:
+        name: authelia-secrets
+        key: JWT_SECRET
+
+  - name: SESSION_SECRET
+    valueFrom:
+      secretKeyRef:
+        name: authelia-secrets
+        key: SESSION_SECRET
+
+  - name: OIDC_PRIVATE_KEY
+    valueFrom:
+      secretKeyRef:
+        name: authelia-secrets
+        key: OIDC_PRIVATE_KEY
+
+configMap:
+  configuration.yml: |
+    theme: dark
+
+    server:
+      address: tcp://0.0.0.0:9091
+
+    log:
+      level: info
+
+    identity_validation:
+      reset_password:
+        jwt_secret: ${JWT_SECRET}
+
+    authentication_backend:
+      file:
+        path: /config/users_database.yml
+
+    access_control:
+      default_policy: deny
+
+    session:
+      name: authelia_session
+      secret: ${SESSION_SECRET}
+      expiration: 1h
+      inactivity: 5m
+
+    storage:
+      postgres:
+        address: tcp://postgres:5432
+        database: authelia
+        username: authelia
+        password: ${POSTGRES_PASSWORD}
+
+    notifier:
+      filesystem:
+        filename: /config/notification.txt
+
+    identity_providers:
+      oidc:
+        issuer_private_key: ${OIDC_PRIVATE_KEY}
+
+ingress:
+  enabled: true

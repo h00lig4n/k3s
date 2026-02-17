@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: authelia
+  namespace: argocd
+  #labels:
+  #  image-policy: semver
+spec:
+  destination:
+    namespace: common
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: true
+  project: common
+  sources:
+    - chart: authelia
+      repoURL: https://charts.authelia.com
+      targetRevision: 0.10.x
+      helm:
+        valueFiles:
+          - $values/authelia/helm/values.yaml
+          - $values-private/authelia/overlays/prod/values-ingress.yaml
+    - repoURL: https://github.com/h00lig4n/k3s.git
+      targetRevision: HEAD
+      ref: values
+    - repoURL: https://github.com/h00lig4n/k3s-private.git
+      targetRevision: HEAD
+      ref: values-private
+    - repoURL: https://github.com/h00lig4n/k3s-private.git
+      targetRevision: HEAD
+      path: authelia/overlays/prod
