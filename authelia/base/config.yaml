@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: authelia-config
+  name: authelia-config-vvov
   namespace: common
 data:
   configuration.yaml: |

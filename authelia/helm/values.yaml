@@ -31,13 +31,13 @@ pod:
           key: oidcPrivateKey
     - name: TZ
       value: Europe/Stockholm
-  extraVolumeMounts:
-    - name: users
-      mountPath: /config/users.yaml
-      subPath: users.yaml
-  extraVolumes:
-    - name: users
-      configMap: { name: authelia-config }
+ # extraVolumeMounts:
+ #   - name: users
+ #     mountPath: /config/users.yaml
+ #     subPath: users.yaml
+ # extraVolumes:
+ #   - name: users
+ #     configMap: { name: authelia-config }
 
 secret:
   existingSecret: authelia-extra
@@ -68,4 +68,4 @@ configMap:
   authentication_backend:
     file:
       enabled: true
-      path: '/config/users.yaml'
+#      path: '/config/users.yaml'
