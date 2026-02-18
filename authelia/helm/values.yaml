@@ -66,5 +66,11 @@ configMap:
     filesystem: { enabled: true }
 
   authentication_backend:
+    refresh_interval: '5m'
+    password_reset:
+      disable: false
+      custom_url: ''
+    password_change:
+      disable: false
     file:  
       path: '/config/users.yaml'
