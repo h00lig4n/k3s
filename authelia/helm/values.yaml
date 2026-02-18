@@ -28,6 +28,15 @@ pod:
         secretKeyRef:
           name: authelia-extra
           key: oidcPrivateKey
+    - name: TZ
+      value: Europe/Stockholm
+  extraVolumeMounts:
+    - name: users
+      mountPath: /config/users.yaml
+      subPath: users.yaml
+  extraVolumes:
+    - name: users
+      configMap: { name: authelia }
 
 secret:
   existingSecret: authelia-extra
@@ -40,7 +49,6 @@ configMap:
     metrics:
       enabled: true
   
-
   authentication_backend:
     file:
       enabled: true
