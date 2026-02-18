@@ -67,4 +67,3 @@ configMap:
 
   authentication_backend:
     file:  
-      path: '/config/users_database.yml'
