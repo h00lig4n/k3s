@@ -51,6 +51,11 @@ configMap:
     metrics:
       enabled: true
   
+  access_control:
+    rules:
+      - domain: "*.${BASE_DOMAIN}"
+        policy: one_factor
+
   session:
     cookies: [ { domain: 127.0.0.1 } ]
 
