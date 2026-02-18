@@ -2,6 +2,11 @@ image:
   tag: 4.38.8
 
 env:
+  - name: BASE_DOMAIN
+    valueFrom:
+      secretKeyRef:
+        name: authelia-secrets
+        key: BASE_DOMAIN
   - name: JWT_SECRET
     valueFrom:
       secretKeyRef:
