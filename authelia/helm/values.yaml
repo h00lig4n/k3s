@@ -48,7 +48,8 @@ configMap:
     rules:
       - domain: "*.${BASE_DOMAIN}"
         policy: one_factor
-  log_level: debug
+  log:
+    level: debug
 
   session:
     cookies: [ { domain: 127.0.0.1 } ]
