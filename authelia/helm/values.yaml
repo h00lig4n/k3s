@@ -43,6 +43,13 @@ secret:
   existingSecret: authelia-extra
 
 configMap:
+  #existingConfigMap: authelia-config-vvov 
+  access_control:
+    rules:
+      - domain: "*.${BASE_DOMAIN}"
+        policy: one_factor
+  log_level: debug
+
   session:
     cookies: [ { domain: 127.0.0.1 } ]
 
