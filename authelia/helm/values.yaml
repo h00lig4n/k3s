@@ -29,5 +29,13 @@ pod:
           name: authelia-extra
           key: oidcPrivateKey
 
+secret:
+  existingSecret: authelia-extra
+
+authentication_backend:
+  file:
+    enabled: true
+    path: '/config/users_database.yml'
+
 configMap:
   existingConfigMap: authelia
