@@ -35,6 +35,6 @@ secret:
 configMap:
   existingConfigMap: authelia
   authentication_backend:
-  file:
-    enabled: true
-    path: '/config/users_database.yml'
+    file:
+      enabled: true
+      path: '/config/users_database.yml'
