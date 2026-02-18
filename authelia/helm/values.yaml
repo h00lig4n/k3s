@@ -36,9 +36,9 @@ configMap:
   existingConfigMap: authelia
   log:
     level: info
-  teletry:
+  telemetry:
     metrics:
-      enabled: false
+      enabled: true
   
 
   authentication_backend:
