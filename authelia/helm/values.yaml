@@ -32,10 +32,9 @@ pod:
 secret:
   existingSecret: authelia-extra
 
-authentication_backend:
+configMap:
+  existingConfigMap: authelia
+  authentication_backend:
   file:
     enabled: true
     path: '/config/users_database.yml'
-
-configMap:
-  existingConfigMap: authelia
