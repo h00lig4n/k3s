@@ -34,7 +34,14 @@ secret:
 
 configMap:
   existingConfigMap: authelia
+  log:
+    level: info
+  teletry:
+    metrics:
+      enabled: false
+  
+
   authentication_backend:
     file:
       enabled: true
-      path: '/config/users_database.yml'
+      path: '/config/users.yaml'
