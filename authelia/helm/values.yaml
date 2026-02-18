@@ -42,7 +42,8 @@ secret:
   existingSecret: authelia-extra
 
 configMap:
-  existingConfigMap: authelia
+  # existingConfigMap: authelia
+  theme: dark
   log:
     level: info
   telemetry:
