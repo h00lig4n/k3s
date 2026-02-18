@@ -4,29 +4,30 @@ image:
 ingress:
   enabled: true
 
-env:
-  - name: BASE_DOMAIN
-    valueFrom:
-      secretKeyRef:
-        name: authelia
-        key: BASE_DOMAIN
-  - name: JWT_SECRET
-    valueFrom:
-      secretKeyRef:
-        name: authelia
-        key: JWT_SECRET
+pod:
+  env:
+    - name: BASE_DOMAIN
+      valueFrom:
+        secretKeyRef:
+          name: authelia
+          key: BASE_DOMAIN
+    - name: JWT_SECRET
+      valueFrom:
+        secretKeyRef:
+          name: authelia
+          key: JWT_SECRET
 
-  - name: SESSION_SECRET
-    valueFrom:
-      secretKeyRef:
-        name: authelia
-        key: SESSION_SECRET
+    - name: SESSION_SECRET
+      valueFrom:
+        secretKeyRef:
+          name: authelia
+          key: SESSION_SECRET
 
-  - name: OIDC_PRIVATE_KEY
-    valueFrom:
-      secretKeyRef:
-        name: authelia
-        key: OIDC_PRIVATE_KEY
+    - name: OIDC_PRIVATE_KEY
+      valueFrom:
+        secretKeyRef:
+          name: authelia
+          key: OIDC_PRIVATE_KEY
 
 configMap:
   existingConfigMap: authelia
