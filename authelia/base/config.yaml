@@ -15,9 +15,6 @@ data:
     server:
       address: tcp://0.0.0.0:9091
 
-    session:
-      secret: ${SESSION_SECRET}
-
       cookies:
         - name: authelia_session
           domain: ${BASE_DOMAIN}
