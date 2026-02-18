@@ -5,6 +5,7 @@ ingress:
   enabled: false
 
 pod:
+  kind: Deployment
   env:
     - name: BASE_DOMAIN
       valueFrom:
