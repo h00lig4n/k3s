@@ -15,10 +15,6 @@ data:
     server:
       address: tcp://0.0.0.0:9091
 
-    identity_validation:
-      reset_password:
-        jwt_secret: ${JWT_SECRET}
-
     session:
       secret: ${SESSION_SECRET}
 
