@@ -36,7 +36,7 @@ pod:
       subPath: users.yaml
   extraVolumes:
     - name: users
-      configMap: { name: authelia }
+      configMap: { name: authelia-config }
 
 secret:
   existingSecret: authelia-extra
