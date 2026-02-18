@@ -20,7 +20,7 @@ pod:
     - name: SESSION_SECRET
       valueFrom:
         secretKeyRef:
-          name: authelia-extraa
+          name: authelia-extra
           key: SESSION_SECRET
 
     - name: OIDC_PRIVATE_KEY
