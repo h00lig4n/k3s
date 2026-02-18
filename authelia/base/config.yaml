@@ -1,26 +1,11 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: authelia-config-vvov
+  name: authelia-config
   namespace: common
 data:
   configuration.yaml: |
-    theme: dark
 
-    access_control:
-      rules:
-        - domain: "*.${BASE_DOMAIN}"
-          policy: one_factor
-
-    server:
-      address: tcp://0.0.0.0:9091
-
-    storage:
-      postgres:
-        address: tcp://postgres:5432
-        database: authelia
-        username: authelia
-        password: ${POSTGRES_PASSWORD}
   users.yaml: |
     users:
       john:
