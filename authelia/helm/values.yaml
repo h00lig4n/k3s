@@ -9,24 +9,24 @@ pod:
     - name: BASE_DOMAIN
       valueFrom:
         secretKeyRef:
-          name: authelia
+          name: authelia-extra
           key: BASE_DOMAIN
     - name: JWT_SECRET
       valueFrom:
         secretKeyRef:
-          name: authelia
+          name: authelia-extra
           key: JWT_SECRET
 
     - name: SESSION_SECRET
       valueFrom:
         secretKeyRef:
-          name: authelia
+          name: authelia-extraa
           key: SESSION_SECRET
 
     - name: OIDC_PRIVATE_KEY
       valueFrom:
         secretKeyRef:
-          name: authelia
+          name: authelia-extra
           key: OIDC_PRIVATE_KEY
 
 configMap:
