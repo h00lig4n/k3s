@@ -24,6 +24,6 @@ data:
 
       cookies:
         - name: authelia_session
-            domain: ${BASE_DOMAIN}
-            authelia_url: https://auth.${BASE_DOMAIN}
-            default_redirection_url: https://auth.${BASE_DOMAIN}
+          domain: ${BASE_DOMAIN}
+          authelia_url: https://auth.${BASE_DOMAIN}
+          default_redirection_url: https://auth.${BASE_DOMAIN}
