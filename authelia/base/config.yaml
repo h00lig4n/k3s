@@ -21,43 +21,9 @@ data:
 
     session:
       secret: ${SESSION_SECRET}
-      domain: ${BASE_DOMAIN}
 
       cookies:
-    - name: authelia_session
-        domain: ${BASE_DOMAIN}
-        authelia_url: https://auth.${BASE_DOMAIN}
-        default_redirection_url: https://auth.${BASE_DOMAIN}
-
-    storage:
-      postgres:
-        address: tcp://postgres:5432
-        database: authelia
-        username: authelia
-        password: ${POSTGRES_PASSWORD}
-
-    identity_providers:
-      oidc:
-        issuer_private_key: ${OIDC_PRIVATE_KEY}
-        clients:
-          - id: grafana
-            description: Grafana
-            secret: ${GRAFANA_CLIENT_SECRET}
-            public: false
-            authorization_policy: one_factor
-            redirect_uris:
-              - https://grafana.${BASE_DOMAIN}/login/generic_oauth
-            scopes:
-              - openid
-              - profile
-              - email
-              - groups
-        providers:
-          - id: google
-            description: Google
-            client_id: ${GOOGLE_CLIENT_ID}
-            client_secret: ${GOOGLE_CLIENT_SECRET}
-            scopes:
-              - openid
-              - profile
-              - email
+        - name: authelia_session
+            domain: ${BASE_DOMAIN}
+            authelia_url: https://auth.${BASE_DOMAIN}
+            default_redirection_url: https://auth.${BASE_DOMAIN}

@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: authelia
+  namespace: common
+data:
+  configuration.yaml: |
+    theme: dark
+
+    access_control:
+      rules:
+        - domain: "*.${BASE_DOMAIN}"
+          policy: one_factor
+
+    server:
+      address: tcp://0.0.0.0:9091
+
+    identity_validation:
+      reset_password:
+        jwt_secret: ${JWT_SECRET}
+
+    session:
+      secret: ${SESSION_SECRET}
+
+      cookies:
+        - name: authelia_session
+            domain: ${BASE_DOMAIN}
+            authelia_url: https://auth.${BASE_DOMAIN}
+            default_redirection_url: https://auth.${BASE_DOMAIN}
+
+    storage:
+      postgres:
+        address: tcp://postgres:5432
+        database: authelia
+        username: authelia
+        password: ${POSTGRES_PASSWORD}
+
+    identity_providers:
+      oidc:
+        issuer_private_key: ${OIDC_PRIVATE_KEY}
+        clients:
+          - id: grafana
+            description: Grafana
+            secret: ${GRAFANA_CLIENT_SECRET}
+            public: false
+            authorization_policy: one_factor
+            redirect_uris:
+              - https://grafana.${BASE_DOMAIN}/login/generic_oauth
+            scopes:
+              - openid
+              - profile
+              - email
+              - groups
+        providers:
+          - id: google
+            description: Google
+            client_id: ${GOOGLE_CLIENT_ID}
+            client_secret: ${GOOGLE_CLIENT_SECRET}
+            scopes:
+              - openid
+              - profile
+              - email
