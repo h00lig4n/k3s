@@ -18,7 +18,11 @@ pod:
         secretKeyRef:
           name: authelia
           key: jwtSecret
-
+    - name: AUTHELIA_IDENTITY_PROVIDERS_OIDC_HMAC_KEY
+      valueFrom:
+        secretKeyRef:
+          name: authelia
+          key: identity_validation.reset_password.jwt.hmac.key
     - name: SESSION_SECRET
       valueFrom:
         secretKeyRef:
