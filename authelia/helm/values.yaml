@@ -18,7 +18,7 @@ pod:
         secretKeyRef:
           name: authelia
           key: jwtSecret
-    - name: IDENTITY_PROVIDERS_OIDC_HMAC_KEY
+    - name: OIDC_HMAC_SECRET
       valueFrom:
         secretKeyRef:
           name: authelia
@@ -33,7 +33,6 @@ pod:
         secretKeyRef:
           name: authelia
           key: sessionSecret
-
     - name: OIDC_PRIVATE_KEY
       valueFrom:
         secretKeyRef:
