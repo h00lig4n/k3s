@@ -10,24 +10,24 @@ pod:
     - name: BASE_DOMAIN
       valueFrom:
         secretKeyRef:
-          name: authelia-extra
+          name: authelia
           key: baseDomain
     - name: JWT_SECRET
       valueFrom:
         secretKeyRef:
-          name: authelia-extra
+          name: authelia
           key: jwtSecret
 
     - name: SESSION_SECRET
       valueFrom:
         secretKeyRef:
-          name: authelia-extra
+          name: authelia
           key: sessionSecret
 
     - name: OIDC_PRIVATE_KEY
       valueFrom:
         secretKeyRef:
-          name: authelia-extra
+          name: authelia
           key: oidcPrivateKey
     - name: TZ
       value: Europe/Stockholm
