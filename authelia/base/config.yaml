@@ -6,15 +6,6 @@ metadata:
 data:
   configuration.yaml: |
     authentication_backend:
-      password_change:
-        disable: false
-      password_reset:
-        disable: false
-      ## External reset password url that redirects the user to an external reset portal. This disables the internal reset
-      ## functionality.
-      # custom_url: ''
-      refresh_interval: '5 minutes'
-
       file:
         path: '/config/users.yaml'
         watch: false
