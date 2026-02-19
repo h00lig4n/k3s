@@ -3,15 +3,7 @@ ingress:
   className: traefik
   rulesOverride:
     - host: https://mydomain.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: authelia
-                port:
-                  number: 80
+
   tls:
     enabled: true
     secret: tls-certificate
