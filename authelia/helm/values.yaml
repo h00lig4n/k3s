@@ -7,30 +7,30 @@ ingress:
 pod:
   kind: Deployment
   env:
-    - name: BASE_DOMAIN
-      valueFrom:
-        secretKeyRef:
-          name: authelia-extra
-          key: baseDomain
-    - name: JWT_SECRET
-      valueFrom:
-        secretKeyRef:
-          name: authelia-extra
-          key: jwtSecret
-
-    - name: SESSION_SECRET
-      valueFrom:
-        secretKeyRef:
-          name: authelia-extra
-          key: sessionSecret
-
-    - name: OIDC_PRIVATE_KEY
-      valueFrom:
-        secretKeyRef:
-          name: authelia-extra
-          key: oidcPrivateKey
-    - name: TZ
-      value: Europe/Stockholm
+#    - name: BASE_DOMAIN
+#      valueFrom:
+#        secretKeyRef:
+#          name: authelia-extra
+#          key: baseDomain
+#    - name: JWT_SECRET
+#      valueFrom:
+#        secretKeyRef:
+#          name: authelia-extra
+#          key: jwtSecret
+#
+#    - name: SESSION_SECRET
+#      valueFrom:
+#        secretKeyRef:
+#          name: authelia-extra
+#          key: sessionSecret
+#
+  #  - name: OIDC_PRIVATE_KEY
+  #    valueFrom:
+ #       secretKeyRef:
+  #        name: authelia-extra
+ #         key: oidcPrivateKey
+ #   - name: TZ
+ #     value: Europe/Stockholm
  # extraVolumeMounts:
  #   - name: users
  #     mountPath: /config/users.yaml
@@ -43,7 +43,7 @@ secret:
   existingSecret: authelia-extra
 
 configMap:
-  existingConfigMap: authelia-config 
+  #existingConfigMap: authelia-config 
   access_control:
     rules:
       - domain: "*.${BASE_DOMAIN}"

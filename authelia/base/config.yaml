@@ -4,7 +4,7 @@ metadata:
   name: authelia-config
   namespace: common
 data:
-  configuration.yaml: |
+  configuration.old: |
     authentication_backend:
       file:
         path: '/config/users.yaml'
