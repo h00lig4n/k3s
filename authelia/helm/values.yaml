@@ -1,5 +1,21 @@
 ingress:
   enabled: true
+  ingressClassName: traefik
+  rules:
+    - host: https://mydomain.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: authelia
+                port:
+                  number: 80
+  tls:
+    - secretName: tls-certificate
+      hosts:
+        - https://mydomain.com
 
 pod:
   kind: Deployment
