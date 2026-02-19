@@ -54,9 +54,9 @@ configMap:
   session:
     cookies:
       - name: authelia_session
-        domain: {{ .Values.baseDomain }}
-        authelia_url: https://{{ .Values.authHost }}
-        default_redirection_url: https://{{ .Values.authHost }}
+        domain: mydomain.com
+        authelia_url: https://auth.mydomain.com
+        default_redirection_url: https://auth.mydomain.com
 
   storage:
     local: { enabled: true }
