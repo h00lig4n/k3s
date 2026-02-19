@@ -38,6 +38,11 @@ pod:
         secretKeyRef:
           name: authelia
           key: oidcPrivateKey
+    - name: GRAFANA_CLIENT_SECRET
+      valueFrom:
+        secretKeyRef:
+          name: authelia
+          key: grafanaClientSecret
     - name: TZ
       value: Europe/Stockholm
   extraVolumeMounts:
