@@ -57,9 +57,9 @@ configMap:
     secret: ${SESSION_SECRET}
     cookies:
       - name: authelia_session
-        domain: ${BASE_DOMAIN}
-        authelia_url: https://auth.${BASE_DOMAIN}
-        default_redirection_url: https://auth.${BASE_DOMAIN}
+        domain: mydomain.com
+        authelia_url: https://auth.mydomain.com
+        default_redirection_url: https://auth.mydomain.com
 
   storage:
     local: { enabled: true }
