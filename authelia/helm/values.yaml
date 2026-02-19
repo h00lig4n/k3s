@@ -54,7 +54,6 @@ configMap:
 #  session:
 #    cookies: [ { domain: 127.0.0.1 } ]
   session:
-    secret: ${SESSION_SECRET}
     cookies:
       - name: authelia_session
         domain: mydomain.com
