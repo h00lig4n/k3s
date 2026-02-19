@@ -38,7 +38,7 @@ pod:
         secretKeyRef:
           name: authelia
           key: oidcPrivateKey
-    - name: GRAFANA_CLIENT_SECRET
+    - name: AUTHELIA_IDENTITY_PROVIDERS_OIDC_CLIENTS_0_SECRET
       valueFrom:
         secretKeyRef:
           name: authelia
