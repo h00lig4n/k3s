@@ -6,30 +6,30 @@ metadata:
 data:
   configuration.yaml: |
     authentication_backend:
-    password_change:
+      password_change:
+        disable: true
+      password_reset:
       disable: true
-    password_reset:
-    disable: true
-    ## External reset password url that redirects the user to an external reset portal. This disables the internal reset
-    ## functionality.
-    # custom_url: ''
-    refresh_interval: '5 minutes'
+      ## External reset password url that redirects the user to an external reset portal. This disables the internal reset
+      ## functionality.
+      # custom_url: ''
+      refresh_interval: '5 minutes'
 
-    file:
-      path: '/config/users.yaml'
-      watch: false
-      search:
-        email: false
-        case_insensitive: false
-      password:
-        algorithm: 'argon2'
-        argon2:
-          variant: 'argon2id'
-          iterations: 3
-          memory: 65536
-          parallelism: 4
-          key_length: 32
-          salt_length: 16
+      file:
+        path: '/config/users.yaml'
+        watch: false
+        search:
+          email: false
+          case_insensitive: false
+        password:
+          algorithm: 'argon2'
+          argon2:
+            variant: 'argon2id'
+            iterations: 3
+            memory: 65536
+            parallelism: 4
+            key_length: 32
+            salt_length: 16
 
   ## The amount of time to wait before we refresh data from the authentication backend in the duration common syntax.
   ## To disable this feature set it to 'disable', this will slightly reduce security because for Authelia, users will
