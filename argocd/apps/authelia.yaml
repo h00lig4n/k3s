@@ -22,7 +22,7 @@ spec:
           - $values/authelia/helm/values.yaml
       #    - $values-private/authelia/overlays/prod/values-ingress.yaml
     - repoURL: https://github.com/h00lig4n/k3s.git
-      targetRevision: HEAD
+      targetRevision: authelia
       ref: values
 #    - repoURL: https://github.com/h00lig4n/k3s-private.git
  #     targetRevision: HEAD
