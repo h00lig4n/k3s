@@ -1,7 +1,7 @@
 ingress:
   enabled: true
-  ingressClassName: traefik
-  rules:
+  className: traefik
+  rulesOverride:
     - host: https://mydomain.com
       http:
         paths:
@@ -13,9 +13,8 @@ ingress:
                 port:
                   number: 80
   tls:
-    - secretName: tls-certificate
-      hosts:
-        - https://mydomain.com
+    enabled: true
+    secret: tls-certificate
 
 pod:
   kind: Deployment
