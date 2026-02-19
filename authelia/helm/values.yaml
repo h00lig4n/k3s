@@ -66,3 +66,7 @@ configMap:
 
   authentication_backend:
     file: { enabled: true, path: /config/users.yaml }
+
+  identity_providers:
+    oidc:
+      enabled: true
