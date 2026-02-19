@@ -1,9 +1,11 @@
 ingress:
   enabled: true
   className: traefik
-  rulesOverride:
-    - host: https://mydomain.com
-
+  hosts:
+    - host: mydomain.com
+      paths:
+        - path: /
+          pathType: Prefix
   tls:
     enabled: true
     secret: tls-certificate
