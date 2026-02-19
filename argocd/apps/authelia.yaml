@@ -20,13 +20,13 @@ spec:
       helm:
         valueFiles:
           - $values/authelia/helm/values.yaml
-      #    - $values-private/authelia/overlays/prod/values-ingress.yaml
+          - $values-private/authelia/overlays/prod/values.yaml
     - repoURL: https://github.com/h00lig4n/k3s.git
       targetRevision: authelia
       ref: values
-#    - repoURL: https://github.com/h00lig4n/k3s-private.git
- #     targetRevision: HEAD
-#      ref: values-private
+    - repoURL: https://github.com/h00lig4n/k3s-private.git
+      targetRevision: HEAD
+      ref: values-private
     - repoURL: https://github.com/h00lig4n/k3s-private.git
       targetRevision: HEAD
       path: authelia/overlays/prod
