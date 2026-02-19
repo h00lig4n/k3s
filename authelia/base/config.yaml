@@ -7,9 +7,9 @@ data:
   configuration.yaml: |
     authentication_backend:
       password_change:
-        disable: true
+        disable: false
       password_reset:
-        disable: true
+        disable: false
       ## External reset password url that redirects the user to an external reset portal. This disables the internal reset
       ## functionality.
       # custom_url: ''
