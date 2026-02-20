@@ -23,6 +23,9 @@ pod:
 
 secret:
   existingSecret: authelia
+  additionalSecrets:
+    jwk-rsa:
+      items: [ { key: private.pem, path: private.pem } ]
 
 configMap:
   access_control:
@@ -55,4 +58,4 @@ configMap:
         - key_id: default
           algorithm: RS256
           use: sig
-          key: { path: /secrets/authelia/oidc.pem }
+          key: { path: /secrets/jwk-rsa/private.pem }
