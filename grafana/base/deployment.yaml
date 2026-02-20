@@ -112,8 +112,6 @@ spec:
             value: "groups"
           - name: GF_AUTH_GENERIC_OAUTH_NAME_ATTRIBUTE_PATH
             value: "name"
-          - name: GF_AUTH_GENERIC_OAUTH_EMAIL_ATTRIBUTE_PATH
-            value: "email"
           - name: GF_AUTH_GENERIC_OAUTH_USE_PKCE
             value: "true"
           - name: GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH
