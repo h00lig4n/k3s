@@ -8,41 +8,41 @@ ingress:
 pod:
   kind: Deployment
   env:
-    - name: BASE_DOMAIN
-      valueFrom:
-        secretKeyRef:
-          name: authelia
-          key: baseDomain
-    - name: JWT_SECRET
-      valueFrom:
-        secretKeyRef:
-          name: authelia
-          key: jwtSecret
-    - name: OIDC_HMAC_SECRET
-      valueFrom:
-        secretKeyRef:
-          name: authelia
-          key: identity_validation.reset_password.jwt.hmac.key
-    - name: IDENTITY_PROVIDERS_OIDC_ISSUER_PRIVATE_KEY
-      valueFrom:
-        secretKeyRef:
-          name: authelia
-          key: oidcPrivateKey
-    - name: SESSION_SECRET
-      valueFrom:
-        secretKeyRef:
-          name: authelia
-          key: sessionSecret
-    - name: OIDC_PRIVATE_KEY
-      valueFrom:
-        secretKeyRef:
-          name: authelia
-          key: oidcPrivateKey
-    - name: AUTHELIA_IDENTITY_PROVIDERS_OIDC_CLIENTS_0_SECRET
-      valueFrom:
-        secretKeyRef:
-          name: authelia
-          key: grafanaClientSecret
+    # - name: BASE_DOMAIN
+    #   valueFrom:
+    #     secretKeyRef:
+    #       name: authelia
+    #       key: baseDomain
+    # - name: JWT_SECRET
+    #   valueFrom:
+    #     secretKeyRef:
+    #       name: authelia
+    #       key: jwtSecret
+    # - name: OIDC_HMAC_SECRET
+    #   valueFrom:
+    #     secretKeyRef:
+    #       name: authelia
+    #       key: identity_validation.reset_password.jwt.hmac.key
+    # - name: IDENTITY_PROVIDERS_OIDC_ISSUER_PRIVATE_KEY
+    #   valueFrom:
+    #     secretKeyRef:
+    #       name: authelia
+    #       key: oidcPrivateKey
+    # - name: SESSION_SECRET
+    #   valueFrom:
+    #     secretKeyRef:
+    #       name: authelia
+    #       key: sessionSecret
+    # - name: OIDC_PRIVATE_KEY
+    #   valueFrom:
+    #     secretKeyRef:
+    #       name: authelia
+    #       key: oidcPrivateKey
+    # - name: AUTHELIA_IDENTITY_PROVIDERS_OIDC_CLIENTS_0_SECRET
+    #   valueFrom:
+    #     secretKeyRef:
+    #       name: authelia
+    #       key: grafanaClientSecret
     - name: TZ
       value: Europe/Stockholm
   extraVolumeMounts:
@@ -80,11 +80,11 @@ configMap:
   authentication_backend:
     file: { enabled: true, path: /config/users.yaml }
 
-  identity_providers:
-    oidc:
-      enabled: true
-      jwks:
-        - key_id: default
-          algorithm: RS256
-          use: sig
-          key: { path: /secrets/authelia/AUTHELIA_IDENTITY_PROVIDERS_OIDC_ISSUER_PRIVATE_KEY }
+  # identity_providers:
+  #   oidc:
+  #     enabled: true
+  #     jwks:
+  #       - key_id: default
+  #         algorithm: RS256
+  #         use: sig
+  #         key: { path: /secrets/authelia/AUTHELIA_IDENTITY_PROVIDERS_OIDC_ISSUER_PRIVATE_KEY }
