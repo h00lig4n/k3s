@@ -56,11 +56,10 @@ configMap:
           algorithm: RS256
           use: sig
           key: { path: /secrets/oidc.pem }
-      # Dummy values for testing purposes. Will replace.
       clients:
         - client_id: 'grafana'
           client_name: 'Grafana'
-          client_secret: '$pbkdf2-sha512$310000$c8p78n7pUMln0jzvd4aK4Q$JNRBzwAo0ek5qKn50cFzzvE9RXV88h1wJn5KGiHrD0YKtZaR/nCb2CJPOsKaPK0hjf.9yHxzQGZziziccp6Yng'  # The digest of 'insecure_secret'.
+          client_secret: 'This is not the real value'
           public: false
           authorization_policy: 'two_factor'
           require_pkce: true
