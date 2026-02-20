@@ -119,7 +119,7 @@ spec:
             value: "contains(groups[*], 'admin') && 'Admin' || contains(groups[*], 'editor') && 'Editor' || 'Viewer'" 
           - name: GF_AUTH_GENERIC_OAUTH_AUTH_STYLE
             value: "InHeader"
-          - name: GF_USERS_ALLOW_SIGN_UP
+          - name: GF_AUTH_GENERIC_OAUTH_ALLOW_SIGN_UP
             value: "true"
         resources:
           requests:
