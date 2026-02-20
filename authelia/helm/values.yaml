@@ -61,20 +61,6 @@ configMap:
       claims_policies:
         grafana:
           id_token: ['email', 'name', 'groups', 'preferred_username']
-      providers:
-        - id: google
-          description: Google
-          icon: google
-          client_id: YOUR_CLIENT_ID
-          client_secret: YOUR_CLIENT_SECRET
-          scopes:
-            - openid
-            - email
-            - profile
-          authorization_endpoint: https://accounts.google.com/o/oauth2/v2/auth
-          token_endpoint: https://oauth2.googleapis.com/token
-          userinfo_endpoint: https://openidconnect.googleapis.com/v1/userinfo
-          issuer: https://accounts.google.com
       clients:
         - client_id: 'grafana'
           claims_policy: 'grafana'
