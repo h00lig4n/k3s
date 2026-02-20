@@ -58,6 +58,11 @@ spec:
               secretKeyRef:
                 name: grafana
                 key: password
+          - name: GF_SERVER_ROOT_URL
+            valueFrom:
+              secretKeyRef:
+                name: grafana
+                key: server-url
           - name: GF_RENDERING_SERVER_URL
             value: http://localhost:8081/render
           - name: GF_RENDERING_CALLBACK_URL
