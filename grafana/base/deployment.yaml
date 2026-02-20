@@ -79,8 +79,6 @@ spec:
           - name: GF_AUTH_GENERIC_OAUTH_NAME
             value: "Authelia"
           - name: GF_AUTH_GENERIC_OAUTH_ICON
-            value: "Authelia"
-          - name: GF_AUTH_GENERIC_OAUTH_ALLOW_SIGN_UP
             value: "signin"
           - name: GF_AUTH_GENERIC_OAUTH_CLIENT_ID
             value: "grafana"
