@@ -118,6 +118,8 @@ spec:
             value: "InHeader"
           - name: GF_AUTH_GENERIC_OAUTH_ALLOW_SIGN_UP
             value: "true"
+          - name: GF_AUTH_GENERIC_OAUTH_ALLOW_ASSIGN_GRAFANA_ADMIN
+            value: "true"
           - name: GF_LOG_LEVEL
             value: "debug"
           - name: GF_LOG_FILTERS
