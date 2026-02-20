@@ -1,58 +1,45 @@
-image:
-  tag: 4.38.8
-
 ingress:
-  enabled: false
+  enabled: true
+  className: traefik
+  tls:
+    enabled: true
+    secret: tls-certificate
 
 pod:
   kind: Deployment
   env:
-    - name: BASE_DOMAIN
-      valueFrom:
-        secretKeyRef:
-          name: authelia-extra
-          key: baseDomain
-    - name: JWT_SECRET
-      valueFrom:
-        secretKeyRef:
-          name: authelia-extra
-          key: jwtSecret
-
-    - name: SESSION_SECRET
-      valueFrom:
-        secretKeyRef:
-          name: authelia-extra
-          key: sessionSecret
-
-    - name: OIDC_PRIVATE_KEY
-      valueFrom:
-        secretKeyRef:
-          name: authelia-extra
-          key: oidcPrivateKey
     - name: TZ
       value: Europe/Stockholm
- # extraVolumeMounts:
- #   - name: users
- #     mountPath: /config/users.yaml
- #     subPath: users.yaml
- # extraVolumes:
- #   - name: users
- #     configMap: { name: authelia-config }
+  extraVolumeMounts:
+    - name: extra
+      mountPath: /config/users.yaml
+      subPath: users.yaml
+    - name: extra
+      mountPath: /secrets/oidc.pem
+      subPath: oidc.pem
+  extraVolumes:
+    - name: extra
+      secret: { secretName: authelia }
 
 secret:
-  existingSecret: authelia-extra
+  existingSecret: authelia
 
 configMap:
-  existingConfigMap: authelia-config 
   access_control:
+    default_policy: deny
     rules:
-      - domain: "*.${BASE_DOMAIN}"
+      - domain: "*.mydomain.com"
         policy: one_factor
+  
   log:
     level: debug
 
   session:
-    cookies: [ { domain: 127.0.0.1 } ]
+    cookies:
+      - name: authelia_session
+        domain: mydomain.com
+        authelia_url: https://auth.mydomain.com
+        default_redirection_url: https://auth.mydomain.com
 
   storage:
     local: { enabled: true }
@@ -61,4 +48,58 @@ configMap:
     filesystem: { enabled: true }
 
   authentication_backend:
-    file: { enabled: true }
+    file: { enabled: true, path: /config/users.yaml }
+
+  identity_providers:
+    oidc:
+      enabled: true
+      jwks:
+        - key_id: default
+          algorithm: RS256
+          use: sig
+          key: { path: /secrets/oidc.pem }
+      claims_policies:
+        grafana:
+          id_token: ['email', 'name', 'groups', 'preferred_username']
+      clients:
+        - client_id: 'grafana'
+          claims_policy: 'grafana'
+          client_name: 'Grafana'
+          client_secret: 'This is not the real value'
+          public: false
+          authorization_policy: 'one_factor'
+          require_pkce: true
+          pkce_challenge_method: 'S256'
+          redirect_uris:
+            - 'https://grafana.example.com/login/generic_oauth'
+          scopes:
+            - 'openid'
+            - 'profile'
+            - 'groups'
+            - 'email'
+          response_types:
+            - 'code'
+          grant_types:
+            - 'authorization_code'
+          access_token_signed_response_alg: 'none'
+          userinfo_signed_response_alg: 'none'
+          token_endpoint_auth_method: 'client_secret_basic'
+        - client_id: 'argocd'
+          client_name: 'ArgoCD'
+          client_secret: 'This is not the real value'
+          public: false
+          authorization_policy: 'one_factor'
+          redirect_uris:
+            - 'https://argocd.example.com/auth/callback'
+          scopes:
+            - 'openid'
+            - 'profile'
+            - 'email'
+            - 'groups'
+          grant_types:
+            - 'authorization_code'
+          response_types:
+            - 'code'
+          access_token_signed_response_alg: 'none'
+          userinfo_signed_response_alg: 'none'
+          token_endpoint_auth_method: 'client_secret_basic'
