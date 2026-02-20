@@ -95,7 +95,7 @@ spec:
           - name: GF_AUTH_GENERIC_OAUTH_API_URL
             valueFrom:
               secretKeyRef:
-                name: grafana-oidc
+                name: grafana
                 key: api-url
           - name: GF_AUTH_GENERIC_OAUTH_SCOPES
             value: "openid profile email groups"
