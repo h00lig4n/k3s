@@ -80,11 +80,6 @@ configMap:
   authentication_backend:
     file: { enabled: true, path: /config/users.yaml }
 
-  # identity_providers:
-  #   oidc:
-  #     enabled: true
-  #     jwks:
-  #       - key_id: default
-  #         algorithm: RS256
-  #         use: sig
-  #         key: { path: /secrets/authelia/AUTHELIA_IDENTITY_PROVIDERS_OIDC_ISSUER_PRIVATE_KEY }
+  identity_providers:
+    oidc:
+      enabled: true
