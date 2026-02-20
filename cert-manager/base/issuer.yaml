@@ -4,7 +4,7 @@ metadata:
   name: letsencrypt-prod
 spec:
   acme:
-    email: $EMAIL
+    email: me@mydomain.com
     privateKeySecretRef:
       name: letsencrypt-prod
     server: https://acme-v02.api.letsencrypt.org/directory
@@ -12,7 +12,7 @@ spec:
     - dns01:
         webhook:
           config:
-            cpanelUrl: $CPANEL_URL
+            cpanelUrl: https://cpanel.mydomain.com
             secretRef: cert-manager/cpanel-credentials
           groupName: jameslakin.co.uk
           solverName: cpanel-solver
@@ -23,7 +23,7 @@ metadata:
   name: letsencrypt-staging
 spec:
   acme:
-    email: $EMAIL
+    email: me@mydomain.com
     privateKeySecretRef:
       name: letsencrypt-staging
     server: https://acme-staging-v02.api.letsencrypt.org/directory
@@ -31,7 +31,7 @@ spec:
     - dns01:
         webhook:
           config:
-            cpanelUrl: $CPANEL_URL # No trailing slash
+            cpanelUrl: https://cpanel.mydomain.com
             secretRef: cert-manager/cpanel-credentials # In the form namespace/secret-name
           groupName: jameslakin.co.uk # Must match the group name in the Helm chart (this is the default)
           solverName: cpanel-solver # Don't change
