@@ -108,8 +108,8 @@ spec:
                 key: api-url
           - name: GF_AUTH_GENERIC_OAUTH_LOGIN_ATTRIBUTE_PATH
             value: "preferred_username"
-          #- name: GF_AUTH_GENERIC_OAUTH_GROUPS_ATTRIBUTE_PATH
-          #  value: "groups"
+          - name: GF_AUTH_GENERIC_OAUTH_GROUPS_ATTRIBUTE_PATH
+            value: "groups"
           - name: GF_AUTH_GENERIC_OAUTH_NAME_ATTRIBUTE_PATH
             value: "name"
           - name: GF_AUTH_GENERIC_OAUTH_EMAIL_ATTRIBUTE_PATH
