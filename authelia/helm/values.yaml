@@ -26,11 +26,13 @@ secret:
 
 configMap:
   access_control:
+    default_policy: deny
     rules:
       - domain: "*.mydomain.com"
         policy: one_factor
+  
   log:
-    level: debug
+    level: info
 
   session:
     cookies:
