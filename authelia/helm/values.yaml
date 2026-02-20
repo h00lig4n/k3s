@@ -8,44 +8,12 @@ ingress:
 pod:
   kind: Deployment
   env:
-    # - name: BASE_DOMAIN
-    #   valueFrom:
-    #     secretKeyRef:
-    #       name: authelia
-    #       key: baseDomain
-    # - name: JWT_SECRET
-    #   valueFrom:
-    #     secretKeyRef:
-    #       name: authelia
-    #       key: jwtSecret
-    # - name: OIDC_HMAC_SECRET
-    #   valueFrom:
-    #     secretKeyRef:
-    #       name: authelia
-    #       key: identity_validation.reset_password.jwt.hmac.key
-    # - name: IDENTITY_PROVIDERS_OIDC_ISSUER_PRIVATE_KEY
-    #   valueFrom:
-    #     secretKeyRef:
-    #       name: authelia
-    #       key: oidcPrivateKey
-    # - name: SESSION_SECRET
-    #   valueFrom:
-    #     secretKeyRef:
-    #       name: authelia
-    #       key: sessionSecret
-    # - name: OIDC_PRIVATE_KEY
-    #   valueFrom:
-    #     secretKeyRef:
-    #       name: authelia
-    #       key: oidcPrivateKey
-    # - name: AUTHELIA_IDENTITY_PROVIDERS_OIDC_CLIENTS_0_SECRET
-    #   valueFrom:
-    #     secretKeyRef:
-    #       name: authelia
-    #       key: grafanaClientSecret
     - name: TZ
       value: Europe/Stockholm
   extraVolumeMounts:
+    - name: users
+      mountPath: /config/users.yaml
+      subPath: users.yaml
     - name: users
       mountPath: /config/users.yaml
       subPath: users.yaml
@@ -59,7 +27,7 @@ secret:
 configMap:
   access_control:
     rules:
-      - domain: "*.${BASE_DOMAIN}"
+      - domain: "*.mydomain.com"
         policy: one_factor
   log:
     level: debug
@@ -87,3 +55,4 @@ configMap:
         - key_id: default
           algorithm: RS256
           use: sig
+          key: { path: /secrets/authelia/oidc.pem }
