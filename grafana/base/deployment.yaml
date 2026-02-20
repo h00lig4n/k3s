@@ -103,7 +103,7 @@ spec:
                 name: grafana
                 key: api-url
           - name: GF_AUTH_GENERIC_OAUTH_EMPTY_SCOPES
-            value: false
+            value: "false"
           - name: GF_AUTH_GENERIC_OAUTH_SCOPES
             value: "openid profile email groups"
           - name: GF_AUTH_GENERIC_OAUTH_LOGIN_ATTRIBUTE_PATH
@@ -115,7 +115,7 @@ spec:
           - name: GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH
             value: "contains(groups[*], 'admin') && 'Admin' || contains(groups[*], 'editor') && 'Editor' || 'Viewer'" 
           - name: GF_AUTH_GENERIC_OAUTH_USE_PKCE
-            value: true
+            value: "true"
         resources:
           requests:
             memory: "128Mi"
