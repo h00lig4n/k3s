@@ -55,4 +55,4 @@ configMap:
         - key_id: default
           algorithm: RS256
           use: sig
-          key: { path: /secrets/private.pem }
+          key: { path: /secrets/oidc.pem }
