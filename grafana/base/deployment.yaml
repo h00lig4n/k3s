@@ -102,6 +102,8 @@ spec:
               secretKeyRef:
                 name: grafana
                 key: api-url
+          - name: GF_AUTH_GENERIC_OAUTH_ALLOW_ASSIGN_GRAFANA_ADMIN
+            value: "true"
           - name: GF_AUTH_GENERIC_OAUTH_EMPTY_SCOPES
             value: "false"
           - name: GF_AUTH_GENERIC_OAUTH_SCOPES
