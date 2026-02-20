@@ -62,9 +62,7 @@ spec:
           - name: GF_RENDERING_SERVER_URL
             value: http://localhost:8081/render
           - name: GF_RENDERING_CALLBACK_URL
-            value: http://localhost:3000/
-          - name: GF_LOG_FILTERS
-            value: rendering:debug     
+            value: http://localhost:3000/ 
           - name: GF_SECURITY_ALLOW_EMBEDDING
             value: "true"
           #OIDC
