@@ -2,7 +2,8 @@ resources:
   - https://raw.githubusercontent.com/jamesorlakin/cert-manager-cpanel-dns-webhook/master/deploy/v0.3.0.yaml
   - cert-writer-config.yaml
   - certificate.yaml
+  - certificate-staging.yaml
   - certs-pvc.yaml
   - issuer.yaml
-  - staging-certificate.yaml
+  - issuer-staging.yaml
   - cert-writer.yaml

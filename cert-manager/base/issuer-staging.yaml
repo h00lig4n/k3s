@@ -1,0 +1,18 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-staging
+spec:
+  acme:
+    email: me@mydomain.com
+    privateKeySecretRef:
+      name: letsencrypt-staging
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    solvers:
+    - dns01:
+        webhook:
+          config:
+            cpanelUrl: https://cpanel.mydomain.com
+            secretRef: cert-manager/cpanel-credentials # In the form namespace/secret-name
+          groupName: jameslakin.co.uk # Must match the group name in the Helm chart (this is the default)
+          solverName: cpanel-solver # Don't change
