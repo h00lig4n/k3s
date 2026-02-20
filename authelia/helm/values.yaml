@@ -11,21 +11,18 @@ pod:
     - name: TZ
       value: Europe/Stockholm
   extraVolumeMounts:
-    - name: users
+    - name: extra
       mountPath: /config/users.yaml
       subPath: users.yaml
-    - name: users
-      mountPath: /config/users.yaml
-      subPath: users.yaml
+    - name: extra
+      mountPath: /secrets/oidc.pem
+      subPath: oidc.pem
   extraVolumes:
-    - name: users
+    - name: extra
       secret: { secretName: authelia }
 
 secret:
   existingSecret: authelia
-  additionalSecrets:
-    jwk-rsa:
-      items: [ { key: private.pem, path: private.pem } ]
 
 configMap:
   access_control:
@@ -58,4 +55,4 @@ configMap:
         - key_id: default
           algorithm: RS256
           use: sig
-          key: { path: /secrets/jwk-rsa/private.pem }
+          key: { path: /secrets/private.pem }
