@@ -115,7 +115,7 @@ spec:
           - name: GF_AUTH_GENERIC_OAUTH_USE_PKCE
             value: "true"
           - name: GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH
-            value: "contains(groups[*], 'admin') && 'Admin' || contains(groups[*], 'editor') && 'Editor' || 'Viewer'" 
+            value: "contains(groups[*], 'admin') && 'Admin' || contains(groups[*], 'dev') && 'Editor' || 'Viewer'" 
           - name: GF_AUTH_GENERIC_OAUTH_AUTH_STYLE
             value: "InHeader"
           - name: GF_AUTH_GENERIC_OAUTH_ALLOW_SIGN_UP
