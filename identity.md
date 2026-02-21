@@ -31,6 +31,10 @@ Cons:
 - Helm beta support was not so intuive (I guess that's why it's still in beta).
 - No federated support with Google/Microsoft/Facebook/Github.
 
+#### Usefull Links
+
+[OpenID Connect with Authelia on Kubernetes](https://blog.stonegarden.dev/articles/2025/06/authelia-oidc/#oidc-configuration)
+
 ### Authentik
 
 I didn't try this in my homelab. It look like the best option for me, exluding resource usage.
