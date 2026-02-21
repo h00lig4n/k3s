@@ -106,8 +106,8 @@ spec:
                 key: api-url-casdoor
           #- name: GF_AUTH_GENERIC_OAUTH_LOGIN_ATTRIBUTE_PATH
           #  value: "preferred_username"
-          #- name: GF_AUTH_GENERIC_OAUTH_GROUPS_ATTRIBUTE_PATH
-          #  value: "groups"
+          - name: GF_AUTH_GENERIC_OAUTH_GROUPS_ATTRIBUTE_PATH
+            value: "permissions"
           #- name: GF_AUTH_GENERIC_OAUTH_NAME_ATTRIBUTE_PATH
           #  value: "name"
           #- name: GF_AUTH_GENERIC_OAUTH_USE_ID_TOKEN
@@ -115,7 +115,7 @@ spec:
           - name: GF_AUTH_GENERIC_OAUTH_USE_PKCE
             value: "true"
           - name: GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH
-            value: "role_attribute_path = contains(permissionNames[*], 'admin') && 'Admin' || contains(permissionNames[*], 'editor') && 'Editor' || 'Viewer'"
+            value: "role_attribute_path = contains(groups[*], 'admin') && 'Admin' || contains(groups[*], 'editor') && 'Editor' || 'Viewer'"
             #value: "contains(groups[*], 'admin') && 'Admin' || contains(groups[*], 'dev') && 'Editor' || 'Viewer'" 
           - name: GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_STRICT
             value: "false"
