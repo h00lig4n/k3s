@@ -85,8 +85,8 @@ spec:
               secretKeyRef:
                 name: grafana
                 key: client-secret
-          #- name: GF_AUTH_GENERIC_OAUTH_SCOPES
-          #  value: "openid profile email groups"
+          - name: GF_AUTH_GENERIC_OAUTH_SCOPES
+            value: "openid profile email"
           #- name: GF_AUTH_GENERIC_OAUTH_EMPTY_SCOPES
           #  value: "false"               
           - name: GF_AUTH_GENERIC_OAUTH_AUTH_URL
@@ -99,11 +99,11 @@ spec:
               secretKeyRef:
                 name: grafana
                 key: token-url-casdoor
-          #- name: GF_AUTH_GENERIC_OAUTH_API_URL
-          #  valueFrom:
-          #    secretKeyRef:
-          #      name: grafana
-          #      key: api-url
+          - name: GF_AUTH_GENERIC_OAUTH_API_URL
+            valueFrom:
+              secretKeyRef:
+                name: grafana
+                key: api-url-casdoor
           #- name: GF_AUTH_GENERIC_OAUTH_LOGIN_ATTRIBUTE_PATH
           #  value: "preferred_username"
           #- name: GF_AUTH_GENERIC_OAUTH_GROUPS_ATTRIBUTE_PATH
