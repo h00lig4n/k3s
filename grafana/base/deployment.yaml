@@ -93,12 +93,12 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: grafana
-                key: auth-url
+                key: auth-url-casdoor
           - name: GF_AUTH_GENERIC_OAUTH_TOKEN_URL
             valueFrom:
               secretKeyRef:
                 name: grafana
-                key: token-url
+                key: token-url-casdoor
           #- name: GF_AUTH_GENERIC_OAUTH_API_URL
           #  valueFrom:
           #    secretKeyRef:
