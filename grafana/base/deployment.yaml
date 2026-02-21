@@ -113,8 +113,8 @@ spec:
           - name: GF_AUTH_GENERIC_OAUTH_USE_PKCE
             value: "true"
           - name: GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH
-            value: "role_attribute_path = contains(roles[*].name, 'admin') && 'Admin' || contains(roles[*].name, 'editor') && 'Editor' || 'Viewer'"
-            #value: "contains(permissionNames[*], 'admin') && 'Admin' || contains(permissionNames[*], 'dev') && 'Editor' || 'Viewer'" 
+            value: "role_attribute_path = contains(permissionNames[*].name, 'admin') && 'Admin' || contains(permissionNames[*].name, 'editor') && 'Editor' || 'Viewer'"
+            #value: "contains(groups[*], 'admin') && 'Admin' || contains(groups[*], 'dev') && 'Editor' || 'Viewer'" 
           - name: GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_STRICT
             value: "false"
           #- name: GF_AUTH_GENERIC_OAUTH_AUTH_STYLE
