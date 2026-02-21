@@ -41,6 +41,8 @@ The ONLY reason I didn't choose it:
 
 ### Casdoor
 
+https://casdoor.org/docs/integration/go/grafana/
+
 Pros:
 
 - Fairly low resource usage.
