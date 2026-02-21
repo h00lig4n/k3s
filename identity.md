@@ -33,7 +33,11 @@ Cons:
 
 ### Authentik
 
-Not done yet.
+I didn't try this in my homelab. It look like the best option for me, exluding resource usage.
+
+The ONLY reason I didn't choose it:
+
+- It uses more resources than I'm prepared to give it.
 
 ### Casdoor
 
