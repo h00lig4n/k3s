@@ -70,8 +70,7 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: grafana
-                key: server-url
-                
+                key: server-url  
           - name: GF_AUTH_GENERIC_OAUTH_ENABLED
             value: "true" 
           - name: GF_AUTH_GENERIC_OAUTH_NAME
@@ -86,9 +85,7 @@ spec:
                 name: grafana
                 key: client-secret
           - name: GF_AUTH_GENERIC_OAUTH_SCOPES
-            value: "openid profile email"
-          #- name: GF_AUTH_GENERIC_OAUTH_EMPTY_SCOPES
-          #  value: "false"               
+            value: "openid profile email"             
           - name: GF_AUTH_GENERIC_OAUTH_AUTH_URL
             valueFrom:
               secretKeyRef:
@@ -99,43 +96,21 @@ spec:
               secretKeyRef:
                 name: grafana
                 key: token-url-casdoor
-         #- name: GF_AUTH_GENERIC_OAUTH_API_URL
-         #   valueFrom:
-         #     secretKeyRef:
-         #       name: grafana
-         #       key: api-url-casdoor
-          #- name: GF_AUTH_GENERIC_OAUTH_LOGIN_ATTRIBUTE_PATH
-          #  value: "preferred_username"
-          #GF_AUTH_GENERIC_OAUTH_AUTO_LOGIN: "true"
-          #- name: GF_AUTH_GENERIC_OAUTH_GROUPS_ATTRIBUTE_PATH
-          #  value: "permissionNames"
-          #- name: GF_AUTH_GENERIC_OAUTH_NAME_ATTRIBUTE_PATH
-          #  value: "name"
-          #- name: GF_AUTH_GENERIC_OAUTH_USE_ID_TOKEN
-          #  value: "true"
           - name: GF_AUTH_GENERIC_OAUTH_USE_PKCE
             value: "true"
           - name: GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH
-            value: "contains(permissionNames[*], 'admin') && 'Admin' || 'Viewer'"
-            #value: "contains(groups, 'admin') && 'Admin' || contains(groups, 'editor') && 'Editor' || 'Viewer'"
-            #value: "contains(groups[*], 'admin') && 'Admin' || contains(groups[*], 'editor') && 'Editor' || 'Viewer'"
-            #value: "contains(groups[*], 'admin') && 'Admin' || contains(groups[*], 'dev') && 'Editor' || 'Viewer'" 
+            value: "contains(permissionNames, 'admin') && 'Admin' || contains(permissionNames, 'editor') && 'Editor' || 'Viewer'"
           - name: GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_STRICT
             value: "true"
-          #- name: GF_AUTH_GENERIC_OAUTH_SKIP_ORG_ROLE_SYNC
-          #  value: "true"
-          #- name: GF_AUTH_GENERIC_OAUTH_AUTH_STYLE
-          #  value: "InHeader"
-          #- name: GF_AUTH_GENERIC_OAUTH_ALLOW_SIGN_UP
-          #  value: "true"
           - name: GF_USERS_AUTO_ASSIGN_ORG_ROLE
             value: "None"
           - name: GF_AUTH_GENERIC_OAUTH_ALLOW_ASSIGN_GRAFANA_ADMIN
             value: "true"
+          #Logging
           - name: GF_LOG_LEVEL
-            value: "debug"
-          - name: GF_LOG_FILTERS
-            value: "oauth:debug auth:debug user.sync:debug"    
+            value: "info"
+          #- name: GF_LOG_FILTERS
+          #  value: "oauth:debug auth:debug user.sync:debug"    
         resources:
           requests:
             memory: "128Mi"
