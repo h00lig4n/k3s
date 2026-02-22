@@ -12,11 +12,7 @@ data:
   settings.yaml: ""
   custom.css: ""
   custom.js: ""
-  bookmarks.yaml: |
-    - Developer:
-        - Github:
-            - abbr: GH
-              href: https://github.com/
+  bookmarks.yaml: ""
   services.yaml: ""
   widgets.yaml: |
     - kubernetes:
