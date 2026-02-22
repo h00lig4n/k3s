@@ -27,9 +27,6 @@ spec:
 
           prometheus-pushgateway:
             enabled: false
-            
-          pushgateway:
-            enabled: false
 
           server:
             resources:
