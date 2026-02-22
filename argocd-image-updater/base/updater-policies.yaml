@@ -19,8 +19,8 @@ spec:
         matchLabels:
           image-policy: semver
       images:
-        #- alias: "casdoor" 
-        #  imageName: "casbin/casdoor:2.x.x"
+        - alias: "casdoor" 
+          imageName: "casbin/casdoor:2.x.x"
         - alias: "docker"
           imageName: "registry:2.x.x"
         - alias: "dockerui"
@@ -28,7 +28,7 @@ spec:
         - alias: "grafana"
           imageName: "grafana/grafana-oss:12.3.x"
         - alias: "esphome"
-          imageName: "esphome/esphome:2026.1.x"
+          imageName: "esphome/esphome:2026.x.x"
         - alias: "hass"
           imageName: "homeassistant/home-assistant:2026.2.x"
         - alias: "influxdb"
