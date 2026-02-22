@@ -9,9 +9,9 @@ metadata:
     reloader.stakater.com/auto: "true"
 spec:
   revisionHistoryLimit: 2
-  replicas: 0
+  replicas: 1
   strategy:
-    type: RollingUpdate
+    type: Recreate
   selector:
     matchLabels:
       app.kubernetes.io/name: homepage
