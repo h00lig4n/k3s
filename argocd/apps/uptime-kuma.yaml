@@ -3,18 +3,17 @@ kind: Application
 metadata:
   name: uptime-kuma
   namespace: argocd
-  labels:
-    image-policy: semver
+  #labels:
+  #  image-policy: semver
 spec:
   destination:
-    namespace: common
+    namespace: monitoring
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
       selfHeal: true
-  project: common
+  project: infrastructure
   sources:
-    - path: uptime-kuma
-      repoURL: https://github.com/h00lig4n/k3s.git
+    - repoURL: https://github.com/h00lig4n/k3s-private.git
       targetRevision: HEAD
-# TODO
+      path: uptime-kuma/overlays/prod
