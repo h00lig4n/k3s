@@ -43,6 +43,14 @@ spec:
 
             retention: "2d"
 
+            nodeSelector:
+              node-role.kubernetes.io/control-plane: "true"
+
+            tolerations:
+              - key: "node-role.kubernetes.io/control-plane"
+                operator: "Exists"
+                effect: "NoSchedule"
+
           kubeStateMetrics:
             enabled: true
 
