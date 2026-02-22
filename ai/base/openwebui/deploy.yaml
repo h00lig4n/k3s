@@ -66,6 +66,10 @@ spec:
                 name: openai
                 key: api-key
           #OIDC
+          - name: ENABLE_OAUTH_PERSISTENT_CONFIG
+            value: "false"
+          - name: OAUTH_MERGE_ACCOUNTS_BY_EMAIL
+            value: "true"
           - name: ENABLE_LOGIN_FORM
             value: "false"
           - name: OAUTH_PROVIDER
@@ -84,21 +88,6 @@ spec:
               secretKeyRef:
                 name: oidc
                 key: well-known-url
-          #- name: OAUTH_AUTHORIZATION_URL
-          #  valueFrom:
-          #    secretKeyRef:
-          #      name: oidc
-          #      key: auth-url
-          #- name: OAUTH_TOKEN_URL
-          #  valueFrom:
-          #    secretKeyRef:
-          #      name: oidc
-          #      key: token-url
-          #- name: OAUTH_USERINFO_URL
-          #  valueFrom:
-          #    secretKeyRef:
-          #      name: oidc
-          #      key: user-info-url
           - name: OAUTH_REDIRECT_URI
             valueFrom:
               secretKeyRef:
@@ -139,8 +128,8 @@ spec:
         securityContext: {}
         resources:
           requests:
-            memory: "500Mi"
-            cpu: "500m"
+            memory: "700Mi"
+            cpu: "700m"
           limits:
             memory: "1500Mi"
             cpu: "1500m"
