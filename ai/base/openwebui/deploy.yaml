@@ -106,7 +106,7 @@ spec:
           - name: OAUTH_ROLE_CLAIM
             value: "roles"
           - name: OAUTH_ALLOWED_ROLES
-            value: "admin,editor"         
+            value: "admin,user"         
           - name: ENABLE_OAUTH_SIGNUP
             value: "true"
         startupProbe:
