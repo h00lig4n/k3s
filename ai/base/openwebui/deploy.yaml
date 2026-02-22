@@ -65,6 +65,50 @@ spec:
               secretKeyRef:
                 name: openai
                 key: api-key
+          #OIDC
+          #- name: ENABLE_LOGIN
+          #  value: "false"
+          - name: OAUTH_PROVIDER
+            value: "oidc"
+          - name: OAUTH_CLIENT_ID
+            value: "openwebui"
+          - name: OAUTH_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: oidc
+                key: client-secret
+          - name: OAUTH_AUTHORIZATION_URL
+            valueFrom:
+              secretKeyRef:
+                name: oidc
+                key: auth-url
+          - name: OAUTH_TOKEN_URL
+            valueFrom:
+              secretKeyRef:
+                name: oidc
+                key: token-url
+          - name: OAUTH_USERINFO_URL
+            valueFrom:
+              secretKeyRef:
+                name: oidc
+                key: user-info-url
+          - name: OAUTH_REDIRECT_URI
+            valueFrom:
+              secretKeyRef:
+                name: oidc
+                key: redirect-url
+          - name: OAUTH_SCOPE
+            value: "openid profile email"
+          - name: OAUTH_USERNAME_CLAIM
+            value: "preferred_username"
+          - name: OAUTH_EMAIL_CLAIM
+            value: "email"
+          - name: OAUTH_ROLE_CLAIM
+            value: "roles"
+          - name: OAUTH_ALLOWED_ROLES
+            value: "admin,editor"         
+          - name: ENABLE_OAUTH_SIGNUP
+            value: "true"
         startupProbe:
           httpGet:
             path: /
