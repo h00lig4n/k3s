@@ -15,6 +15,7 @@ metadata:
     gethomepage.dev/icon: si-homeassistant
     gethomepage.dev/widget.type: homeassistant
     gethomepage.dev/widget.url: https://mydomain.com
+    gethomepage.dev/widget.key: replaceme
 spec:
   ingressClassName: traefik
   rules:
