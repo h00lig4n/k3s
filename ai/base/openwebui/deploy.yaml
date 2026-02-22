@@ -66,8 +66,8 @@ spec:
                 name: openai
                 key: api-key
           #OIDC
-          #- name: ENABLE_LOGIN
-          #  value: "false"
+          - name: ENABLE_LOGIN_FORM
+            value: "false"
           - name: OAUTH_PROVIDER
             value: "oidc"
           - name: OAUTH_PROVIDER_NAME
