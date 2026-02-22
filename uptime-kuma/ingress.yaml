@@ -14,11 +14,11 @@ metadata:
     gethomepage.dev/name: Uptime Kuma
     gethomepage.dev/icon: si-uptimekuma
     gethomepage.dev/widget.type: uptimekuma
-    gethomepage.dev/widget.url: https://uptime.$DOMAIN_NAME
+    gethomepage.dev/widget.url: https://uptime.mydomain.com
 spec:
   ingressClassName: traefik
   rules:
-    - host: uptime.$DOMAIN_NAME
+    - host: uptime.mydomain.com
       http:
         paths:
           - path: /
@@ -31,4 +31,4 @@ spec:
   tls:
     - secretName: tls-certificate
       hosts:
-        - uptime.$DOMAIN_NAME
+        - uptime.mydomain.com
