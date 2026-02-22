@@ -25,6 +25,9 @@ spec:
           alertmanager:
             enabled: false
 
+          prometheus-pushgateway:
+            enabled: false
+            
           pushgateway:
             enabled: false
 
