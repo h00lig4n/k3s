@@ -70,6 +70,8 @@ spec:
           #  value: "false"
           - name: OAUTH_PROVIDER
             value: "oidc"
+          - name: OAUTH_PROVIDER_NAME
+            value: "Casdoor"  
           - name: OAUTH_CLIENT_ID
             value: "openwebui"
           - name: OAUTH_CLIENT_SECRET
@@ -77,21 +79,26 @@ spec:
               secretKeyRef:
                 name: oidc
                 key: client-secret
-          - name: OAUTH_AUTHORIZATION_URL
+          - name: OPENID_PROVIDER_URL
             valueFrom:
               secretKeyRef:
                 name: oidc
-                key: auth-url
-          - name: OAUTH_TOKEN_URL
-            valueFrom:
-              secretKeyRef:
-                name: oidc
-                key: token-url
-          - name: OAUTH_USERINFO_URL
-            valueFrom:
-              secretKeyRef:
-                name: oidc
-                key: user-info-url
+                key: well-known-url
+          #- name: OAUTH_AUTHORIZATION_URL
+          #  valueFrom:
+          #    secretKeyRef:
+          #      name: oidc
+          #      key: auth-url
+          #- name: OAUTH_TOKEN_URL
+          #  valueFrom:
+          #    secretKeyRef:
+          #      name: oidc
+          #      key: token-url
+          #- name: OAUTH_USERINFO_URL
+          #  valueFrom:
+          #    secretKeyRef:
+          #      name: oidc
+          #      key: user-info-url
           - name: OAUTH_REDIRECT_URI
             valueFrom:
               secretKeyRef:
@@ -108,6 +115,10 @@ spec:
           - name: OAUTH_ALLOWED_ROLES
             value: "admin,user"         
           - name: ENABLE_OAUTH_SIGNUP
+            value: "true"
+          - name: OAUTH_CODE_CHALLENGE_METHOD
+            value: "S256"
+          - name: ENABLE_OAUTH_ROLE_MANAGEMENT
             value: "true"
         startupProbe:
           httpGet:
