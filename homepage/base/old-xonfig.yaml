@@ -10,6 +10,10 @@ data:
     mode: cluster
     traefik: true
   settings.yaml: ""
+  #settings.yaml: |
+  #  providers:
+  #    longhorn:
+  #      url: https://longhorn.my.network
   custom.css: ""
   custom.js: ""
   bookmarks.yaml: |
@@ -17,7 +21,11 @@ data:
         - Github:
             - abbr: GH
               href: https://github.com/
-  services.yaml: ""
+  services.yaml: |
+    - Other Stuff:
+        - My Other Application:
+            href: https://assistant.$DOMAIN_NAME/
+            description: To be defined
   widgets.yaml: |
     - kubernetes:
         cluster:
