@@ -6,3 +6,17 @@ resources:
 - parentapp.yaml
 patches:
   - path: argocd-cmd-params-cm-patch.yaml
+  - target:
+      kind: ConfigMap
+      name: argocd-rbac-cm
+      namespace: argocd
+    patch: |-
+      - op: add
+        path: /data/scopes
+        value: '[permissionNames]'
+      - op: add
+        path: /data/policy.csv
+        value: |
+          g, admin, role:admin
+          g, editor, role:editor
+          g, viewer, role:readonly
