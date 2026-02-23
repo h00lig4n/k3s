@@ -9,6 +9,7 @@ data:
   kubernetes.yaml: |
     mode: cluster
     traefik: true
+    #ingress: true 
   settings.yaml: ""
   custom.css: ""
   custom.js: ""
@@ -19,6 +20,8 @@ data:
             href: "https://assistant.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: Home Automation Hub
             icon: sh-home-assistant.svg
+            namespace: hass
+            app: hass
             widget:
               type: homeassistant
               url: "http://hass.hass.svc.cluster.local:8123"
