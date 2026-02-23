@@ -62,7 +62,7 @@ data:
             widget:
               type: argo-cd
               url: http://argocd.argocd.svc.cluster.local:80
-              key: argocdapikey
+              key: "{{HOMEPAGE_VAR_ARGOCD_TOKEN}}"
   widgets.yaml: |
     - kubernetes:
         cluster:

@@ -41,6 +41,11 @@ spec:
                 secretKeyRef:
                   name: homepage-service-tokens
                   key: hass-token
+            - name: HOMEPAGE_VAR_ARGOCD_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: homepage-service-tokens
+                  key: argocd-token
           ports:
             - name: http
               containerPort: 3000
