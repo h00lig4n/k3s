@@ -8,8 +8,8 @@ metadata:
 data:
   kubernetes.yaml: |
     mode: cluster
-    traefik: true
-    #ingress: true 
+    traefik: false
+    ingress: true 
   settings.yaml: ""
   custom.css: ""
   custom.js: ""
@@ -48,6 +48,8 @@ data:
         - Mosquitto:
             description: MQTT Broker
             icon: sh-mosquitto.svg
+            namespace: hass
+            app: mqtt
     - Tools:
         - AI Chat:
             href: "https://ai.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
@@ -72,7 +74,7 @@ data:
             icon: sh-argocd.svg
             widget:
               type: argocd
-              url: http://argocd.argocd.svc.cluster.local:80
+              url: http://argocd-server.argocd.svc.cluster.local:80
               key: "{{HOMEPAGE_VAR_ARGOCD_TOKEN}}"
         - Uptime Kuma:
             href: "https://uptime{{HOMEPAGE_VAR_BASE_DOMAIN}}"
@@ -103,12 +105,6 @@ data:
           cpu: true
           memory: true
           showLabel: true
-    - resources:
-        backend: resources
-        expanded: true
-        cpu: true
-        memory: true
-        network: default
     - search:
         provider: brave
         target: _blank
