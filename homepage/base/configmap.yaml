@@ -79,6 +79,14 @@ data:
             href: "https://portainer.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: Container Management
             icon: sh-portainer.svg
+        - Webnut:
+            href: "https://nut.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+            description: UPS Monitoring
+            icon: sh-nutalert.svg
+        - Unifi:
+            href: "https://unifi.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+            description: Unifi Network
+            icon: sh-ubiquiti-unifi.svg
   widgets.yaml: |
     - kubernetes:
         cluster:
