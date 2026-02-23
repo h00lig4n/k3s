@@ -34,6 +34,14 @@ data:
             href: "https://influxb.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: Long Term Statistics
             icon: si-influxdb
+        - Zigbee:
+            href: "https://zigbee2mqtt.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+            description: Zigbee Controller
+            icon: si-zigbee2mqtt
+        - ZWave:
+            href: "https://zwave.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+            description: ZWave Controller
+            icon: sh-z-wave-js-ui.svg 
   widgets.yaml: |
     - kubernetes:
         cluster:

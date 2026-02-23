@@ -10,7 +10,7 @@ metadata:
     traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
     gethomepage.dev/enabled: "true"
     gethomepage.dev/description: Dashboards
-    gethomepage.dev/group: Home Automation
+    gethomepage.dev/group: Other
     gethomepage.dev/name: Grafana
     gethomepage.dev/icon: grafana
     gethomepage.dev/widget.type: grafana
