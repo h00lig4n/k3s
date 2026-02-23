@@ -34,10 +34,6 @@ data:
             href: "https://influxb.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: Long Term Statistics
             icon: sh-influxdb.svg
-        - Grafana:
-            href: "https://grafana.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
-            description: Dashboards
-            icon: sh-grafana.svg
         - Zigbee:
             href: "https://zigbee.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: Zigbee Controller
@@ -50,10 +46,18 @@ data:
             description: MQTT Broker
             icon: sh-mosquitto.svg
     - Tools:
+        - AI Chat:
+            href: "https://ai.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+            description: AI Chat
+            icon: sh-open-webui.svg
         - Planka:
             href: "https://plan.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: Planning Board
             icon: sh-planka.svg
+        - Grafana:
+            href: "https://grafana.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+            description: Dashboards
+            icon: sh-grafana.svg
     - Platform and Monitoring:
         - ArgoCD:
             href: "https://argocd.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
