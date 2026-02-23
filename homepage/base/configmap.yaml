@@ -18,7 +18,7 @@ data:
         - Home Assistant:
             href: "https://assistant.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: Home Automation Hub
-            icon: si-homeassistant
+            icon: sh-home-assistant.svg
             widget:
               type: homeassistant
               url: "http://hass.hass.svc.cluster.local:8123"
@@ -26,22 +26,43 @@ data:
         - ESPHome:
             href: "https://esp.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: ESP32 Controllers
-            icon: si-esphome
+            icon: sh-esphome.svg
             widget:
               type: esphome
               url: http://esphome.hass.svc.cluster.local:6052
         - InfluxDB:
             href: "https://influxb.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: Long Term Statistics
-            icon: si-influxdb
+            icon: sh-influxdb.svg
+        - Grafana:
+            href: "https://grafana.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+            description: Dashboards
+            icon: sh-grafana.svg
         - Zigbee:
-            href: "https://zigbee2mqtt.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+            href: "https://zigbee.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: Zigbee Controller
-            icon: si-zigbee2mqtt
+            icon: sh-zigbee2mqtt.svg
         - ZWave:
             href: "https://zwave.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: ZWave Controller
-            icon: sh-z-wave-js-ui.svg 
+            icon: sh-z-wave-js-ui.svg
+        - Mosquitto:
+            description: MQTT Broker
+            icon: sh-mosquitto.svg
+    - Tools:
+        - Planka:
+            href: "https://plan.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+            description: Planning Board
+            icon: sh-planka.svg
+    - Platform and Monitoring:
+        - ArgoCD:
+            href: "https://argocd.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+            description: Kubernetes GitOps
+            icon: sh-argocd.svg
+            widget:
+              type: argo-cd
+              url: http://argocd.argocd.svc.cluster.local:80
+              key: argocdapikey
   widgets.yaml: |
     - kubernetes:
         cluster:
