@@ -58,6 +58,10 @@ data:
             href: "https://grafana.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: Dashboards
             icon: sh-grafana.svg
+        - Container Registry:
+            href: "https://dockerui.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+            description: Container Registry
+            icon: sh-docker.svg
     - Platform and Monitoring:
         - ArgoCD:
             href: "https://argocd.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
@@ -71,6 +75,10 @@ data:
             href: "https://uptime{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: Uptime Monitoring
             icon: sh-uptime-kuma.svg
+        - Portainer:
+            href: "https://portainer.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+            description: Container Management
+            icon: sh-portainer.svg
   widgets.yaml: |
     - kubernetes:
         cluster:
