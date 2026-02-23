@@ -8,12 +8,6 @@ metadata:
   annotations:
     # cert-manager.io/cluster-issuer: letsencrypt-prod
     traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
-    gethomepage.dev/enabled: "true"
-    gethomepage.dev/description: Long Term Statistics
-    gethomepage.dev/group: Home Automation
-    gethomepage.dev/icon: si-influxdb
-    gethomepage.dev/name: InfluxDB
-    gethomepage.dev/widget.url: https://mydomain.com
 spec:
   ingressClassName: traefik
   rules:
