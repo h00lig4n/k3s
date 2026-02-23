@@ -71,7 +71,7 @@ data:
             description: Kubernetes GitOps
             icon: sh-argocd.svg
             widget:
-              type: argo-cd
+              type: argocd
               url: http://argocd.argocd.svc.cluster.local:80
               key: "{{HOMEPAGE_VAR_ARGOCD_TOKEN}}"
         - Uptime Kuma:
