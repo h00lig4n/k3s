@@ -13,7 +13,11 @@ data:
   custom.css: ""
   custom.js: ""
   bookmarks.yaml: ""
-  services.yaml: ""
+  services.yaml: |
+    widget:
+    - type: homeassistant
+      url: https://assistant.home.thomason.nu
+      key: ${HASS_TOKEN}
   widgets.yaml: |
     - kubernetes:
         cluster:
