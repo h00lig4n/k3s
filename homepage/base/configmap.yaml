@@ -14,10 +14,15 @@ data:
   custom.js: ""
   bookmarks.yaml: ""
   services.yaml: |
-    widget:
-    - type: homeassistant
-      url: https://assistant.home.thomason.nu
-      key: ${HASS_TOKEN}
+    - Home Automation:
+        - Home Assistant:
+            href: "https://assistant.${BASE_DOMAIN}"
+            description: Home Automation Hub
+            icon: si-homeassistant
+            widget:
+              type: homeassistant
+              url: "http://hass.hass.svc.cluster.local:8123"
+              key: "${HASS_TOKEN}"
   widgets.yaml: |
     - kubernetes:
         cluster:
