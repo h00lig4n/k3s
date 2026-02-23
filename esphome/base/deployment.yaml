@@ -36,16 +36,16 @@ spec:
             value: "true"
           - name: TZ
             value: Europe/Stockholm
-          - name: "USERNAME"
-            valueFrom:
-              secretKeyRef:
-                name: esphome
-                key: username
-          - name: "PASSWORD"
-            valueFrom:
-              secretKeyRef:
-                name: esphome
-                key: password
+         # - name: "USERNAME"
+         #   valueFrom:
+         #     secretKeyRef:
+         #       name: esphome
+         #       key: username
+         # - name: "PASSWORD"
+         #   valueFrom:
+         #     secretKeyRef:
+         #       name: esphome
+         #       key: password
         volumeMounts:
           - name: esphome-pvc
             mountPath: /config
