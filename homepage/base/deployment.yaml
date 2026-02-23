@@ -31,12 +31,12 @@ spec:
           env:
             - name: HOMEPAGE_ALLOWED_HOSTS
               value: start.mydomain.com
-            - name: BASE_DOMAIN
+            - name: HOMEPAGE_VAR_BASE_DOMAIN
               valueFrom:
                 configMapKeyRef:
                   name: homepage-env
                   key: base_domain
-            - name: HASS_TOKEN
+            - name: HOMEPAGE_VAR_HASS_TOKEN
               valueFrom:
                 secretKeyRef:
                   name: homepage-service-tokens
