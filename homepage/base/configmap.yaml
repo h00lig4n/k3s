@@ -63,6 +63,10 @@ data:
               type: argo-cd
               url: http://argocd.argocd.svc.cluster.local:80
               key: "{{HOMEPAGE_VAR_ARGOCD_TOKEN}}"
+        - Uptime Kuma:
+            href: "https://uptime{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+            description: Uptime Monitoring
+            icon: sh-uptime-kuma.svg
   widgets.yaml: |
     - kubernetes:
         cluster:
