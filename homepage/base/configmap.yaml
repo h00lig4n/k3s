@@ -17,21 +17,21 @@ data:
   services.yaml: |
     - Tools:
       - AI Chat:
-        href: "https://ai.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
-        description: AI Chat
-        icon: sh-open-webui.svg
+            href: "https://ai.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+            description: AI Chat
+            icon: sh-open-webui.svg
       - Planka:
-        href: "https://plan.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
-        description: Planning Board
-        icon: sh-planka.svg
+            href: "https://plan.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+            description: Planning Board
+            icon: sh-planka.svg
       - Grafana:
-        href: "https://grafana.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
-        description: Dashboards
-        icon: sh-grafana.svg
+            href: "https://grafana.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+            description: Dashboards
+            icon: sh-grafana.svg
       - Container Registry:
-        href: "https://dockerui.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
-        description: Container Registry
-        icon: sh-docker.svg
+            href: "https://dockerui.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+            description: Container Registry
+            icon: sh-docker.svg
     - Home Automation:
         - Home Assistant:
             href: "https://assistant.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
@@ -40,9 +40,9 @@ data:
             namespace: hass
             app: hass
             widget:
-              type: homeassistant
-              url: "http://hass.hass.svc.cluster.local:8123"
-              key: "{{HOMEPAGE_VAR_HASS_TOKEN}}"
+                type: homeassistant
+                url: "http://hass.hass.svc.cluster.local:8123"
+                key: "{{HOMEPAGE_VAR_HASS_TOKEN}}"
         - ESPHome:
             href: "https://esp.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: ESP32 Controllers
@@ -50,8 +50,8 @@ data:
             namespace: hass
             app: esphome
             widget:
-              type: esphome
-              url: http://esphome.hass.svc.cluster.local:6052
+                type: esphome
+                url: http://esphome.hass.svc.cluster.local:6052
         - InfluxDB:
             href: "https://influxb.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: Long Term Statistics
@@ -104,12 +104,12 @@ data:
             icon: sh-ubiquiti-unifi.svg
   widgets.yaml: |
     - kubernetes:
-        cluster:
-          show: true
-          cpu: true
-          memory: true
-          showLabel: true
-          label: "cluster"
+#        cluster:
+#          show: true
+#          cpu: true
+#          memory: true
+#          showLabel: true
+#          label: "cluster"
         nodes:
           show: true
           cpu: true
