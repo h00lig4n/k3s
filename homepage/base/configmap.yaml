@@ -15,6 +15,23 @@ data:
   custom.js: ""
   bookmarks.yaml: ""
   services.yaml: |
+    - Tools:
+      - AI Chat:
+        href: "https://ai.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+        description: AI Chat
+        icon: sh-open-webui.svg
+      - Planka:
+        href: "https://plan.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+        description: Planning Board
+        icon: sh-planka.svg
+      - Grafana:
+        href: "https://grafana.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+        description: Dashboards
+        icon: sh-grafana.svg
+      - Container Registry:
+        href: "https://dockerui.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+        description: Container Registry
+        icon: sh-docker.svg
     - Home Automation:
         - Home Assistant:
             href: "https://assistant.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
@@ -30,6 +47,8 @@ data:
             href: "https://esp.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: ESP32 Controllers
             icon: sh-esphome.svg
+            namespace: hass
+            app: esphome
             widget:
               type: esphome
               url: http://esphome.hass.svc.cluster.local:6052
@@ -37,41 +56,32 @@ data:
             href: "https://influxb.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: Long Term Statistics
             icon: sh-influxdb.svg
+            namespace: hass
+            app: influxdb
         - Zigbee:
             href: "https://zigbee.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: Zigbee Controller
             icon: sh-zigbee2mqtt.svg
+            namespace: hass
+            app: zigbee2mqtt
         - ZWave:
             href: "https://zwave.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: ZWave Controller
             icon: sh-z-wave-js-ui.svg
+            namespace: hass
+            app: zwavejs
         - Mosquitto:
             description: MQTT Broker
             icon: sh-mosquitto.svg
             namespace: hass
             app: mqtt
-    - Tools:
-        - AI Chat:
-            href: "https://ai.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
-            description: AI Chat
-            icon: sh-open-webui.svg
-        - Planka:
-            href: "https://plan.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
-            description: Planning Board
-            icon: sh-planka.svg
-        - Grafana:
-            href: "https://grafana.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
-            description: Dashboards
-            icon: sh-grafana.svg
-        - Container Registry:
-            href: "https://dockerui.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
-            description: Container Registry
-            icon: sh-docker.svg
     - Platform and Monitoring:
         - ArgoCD:
             href: "https://argocd.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: Kubernetes GitOps
-            icon: sh-argocd.svg
+            icon: sh-argo-cd.svg
+            namespace: argocd
+            app: argocd-server
             widget:
               type: argocd
               url: http://argocd-server.argocd.svc.cluster.local:80
