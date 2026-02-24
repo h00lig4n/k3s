@@ -105,9 +105,9 @@ data:
   widgets.yaml: |
     - kubernetes:
         cluster:
-          show: true
-          cpu: true
-          memory: true
+          show: false
+          cpu: false
+          memory: false
           showLabel: true
           label: "cluster"
         nodes:
