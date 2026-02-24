@@ -77,7 +77,7 @@ data:
             icon: sh-mosquitto.svg
             namespace: hass
             app: mqtt
-    - Platform and Monitoring:
+    - Cluster Management:
         - ArgoCD:
             href: "https://argocd.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: Kubernetes GitOps
