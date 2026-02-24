@@ -10,13 +10,15 @@ data:
     mode: cluster
     traefik: false
     ingress: true 
-  settings.yaml: ""
+  settings.yaml: |
+    title: "home.thomason.nu"
+    description: "A central hub for all my services and tools."
   custom.css: ""
   custom.js: ""
   bookmarks.yaml: ""
   services.yaml: |
     - Tools:
-      - AI Chat:
+      - AI Open WebUI:
             href: "https://ai.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: AI Chat
             icon: sh-open-webui.svg
