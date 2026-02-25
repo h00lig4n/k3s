@@ -111,6 +111,12 @@ data:
             href: "https://unifi.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: Unifi Network
             icon: sh-ubiquiti-unifi.svg
+            widget:
+              type: unifi
+              url: "https://unifi.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+              username: "{{HOMEPAGE_VAR_UNIFI_USERNAME}}"
+              password: "{{HOMEPAGE_VAR_UNIFI_PASSWORD}}"
+
   widgets.yaml: |
     - kubernetes:
         cluster:
