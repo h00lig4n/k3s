@@ -28,6 +28,12 @@ spec:
           prometheus-pushgateway:
             enabled: false
 
+          prometheus-node-exporter:
+            enabled: false
+
+          kubeStateMetrics:
+            enabled: true
+
           server:
             resources:
               requests:
@@ -50,12 +56,6 @@ spec:
               - key: "node-role.kubernetes.io/control-plane"
                 operator: "Exists"
                 effect: "NoSchedule"
-
-          kubeStateMetrics:
-            enabled: true
-
-          nodeExporter:
-            enabled: false
 
           extraScrapeConfigs: |
             - job_name: 'traefik'
