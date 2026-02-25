@@ -34,6 +34,10 @@ data:
             href: "https://dockerui.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: Container Registry
             icon: sh-docker.svg
+      - Postgresql:
+            href: "https://sql.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+            description: SQL Database
+            icon: sh-postgresql.svg
     - Home Automation:
         - Home Assistant:
             href: "https://assistant.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
@@ -84,7 +88,7 @@ data:
             icon: sh-mosquitto.svg
             namespace: hass
             app: mqtt
-    - Infrastructure & Monitoring:
+    - Infrastructure:
         - ArgoCD:
             href: "https://argocd.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: Kubernetes GitOps
@@ -95,6 +99,12 @@ data:
               type: argocd
               url: http://argocd-server.argocd.svc.cluster.local:80
               key: "{{HOMEPAGE_VAR_ARGOCD_TOKEN}}"
+        - Casdoor:
+            href: "https://auth.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+            description: OIDC Login Provider
+            icon: sh-casdoor.png
+            namespace: common
+            app: casdoor
         - Portainer:
             href: "https://portainer.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: Container Management
@@ -103,10 +113,6 @@ data:
               type: portainer
               url: "https://portainer.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
               key: "{{HOMEPAGE_VAR_PORTAINER_TOKEN}}"
-        - Webnut:
-            href: "https://nut.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
-            description: UPS Monitoring
-            icon: sh-nutalert.svg
         - Unifi:
             href: "https://unifi.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: Unifi Network
@@ -116,7 +122,10 @@ data:
               url: "https://unifi.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
               username: "{{HOMEPAGE_VAR_UNIFI_USERNAME}}"
               password: "{{HOMEPAGE_VAR_UNIFI_PASSWORD}}"
-
+        - Webnut:
+            href: "https://nut.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+            description: UPS Monitoring
+            icon: sh-nutalert.svg
   widgets.yaml: |
     - kubernetes:
         cluster:
