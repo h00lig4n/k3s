@@ -4,6 +4,7 @@ metadata:
   name: argocd-rbac-cm
 data:
   scopes: '[permissionNames]'
+  policy.default: role:readonly
   policy.csv: |
     g, admin, role:admin
     g, editor, role:editor
