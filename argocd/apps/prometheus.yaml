@@ -34,11 +34,13 @@ spec:
           kubeStateMetrics:
             enabled: true
 
-          server:
+          server:  
+            extraArgs:
+              query.max-concurrency: 5
             resources:
               requests:
                 cpu: 100m
-                memory: 512Mi
+                memory: 384Mi
               limits:
                 memory: 1Gi
             persistentVolume:
