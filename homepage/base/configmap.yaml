@@ -47,8 +47,11 @@ data:
                 key: "{{HOMEPAGE_VAR_HASS_TOKEN}}"
                 custom:
                   - state: sensor.home_electricity_price
+                    label: Electricity Price
                   - state: sensor.elec_meter_elec_meter_power
+                    label: Electricity Usage    
                   - state: sensor.car_battery_level
+                    label: Car Battery
         - ESPHome:
             href: "https://esp.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: ESP32 Controllers
@@ -92,14 +95,14 @@ data:
               type: argocd
               url: http://argocd-server.argocd.svc.cluster.local:80
               key: "{{HOMEPAGE_VAR_ARGOCD_TOKEN}}"
-        - Uptime Kuma:
-            href: "https://uptime{{HOMEPAGE_VAR_BASE_DOMAIN}}"
-            description: Uptime Monitoring
-            icon: sh-uptime-kuma.svg
         - Portainer:
             href: "https://portainer.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: Container Management
             icon: sh-portainer.svg
+            widget:
+              type: portainer
+              url: "https://portainer.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+              key: "{{HOMEPAGE_VAR_PORTAINER_TOKEN}}"
         - Webnut:
             href: "https://nut.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: UPS Monitoring
