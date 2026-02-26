@@ -19,14 +19,10 @@ spec:
       targetRevision: 0.24.0
       helm:
         valueFiles:
-#          - $values/dex/helm/values.yaml
-          - $values-private/dex/helm/values.yaml
-#    - repoURL: https://github.com/h00lig4n/k3s.git
-#      targetRevision: HEAD
-#      ref: values
+          - $values/dex/helm/values.yaml
     - repoURL: https://github.com/h00lig4n/k3s-private.git
       targetRevision: HEAD
-      ref: values-private
+      ref: values
     - repoURL: https://github.com/h00lig4n/k3s-private.git
       targetRevision: HEAD
       path: dex/overlays/prod

@@ -16,8 +16,8 @@ config:
       name: Google
       config:
         issuer: https://accounts.google.com
-        clientID: REPLACEME
-        clientSecret: $GOOGLE_CLIENT_SECRET
+        clientID: "{{ .Env.GOOGLE_CLIENT_ID }}"
+        clientSecret: "{{ .Env.GOOGLE_CLIENT_SECRET }}"
         redirectURI: https://auth-test.yourdomain/callback
 
     - type: ldap
@@ -27,7 +27,7 @@ config:
         host: lldap.auth-test.svc.cluster.local:389
         insecureNoSSL: true
         bindDN: "uid=admin,ou=people,dc=home,dc=mydomain,dc=nu"
-        bindPW: ${LDAP_BIND_PASSWORD}
+        bindPW: "{{ .Env.LDAP_BIND_PASSWORD }}"
 
         userSearch:
           baseDN: "ou=people,dc=home,dc=mydomain,dc=nu"
@@ -50,7 +50,7 @@ config:
       redirectURIs:
         - https://argocd.yourdomain/auth/callback
       name: Argo CD
-      secret: ${ARGOCD_CLIENT_SECRET}
+      secret: "{{ .Env.ARGOCD_CLIENT_SECRET }}"
 
 envFrom:
   - secretRef:
