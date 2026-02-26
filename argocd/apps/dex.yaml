@@ -22,7 +22,7 @@ spec:
           - $values/dex/helm/values.yaml
           - $values-private/dex/helm/values.yaml
     - repoURL: https://github.com/h00lig4n/k3s.git
-      targetRevision: dex
+      targetRevision: HEAD
       ref: values
     - repoURL: https://github.com/h00lig4n/k3s-private.git
       targetRevision: HEAD
