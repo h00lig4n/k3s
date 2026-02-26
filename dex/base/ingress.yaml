@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dex
+  namespace: auth
+  labels:
+    app: dex
+    app.kubernetes.io/component: dex
+    app.kubernetes.io/name: dex
+    app.kubernetes.io/part-of: auth
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: auth-test.yourdomain
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: dex
+                port:
+                  number: 80
