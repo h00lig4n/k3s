@@ -17,7 +17,7 @@ config:
       config:
         issuer: https://accounts.google.com
         clientID: REPLACEME
-        clientSecret: ${GOOGLE_CLIENT_SECRET}
+        clientSecret: $GOOGLE_CLIENT_SECRET
         redirectURI: https://auth-test.yourdomain/callback
 
     - type: ldap
