@@ -18,42 +18,48 @@ data:
   bookmarks.yaml: ""
   services.yaml: |
     - Tools:
+      - Home Assistant:
+          href: "https://assistant.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+          description: Home Automation Hub
+          icon: sh-home-assistant.svg
+          widget:
+              type: homeassistant
+              url: "http://hass.hass.svc.cluster.local:8123"
+              key: "{{HOMEPAGE_VAR_HASS_TOKEN}}"
+              custom:
+                - state: sensor.home_electricity_price
+                  label: Electricity Price
+                - state: sensor.elec_meter_elec_meter_power
+                  label: Electricity Usage    
+                - state: sensor.car_battery_level
+                  label: Car Battery
       - AI Open WebUI:
-            href: "https://ai.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
-            description: AI Chat
-            icon: sh-open-webui.svg
+          href: "https://ai.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+          description: AI Chat
+          icon: sh-open-webui.svg
       - Planka:
-            href: "https://plan.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
-            description: Planning Board
-            icon: sh-planka.svg
+          href: "https://plan.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+          description: Planning Board
+          icon: sh-planka.svg
       - Grafana:
-            href: "https://grafana.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
-            description: Dashboards
-            icon: sh-grafana.svg
+          href: "https://grafana.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+          description: Dashboards
+          icon: sh-grafana.svg
       - Container Registry:
-            href: "https://dockerui.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
-            description: Container Registry
-            icon: sh-docker.svg
+          href: "https://dockerui.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+          description: Container Registry
+          icon: sh-docker.svg
       - Postgresql:
             href: "https://sql.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: SQL Database
             icon: sh-postgresql.svg
-    - Home Automation:
-        - Home Assistant:
-            href: "https://assistant.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
-            description: Home Automation Hub
-            icon: sh-home-assistant.svg
-            widget:
-                type: homeassistant
-                url: "http://hass.hass.svc.cluster.local:8123"
-                key: "{{HOMEPAGE_VAR_HASS_TOKEN}}"
-                custom:
-                  - state: sensor.home_electricity_price
-                    label: Electricity Price
-                  - state: sensor.elec_meter_elec_meter_power
-                    label: Electricity Usage    
-                  - state: sensor.car_battery_level
-                    label: Car Battery
+    - Home Automation Stack:
+        - InfluxDB:
+            href: "https://influxb.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+            description: Long Term Statistics
+            icon: sh-influxdb.svg
+            namespace: hass
+            app: influxdb
         - ESPHome:
             href: "https://esp.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: ESP32 Controllers
@@ -61,12 +67,6 @@ data:
             widget:
                 type: esphome
                 url: http://esphome.hass.svc.cluster.local:6052
-        - InfluxDB:
-            href: "https://influxb.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
-            description: Long Term Statistics
-            icon: sh-influxdb.svg
-            namespace: hass
-            app: influxdb
         - Zigbee:
             href: "https://zigbee.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: Zigbee Controller
@@ -93,12 +93,12 @@ data:
               type: argocd
               url: http://argocd-server.argocd.svc.cluster.local:80
               key: "{{HOMEPAGE_VAR_ARGOCD_TOKEN}}"
-        - Casdoor:
+        - Dex:
             href: "https://auth.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: OIDC Login Provider
-            icon: sh-casdoor.png
-            namespace: common
-            app: casdoor
+            icon: sh-dex-auth.png
+            namespace: auth
+            app: dex
         - Portainer:
             href: "https://portainer.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: Container Management
