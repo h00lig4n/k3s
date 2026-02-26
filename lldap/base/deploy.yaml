@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lldap
+  namespace: auth
+  labels:
+    app: lldap
+    app.kubernetes.io/component: ldap
+    app.kubernetes.io/name: lldap
+    app.kubernetes.io/part-of: auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lldap
+  template:
+    metadata:
+      labels:
+        app: lldap
+        app.kubernetes.io/component: ldap
+        app.kubernetes.io/name: lldap
+        app.kubernetes.io/part-of: auth
+    spec:
+      containers:
+        - name: lldap
+          image: lldap/lldap:latest
+          ports:
+            - containerPort: 3890
+              name: ldap
+            - containerPort: 17170
+              name: http
+          env:
+            - name: LLDAP_LDAP_BASE_DN
+              valueFrom:
+                secretKeyRef:
+                  name: lldap-secrets
+                  key: LLDAP_LDAP_BASE_DN
+            - name: LLDAP_LDAP_USER_DN
+              value: "admin"
+            - name: LLDAP_LDAP_USER_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: lldap-secrets
+                  key: LLDAP_LDAP_USER_PASS
+            - name: LLDAP_JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: lldap-secrets
+                  key: LLDAP_JWT_SECRET
+          resources:
+            requests:
+              cpu: 20m
+              memory: 64Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi
