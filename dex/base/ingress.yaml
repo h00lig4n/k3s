@@ -8,6 +8,9 @@ metadata:
     app.kubernetes.io/component: dex
     app.kubernetes.io/name: dex
     app.kubernetes.io/part-of: auth
+  annotations:
+    #cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd  
 spec:
   ingressClassName: traefik
   rules:
@@ -21,3 +24,7 @@ spec:
                 name: dex
                 port:
                   number: 80
+  tls:
+    - secretName: tls-certificate
+      hosts:
+        - mydomain.com
