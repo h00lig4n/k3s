@@ -16,7 +16,7 @@ config:
       name: Google
       config:
         issuer: https://accounts.google.com
-        clientID: ${GOOGLE_CLIENT_ID}
+        clientID: REPLACEME
         clientSecret: ${GOOGLE_CLIENT_SECRET}
         redirectURI: https://auth-test.yourdomain/callback
 
