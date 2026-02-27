@@ -74,7 +74,7 @@ spec:
           - name: GF_AUTH_GENERIC_OAUTH_ENABLED
             value: "true" 
           - name: GF_AUTH_GENERIC_OAUTH_NAME
-            value: "Dex"
+            value: "Casdoor"
           - name: GF_AUTH_GENERIC_OAUTH_ICON
             value: "signin"
           - name: GF_AUTH_GENERIC_OAUTH_CLIENT_ID
@@ -85,21 +85,21 @@ spec:
                 name: grafana
                 key: client-secret
           - name: GF_AUTH_GENERIC_OAUTH_SCOPES
-            value: "openid profile email groups"             
+            value: "openid profile email"             
           - name: GF_AUTH_GENERIC_OAUTH_AUTH_URL
             valueFrom:
               secretKeyRef:
                 name: grafana
-                key: auth-url-dex
+                key: auth-url-casdoor
           - name: GF_AUTH_GENERIC_OAUTH_TOKEN_URL
             valueFrom:
               secretKeyRef:
                 name: grafana
-                key: token-url-dex
+                key: token-url-casdoor
           - name: GF_AUTH_GENERIC_OAUTH_USE_PKCE
             value: "true"
           - name: GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH
-            value: "contains(groups[*], 'admin') && 'Admin' || contains(groups[*], 'editor') && 'Editor' || 'Viewer'"
+            value: "contains(permissionNames, 'admin') && 'Admin' || contains(permissionNames, 'editor') && 'Editor' || 'Viewer'"
           - name: GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_STRICT
             value: "true"
           - name: GF_USERS_AUTO_ASSIGN_ORG_ROLE
