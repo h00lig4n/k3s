@@ -18,6 +18,13 @@ spec:
   clusterResourceWhitelist:
   - group: '*'
     kind: '*'
+  orphanedResources:
+    warn: true
+    ignore:
+      - group: ""
+        kind: Secret
+        jqPathExpressions:
+          - '.metadata.annotations["reflector.v1.k8s.emberstack.com/reflects"] != null'
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
@@ -39,6 +46,13 @@ spec:
   clusterResourceWhitelist:
   - group: '*'
     kind: '*'
+  orphanedResources:
+    warn: true
+    ignore:
+      - group: ""
+        kind: Secret
+        jqPathExpressions:
+          - '.metadata.annotations["reflector.v1.k8s.emberstack.com/reflects"] != null'
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
@@ -60,6 +74,13 @@ spec:
   clusterResourceWhitelist:
   - group: '*'
     kind: '*'
+  orphanedResources:
+    warn: true
+    ignore:
+      - group: ""
+        kind: Secret
+        jqPathExpressions:
+          - '.metadata.annotations["reflector.v1.k8s.emberstack.com/reflects"] != null'
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
@@ -81,3 +102,10 @@ spec:
   clusterResourceWhitelist:
   - group: '*'
     kind: '*'
+  orphanedResources:
+    warn: true
+    ignore:
+      - group: ""
+        kind: Secret
+        jqPathExpressions:
+          - '.metadata.annotations["reflector.v1.k8s.emberstack.com/reflects"] != null' 
