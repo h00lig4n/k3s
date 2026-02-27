@@ -5,6 +5,8 @@ metadata:
   namespace: argocd
   #labels:
   #  image-policy: semver
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     namespace: auth
