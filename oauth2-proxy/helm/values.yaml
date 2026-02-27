@@ -12,7 +12,14 @@ config:
     oidc_groups_claim = "roles"
     upstreams = ["static://200"]
 
+    cookie_domains = [".mydomain.com"]
+    whitelist_domains = [".mydomain.com"]
+
     scope = "openid profile email"
+
+extraArgs:
+  set-xauthrequest: "true"
+  reverse-proxy: "true"
 
 ingress:
   enabled: true
