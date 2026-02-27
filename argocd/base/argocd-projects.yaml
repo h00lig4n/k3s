@@ -23,8 +23,7 @@ spec:
     ignore:
       - group: ""
         kind: Secret
-        jqPathExpressions:
-          - '.metadata.annotations["reflector.v1.k8s.emberstack.com/reflects"] != null'
+        name: tls-certificate
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
@@ -51,8 +50,7 @@ spec:
     ignore:
       - group: ""
         kind: Secret
-        jqPathExpressions:
-          - '.metadata.annotations["reflector.v1.k8s.emberstack.com/reflects"] != null'
+        name: tls-certificate
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
@@ -79,8 +77,7 @@ spec:
     ignore:
       - group: ""
         kind: Secret
-        jqPathExpressions:
-          - '.metadata.annotations["reflector.v1.k8s.emberstack.com/reflects"] != null'
+        name: tls-certificate
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
@@ -107,5 +104,4 @@ spec:
     ignore:
       - group: ""
         kind: Secret
-        jqPathExpressions:
-          - '.metadata.annotations["reflector.v1.k8s.emberstack.com/reflects"] != null' 
+        name: tls-certificate
