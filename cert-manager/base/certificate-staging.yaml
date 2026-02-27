@@ -3,6 +3,9 @@ kind: Certificate
 metadata:
   name: tls-certificate-staging
   namespace: default
+  labels:
+    managed-by: cert-manager
+    gitops-role: dynamic-cert
 spec:
   dnsNames:
     - "*.mydomain.com"
