@@ -4,6 +4,7 @@ resources:
 - ingressroute.yaml
 - repo-k3s.yaml
 - parentapp.yaml
+- docker-io-helm-oci
 patches:
   - path: argocd-cmd-params-cm-patch.yaml
   - path: argocd-rbac-patch.yaml
