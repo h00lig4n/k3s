@@ -4,15 +4,21 @@ metadata:
   name: reloader
   namespace: argocd
 spec:
+  source:
+    repoURL: https://stakater.github.io/stakater-charts
+    chart: reloader
+    targetRevision: 1.4.13
+    helm:
+      values: |
+        reloader:
+          watchGlobally: true
   destination:
-    namespace: default
     server: https://kubernetes.default.svc
+    namespace: reloader
+  project: infrastructure
   syncPolicy:
     automated:
+      prune: true
       selfHeal: true
-  project: infrastructure
-  sources:
-    - path: reloader
-      repoURL: https://github.com/h00lig4n/k3s.git
-      targetRevision: HEAD
-# TODO Need to fix this for kustomize
+    syncOptions:
+      - CreateNamespace=true

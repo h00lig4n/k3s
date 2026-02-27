@@ -57,6 +57,13 @@ metadata:
 kind: Namespace
 apiVersion: v1
 metadata:
+  name: reloader
+  labels:
+    name: reloader
+---
+kind: Namespace
+apiVersion: v1
+metadata:
   name: external-storage
   labels:
     name: external-storage
