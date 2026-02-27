@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: oauth2-proxy
+  namespace: argocd
+  #labels:
+  #  image-policy: semver
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io 
+spec:
+  destination:
+    namespace: auth
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: true
+  project: common
+  sources:
+    - chart: oauth2-proxy
+      repoURL: https://oauth2-proxy.github.io/manifests
+      targetRevision: 10.1.4
+      helm:
+        valueFiles:
+          - $values/oauth2-proxy/helm/values.yaml
+          - $values-private/oauth2-proxy/helm/values.yaml
+    - repoURL: https://github.com/h00lig4n/k3s.git
+      targetRevision: HEAD
+      ref: values
+    - repoURL: https://github.com/h00lig4n/k3s-private.git
+      targetRevision: HEAD
+      ref: values-private
+    - path: oauth2-proxy/overlays/prod
+      repoURL: https://github.com/h00lig4n/k3s-private.git
+      targetRevision: HEAD

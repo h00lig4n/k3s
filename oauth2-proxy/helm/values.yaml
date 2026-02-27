@@ -1,0 +1,26 @@
+config:
+  clientID: "YOUR_CLIENT_ID"
+  clientSecret: "YOUR_CLIENT_SECRET"
+  cookieSecret: "YOUR_COOKIE_SECRET"
+
+  configFile: |
+    provider = "oidc"
+    oidc_issuer_url = "https://auth.mydomain.com"
+    email_domains = ["*"]
+
+    redirect_url = "https://oauth.mydomain.com/oauth2/callback"
+    oidc_groups_claim = "roles"
+    upstreams = ["static://200"]
+
+    scope = "openid profile email"
+
+ingress:
+  enabled: true
+  className: traefik
+  hosts:
+    - oauth.mydomain.com
+  path: /
+  pathType: Prefix
+  tls:
+    - hosts:
+        - oauth.mydomain.com

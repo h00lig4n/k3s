@@ -1,4 +1,6 @@
 resources:
   - ingress.yaml
   - middleware.yaml
+  - middlewareTCP.yaml
+  - casdoor-auth.yaml
   - tls-store.yaml
