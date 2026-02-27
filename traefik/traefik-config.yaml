@@ -39,18 +39,6 @@ spec:
         expose:
           default: false
         exposedPort: 1883
-      netflow:
-        port: 2055
-        expose:
-          default: false
-        exposedPort: 2055
-        protocol: UDP
-      stun:
-        port: 3478
-        expose:
-          default: false
-        exposedPort: 3478
-        protocol: UDP
       hass:
         port: 8123
         expose:

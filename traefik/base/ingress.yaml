@@ -5,7 +5,7 @@ metadata:
   namespace: default
 spec:
   routes:
-    - match: Host(`traefik.$DOMAIN_NAME`) && PathPrefix(`/api`) || PathPrefix(`/dashboard`)
+    - match: Host(`traefik.mydomain.com`) && PathPrefix(`/api`) || PathPrefix(`/dashboard`)
       kind: Rule
       middlewares:
         - name: auth
