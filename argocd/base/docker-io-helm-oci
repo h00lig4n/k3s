@@ -3,6 +3,8 @@ kind: Secret
 metadata:
   name: docker-io-helm-oci
   namespace: argocd
+  labels:
+    argocd.argoproj.io/secret-type: repository
 data:
   enableOCI: "true"
   name: casdoor
