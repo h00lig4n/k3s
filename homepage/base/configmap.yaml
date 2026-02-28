@@ -117,7 +117,7 @@ data:
             icon: sh-traefik.svg
             widget:
               type: traefik
-              url: http://traefik.kube-system.svc.cluster.local
+              url: http://traefik.kube-system.svc.cluster.local:8080
         - Unifi:
             href: "https://unifi.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: Unifi Network

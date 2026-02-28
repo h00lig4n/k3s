@@ -7,9 +7,9 @@ spec:
   routes:
     - match: Host(`traefik.mydomain.com`) && PathPrefix(`/api`) || PathPrefix(`/dashboard`)
       kind: Rule
-      middlewares:
-        - name: auth
-          namespace: default 
+#      middlewares:
+#        - name: auth
+#          namespace: default 
       services:
         - name: api@internal
           kind: TraefikService
