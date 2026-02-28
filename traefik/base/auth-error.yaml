@@ -11,4 +11,4 @@ spec:
       name: oauth2-proxy
       namespace: auth
       port: 80
-    query: "/oauth2/start?rd={url}"
+    query: "https://oauth.home.thomason.nu/oauth2/start?rd={url}"
