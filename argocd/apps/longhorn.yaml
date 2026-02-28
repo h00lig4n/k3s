@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: longhorn
+  namespace: argocd
+spec:
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+  project: infrastructure
+  sources:
+    - chart: longhorn
+      repoURL: https://charts.longhorn.io/
+      targetRevision: v1.11.0
+      helm:
+        valueFiles:
+          - $values/longhorn/helm/values.yaml
+          - $values-private/longhorn/helm/values.yaml
+    - repoURL: https://github.com/h00lig4n/k3s.git
+      targetRevision: HEAD
+      ref: values
+    - repoURL: https://github.com/h00lig4n/k3s-private.git
+      targetRevision: HEAD
+      ref: values-private
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: longhorn-system

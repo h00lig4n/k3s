@@ -1,8 +1,10 @@
 # k3s - Bare Metal K3S Setup
+
 This is run on a Raspberry Pi Cluster (currently 5x Raspberry PI 4 8Mb).
 NFS running on separate Debian Linux box.
 
-# Goals
+## Goals
+
 - TLS For everything, even if the cluster is not exposed to the Internet.
   - Traefik ingress for HTTPS and TCP.
 - HA dual Control Plane Nodes and external PostGreSQL database.
@@ -17,68 +19,67 @@ NFS running on separate Debian Linux box.
 - Fun with Kubernetes.
 - Host own developed apps.
 
-# TODO
-  - Network policy, connected to namespaces. 
+## TODO
 
-# Installation Order
+Network policy, connected to namespaces.
 
-# Installed Kubernetes Components
+## Installation Order
 
-## AI
+## Installed Kubernetes Components
+
+### AI
+
 Refer to [/ai/README.md]
 
+### Argo CD
 
-## Argo CD
+I would probably redo this installation method and use Helm next time.
+ArgoCD is managing ArgoCD in this setup.
+
 [Argo CD](https://argo-cd.readthedocs.io/en/stable/getting_started/)
-```
+
+```bash
 kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 ```
 
 Applications are stored in /argocd-apps
-- base is stored in this repo
-- overlays are stored in a private repo. 
+
+- Base is stored in this repo
+- Overlays are stored in a private repo.
 - Sealed Secrets are used for extra security layer.
 
 Overlays looks like this:
-```
-resources:
-  - https://github.com/h00lig4n/k3s.git//folder/base?ref=main
-patches:
+
+```yaml
+  resources:
+    - https://github.com/h00lig4n/k3s.git//folder/base?ref=main
+  patches:
 ```
 
 ## Cert Manager
+
 Using subdomain to provide TLS support on internal network.
 [CPanel Plugin](https://github.com/jamesorlakin/cert-manager-cpanel-dns-webhook)
 This creates a default wildcard certificate, this is an internal cluster so that is fine.
 
-### Instructions
-```
-kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/<latest-version>/cert-manager.yaml
-kubectl apply -f https://raw.githubusercontent.com/jamesorlakin/cert-manager-cpanel-dns-webhook/master/deploy/<latest-version>.yaml
-kubectl apply -f certmanager/secret.yaml
-kubectl apply -f certmanager/issuer.yaml
-kubectl apply -f certmanager/default-cert.yaml
-```
-
 ## Generic Device Plugin
+
 To be able to move Zigbee, Zwave and other devices between nodes and have the pods follow.
 [Generic Device Plugin](https://github.com/squat/generic-device-plugin)
 Update the daemonset with new device addresses.
 
-### Instructions
-```
-kubectl apply -f generic-device-plugin/daemonset.yaml
-```
-
 ## Sealed Secrets
+
 Would like to be able to store everything in GIT.
 [Sealed Secrets](https://github.com/bitnami-labs/sealed-secrets)
 
 ### Instructions
+
 Installed client as extension to VSCode or kubeseal via documentation.
 Run the follow, updating [<latest-version>](https://github.com/bitnami-labs/sealed-secrets/releases) from here. Keep the keys backed-up, but somewhere secure. Public key will be needed to encrypt.
-```
+
+```bash
 openssl req -x509 -days 730 -nodes -newkey rsa:4096 -keyout sealed-secret.key -out sealed-secret.crt -subj "/CN=sealed-secret/O=sealed-secret"
 kubectl apply -f https://github.com/bitnami-labs/sealed-secrets/releases/download/<latest-version>/controller.yaml
 kubectl -n kube-system create secret tls sealed-secret-keys --cert=sealed-secret.crt --key=sealed-secret.key
@@ -86,37 +87,31 @@ kubectl -n kube-system label secret sealed-secret-keys sealedsecrets.bitnami.com
 ```
 
 ## KEDA
+
 To be able scale down resources to zero on schedules, triggers.
 
 ## Kubernetes Reflector
+
 [Kubernetes Reflector](https://github.com/emberstack/kubernetes-reflector) is used to copy resources between namespaces.
 It is used here to copy the wildcard TLS certificate to all namespaces.
 
-### Instructions
-  **NOTE**: Install this **before** Cert Manager.
-```
-kubectl -n kube-system apply -f https://github.com/emberstack/kubernetes-reflector/releases/latest/download/reflector.yaml
-```
-
 ## Kube-Vip
+
 This is used to provide a single IP address for a HA K3S without having an external load balancer.
 Update the IP address in the daemonset.yaml with your common IP address. Can match the first IP in MetalLB IP pool as long as no port conflicts with Traefik.
 
 **NOTE: This is ONLY needed with HA K3S setup.
 
-### Installation
-```
-kubectl apply -f https://kube-vip.io/manifests/rbac.yaml<br>
-kubectl apply -f kube-vip/daemonset.yaml
-```
-
 ## MetalLB
+
 Using MetalLB instead of the default load balancer. Gives us some nice options to expose a service, although I prefer Ingress.
 **NOTE**: I will probably remove this as since Traefik TCP endpoints are working I don't need to expose services directly.
 
 ### Installation
-**NOTE:** The openssl command works only on linux. 
-```
+
+**NOTE:** The openssl command works only on linux.
+
+```bash
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/{{latest-metallb-version}}/config/manifests/metallb-native.yaml
 kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 kubectl apply -f config.yaml
@@ -125,24 +120,26 @@ kubectl apply -f config.yaml
 The bgp config file isn't used yet. I have VLAN segmentation now and don't see the need.
 
 ## Traefik
+
 Default installation with K3S. Sucessfully used for HTTPS and for TCP. TCP was easy when I actually understood what needed to be done... 
 Aim is to avoid using MetalLB to expose services outside of the cluster and rely solely on Ingress.
 
-### Instructions
-  **NOTE**: Install MetalLB first otherwise we don't have a Load Balancer. Perhaps because I removed the default one?
-```
-kubectl apply -f traefik/secret.yaml
-kubectl apply -f traefik/middleware.yaml
-kubectl apply -f traefik/tls-store.yaml
-kubectl apply -f traefik/ingress.yaml
-```
+**NOTE**: Install MetalLB first otherwise we don't have a Load Balancer. Perhaps because I removed the default one?
+
 The following needs to be done on the control plane node, not through remote kubectl:
 ```On control plane node deploy traefik-config.yaml to /var/lib/rancher/k3s/server/manifests/traefik-config.yaml```
 
 ## Longhorn
+
+[Jeric Dy Page](https://www.jericdy.com/blog/installing-k3s-with-longhorn-and-usb-storage-on-raspberry-pi)
+
+kubectl label node k3s2 longhorn-storage=true
+kubectl label node k3s3 longhorn-storage=true
+kubectl label node k3s5 longhorn-storage=true
+
 High speed USB sticks in all the worker nodes to host longhorn.
-**NOTE**: This has been to unstable and I'm not using it right now. Need to investigate if USB latency or network is issue. 
-Probably would be a winner with non-USB high speed storage. 
+
+
 
 ## NFS
 Separate debian linux server hosting:

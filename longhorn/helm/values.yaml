@@ -1,0 +1,18 @@
+preUpgradeChecker:
+  jobEnabled: false
+
+global:
+  nodeSelector:
+    longhorn-storage: "true"
+
+defaultSettings:
+  defaultReplicaCount: 3
+  defaultDataPath: /mnt/usb
+  createDefaultDiskLabeledNodes: true
+
+ingress:
+  enabled: true
+  ingressClassName: traefik
+  host: longhorn.example.com
+  tls: true
+  tlsSecret: tls-certificate

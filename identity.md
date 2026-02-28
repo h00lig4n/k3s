@@ -56,6 +56,7 @@ Most likely user error :).
 
 I find some of the UI unintuitive and see issues where you delete items in the wrong order and need to clean up manually in the database.
 I am not leverage the full might of the permissions engine, it's overkill for my usecases.
+I've also leveraged OAuth2-Proxy for securing non-Oidc applications and services.
 
 #### Usefull Links
 
@@ -71,13 +72,26 @@ Pros:
 
 Cons:
 
-- Powerful role models were daunting until I realized I didn't need to use it all. 
+- Powerful role models were daunting until I realized I didn't need to use it all.
 - Relatively unknown and therefore limited community support.
 - Powerful Casbin permission engine overcomplicates my simple usecases.
+- Need to use external OAuth2-Proxy for non-OIDC applications.
 
 ### Dex
 
-Not done yet. Argo CD built in support.
+I tried Dex. Awsome and lightweight. Installed LLDAP to give run as user store.
+
+Pros:
+
+- Low resource usage.
+- Federated support.
+- Looks good.
+- Simple.
+
+Cons:
+
+- Cannot manager roles permissions need to be managed in applications.
+- Cannot merge roles permissions from LDAP.
 
 ### Keycloak
 

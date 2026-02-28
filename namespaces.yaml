@@ -64,6 +64,13 @@ metadata:
 kind: Namespace
 apiVersion: v1
 metadata:
+  name: longhorn-system
+  labels:
+    name: longhorn-system 
+---
+kind: Namespace
+apiVersion: v1
+metadata:
   name: external-storage
   labels:
     name: external-storage
