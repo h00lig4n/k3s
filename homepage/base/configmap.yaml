@@ -18,21 +18,6 @@ data:
   bookmarks.yaml: ""
   services.yaml: |
     - Tools:
-      - Home Assistant:
-          href: "https://assistant.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
-          description: Home Automation Hub
-          icon: sh-home-assistant.svg
-          widget:
-              type: homeassistant
-              url: "http://hass.hass.svc.cluster.local:8123"
-              key: "{{HOMEPAGE_VAR_HASS_TOKEN}}"
-              custom:
-                - state: sensor.home_electricity_price
-                  label: Electricity Price
-                - state: sensor.elec_meter_elec_meter_power
-                  label: Electricity Usage    
-                - state: sensor.car_battery_level
-                  label: Car Battery
       - AI Open WebUI:
           href: "https://ai.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
           description: AI Chat
@@ -54,6 +39,21 @@ data:
             description: SQL Database
             icon: sh-postgresql.svg
     - Home Automation Stack:
+      - Home Assistant:
+          href: "https://assistant.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+          description: Home Automation Hub
+          icon: sh-home-assistant.svg
+          widget:
+              type: homeassistant
+              url: "http://hass.hass.svc.cluster.local:8123"
+              key: "{{HOMEPAGE_VAR_HASS_TOKEN}}"
+              custom:
+                - state: sensor.home_electricity_price
+                  label: Electricity Price
+                - state: sensor.elec_meter_elec_meter_power
+                  label: Electricity Usage    
+                - state: sensor.car_battery_level
+                  label: Car Battery
         - InfluxDB:
             href: "https://influxb.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: Long Term Statistics
@@ -67,6 +67,11 @@ data:
             widget:
                 type: esphome
                 url: http://esphome.hass.svc.cluster.local:6052
+        - Mosquitto:
+            description: MQTT Broker
+            icon: sh-mosquitto.svg
+            namespace: hass
+            app: mqtt
         - Zigbee:
             href: "https://zigbee.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: Zigbee Controller
@@ -79,11 +84,6 @@ data:
             icon: sh-z-wave-js-ui.svg
             namespace: hass
             app: zwavejs
-        - Mosquitto:
-            description: MQTT Broker
-            icon: sh-mosquitto.svg
-            namespace: hass
-            app: mqtt
     - Infrastructure:
         - ArgoCD:
             href: "https://argocd.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
@@ -93,12 +93,16 @@ data:
               type: argocd
               url: http://argocd-server.argocd.svc.cluster.local:80
               key: "{{HOMEPAGE_VAR_ARGOCD_TOKEN}}"
-        - Dex:
+        - CasDoor:
             href: "https://auth.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: OIDC Login Provider
-            icon: sh-dex-auth.png
+            icon: sh-casdoor.png
             namespace: auth
-            app: dex
+            app: casdoor
+        - Longhorn:
+             href: "https://longhorn.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+             description: Longhorn Storage
+             icon: sh-longhorn.svg 
         - Portainer:
             href: "https://portainer.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: Container Management
@@ -107,6 +111,13 @@ data:
               type: portainer
               url: "https://portainer.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
               key: "{{HOMEPAGE_VAR_PORTAINER_TOKEN}}"
+        - Traefik:
+            href: "https://traefik.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+            description: Ingress Controller
+            icon: sh-traefik.svg
+            widget:
+              type: traefik
+              url: http://traefik.kube-system.svc.cluster.local:8883
         - Unifi:
             href: "https://unifi.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: Unifi Network
@@ -120,6 +131,7 @@ data:
             href: "https://nut.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: UPS Monitoring
             icon: sh-nutalert.svg
+
   widgets.yaml: |
     - kubernetes:
         cluster:
