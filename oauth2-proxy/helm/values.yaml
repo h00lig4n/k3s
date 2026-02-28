@@ -13,6 +13,7 @@ config:
     upstreams = ["static://200"]
 
     cookie_domains = [".mydomain.com"]
+    cookie_samesite = "lax"
     whitelist_domains = [".mydomain.com"]
 
     scope = "openid profile email"

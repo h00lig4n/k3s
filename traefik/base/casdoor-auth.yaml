@@ -12,3 +12,4 @@ spec:
       - X-Auth-Request-Email
       - X-Auth-Request-Groups
       - Authorization
+      - "Set-Cookie"
