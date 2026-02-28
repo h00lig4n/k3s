@@ -84,6 +84,24 @@ data:
             icon: sh-z-wave-js-ui.svg
             namespace: hass
             app: zwavejs
+        - Heatpump:
+            href: "http://heatpump.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+            description: IVT GEO 500
+            icon: sh-z-wave-js-ui.svg
+            namespace: hass
+            app: zwavejs
+        - Electricity Meter:
+            href: "https://zwave.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+            description: ZWave Controller
+            icon: sh-z-wave-js-ui.svg
+            namespace: hass
+            app: zwavejs
+        - Water Meter:
+            href: "https://zwave.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+            description: ZWave Controller
+            icon: sh-z-wave-js-ui.svg
+            namespace: hass
+            app: zwavejs
     - Infrastructure:
         - ArgoCD:
             href: "https://argocd.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
@@ -102,11 +120,14 @@ data:
         - Edge Router 4:
              href: "https://gateway.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
              description: Edge Router
-             icon: sh-gateway-router.svg 
+             icon: si-ubiquiti
         - Longhorn:
              href: "https://longhorn.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
-             description: Longhorn Storage
+             description: Container Storage
              icon: sh-rancher-longhorn.svg
+        - Network Attached Storage:
+             description: NFS and NAS Server
+             icon: sh-ugreen-nas.svg
         - OAuth2 Proxy:
              description: OAuth2 Proxy
              icon: sh-oauth2-proxy.svg 
@@ -141,7 +162,6 @@ data:
             href: "https://nut.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: UPS Monitoring
             icon: sh-nutalert.svg
-
   widgets.yaml: |
     - kubernetes:
         cluster:
