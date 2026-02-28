@@ -133,9 +133,9 @@ The following needs to be done on the control plane node, not through remote kub
 
 [Jeric Dy Page](https://www.jericdy.com/blog/installing-k3s-with-longhorn-and-usb-storage-on-raspberry-pi)
 
-kubectl label node k3s2 longhorn-storage=true
-kubectl label node k3s3 longhorn-storage=true
-kubectl label node k3s5 longhorn-storage=true
+Label nodes where Longhorn will run with the following:
+kubectl label node nodename longhorn-storage=true
+kubectl label node nodename node.longhorn.io/create-default-disk=true
 
 High speed USB sticks in all the worker nodes to host longhorn.
 

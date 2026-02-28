@@ -8,7 +8,7 @@ metadata:
     app.kubernetes.io/component: esp32
     app.kubernetes.io/part-of: hass
 spec:
-  replicas: 0
+  replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: esphome
@@ -89,7 +89,7 @@ spec:
       volumes:
         - name: esphome-pvc
           persistentVolumeClaim:
-            claimName: esphome
+            claimName: esphome-config-longhorn
         - name: esphome-build
           emptyDir: {}
         - name: localtime
