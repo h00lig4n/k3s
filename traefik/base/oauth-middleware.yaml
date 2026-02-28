@@ -2,7 +2,7 @@ apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
   name: oauth-headers
-  namespace: auth
+  namespace: default
 spec:
   headers:
     sslRedirect: true
