@@ -25,7 +25,7 @@ ingress:
   enabled: true
   className: traefik
   annotations:
-    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd,auth-oauth-headers@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd,default-oauth-headers@kubernetescrd
   hosts:
     - oauth.mydomain.com
   path: /
