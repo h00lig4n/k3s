@@ -39,7 +39,7 @@ data:
             description: SQL Database
             icon: sh-postgresql.svg
     - Home Automation Stack:
-      - Home Assistant:
+        - Home Assistant:
           href: "https://assistant.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
           description: Home Automation Hub
           icon: sh-home-assistant.svg
