@@ -24,6 +24,9 @@ spec:
       - group: ""
         kind: Secret
         name: tls-certificate
+      - group: ""
+        kind: Secret
+        name: tls-staging-certificate
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
@@ -51,6 +54,9 @@ spec:
       - group: ""
         kind: Secret
         name: tls-certificate
+      - group: ""
+        kind: Secret
+        name: tls-staging-certificate
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
@@ -78,6 +84,9 @@ spec:
       - group: ""
         kind: Secret
         name: tls-certificate
+      - group: ""
+        kind: Secret
+        name: tls-staging-certificate  
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
@@ -105,6 +114,9 @@ spec:
       - group: ""
         kind: Secret
         name: tls-certificate
+      - group: ""
+        kind: Secret
+        name: tls-staging-certificate
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
@@ -132,3 +144,6 @@ spec:
       - group: ""
         kind: Secret
         name: tls-certificate
+      - group: ""
+        kind: Secret
+        name: tls-staging-certificate
