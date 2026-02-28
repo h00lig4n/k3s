@@ -16,14 +16,13 @@ apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
   name: oauth2-errors
-  namespace: default
+  namespace: auth
 spec:
   errors:
     status:
       - "401"
     service:
       name: oauth2-proxy
-      namespace: auth
       port: 80
     query: "/oauth2/start?rd={url}"
 ---
@@ -35,6 +34,6 @@ metadata:
 spec:
   chain:
     middlewares:
-    - name: redirect-https
-    - name: oauth2-errors
-    - name: oauth2-auth
+    - name: redirect-https@kubernetescrd
+    - name: oauth2-errors@auth@kubernetescrd
+    - name: oauth2-auth@kubernetescrd
