@@ -8,7 +8,7 @@ metadata:
     app.kubernetes.io/component: esp32
     app.kubernetes.io/part-of: hass
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app.kubernetes.io/name: esphome
@@ -36,19 +36,11 @@ spec:
             value: "true"
           - name: TZ
             value: Europe/Stockholm
-         # - name: "USERNAME"
-         #   valueFrom:
-         #     secretKeyRef:
-         #       name: esphome
-         #       key: username
-         # - name: "PASSWORD"
-         #   valueFrom:
-         #     secretKeyRef:
-         #       name: esphome
-         #       key: password
         volumeMounts:
           - name: esphome-pvc
             mountPath: /config
+          - name: esphome-build
+            mountPath: /config/.esphome
           - name: localtime
             mountPath: /etc/localtime
             readOnly: true
@@ -86,9 +78,6 @@ spec:
       terminationGracePeriodSeconds: 30
       nodeSelector:
         node-role.kubernetes.io/worker: "true"
-      # Ugly to enable the following but it will make it easier to 
-      #hostNetwork: true
-      #dnsPolicy: ClusterFirstWithHostNet
       dnsPolicy: "None"
       dnsConfig:
         nameservers:
@@ -96,11 +85,13 @@ spec:
           - 192.168.0.1
           - 192.168.20.1
         searches:
-          - $DOMAIN_NAME
+          - mydomain.com
       volumes:
         - name: esphome-pvc
           persistentVolumeClaim:
             claimName: esphome
+        - name: esphome-build
+          emptyDir: {}
         - name: localtime
           hostPath:
             path: /etc/localtime
