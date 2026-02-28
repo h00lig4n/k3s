@@ -5,4 +5,3 @@ resources:
   - oauth-middleware.yaml
   - casdoor-auth.yaml
   - tls-store.yaml
-  - auth-error.yaml
