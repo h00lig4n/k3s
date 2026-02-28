@@ -5,7 +5,7 @@ metadata:
   namespace: default
 spec:
   forwardAuth:
-    address: http://oauth2-proxy.auth.svc.cluster.local/oauth2/auth
+    address: https://oauth.home.thomason.nu/oauth2/auth
     trustForwardHeader: true
     authResponseHeaders:
       - X-Auth-Request-User
