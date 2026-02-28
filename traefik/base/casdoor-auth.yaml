@@ -35,5 +35,5 @@ spec:
   chain:
     middlewares:
     - name: redirect-https
-    - name: oauth2-errors@auth@kubernetescrd
+    - name: auth-oauth2-errors@kubernetescrd
     - name: oauth2-auth
