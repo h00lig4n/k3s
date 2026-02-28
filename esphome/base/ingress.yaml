@@ -7,7 +7,7 @@ metadata:
     app.kubernetes.io/name: esphome
   annotations:
     #cert-manager.io/cluster-issuer: letsencrypt-prod
-    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd,default-casdoor-auth@kubernetescrd,default-oauth-errors@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd,default-oauth-errors@kubernetescrd,default-casdoor-auth@kubernetescrd
 spec:
   ingressClassName: traefik
   rules:
