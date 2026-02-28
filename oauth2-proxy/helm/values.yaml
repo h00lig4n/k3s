@@ -20,6 +20,7 @@ config:
 extraArgs:
   set-xauthrequest: "true"
   reverse-proxy: "true"
+  skip-provider-button: "true"
 
 ingress:
   enabled: true
