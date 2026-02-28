@@ -36,4 +36,4 @@ spec:
     middlewares:
     - name: redirect-https@kubernetescrd
     - name: oauth2-errors@auth@kubernetescrd
-    - name: oauth2-auth@default@kubernetescrd
+    - name: oauth2-auth
