@@ -93,16 +93,23 @@ data:
               type: argocd
               url: http://argocd-server.argocd.svc.cluster.local:80
               key: "{{HOMEPAGE_VAR_ARGOCD_TOKEN}}"
-        - CasDoor:
+        - Casdoor:
             href: "https://auth.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: OIDC Login Provider
             icon: sh-casdoor.png
-            namespace: auth
+            namespace: common
             app: casdoor
+        - Edge Router 4:
+             href: "https://gateway.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+             description: Edge Router
+             icon: sh-gateway-router.svg 
         - Longhorn:
              href: "https://longhorn.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
              description: Longhorn Storage
-             icon: sh-rancher-longhorn.svg 
+             icon: sh-rancher-longhorn.svg
+        - OAuth2 Proxy:
+             description: OAuth2 Proxy
+             icon: sh-oauth2-proxy.svg 
         - Portainer:
             href: "https://portainer.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: Container Management
@@ -111,6 +118,9 @@ data:
               type: portainer
               url: "https://portainer.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
               key: "{{HOMEPAGE_VAR_PORTAINER_TOKEN}}"
+        - Prometheus:
+             description: Prometheus Monitoring
+             icon: sh-prometheus.svg 
         - Traefik:
             href: "https://traefik.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: Ingress Controller
