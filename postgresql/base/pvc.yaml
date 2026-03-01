@@ -29,3 +29,5 @@ spec:
   resources:
     requests:
       storage: 10Gi
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
