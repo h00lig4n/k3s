@@ -24,6 +24,11 @@ spec:
       containers:
       - name: postgresql
         image: postgres:17.4
+
+        args:
+          - "-c"
+          - "config_file=/etc/postgresql/postgresql.conf"
+
         env:
           - name: POSTGRES_USER
             valueFrom:
@@ -42,6 +47,8 @@ spec:
         volumeMounts:
         - name: postgresql-volume
           mountPath: /var/lib/postgresql/data
+        - name: postgresql-config
+          mountPath: /etc/postgresql
         resources:
           requests:
             cpu: "250m"
@@ -75,3 +82,6 @@ spec:
       - name: postgresql-volume
         persistentVolumeClaim:
           claimName: postgres-local-pvc
+      - name: postgresql-config
+        configMap:
+          name: postgresql-config

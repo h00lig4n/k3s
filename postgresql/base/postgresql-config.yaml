@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgresql-config
+  namespace: common
+  labels:
+    app.kubernetes.io/component: db
+    app.kubernetes.io/part-of: postgresql
+    app.kubernetes.io/name: postgresql
+data:
+  postgresql.conf: |
+    # -----------------------------
+    # MEMORY
+    # -----------------------------
+    shared_buffers = 768MB
+    effective_cache_size = 2GB
+    work_mem = 12MB
+    maintenance_work_mem = 256MB
+
+    # -----------------------------
+    # CONNECTIONS
+    # -----------------------------
+    max_connections = 40
+
+    # -----------------------------
+    # WAL / CHECKPOINT
+    # -----------------------------
+    wal_buffers = 16MB
+    checkpoint_completion_target = 0.9
+    synchronous_commit = on
+
+    # -----------------------------
+    # PLANNER (SSD/local disk)
+    # -----------------------------
+    random_page_cost = 1.1
+
+    # -----------------------------
+    # LOGGING (minimal but useful)
+    # -----------------------------
+    log_min_duration_statement = 1000
+    log_checkpoints = on
+    log_connections = off
+    log_disconnections = off

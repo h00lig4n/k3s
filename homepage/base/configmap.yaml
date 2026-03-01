@@ -87,21 +87,15 @@ data:
         - Heatpump:
             href: "http://heatpump.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: IVT GEO 500
-            icon: sh-z-wave-js-ui.svg
-            namespace: hass
-            app: zwavejs
+            icon: mdi-heat-pump-outline
         - Electricity Meter:
-            href: "https://zwave.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
-            description: ZWave Controller
-            icon: sh-z-wave-js-ui.svg
-            namespace: hass
-            app: zwavejs
+            href: "http://el-meter.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+            description: Electricity Meter
+            icon: mdi-lightning-bolt
         - Water Meter:
-            href: "https://zwave.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
-            description: ZWave Controller
-            icon: sh-z-wave-js-ui.svg
-            namespace: hass
-            app: zwavejs
+            href: "http://watermeter.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
+            description: Kamiq Flow IQ 2200
+            icon: mid-water
     - Infrastructure:
         - ArgoCD:
             href: "https://argocd.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
