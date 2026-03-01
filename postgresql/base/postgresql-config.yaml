@@ -10,6 +10,12 @@ metadata:
 data:
   postgresql.conf: |
     # -----------------------------
+    # CORE REQUIRED FOR KUBERNETES
+    # -----------------------------
+    data_directory = '/var/lib/postgresql/data'
+    listen_addresses = '*'
+
+    # -----------------------------
     # MEMORY
     # -----------------------------
     shared_buffers = 768MB
