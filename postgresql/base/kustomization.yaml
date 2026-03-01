@@ -2,6 +2,6 @@ resources:
   - adminer-deploy.yaml
   - adminer-svc.yaml
   - ingress.yaml
-  - postgresql-deploy.yaml
+  - postgresql-statefulset.yaml
   - postgresql-svc.yaml
   - pvc.yaml

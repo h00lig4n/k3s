@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: postgresql
   namespace: common
@@ -13,7 +13,7 @@ spec:
       app.kubernetes.io/component: db
       app.kubernetes.io/part-of: postgresql
       app.kubernetes.io/name: postgresql
-  replicas: 0
+  replicas: 1
   template:
     metadata:
       labels:
@@ -42,9 +42,36 @@ spec:
         volumeMounts:
         - name: postgresql-volume
           mountPath: /var/lib/postgresql/data
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "512Mi"
+          limits:
+            cpu: "1000m"
+            memory: "2Gi"
+        livenessProbe:
+          exec:
+            command:
+              - pg_isready
+              - -U
+              - postgres
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          exec:
+            command:
+              - pg_isready
+              - -U
+              - postgres
+          initialDelaySeconds: 5
+          periodSeconds: 5
       nodeSelector:
-        node-role.kubernetes.io/worker: "true"
+        node-role.kubernetes.io/control-plane: "true"
+      tolerations:
+      - key: "node-role.kubernetes.io/control-plane"
+        operator: "Exists"
+        effect: "NoSchedule"
       volumes:
       - name: postgresql-volume
         persistentVolumeClaim:
-          claimName: postgresql
+          claimName: postgres-local-pvc
