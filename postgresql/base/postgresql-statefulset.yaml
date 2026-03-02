@@ -45,14 +45,14 @@ spec:
         ports:
         - containerPort: 5432
         volumeMounts:
-        - name: postgresql-volume
-          mountPath: /var/lib/postgresql/data
-        - name: postgresql-config
-          mountPath: /etc/postgresql
-          subPath: postgresql.conf
-        - name: postgresql-hba
-          mountPath: /etc/postgresql/pg_hba.conf
-          subPath: pg_hba.conf
+          - name: postgresql-volume
+            mountPath: /var/lib/postgresql/data
+          - name: postgresql-config
+            mountPath: /etc/postgresql/postgresql.conf
+            subPath: postgresql.conf
+          - name: postgresql-hba
+            mountPath: /etc/postgresql/pg_hba.conf
+            subPath: pg_hba.conf
         resources:
           requests:
             cpu: "250m"
