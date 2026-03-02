@@ -31,7 +31,7 @@ spec:
           prometheus-node-exporter:
             enabled: false
 
-          kubeStateMetrics:
+          kube-state-metrics:
             enabled: true
             collectors:
               - pods
