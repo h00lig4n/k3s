@@ -49,6 +49,9 @@ spec:
           mountPath: /var/lib/postgresql/data
         - name: postgresql-config
           mountPath: /etc/postgresql
+        - name: postgresql-hba
+          mountPath: /etc/postgresql/pg_hba.conf
+          subPath: pg_hba.conf
         resources:
           requests:
             cpu: "250m"
@@ -85,3 +88,6 @@ spec:
       - name: postgresql-config
         configMap:
           name: postgresql-config
+      - name: postgresql-hba
+        configMap:
+          name: postgresql-hba  

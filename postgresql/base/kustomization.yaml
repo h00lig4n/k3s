@@ -5,4 +5,5 @@ resources:
   - postgresql-statefulset.yaml
   - postgresql-svc.yaml
   - postgresql-config.yaml
+  - postgresql-hba-config.yaml
   - pvc.yaml
