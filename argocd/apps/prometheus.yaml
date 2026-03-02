@@ -102,9 +102,8 @@ spec:
                     - action: labelmap
                       regex: __meta_kubernetes_node_label_(.+)
 
+                  metric_relabel_configs:
+                    - source_labels: [__name__]
+                      regex: 'container_fs_.*'
+                      action: drop
 
-  #        extraScrapeConfigs: |
-  #          - job_name: 'traefik'
-  #            static_configs:
-  #              - targets:
-  #                  - traefik.kube-system.svc.cluster.local:9100
