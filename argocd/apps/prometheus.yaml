@@ -25,9 +25,6 @@ spec:
           alertmanager:
             enabled: false
 
-          kubernetesServiceMonitors:
-            enabled: false
-
           prometheus-pushgateway:
             enabled: false
 
@@ -42,6 +39,8 @@ spec:
               - nodes
 
           server:
+            kubernetes:
+              enabled: false
             global:
               scrape_interval: 60s  
             extraArgs:
