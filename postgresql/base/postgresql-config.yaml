@@ -19,9 +19,9 @@ data:
     # -----------------------------
     # MEMORY
     # -----------------------------
-    shared_buffers = 768MB
-    effective_cache_size = 2GB
-    work_mem = 12MB
+    shared_buffers = 512MB
+    effective_cache_size = 3GB
+    work_mem = 8MB
     maintenance_work_mem = 256MB
 
     # -----------------------------
@@ -34,7 +34,10 @@ data:
     # -----------------------------
     wal_buffers = 16MB
     checkpoint_completion_target = 0.9
-    synchronous_commit = on
+    synchronous_commit = off
+    wal_compression = on
+    max_wal_size = 2GB
+    min_wal_size = 512MB
 
     # -----------------------------
     # PLANNER (SSD/local disk)
