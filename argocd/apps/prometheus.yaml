@@ -34,7 +34,9 @@ spec:
           kubeStateMetrics:
             enabled: true
 
-          server:  
+          server:
+            global:
+              scrape_interval: 60s  
             extraArgs:
               query.max-concurrency: 5
             resources:
