@@ -81,7 +81,7 @@ spec:
                 - job_name: kube-state-metrics
                   static_configs:
                     - targets:
-                        - kube-state-metrics.monitoring.svc.cluster.local:8080
+                        - kube-state-metrics.monitoring.svc:8080
 
                 - job_name: node-exporter
                   kubernetes_sd_configs:
@@ -95,8 +95,12 @@ spec:
                   scheme: https
                   tls_config:
                     insecure_skip_verify: true
+                  bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
                   kubernetes_sd_configs:
                     - role: node
+                  relabel_configs:
+                    - action: labelmap
+                      regex: __meta_kubernetes_node_label_(.+)
 
 
   #        extraScrapeConfigs: |
