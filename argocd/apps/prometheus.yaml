@@ -73,32 +73,8 @@ spec:
               scrape_configs:
                 - job_name: prometheus
                   static_configs:
-                    - targets: ['localhost:9090']
-
-                - job_name: traefik
-                  static_configs:
                     - targets:
-                        - traefik.kube-system.svc.cluster.local:9100
-
-                - job_name: kube-state-metrics
-                  static_configs:
-                    - targets:
-                        - kube-state-metrics.monitoring.svc.cluster.local:8080
-
-                - job_name: node-exporter
-                  kubernetes_sd_configs:
-                    - role: pod
-                  relabel_configs:
-                    - source_labels: [__meta_kubernetes_pod_label_app_kubernetes_io_name]
-                      regex: prometheus-node-exporter
-                      action: keep
-
-                - job_name: kubelet
-                  scheme: https
-                  tls_config:
-                    insecure_skip_verify: true
-                  kubernetes_sd_configs:
-                    - role: node
+                        - localhost:9090
 
 
   #        extraScrapeConfigs: |
