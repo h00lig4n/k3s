@@ -5,6 +5,8 @@ metadata:
   namespace: common
   labels:
     app: postgresql
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
 spec:
   accessModes:
     - ReadWriteOnce
@@ -12,14 +14,14 @@ spec:
   resources:
     requests:
       storage: 10Gi
-  annotations:
-    argocd.argoproj.io/sync-options: Delete=false
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: postgres-backups
   namespace: common
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
 spec:
   accessModes:
     - ReadWriteMany
@@ -27,5 +29,3 @@ spec:
   resources:
     requests:
       storage: 20Gi
-  annotations:
-    argocd.argoproj.io/sync-options: Delete=false
