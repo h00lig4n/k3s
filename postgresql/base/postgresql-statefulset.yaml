@@ -49,6 +49,7 @@ spec:
           mountPath: /var/lib/postgresql/data
         - name: postgresql-config
           mountPath: /etc/postgresql
+          subPath: postgresql.conf
         - name: postgresql-hba
           mountPath: /etc/postgresql/pg_hba.conf
           subPath: pg_hba.conf
