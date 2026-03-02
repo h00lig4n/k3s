@@ -14,3 +14,18 @@ spec:
       storage: 10Gi
   annotations:
     argocd.argoproj.io/sync-options: Delete=false
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-backups
+  namespace: common
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: nfs-slow
+  resources:
+    requests:
+      storage: 20Gi
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false

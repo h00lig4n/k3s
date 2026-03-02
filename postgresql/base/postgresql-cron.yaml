@@ -1,0 +1,50 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: postgres-backup
+  namespace: common
+spec:
+  schedule: "0 2 * * *"   # every night at 02:00
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: backup
+              image: postgres:17
+              env:
+                - name: POSTGRES_USER
+                  valueFrom:
+                    secretKeyRef:
+                      name: postgresql
+                      key: POSTGRES_USER
+                - name: POSTGRES_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: postgresql
+                      key: POSTGRES_PASSWORD
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  export PGPASSWORD="$POSTGRES_PASSWORD"
+
+                  DATE=$(date +%F-%H-%M)
+
+                  pg_dumpall \
+                    -h postgresql.common.svc.cluster.local \
+                    -U "$POSTGRES_USER" \
+                    | gzip > /backups/postgres-$DATE.sql.gz
+
+                  # keep 14 days
+                  find /backups -type f -mtime +14 -delete
+              volumeMounts:
+                - name: backup-storage
+                  mountPath: /backups
+          volumes:
+            - name: backup-storage
+              persistentVolumeClaim:
+                claimName: postgres-backups
