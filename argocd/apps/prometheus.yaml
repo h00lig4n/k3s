@@ -33,6 +33,10 @@ spec:
 
           kubeStateMetrics:
             enabled: true
+            collectors:
+              - pods
+              - deployments
+              - nodes
 
           server:
             global:
