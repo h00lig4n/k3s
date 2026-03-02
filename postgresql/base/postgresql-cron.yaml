@@ -14,7 +14,7 @@ spec:
           restartPolicy: OnFailure
           containers:
             - name: backup
-              image: postgres:17
+              image: postgres:17.4
               env:
                 - name: POSTGRES_USER
                   valueFrom:
