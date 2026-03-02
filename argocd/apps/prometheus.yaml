@@ -40,7 +40,15 @@ spec:
 
           server:
             kubernetes:
-              enabled: false
+              enabled: true
+              apiserver:
+                enabled: false
+              scheduler:
+                enabled: false
+              controllerManager:
+                enabled: false
+              etcd:
+                enabled: false
             global:
               scrape_interval: 60s  
             extraArgs:
