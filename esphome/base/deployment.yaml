@@ -8,7 +8,8 @@ metadata:
     app.kubernetes.io/component: esp32
     app.kubernetes.io/part-of: hass
 spec:
-  replicas: 0
+  replicas: 1
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
       app.kubernetes.io/name: esphome

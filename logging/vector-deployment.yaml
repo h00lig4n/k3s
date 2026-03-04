@@ -9,6 +9,7 @@ metadata:
     app.kubernetes.io/name: vector
 spec:
   replicas: 0
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
       app: vector
