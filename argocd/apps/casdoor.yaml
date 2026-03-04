@@ -7,12 +7,12 @@ metadata:
     image-policy: semver
 spec:
   destination:
-    namespace: common
+    namespace: auth
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
       selfHeal: true
-  project: common
+  project: infrastructure
   sources:
     - path: casdoor/overlays/prod
       repoURL: https://github.com/h00lig4n/k3s-private.git
