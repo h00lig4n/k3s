@@ -2,11 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: casdoor
-  namespace: common
+  namespace: auth
   labels:
     app: casdoor
 spec:
-  replicas: 0
+  replicas: 1
   selector:
     matchLabels:
       app: casdoor
