@@ -1,0 +1,47 @@
+{
+  "groups": {
+    "group:family": [
+      "bob@example.com",
+      "partner@example.com"
+    ],
+    "group:admin": [
+      "bob@example.com"
+    ]
+  },
+
+  "tagOwners": {
+    "tag:subnet-router": ["group:admin"]
+  },
+
+  "acls": [
+
+    {
+      "action": "accept",
+      "src": ["group:family"],
+      "dst": [
+        "192.168.0.9:443",
+        "192.168.30.50:443",
+        "192.168.0.1:53"
+      ]
+    },
+
+    {
+      "action": "accept",
+      "src": ["group:admin"],
+      "dst": [
+        "192.168.0.0/24:*",
+        "192.168.20.0/24:*",
+        "192.168.30.0/24:*"
+      ]
+    }
+  ],
+
+  "ssh": [
+    {
+      "action": "accept",
+      "src": ["group:admin"],
+      "dst": ["tag:subnet-router"],
+      "users": ["root", "paul"]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+services:
+  tailscale:
+    image: tailscale/tailscale:stable
+    container_name: tailscale-subnet-router
+    hostname: portainer-gateway
+    restart: unless-stopped
+
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+
+    volumes:
+      - tailscale-data:/var/lib/tailscale
+      - /dev/net/tun:/dev/net/tun
+
+    environment:
+      - TS_AUTHKEY=tskey-xxxxxxxxxxxxxxxxxxxxxxxxx
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_HOSTNAME=portainer-gateway
+      - TS_EXTRA_ARGS=--advertise-routes=192.168.0.0/24,192.168.20.0/24,192.168.30.0/24 --advertise-tags=tag:subnet-router
+      - TS_USERSPACE=false
+
+    network_mode: host
+
+volumes:
+  tailscale-data:
