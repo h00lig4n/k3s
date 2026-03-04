@@ -2,6 +2,7 @@ preUpgradeChecker:
   jobEnabled: false
 
 global:
+  revisionHistoryLimit: 2
   nodeSelector:
     longhorn-storage: "true"
 

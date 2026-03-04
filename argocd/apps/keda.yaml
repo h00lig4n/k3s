@@ -35,6 +35,7 @@ spec:
             create: true
 
           operator:
+            revisionHistoryLimit: 2
             replicaCount: 1
             logLevel: info
             nodeSelector:

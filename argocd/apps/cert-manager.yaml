@@ -20,6 +20,8 @@ spec:
         parameters:
         - name: installCRDs
           value: "true"
+        - name: revisionHistoryLimit
+          value: "2"
         releaseName: cert-manager
       repoURL: https://charts.jetstack.io
       targetRevision: v1.18.0
