@@ -93,17 +93,35 @@ spec:
 
                 - job_name: kubelet
                   scheme: https
+                  metrics_path: /metrics
                   tls_config:
                     insecure_skip_verify: true
                   bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+
                   kubernetes_sd_configs:
                     - role: node
+
+                  relabel_configs:
+                    - action: labelmap
+                      regex: __meta_kubernetes_node_label_(.+)
+
+                # kubelet container metrics (cAdvisor)
+                - job_name: kubelet-cadvisor
+                  scheme: https
+                  metrics_path: /metrics/cadvisor
+                  tls_config:
+                    insecure_skip_verify: true
+                  bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+
+                  kubernetes_sd_configs:
+                    - role: node
+
                   relabel_configs:
                     - action: labelmap
                       regex: __meta_kubernetes_node_label_(.+)
 
                   metric_relabel_configs:
                     - source_labels: [__name__]
-                      regex: 'container_fs_.*'
+                      regex: 'container_(fs|network|blkio)_.*'
                       action: drop
 
