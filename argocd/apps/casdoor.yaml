@@ -14,6 +14,6 @@ spec:
       selfHeal: true
   project: infrastructure
   sources:
-    - path: casdoor/overlays/prod
+    - path: auth/casdoor/overlays/prod
       repoURL: https://github.com/h00lig4n/k3s-private.git
       targetRevision: HEAD

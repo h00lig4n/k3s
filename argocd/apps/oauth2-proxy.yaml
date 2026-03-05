@@ -21,14 +21,14 @@ spec:
       targetRevision: 10.1.4
       helm:
         valueFiles:
-          - $values/oauth2-proxy/helm/values.yaml
-          - $values-private/oauth2-proxy/helm/values.yaml
+          - $values/auth/oauth2-proxy/helm/values.yaml
+          - $values-private/auth/oauth2-proxy/helm/values.yaml
     - repoURL: https://github.com/h00lig4n/k3s.git
       targetRevision: HEAD
       ref: values
     - repoURL: https://github.com/h00lig4n/k3s-private.git
       targetRevision: HEAD
       ref: values-private
-    - path: oauth2-proxy/overlays/prod
+    - path: auth/oauth2-proxy/overlays/prod
       repoURL: https://github.com/h00lig4n/k3s-private.git
       targetRevision: HEAD

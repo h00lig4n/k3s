@@ -50,13 +50,6 @@ metadata:
 kind: Namespace
 apiVersion: v1
 metadata:
-  name: auth
-  labels:
-    name: auth
----
-kind: Namespace
-apiVersion: v1
-metadata:
   name: reloader
   labels:
     name: reloader
