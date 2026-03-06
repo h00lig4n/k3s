@@ -32,7 +32,7 @@ spec:
         - alias: "hass"
           imageName: "homeassistant/home-assistant:2026.2.x"
         - alias: "influxdb"
-          imageName: "influxdb:2.7.x"
+          imageName: "influxdb:2.x.x"
         - alias: "mosquitto"
           imageName: "eclipse-mosquitto:2.0.x"
         - alias: "openwakeword" 
