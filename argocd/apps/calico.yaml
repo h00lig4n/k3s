@@ -23,6 +23,13 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: tigera-operator
+    
+  ignoreDifferences:
+    - group: apiextensions.k8s.io
+      kind: CustomResourceDefinition
+      jsonPointers:
+        - /spec/preserveUnknownFields
+
   syncPolicy:
     automated:
       prune: false
@@ -30,8 +37,3 @@ spec:
     syncOptions:
       - CreateNamespace=true
       - ServerSideApply=true
-    ignoreDifferences:
-      - group: apiextensions.k8s.io
-        kind: CustomResourceDefinition
-        jsonPointers:
-          - /spec/preserveUnknownFields
