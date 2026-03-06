@@ -5,8 +5,7 @@ metadata:
   namespace: hass
 spec:
   headers:
-    customRequestHeaders:
-      customRequestHeadersSecret: influx-admin-header
+    customRequestHeadersSecret: influx-admin-header
 ---
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
@@ -15,5 +14,4 @@ metadata:
   namespace: hass
 spec:
   headers:
-    customRequestHeaders:
-      customRequestHeadersSecret: influx-reader-header
+    customRequestHeadersSecret: influx-reader-header
