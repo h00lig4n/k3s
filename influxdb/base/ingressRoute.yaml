@@ -14,8 +14,8 @@ spec:
           namespace: auth
         - name: influx-admin-token
       services:
-        - name: influxdb
-          port: 8086
+        - name: whoami
+          port: 80
     - match: Host(`influxdb.mydomain.com`) && PathPrefix(`/api/v2`)
       kind: Rule
       middlewares:
@@ -23,6 +23,6 @@ spec:
           namespace: auth
         - name: influx-read-token
       services:
-        - name: influxdb
-          port: 8086
+        - name: whoami
+          port: 80
   tls: {}
