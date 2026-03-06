@@ -14,6 +14,7 @@ spec:
     syncOptions:
       - CreateNamespace=true 
       - ServerSideApply=true
+      - PruneLast=true
   project: infrastructure
   sources:
     - chart: prometheus

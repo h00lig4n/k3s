@@ -13,7 +13,6 @@ spec:
       prune: false
     syncOptions:
       - CreateNamespace=true
-      - ServerSideApply=true
   project: infrastructure
   sources:
     - chart: metallb

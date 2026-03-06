@@ -10,9 +10,11 @@ spec:
   syncPolicy:
     automated:
       selfHeal: true
-      prune: false
+      prune: true
     syncOptions:
-      - CreateNamespace=true 
+      - CreateNamespace=true
+      - PruneLast=true
+      - ServerSideApply=true
   project: infrastructure
   sources:
     - chart: cert-manager
