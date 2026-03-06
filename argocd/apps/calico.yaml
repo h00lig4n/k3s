@@ -16,9 +16,10 @@ spec:
               bgp: Disabled
               ipPools:
                 - cidr: 10.42.0.0/16
-                  encapsulation: VXLAN
+                  blockSize: 26
                   natOutgoing: Enabled
                   nodeSelector: all()
+                  disableBGPExport: false
   destination:
     server: https://kubernetes.default.svc
     namespace: tigera-operator
