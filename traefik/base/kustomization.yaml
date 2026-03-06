@@ -3,5 +3,4 @@ resources:
   - middleware.yaml
   - middlewareTCP.yaml
   - oauth-middleware.yaml
-  - casdoor-auth.yaml
   - tls-store.yaml
