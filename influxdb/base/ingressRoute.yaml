@@ -7,7 +7,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`influxdb.mydomain.com`) && Headers(`X-Auth-Request-Groups`, `admin`)
+    - match: Host(`influxdb.mydomain.com`) && Headers(`X-Auth-Request-Groups`, `admin`) && PathPrefix(`/api/v2`)
       kind: Rule
       middlewares:
         - name: casdoor-auth
