@@ -1,0 +1,28 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: influxdb
+  namespace: hass
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`influxdb.mydomain.com`) && Headers(`X-Auth-Request-Groups`, `admin`)
+      kind: Rule
+      middlewares:
+        - name: casdoor-auth
+          namespace: auth
+        - name: influx-admin-token
+      services:
+        - name: influxdb
+          port: 8086
+    - match: Host(`influxdb.mydomain.com`)
+      kind: Rule
+      middlewares:
+        - name: casdoor-auth
+          namespace: auth
+        - name: influx-read-token
+      services:
+        - name: influxdb
+          port: 8086
+  tls: {}
