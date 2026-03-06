@@ -2,5 +2,4 @@ resources:
   - ingress.yaml
   - middleware.yaml
   - middlewareTCP.yaml
-  - oauth-middleware.yaml
   - tls-store.yaml
