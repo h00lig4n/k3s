@@ -67,3 +67,10 @@ metadata:
   name: external-storage
   labels:
     name: external-storage
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: auth
+  labels:
+    name: auth

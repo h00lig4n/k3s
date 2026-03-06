@@ -1,0 +1,3 @@
+resources:
+  - namespaces.yaml
+  - network-policy-auth.yaml

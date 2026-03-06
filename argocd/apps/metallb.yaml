@@ -1,0 +1,55 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: metallb
+  namespace: argocd
+spec:
+  destination:
+    namespace: metallb-system
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: false
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+  project: infrastructure
+  sources:
+    - chart: metallb
+      repoURL: metallb https://metallb.github.io/metallb
+      targetRevision: 0.14.5
+      helm:
+        values:
+          controller:
+            resources:
+              requests:
+                cpu: 50m
+                memory: 64Mi
+              limits:
+                cpu: 200m
+                memory: 256Mi
+          speaker:
+            resources:
+              requests:
+                cpu: 50m
+                memory: 64Mi
+              limits:
+                cpu: 200m
+                memory: 256Mi
+
+            tolerations:
+              - key: node-role.kubernetes.io/control-plane
+                operator: Exists
+                effect: NoSchedule
+
+          prometheus:
+            serviceMonitor:
+              enabled: true
+
+          frr:
+            enabled: false
+
+    - repoURL: https://github.com/h00lig4n/k3s.git
+      targetRevision: HEAD
+      path: metallb/base
