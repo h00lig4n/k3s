@@ -16,7 +16,7 @@ spec:
       services:
         - name: influxdb
           port: 8086
-    - match: Host(`influxdb.mydomain.com`)
+    - match: Host(`influxdb.mydomain.com`) && PathPrefix(`/api/v2`)
       kind: Rule
       middlewares:
         - name: casdoor-auth
