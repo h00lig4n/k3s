@@ -34,6 +34,8 @@ spec:
                 cpu: 200m
                 memory: 256Mi
           speaker:
+            frr:
+              enabled: false
             resources:
               requests:
                 cpu: 50m
