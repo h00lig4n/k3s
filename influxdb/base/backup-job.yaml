@@ -1,0 +1,40 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: influx-backup
+  namespace: hass
+spec:
+  schedule: "0 3 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: backup
+            image: docker.io/influxdb
+            command:
+              - sh
+              - -c
+              - |
+                influx backup /backup/$(date +%F)
+            env:
+              - name: INFLUX_HOST
+                value: http://influxdb:8086
+              - name: INFLUX_ORG
+                valueFrom:
+                  secretKeyRef:
+                    name: influxdb
+                    key: org
+              - name: INFLUX_TOKEN
+                valueFrom:
+                  secretKeyRef:
+                    name: influxdb
+                    key: token
+            volumeMounts:
+              - name: backup
+                mountPath: /backup
+          restartPolicy: OnFailure
+          volumes:
+            - name: backup
+              persistentVolumeClaim:
+                claimName: influxdb-backup

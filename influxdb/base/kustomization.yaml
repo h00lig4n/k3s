@@ -3,3 +3,4 @@ resources:
   - ingress.yaml
   - pvc.yaml
   - svc.yaml
+  - backup-job.yaml

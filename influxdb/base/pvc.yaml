@@ -14,3 +14,37 @@ spec:
   resources:
     requests:
       storage: 50Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: influxdb-longhorn
+  namespace: hass
+  labels:
+    app: influxdb
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: longhorn
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: influxdb-backup
+  namespace: hass
+  labels:
+    app: influxdb
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: nfs-slow
+  resources:
+    requests:
+      storage: 10Gi
