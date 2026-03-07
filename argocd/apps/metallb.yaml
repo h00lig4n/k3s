@@ -26,6 +26,13 @@ spec:
       helm:
         values: |
           controller:
+            nodeSelector:
+              node-role.kubernetes.io/control-plane: "true"
+            tolerations:
+              - key: "node-role.kubernetes.io/control-plane"
+                operator: "Exists"
+                effect: "NoSchedule"
+                
             resources:
               requests:
                 cpu: 50m
