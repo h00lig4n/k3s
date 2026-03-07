@@ -19,7 +19,7 @@ spec:
       repoURL: metallb https://metallb.github.io/metallb
       targetRevision: 0.14.5
       helm:
-        values:
+        values: |
           controller:
             resources:
               requests:
