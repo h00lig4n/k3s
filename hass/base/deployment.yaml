@@ -7,7 +7,7 @@ metadata:
     app: hass
     app.kubernetes.io/name: hass
 spec:
-  replicas: 0
+  replicas: 1
   revisionHistoryLimit: 2
   selector:
     matchLabels:
@@ -24,6 +24,14 @@ spec:
       containers:
       - name: hass
         image: homeassistant/home-assistant:2025.12
+        command:
+          - python
+          - -m
+          - homeassistant
+          - --config
+          - /config
+          - --log-file
+          - /logs/home-assistant.log
         ports:
           - name: web
             containerPort: 8123
@@ -39,8 +47,16 @@ spec:
           - name: TZ
             value: Europe/Stockholm
         volumeMounts:
-          - name: hass-pvc
+          #- name: hass-pvc
+          #  mountPath: /config
+          - name: ha-config
             mountPath: /config
+          - name: ha-storage
+            mountPath: /config/.storage
+          - name: ha-backups
+            mountPath: /config/backups
+          - name: ha-log
+            mountPath: /logs
           - name: hass-media-pvc
             mountPath: /media
           - name: localtime
@@ -77,9 +93,20 @@ spec:
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       volumes:
-        - name: hass-pvc
+        - name: ha-config
           persistentVolumeClaim:
             claimName: hass
+        - name: ha-storage
+          persistentVolumeClaim:
+            claimName: hass-longhorn 
+        - name: ha-backups
+          persistentVolumeClaim:
+            claimName: hass-backup
+        - name: ha-log
+          emptyDir: {}
+#        - name: hass-pvc
+#          persistentVolumeClaim:
+#            claimName: hass
         - name: hass-media-pvc
           persistentVolumeClaim:
             claimName: hass-media
