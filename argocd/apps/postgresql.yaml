@@ -9,7 +9,7 @@ spec:
   destination:
     namespace: common
     server: https://kubernetes.default.svc
-  project: common
+  project: appplications
   syncPolicy:
     automated:
       selfHeal: true

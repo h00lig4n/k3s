@@ -12,7 +12,7 @@ spec:
   syncPolicy:
     automated:
       selfHeal: true
-  project: infrastructure
+  project: appplications
   sources:
     - repoURL: https://github.com/h00lig4n/k3s-private.git
       targetRevision: HEAD

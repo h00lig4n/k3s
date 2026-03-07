@@ -31,7 +31,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: hass
+  name: applications
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -61,7 +61,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: common
+  name: bootstrap
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -86,64 +86,4 @@ spec:
         name: tls-certificate
       - group: ""
         kind: Secret
-        name: tls-staging-certificate  
----
-apiVersion: argoproj.io/v1alpha1
-kind: AppProject
-metadata:
-  name: ai
-  namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-spec:
-  description: AI Experimentation
-  sourceRepos:
-  - '*'
-  destinations:
-  - namespace: '*'
-    server: '*'
-  namespaceResourceWhitelist:
-  - group: '*'
-    kind: '*'
-  clusterResourceWhitelist:
-  - group: '*'
-    kind: '*'
-  orphanedResources:
-    warn: true
-    ignore:
-      - group: ""
-        kind: Secret
-        name: tls-certificate
-      - group: ""
-        kind: Secret
-        name: tls-staging-certificate
----
-apiVersion: argoproj.io/v1alpha1
-kind: AppProject
-metadata:
-  name: default
-  namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-spec:
-  description: Place for miscellaneous applications that don't fit into other projects
-  sourceRepos:
-  - '*'
-  destinations:
-  - namespace: '*'
-    server: '*'
-  namespaceResourceWhitelist:
-  - group: '*'
-    kind: '*'
-  clusterResourceWhitelist:
-  - group: '*'
-    kind: '*'
-  orphanedResources:
-    warn: true
-    ignore:
-      - group: ""
-        kind: Secret
-        name: tls-certificate
-      - group: ""
-        kind: Secret
-        name: tls-staging-certificate
+        name: tls-staging-certificate  S
