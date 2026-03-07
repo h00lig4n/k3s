@@ -18,6 +18,23 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
+  name: hass-longhorn
+  namespace: hass
+  labels:
+    app: hass
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: longhorn
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
   name: hass-media
   namespace: hass
   labels:
@@ -28,6 +45,23 @@ spec:
   accessModes:
     - ReadWriteOnce
   storageClassName: nfs
+  resources:
+    requests:
+      storage: 20Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: hass-backup
+  namespace: hass
+  labels:
+    app: hass
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: nfs-slow
   resources:
     requests:
       storage: 20Gi

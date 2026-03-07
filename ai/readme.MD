@@ -54,7 +54,7 @@ if nvidia-smi stops working:
 Kernel Upgrade:
 
 1. Unhold ```sudo apt-mark unhold linux-image-amd64 linux-headers-amd64```
-2. Normal apy update/upgrad
+2. Normal apt update/upgrade
 
 ## OpenWebUi
 
