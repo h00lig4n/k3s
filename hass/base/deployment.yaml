@@ -39,8 +39,17 @@ spec:
           - name: TZ
             value: Europe/Stockholm
         volumeMounts:
-          - name: hass-pvc
+          #- name: hass-pvc
+          #  mountPath: /config
+          - name: ha-config
             mountPath: /config
+          - name: ha-storage
+            mountPath: /config/.storage
+          - name: ha-backups
+            mountPath: /config/backups
+          - name: ha-log
+            mountPath: /config/home-assistant.log
+            subPath: home-assistant.log
           - name: hass-media-pvc
             mountPath: /media
           - name: localtime
@@ -77,9 +86,20 @@ spec:
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       volumes:
-        - name: hass-pvc
+        - name: ha-config
           persistentVolumeClaim:
             claimName: hass
+        - name: ha-storage
+          persistentVolumeClaim:
+            claimName: hass-longhorn 
+        - name: ha-backups
+          persistentVolumeClaim:
+            claimName: hass-backup
+        - name: ha-log
+          emptyDir: {}
+#        - name: hass-pvc
+#          persistentVolumeClaim:
+#            claimName: hass
         - name: hass-media-pvc
           persistentVolumeClaim:
             claimName: hass-media
