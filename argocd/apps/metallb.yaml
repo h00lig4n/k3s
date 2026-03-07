@@ -16,7 +16,7 @@ spec:
   project: infrastructure
   sources:
     - chart: metallb
-      repoURL: metallb https://metallb.github.io/metallb
+      repoURL: https://metallb.github.io/metallb
       targetRevision: 0.14.5
       helm:
         values: |
