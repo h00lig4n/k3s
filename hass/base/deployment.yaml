@@ -24,6 +24,14 @@ spec:
       containers:
       - name: hass
         image: homeassistant/home-assistant:2025.12
+        command:
+          - python
+          - -m
+          - homeassistant
+          - --config
+          - /config
+          - --log-file
+          - /logs/home-assistant.log
         ports:
           - name: web
             containerPort: 8123
@@ -48,8 +56,7 @@ spec:
           - name: ha-backups
             mountPath: /config/backups
           - name: ha-log
-            mountPath: /config/home-assistant.log
-            subPath: home-assistant.log
+            mountPath: /logs
           - name: hass-media-pvc
             mountPath: /media
           - name: localtime
