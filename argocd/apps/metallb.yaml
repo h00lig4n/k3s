@@ -43,7 +43,7 @@ spec:
                 effect: NoSchedule
 
           prometheus:
-            serviceAccount: prometheus
+            serviceAccount: prometheus-server
             serviceMonitor:
               enabled: true
 
