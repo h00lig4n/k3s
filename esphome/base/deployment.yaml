@@ -40,8 +40,6 @@ spec:
         volumeMounts:
           - name: esphome-pvc
             mountPath: /config
-          - name: old
-            mountPath: /old
           - name: esphome-build
             mountPath: /config/.esphome
           - name: localtime
@@ -91,9 +89,6 @@ spec:
           - mydomain.com
       volumes:
         - name: esphome-pvc
-          persistentVolumeClaim:
-            claimName: esphome-config-longhorn
-        - name: old
           persistentVolumeClaim:
             claimName: esphome
         - name: esphome-build
