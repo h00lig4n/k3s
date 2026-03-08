@@ -1,5 +1,5 @@
 resources:
   - deploy.yaml
-  - hpa.yaml
+#  - hpa.yaml
   - pvc.yaml
   - svc.yaml

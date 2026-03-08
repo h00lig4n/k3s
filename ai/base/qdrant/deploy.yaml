@@ -9,7 +9,7 @@ metadata:
     app.kubernetes.io/part-of: ai
     app.kubernetes.io/name: qdrant
 spec:
-  replicas: 1
+  replicas: 0
   revisionHistoryLimit: 3
   selector:
     matchLabels:

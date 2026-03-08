@@ -1,6 +1,6 @@
 resources:
   - deploy.yaml
-  - hpa.yaml
+#  - hpa.yaml
   - ingress.yaml
   - pvc.yaml
   - svc.yaml
