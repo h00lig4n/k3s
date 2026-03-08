@@ -7,8 +7,8 @@ global:
     longhorn-storage: "true"
 
 defaultSettings:
-  defaultReplicaCount: 3
-  defaultDataPath: /mnt/usb
+  defaultReplicaCount: 2
+  defaultDataPath: /mnt/usb/longhorn
   createDefaultDiskLabeledNodes: true
 
 ingress:
