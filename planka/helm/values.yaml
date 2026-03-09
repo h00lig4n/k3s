@@ -20,11 +20,9 @@ oidc:
   admin:
     rolesAttribute: roles
 extraEnv:
-  - name: "OIDC_USERNAME_CLAIM"
-    value: "preferred_username"
-  - name: "OIDC_EMAIL_CLAIM"
-    value: "email"
   - name: "OIDC_AUTO_SIGNUP"
+    value: "true"
+  - name: "OIDC_DEBUG"
     value: "true"
 postgresql:
   enabled: false
