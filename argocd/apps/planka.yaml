@@ -21,7 +21,10 @@ spec:
     helm:
       valueFiles:
         - $values/planka/helm/values.yaml
-  - path: planka
-    repoURL: https://github.com/h00lig4n/k3s-private.git
+        - $values-private/planka/helm/values.yaml
+  - repoURL: https://github.com/h00lig4n/k3s.git
     targetRevision: HEAD
     ref: values
+  - repoURL: https://github.com/h00lig4n/k3s-private.git
+    targetRevision: HEAD
+    ref: values-private

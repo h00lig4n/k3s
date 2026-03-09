@@ -11,6 +11,19 @@ resources:
   requests:
       cpu: 100m
       memory: 128Mi
+oidc:
+  enabled: true
+  issuerUrl: https://mydomain.com
+  clientId: planka_client_id
+  clientSecret: planka_client_secret
+  scopes: openid profile email
+  admin:
+    rolesAttribute: roles
+extraEnv:
+  OIDC_USERNAME_CLAIM: preferred_username
+  OIDC_EMAIL_CLAIM: email
+  OIDC_NAME_CLAIM: name
+  OIDC_AUTO_SIGNUP: true
 postgresql:
   enabled: false
 existingDburlSecret: planka
