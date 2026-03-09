@@ -31,6 +31,8 @@ spec:
 
           prometheus-node-exporter:
             enabled: true
+            nodeSelector:
+              monitor: "true"
 
           kube-state-metrics:
             enabled: true
