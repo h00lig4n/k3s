@@ -19,6 +19,7 @@ oidc:
   scopes: openid profile email
   admin:
     rolesAttribute: roles
+    roles: admin
 extraEnv:
   - name: "OIDC_AUTO_SIGNUP"
     value: "true"
