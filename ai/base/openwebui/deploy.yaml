@@ -10,7 +10,7 @@ metadata:
     app.kubernetes.io/name: openwebui
 spec:
   replicas: 0
-  revisionHistoryLimit: 3
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
       app: openwebui
