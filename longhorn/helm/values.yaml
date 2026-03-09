@@ -7,9 +7,22 @@ global:
     longhorn-storage: "true"
 
 defaultSettings:
-  defaultReplicaCount: 2
+  defaultReplicaCount: 3
   defaultDataPath: /mnt/usb/longhorn
   createDefaultDiskLabeledNodes: true
+  disableSchedulingOnCordonedNode: true
+
+longhornManager:
+  nodeSelector:
+    longhorn-storage: "true"
+
+longhornDriver:
+  nodeSelector:
+    longhorn-storage: "true"
+
+longhornUI:
+  nodeSelector:
+    longhorn-storage: "true"
 
 ingress:
   enabled: true
