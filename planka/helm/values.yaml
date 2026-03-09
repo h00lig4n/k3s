@@ -21,10 +21,8 @@ oidc:
     rolesAttribute: roles
     roles: admin
 extraEnv:
-  - name: "OIDC_AUTO_SIGNUP"
-    value: "true"
   - name: "OIDC_DEBUG"
-    value: "true"
+    value: "false"
 postgresql:
   enabled: false
 existingDburlSecret: planka
