@@ -20,10 +20,12 @@ oidc:
   admin:
     rolesAttribute: roles
 extraEnv:
-  OIDC_USERNAME_CLAIM: preferred_username
-  OIDC_EMAIL_CLAIM: email
-  OIDC_NAME_CLAIM: name
-  OIDC_AUTO_SIGNUP: true
+  - name: "OIDC_USERNAME_CLAIM"
+    value: "preferred_username"
+  - name: "OIDC_EMAIL_CLAIM"
+    value: "email"
+  - name: "OIDC_AUTO_SIGNUP"
+    value: "true"
 postgresql:
   enabled: false
 existingDburlSecret: planka
