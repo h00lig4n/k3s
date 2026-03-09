@@ -23,6 +23,8 @@ oidc:
 extraEnv:
   - name: "OIDC_DEBUG"
     value: "false"
+  - name: "SHOW_DETAILED_AUTH_ERRORS"
+    value: "true"
 postgresql:
   enabled: false
 existingDburlSecret: planka
