@@ -23,6 +23,8 @@ oidc:
 extraEnv:
   - name: "OIDC_AUTO_SIGNUP"
     value: "true"
+  - name: "OIDC_DEBUG"
+    value: "true"
 postgresql:
   enabled: false
 existingDburlSecret: planka
