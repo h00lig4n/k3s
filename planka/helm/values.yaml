@@ -25,12 +25,12 @@ extraEnv:
     value: "false"
   - name: "OIDC_RESPONSE_MODE"
     value: "query"
-  - name: "OIDC_CLAIMS_SOURCE"
-    calue: "id_token"
+#  - name: "OIDC_CLAIMS_SOURCE"
+#    calue: "id_token"
   - name: "OIDC_DEBUG"
     value: "false"
-  - name: "SHOW_DETAILED_AUTH_ERRORS"
-    value: "true"
+  - name: "DEBUG"
+    value: "openid-client:*"
 postgresql:
   enabled: false
 existingDburlSecret: planka
