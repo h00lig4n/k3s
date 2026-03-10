@@ -21,12 +21,12 @@ oidc:
     rolesAttribute: roles
     roles: admin
 extraEnv:
-  - name: "OIDC_EMAIL_ATTRIBUTE"
-    value: "email"
-  - name: "OIDC_NAME_ATTRIBUTE"
-    value: "displayName"
-  - name: "OIDC_USERNAME_ATTRIBUTE"
-    value: "name"
+  # - name: "OIDC_EMAIL_ATTRIBUTE"
+  #   value: "email"
+  # - name: "OIDC_NAME_ATTRIBUTE"
+  #   value: "displayName"
+  # - name: "OIDC_USERNAME_ATTRIBUTE"
+  #   value: "name"
   - name: "OIDC_DEBUG"
     value: "true"
   - name: "SHOW_DETAILED_AUTH_ERRORS"
