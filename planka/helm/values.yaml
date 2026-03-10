@@ -22,11 +22,11 @@ oidc:
     roles: admin
 extraEnv:
   - name: "OIDC_USE_OAUTH_CALLBACK"
-    value: "true"
-#  - name: "OIDC_RESPONSE_MODE"
-#    value: "query"
-#  - name: "OIDC_CLAIMS_SOURCE"
-#    calue: "id_token"
+    value: "false"
+  - name: "OIDC_RESPONSE_MODE"
+    value: "query"
+  - name: "OIDC_CLAIMS_SOURCE"
+    calue: "id_token"
   - name: "OIDC_DEBUG"
     value: "false"
   - name: "SHOW_DETAILED_AUTH_ERRORS"
