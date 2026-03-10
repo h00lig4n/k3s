@@ -28,7 +28,7 @@ extraEnv:
   # - name: "OIDC_USERNAME_ATTRIBUTE"
   #   value: "name"
   - name: "OIDC_DEBUG"
-    value: "true"
+    value: "false"
   - name: "SHOW_DETAILED_AUTH_ERRORS"
     value: "true"
 postgresql:
