@@ -6,11 +6,11 @@ nodeSelector:
   node-role.kubernetes.io/worker: "true"
 resources:
   limits:
-      cpu: 500m
+      cpu: 600m
       memory: 500Mi
   requests:
-      cpu: 100m
-      memory: 128Mi
+      cpu: 280m
+      memory: 250Mi
 oidc:
   enabled: true
   issuerUrl: https://mydomain.com
