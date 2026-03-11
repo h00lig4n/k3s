@@ -9,7 +9,7 @@ resources:
       cpu: 500m
       memory: 500Mi
   requests:
-      cpu: 160
+      cpu: 160m
       memory: 250Mi
 oidc:
   enabled: true
@@ -20,6 +20,9 @@ oidc:
   admin:
     rolesAttribute: roles
     roles: admin
+extraEnv:
+  - name: "OIDC_ENFORCED"
+    value: "true"
 postgresql:
   enabled: false
 existingDburlSecret: planka
