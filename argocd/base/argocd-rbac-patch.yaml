@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: argocd-rbac-cm
 data:
-  scopes: '[permissionNames]'
+  scopes: '[roles]'
   policy.default: role:readonly
   policy.csv: |
     g, admin, role:admin
