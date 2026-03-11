@@ -33,6 +33,8 @@ extraEnv:
     value: "false"
   - name: "DEBUG"
     value: "*"
+  - name: "SHOW_DETAILED_AUTH_ERRORS"
+    value: "true"
 postgresql:
   enabled: false
 existingDburlSecret: planka
