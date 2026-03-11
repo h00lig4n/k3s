@@ -6,7 +6,7 @@ nodeSelector:
   node-role.kubernetes.io/worker: "true"
 resources:
   limits:
-      cpu: 600m
+      cpu: 1000m
       memory: 500Mi
   requests:
       cpu: 280m
