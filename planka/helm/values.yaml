@@ -27,10 +27,12 @@ extraEnv:
 #    value: "query"
 #  - name: "OIDC_CLAIMS_SOURCE"
 #    calue: "id_token"
+  - name: "NODE_ENV"
+    value: "development"
   - name: "OIDC_DEBUG"
     value: "false"
   - name: "DEBUG"
-    value: "openid-client:*"
+    value: "*"
 postgresql:
   enabled: false
 existingDburlSecret: planka
