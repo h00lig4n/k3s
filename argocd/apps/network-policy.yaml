@@ -3,8 +3,6 @@ kind: Application
 metadata:
   name: network-policy
   namespace: argocd
-  labels:
-    image-policy: semver
 spec:
   destination:
     server: https://kubernetes.default.svc
