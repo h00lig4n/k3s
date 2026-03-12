@@ -17,3 +17,23 @@ spec:
   resources:
     requests:
       storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: qdrant-longhorn
+  namespace: ai
+  labels:
+    app: qdrant
+    app.kubernetes.io/component: vector
+    app.kubernetes.io/part-of: ai
+    app.kubernetes.io/name: qdrant
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: longhorn
+  resources:
+    requests:
+      storage: 10Gi
