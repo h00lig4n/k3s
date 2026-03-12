@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
       - name: openwebui
-        image: ghcr.io/open-webui/open-webui:latest
+        image: ghcr.io/open-webui/open-webui:0.8.10
         imagePullPolicy: IfNotPresent
         ports:
           - name: http
@@ -136,7 +136,7 @@ spec:
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       nodeSelector:
-        node-role.kubernetes.io/worker: "true"
+        node-role.kubernetes.io/ai: "true"
       volumes:
         - name: openwebui-pvc
           persistentVolumeClaim:

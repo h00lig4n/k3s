@@ -9,7 +9,7 @@ metadata:
     app.kubernetes.io/part-of: ai
     app.kubernetes.io/name: qdrant
 spec:
-  replicas: 0
+  replicas: 1
   revisionHistoryLimit: 2
   selector:
     matchLabels:
@@ -43,7 +43,7 @@ spec:
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       nodeSelector:
-        node-role.kubernetes.io/worker: "true"
+        node-role.kubernetes.io/ai: "true"
       volumes:
         - name: qdrant-storage
           persistentVolumeClaim:
