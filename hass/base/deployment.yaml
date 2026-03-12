@@ -52,8 +52,8 @@ spec:
           #  mountPath: /config
           - name: ha-config
             mountPath: /config
-          - name: ha-storage
-            mountPath: /config/.storage
+        #  - name: ha-storage
+        #    mountPath: /config/.storage
           - name: ha-backups
             mountPath: /config/backups
           - name: ha-log
@@ -97,9 +97,9 @@ spec:
         - name: ha-config
           persistentVolumeClaim:
             claimName: hass
-        - name: ha-storage
-          persistentVolumeClaim:
-            claimName: hass-longhorn 
+      #  - name: ha-storage
+      #    persistentVolumeClaim:
+      #      claimName: hass-longhorn 
         - name: ha-backups
           persistentVolumeClaim:
             claimName: hass-backup
