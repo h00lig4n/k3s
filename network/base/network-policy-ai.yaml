@@ -9,7 +9,7 @@ spec:
   - from:
     - namespaceSelector:
         matchLabels:
-          kubernetes.io/metadata.name: traefik
+          kubernetes.io/metadata.name: kube-system
 ---
 #
 # This should be Cluster Wide
