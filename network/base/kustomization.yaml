@@ -1,3 +1,4 @@
 resources:
   - namespaces.yaml
+  - network-policy-ai.yaml
   - network-policy-auth.yaml

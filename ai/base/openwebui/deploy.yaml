@@ -140,4 +140,4 @@ spec:
       volumes:
         - name: openwebui-pvc
           persistentVolumeClaim:
-            claimName: openwebui
+            claimName: openwebui-longhorn
