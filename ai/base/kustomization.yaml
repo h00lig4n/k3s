@@ -1,5 +1,4 @@
 resources:
-  - ns.yaml
   - ollama/
   - openwebui/
   - qdrant/
