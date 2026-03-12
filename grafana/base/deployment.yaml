@@ -108,9 +108,9 @@ spec:
             value: "true"
           #Logging
           - name: GF_LOG_LEVEL
-            value: "info"
-          #- name: GF_LOG_FILTERS
-          #  value: "oauth:debug auth:debug user.sync:debug"    
+            value: "debug"
+          - name: GF_LOG_FILTERS
+            value: "oauth:debug auth:debug user.sync:debug"    
         resources:
           requests:
             memory: "128Mi"
