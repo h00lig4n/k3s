@@ -40,6 +40,10 @@ spec:
               cpu: "250m"
             limits:
               memory: "2Gi"
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      nodeSelector:
+        node-role.kubernetes.io/worker: "true"
       volumes:
         - name: qdrant-storage
           persistentVolumeClaim:
