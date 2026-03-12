@@ -9,8 +9,8 @@ metadata:
     app.kubernetes.io/part-of: ai
     app.kubernetes.io/name: qdrant
 spec:
-  replicas: 0
-  revisionHistoryLimit: 3
+  replicas: 1
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
       app: qdrant
@@ -43,4 +43,4 @@ spec:
       volumes:
         - name: qdrant-storage
           persistentVolumeClaim:
-            claimName: qdrant-lognhorn
+            claimName: qdrant-longhorn
