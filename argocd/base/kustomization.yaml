@@ -7,5 +7,4 @@ resources:
 - docker-io-helm-oci.yaml
 patches:
   - path: argocd-cmd-params-cm-patch.yaml
-  - path: argocd-rbac-patch.yaml
   - path: patch-remove-dex.yaml

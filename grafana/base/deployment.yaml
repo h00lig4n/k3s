@@ -98,8 +98,6 @@ spec:
                 key: token-url-casdoor
           - name: GF_AUTH_GENERIC_OAUTH_USE_PKCE
             value: "true"
-          - name: GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH
-            value: "contains(permissionNames, 'admin') && 'Admin' || contains(permissionNames, 'editor') && 'Editor' || 'Viewer'"
           - name: GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_STRICT
             value: "true"
           - name: GF_USERS_AUTO_ASSIGN_ORG_ROLE
@@ -108,9 +106,9 @@ spec:
             value: "true"
           #Logging
           - name: GF_LOG_LEVEL
-            value: "info"
-          #- name: GF_LOG_FILTERS
-          #  value: "oauth:debug auth:debug user.sync:debug"    
+            value: "debug"
+          - name: GF_LOG_FILTERS
+            value: "oauth:debug auth:debug user.sync:debug"    
         resources:
           requests:
             memory: "128Mi"

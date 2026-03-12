@@ -1,9 +1,10 @@
+# Not used here
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: argocd-rbac-cm
 data:
-  scopes: '[roles]'
+  scopes: '[groups]'
   policy.default: role:readonly
   policy.csv: |
     g, admin, role:admin
