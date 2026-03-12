@@ -74,3 +74,10 @@ metadata:
   name: auth
   labels:
     name: auth
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: openclaw
+  labels:
+    name: openclaw
