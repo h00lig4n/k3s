@@ -47,4 +47,4 @@ spec:
       volumes:
         - name: qdrant-storage
           persistentVolumeClaim:
-            claimName: qdrant-longhorn
+            claimName: qdrant
