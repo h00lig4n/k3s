@@ -6,6 +6,13 @@ data:
   scopes: '[roles]'
   policy.default: role:readonly
   policy.csv: |
+    p, role:admin, *, *, *, allow
+
+    p, role:editor, applications, get, */*, allow
+    p, role:editor, applications, sync, */*, allow
+    p, role:editor, applications, update, */*, allow
+
+    p, role:viewer, applications, get, */*, allow
     g, admin, role:admin
     g, editor, role:editor
     g, viewer, role:readonly
