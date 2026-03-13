@@ -7,10 +7,18 @@ global:
     longhorn-storage: "true"
 
 defaultSettings:
-  defaultReplicaCount: 3
+  defaultReplicaCount: 2
   defaultDataPath: /mnt/usb/longhorn
   createDefaultDiskLabeledNodes: true
   disableSchedulingOnCordonedNode: true
+  replicaSoftAntiAffinity: true
+  storageMinimalAvailablePercentage: 15
+
+  # Pi-specific timeout tuning
+  iscsiTimeout: 60
+  replicaReplenishmentWaitInterval: 600
+  concurrentReplicaRebuildPerNodeLimit: 1
+  concurrentVolumeBackupRestorePerNodeLimit: 1
 
 longhornManager:
   nodeSelector:
