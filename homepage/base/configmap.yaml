@@ -30,6 +30,8 @@ data:
           href: "https://grafana.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
           description: Dashboards
           icon: sh-grafana.svg
+          namespace: hass
+          app: grafana
       - Container Registry:
           href: "https://dockerui.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
           description: Container Registry
@@ -38,6 +40,8 @@ data:
             href: "https://sql.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: SQL Database
             icon: sh-postgresql.svg
+            namespace: common
+            app: postgresql
     - Home Automation Stack:
         - Home Assistant:
             href: "https://assistant.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
@@ -95,7 +99,7 @@ data:
         - Water Meter:
             href: "http://watermeter.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: Kamiq Flow IQ 2200
-            icon: mid-water
+            icon: mdi-water
     - Infrastructure:
         - ArgoCD:
             href: "https://argocd.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
@@ -109,7 +113,7 @@ data:
             href: "https://auth.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: OIDC Login Provider
             icon: sh-casdoor.png
-            namespace: common
+            namespace: auth
             app: casdoor
         - Edge Router 4:
              href: "https://gateway.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
