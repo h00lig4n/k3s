@@ -19,12 +19,11 @@ spec:
         gfd:
           enabled: false
         nfd:
-          enabled: true
           worker:
             tolerations:
             - key: "nvidia.com/gpu"
               operator: "Equal"
-              value: "true"
+              value: "true" 
               effect: "NoSchedule"
   destination:
     server: https://kubernetes.default.svc
