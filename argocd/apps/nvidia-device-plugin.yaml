@@ -13,18 +13,48 @@ spec:
       values: |
         runtimeClassName: nvidia
         deviceDiscoveryStrategy: nvml
+
         nodeSelector:
           node-role.kubernetes.io/ai: "true"
 
+        tolerations:
+          - key: nvidia.com/gpu
+            operator: Equal
+            value: "true"
+            effect: NoSchedule
+
         gfd:
-          enabled: false
+          enabled: true
+          nodeSelector:
+            node-role.kubernetes.io/ai: "true"
+          tolerations:
+            - key: nvidia.com/gpu
+              operator: Equal
+              value: "true"
+              effect: NoSchedule
+
         nfd:
-          worker:
+          master:
+            nodeSelector:
+              node-role.kubernetes.io/ai: "true"
             tolerations:
-            - key: "nvidia.com/gpu"
-              operator: "Equal"
-              value: "true" 
-              effect: "NoSchedule"
+              - key: nvidia.com/gpu
+                operator: Equal
+                value: "true"
+                effect: NoSchedule
+          worker:
+            nodeSelector:
+              node-role.kubernetes.io/ai: "true"
+            tolerations:
+              - key: nvidia.com/gpu
+                operator: Equal
+                value: "true"
+                effect: NoSchedule
+          gc:
+            nodeSelector:
+              node-role.kubernetes.io/ai: "true"
+          topologyUpdater:
+            enabled: false
   destination:
     server: https://kubernetes.default.svc
     namespace: nvidia-device-plugin
