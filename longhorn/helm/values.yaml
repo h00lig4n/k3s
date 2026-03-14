@@ -6,6 +6,15 @@ global:
   nodeSelector:
     longhorn-storage: "true"
 
+image:
+  longhorn:
+    manager:
+      repository: longhornio/longhorn-manager
+      tag: v1.11.0-hotfix-1
+    instanceManager:
+      repository: longhornio/longhorn-instance-manager
+      tag: v1.11.0-hotfix-1
+
 defaultSettings:
   defaultReplicaCount: 2
   defaultDataPath: /mnt/usb/longhorn

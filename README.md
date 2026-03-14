@@ -25,6 +25,10 @@ Network policy, connected to namespaces.
 
 ## Installation Order
 
+### Hardware setup
+
+[Control Plane]("/_setup/control-plane/README.md")
+
 ## Installed Kubernetes Components
 
 ### AI

@@ -68,6 +68,8 @@ spec:
           mountPath: /var/lib/kubelet/device-plugins
         - name: dev
           mountPath: /dev
+        - name: udev
+          mountPath: /run/udev
       volumes:
       - name: device-plugin
         hostPath:
@@ -75,5 +77,8 @@ spec:
       - name: dev
         hostPath:
           path: /dev
+      - name: udev
+        hostPath:
+          path: /run/udev
   updateStrategy:
     type: RollingUpdate
