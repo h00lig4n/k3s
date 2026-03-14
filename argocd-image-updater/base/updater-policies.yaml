@@ -37,6 +37,8 @@ spec:
           imageName: "eclipse-mosquitto:2.0.x"
         - alias: "openwakeword" 
           imageName: "rhasspy/wyoming-openwakeword:2.x.x"
+        - alias: "ollama" 
+          imageName: "ollama/ollama:0.x.x"
         - alias: "openwebui" 
           imageName: "ghcr.io/open-webui/open-webui:0.8.x"
         - alias: "wyomingPiper" 
