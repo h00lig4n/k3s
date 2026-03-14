@@ -19,6 +19,8 @@ spec:
           enabled: false
         nfd:
            worker:
+            nodeSelector:
+              node-role.kubernetes.io/ai: "true"
             tolerations:
             - key: "nvidia.com/gpu"
               operator: "Equal"
