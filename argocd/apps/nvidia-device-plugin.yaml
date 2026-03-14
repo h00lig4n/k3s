@@ -21,11 +21,11 @@ spec:
         nfd:
           enabled: true
           worker:
-          tolerations:
-          - key: "nvidia.com/gpu"
-            operator: "Equal"
-            value: "true"
-            effect: "NoSchedule"
+            tolerations:
+            - key: "nvidia.com/gpu"
+              operator: "Equal"
+              value: "true"
+              effect: "NoSchedule"
   destination:
     server: https://kubernetes.default.svc
     namespace: nvidia-device-plugin
