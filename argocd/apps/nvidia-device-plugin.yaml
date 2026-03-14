@@ -13,21 +13,17 @@ spec:
       values: |
         runtimeClassName: nvidia
         deviceDiscoveryStrategy: nvml
-
         nodeSelector:
           node-role.kubernetes.io/ai: "true"
-
-        tolerations:
-          - key: nvidia.com/gpu
-            operator: Equal
-            value: "true"
-            effect: NoSchedule
-
         gfd:
           enabled: false
-
         nfd:
-          enabled: false
+           worker:
+            tolerations:
+            - key: "nvidia.com/gpu"
+              operator: "Equal"
+              value: "true"
+              effect: "NoSchedule"
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system
