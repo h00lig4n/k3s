@@ -31,6 +31,9 @@ Network policy, connected to namespaces.
 
 ## Installed Kubernetes Components
 
+The following list services and items installed in the cluster.
+
+
 ### AI
 
 Refer to [/ai/README.md]
