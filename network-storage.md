@@ -1,5 +1,9 @@
 # Network Storage
 
+Still to evaluate:
+https://linbit.com/kubernetes/
+https://openebs.io/
+
 ## NFS
 
 This has been rock solid using debian server.
