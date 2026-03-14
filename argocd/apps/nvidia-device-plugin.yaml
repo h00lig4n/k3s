@@ -28,7 +28,7 @@ spec:
               effect: "NoSchedule"
   destination:
     server: https://kubernetes.default.svc
-    namespace: kube-system
+    namespace: nvidia-device-plugin
   syncPolicy:
     automated:
       prune: true
