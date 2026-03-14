@@ -66,6 +66,11 @@ spec:
                 name: openai
                 key: api-key
           #OIDC
+          - name: WEBUI_SECRET_KEY
+            valueFrom:
+              secretKeyRef:
+                name: oidc
+                key: webui-secret-key              
           - name: ENABLE_OAUTH_PERSISTENT_CONFIG
             value: "false"
           - name: OAUTH_MERGE_ACCOUNTS_BY_EMAIL
