@@ -1,5 +1,5 @@
 resources:
   - deploy.yaml
   - svc.yaml
-  - network-polcy.yaml
+  - network-policy.yaml
   - ingress.yaml
