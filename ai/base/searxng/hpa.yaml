@@ -6,7 +6,7 @@ metadata:
   labels:
     app: searxng
     app.kubernetes.io/component: websearch
-    app.kubernetes.io/name: tsearxnga
+    app.kubernetes.io/name: searxng
     app.kubernetes.io/part-of: ai
 spec:
   scaleTargetRef:
