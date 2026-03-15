@@ -57,6 +57,8 @@ spec:
               value: /home/node/.openclaw
             - name: NODE_ENV
               value: production
+            - name: OLLAMA_API_KEY
+              value: "iamnotarealkey"
           envFrom:
              - secretRef:
                  name: openclaw
