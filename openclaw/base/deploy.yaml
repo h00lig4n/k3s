@@ -40,6 +40,8 @@ spec:
           volumeMounts:
             - name: tmp
               mountPath: /tmp
+            - name: home
+              mountPath: /home/node
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
       nodeSelector:
@@ -50,4 +52,6 @@ spec:
       terminationGracePeriodSeconds: 30
       volumes:
         - name: tmp
+          emptyDir: {}
+        - name: home
           emptyDir: {}

@@ -1,12 +1,26 @@
 # Control Plane DR
 
-[Calico K3S](https://docs.tigera.io/calico/latest/getting-started/kubernetes/k3s/quickstart)
+Control Plane is set up with:
 
+- Metallb
+- Calico
+
+## Fresh Install
+
+[Calico K3S](https://docs.tigera.io/calico/latest/getting-started/kubernetes/k3s/quickstart)
 Install script installs Calico. It expects a token and domain name. You can override version.
 
 ```bash
 export K3S_TOKEN="my-token"
-./install-k3s-calico-safe.sh mydomain.com v3.28.0
+./install.sh mydomain.com v3.28.0
+```
+
+## K3S Updates and Upgrades
+
+Run this to just update the K3S version.
+
+```bash
+curl -sfL https://get.k3s.io | sh -s - --token "mytoken" --write-kubeconfig-mode 644 --tls-san 192.168.30.10 --tls-san 192.168.30.50 --tls-san k3s --tls-san k3s.mydomain.com --node-taint CriticalAddonsOnly=true:NoExecute --disable servicelb --flannel-backend=none
 ```
 
 ## Backup

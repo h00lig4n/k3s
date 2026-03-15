@@ -3,3 +3,4 @@ resources:
   - svc.yaml
   - network-policy.yaml
   - ingress.yaml
+# -pvc.yaml
