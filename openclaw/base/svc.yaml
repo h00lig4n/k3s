@@ -9,4 +9,4 @@ spec:
 
   ports:
     - port: 80
-      targetPort: 18791
+      targetPort: 18789

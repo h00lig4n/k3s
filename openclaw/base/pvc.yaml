@@ -13,7 +13,7 @@ spec:
   storageClassName: nfs
   resources:
     requests:
-      storage: 20Gi
+      storage: 10Gi
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -30,4 +30,4 @@ spec:
   storageClassName: longhorn
   resources:
     requests:
-      storage: 20Gi
+      storage: 10Gi

@@ -1,6 +1,7 @@
 resources:
+  - configMap.yaml
   - deploy.yaml
   - svc.yaml
-  - network-policy.yaml
+  - networkPolicy.yaml
   - ingress.yaml
 # -pvc.yaml

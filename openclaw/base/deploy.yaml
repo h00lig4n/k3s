@@ -21,6 +21,9 @@ spec:
           image: ghcr.io/openclaw/openclaw:latest
           ports:
             - containerPort: 18789
+          envFrom:
+            - configMapRef:
+                name: openclaw-config
           securityContext:
             allowPrivilegeEscalation: false
             runAsNonRoot: true
@@ -37,11 +40,31 @@ spec:
             requests:
               memory: 1.5Gi
               cpu: 500m
+            livenessProbe:
+              httpGet:
+                path: /health
+                port: 18789
+              initialDelaySeconds: 60
+              periodSeconds: 15
+              failureThreshold: 3
+            readinessProbe:
+              httpGet:
+                path: /health
+                port: 18789
+              initialDelaySeconds: 60
+              periodSeconds: 15                
+            statrtupProbe:
+              httpGet:
+                path: /health
+                port: 18789 
+              initialDelaySeconds: 60
+              periodSeconds: 30
+              successThreshold: 1
           volumeMounts:
             - name: tmp
               mountPath: /tmp
             - name: home
-              mountPath: /home/node
+              mountPath: /home/node/.openclaw
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
       nodeSelector:
