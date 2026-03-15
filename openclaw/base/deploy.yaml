@@ -5,6 +5,7 @@ metadata:
   namespace: openclaw
 spec:
   replicas: 1
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
       app: openclaw
@@ -16,14 +17,46 @@ spec:
       securityContext:
         seccompProfile:
           type: RuntimeDefault
+      initContainers:
+        - name: init-config
+          image: busybox:1.37
+          imagePullPolicy: IfNotPresent
+          command:
+            - sh
+            - -c
+            - |
+              cp /config/openclaw.json /home/node/.openclaw/openclaw.json
+              mkdir -p /home/node/.openclaw/workspace
+              cp /config/AGENTS.md /home/node/.openclaw/workspace/AGENTS.md
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+          resources:
+            requests:
+              memory: 32Mi
+              cpu: 50m
+            limits:
+              memory: 64Mi
+              cpu: 100m
+          volumeMounts:
+            - name: openclaw-home
+              mountPath: /home/node/.openclaw
+            - name: config
+              mountPath: /config    
       containers:
         - name: openclaw
           image: ghcr.io/openclaw/openclaw:latest #slim
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 18789
-          envFrom:
-            - configMapRef:
-                name: openclaw-config
+              protocol: TCP
+          env:
+            - name: HOME
+              value: /home/node
+            - name: OPENCLAW_CONFIG_DIR
+              value: /home/node/.openclaw
+            - name: NODE_ENV
+              value: production
           securityContext:
             allowPrivilegeEscalation: false
             runAsNonRoot: true
@@ -36,35 +69,15 @@ spec:
           resources:
             limits:
               memory: 2Gi
-              cpu: 1000m      
+              cpu: "1"   
             requests:
               memory: 512Mi
               cpu: 250m
-            livenessProbe:
-              httpGet:
-                path: /health
-                port: 18789
-              initialDelaySeconds: 60
-              periodSeconds: 15
-              failureThreshold: 3
-            readinessProbe:
-              httpGet:
-                path: /health
-                port: 18789
-              initialDelaySeconds: 60
-              periodSeconds: 15                
-            statrtupProbe:
-              httpGet:
-                path: /health
-                port: 18789 
-              initialDelaySeconds: 60
-              periodSeconds: 30
-              successThreshold: 1
           volumeMounts:
             - name: tmp
               mountPath: /tmp
             - name: home
-              mountPath: /home/node
+              mountPath: /home/node/.openclaw
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
       nodeSelector:
@@ -78,3 +91,6 @@ spec:
           emptyDir: {}
         - name: home
           emptyDir: {}
+        - name: config
+          configMap:
+            name: openclaw-config
