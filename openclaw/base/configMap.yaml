@@ -16,58 +16,56 @@ data:
         },
         "controlUi": {
           "enabled": true,
-          "allowedOrigins": ["https://claw.home.thomason.nu"]
+          "allowedOrigins": ["https://claw.mydomain.com"]
+        }
+      },
+      "models": {
+        "providers": {
+          "ollama": {
+            "apiKey": "ollama-local",
+            "baseUrl": "http://ollama.ai.svc.cluster.local:11434",
+            "api": "ollama"
+          }
         }
       },
       "agents": {
         "defaults": {
-          "workspace": "~/.openclaw/workspace"
+          "workspace": "~/.openclaw/workspace",
+          "model": {
+            "primary": "ollama/qwen3.5:9b",
+            "fallbacks": ["ollama/qwen2.5:7b-instruct-q4_K_M"]
+          }
         },
         "list": [
           {
             "id": "general",
             "name": "General (Qwen 3.5 9B)",
             "workspace": "~/.openclaw/workspace",
-            "model": "ollama/qwen3.5:9b",
-            "env": {
-              "OLLAMA_HOST": "http://ollama.ai.svc.cluster.local:11434"
-            }
+            "model": { "primary": "ollama/qwen3.5:9b" }
           },
           {
             "id": "reasoning",
             "name": "Reasoning (DeepSeek R1 8B)",
             "workspace": "~/.openclaw/workspace",
-            "model": "ollama/deepseek-r1:8b",
-            "env": {
-              "OLLAMA_HOST": "http://ollama.ai.svc.cluster.local:11434"
-            }
+            "model": { "primary": "ollama/deepseek-r1:8b" }
           },
           {
             "id": "coding",
             "name": "Coding (Qwen 2.5 Coder 7B)",
             "workspace": "~/.openclaw/workspace",
-            "model": "ollama/qwen2.5-coder:7b",
-            "env": {
-              "OLLAMA_HOST": "http://ollama.ai.svc.cluster.local:11434"
-            }
+            "model": { "primary": "ollama/qwen2.5-coder:7b" }
           },
           {
             "id": "vision",
             "name": "Vision (LLaVA 7B)",
             "workspace": "~/.openclaw/workspace",
-            "model": "ollama/llava:7b",
-            "env": {
-              "OLLAMA_HOST": "http://ollama.ai.svc.cluster.local:11434"
-            }
+            "model": { "primary": "ollama/llava:7b" }
           },
           {
             "id": "fast",
             "name": "Fast (Llama 3.2 3B)",
             "workspace": "~/.openclaw/workspace",
-            "model": "ollama/llama3.2:3b",
-            "env": {
-              "OLLAMA_HOST": "http://ollama.ai.svc.cluster.local:11434"
-            }
+            "model": { "primary": "ollama/llama3.2:3b" }
           }
         ]
       },
