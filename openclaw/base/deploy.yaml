@@ -18,7 +18,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: openclaw
-          image: ghcr.io/openclaw/openclaw:latest
+          image: ghcr.io/openclaw/openclaw:latest #slim
           ports:
             - containerPort: 18789
           envFrom:
@@ -36,10 +36,10 @@ spec:
           resources:
             limits:
               memory: 2Gi
-              cpu: 2000m      
+              cpu: 1000m      
             requests:
-              memory: 1.5Gi
-              cpu: 500m
+              memory: 512Mi
+              cpu: 250m
             livenessProbe:
               httpGet:
                 path: /health
@@ -64,7 +64,7 @@ spec:
             - name: tmp
               mountPath: /tmp
             - name: home
-              mountPath: /home/node/.openclaw
+              mountPath: /home/node
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
       nodeSelector:
