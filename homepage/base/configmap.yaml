@@ -22,10 +22,13 @@ data:
           href: "https://ai.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
           description: AI Chat
           icon: sh-open-webui.svg
+
       - Planka:
           href: "https://plan.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
           description: Planning Board
           icon: sh-planka.svg
+          namespace: default
+          app: planka
       - Grafana:
           href: "https://grafana.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
           description: Dashboards
@@ -36,6 +39,8 @@ data:
           href: "https://dockerui.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
           description: Container Registry
           icon: sh-docker.svg
+          namespace: default
+          app: container-registry
       - Postgresql:
             href: "https://sql.{{HOMEPAGE_VAR_BASE_DOMAIN}}"
             description: SQL Database
