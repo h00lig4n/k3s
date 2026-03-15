@@ -13,7 +13,7 @@ spec:
         addServicesLabels: true
         addRoutersLabels: true
     api:
-      insecure: false
+      insecure: true
       dashboard: true
     ports:
       traefik:

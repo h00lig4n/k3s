@@ -57,6 +57,9 @@ spec:
               value: /home/node/.openclaw
             - name: NODE_ENV
               value: production
+          envFrom:
+             - secretRef:
+                 name: openclaw
           securityContext:
             allowPrivilegeEscalation: false
             runAsNonRoot: true
