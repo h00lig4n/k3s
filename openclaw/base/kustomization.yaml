@@ -1,5 +1,5 @@
 resources:
-  - configMap.yaml
+#  - configMap.yaml
   - deploy.yaml
   - svc.yaml
   - networkPolicy.yaml
