@@ -76,7 +76,7 @@ spec:
           volumeMounts:
             - name: tmp
               mountPath: /tmp
-            - name: home
+            - name: openclaw-home
               mountPath: /home/node/.openclaw
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
@@ -89,7 +89,7 @@ spec:
       volumes:
         - name: tmp
           emptyDir: {}
-        - name: home
+        - name: openclaw-home
           emptyDir: {}
         - name: config
           configMap:
