@@ -1,0 +1,4 @@
+resources:
+  - configMap.yaml
+  - deploy.yaml
+  - svc.yaml

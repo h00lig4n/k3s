@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: crawl4ai-config
+  namespace: ai
+data:
+  config.yml: |
+    # Crawl4AI server configuration
+    # Mounted at /app/config.yml inside the container
+
+    server:
+      host: "0.0.0.0"
+      port: 11235
+      workers: 4                  # Increase for heavier workloads
+
+    crawler:
+      # Maximum concurrent browser sessions
+      max_concurrent_tasks: 5
+
+      # Headless Chromium — must stay true in Kubernetes
+      headless: true
+
+      # Timeout per page load (seconds)
+      page_timeout: 30
+
+      # User agent — helps bypass basic bot detection
+      user_agent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+
+    # Optional: LLM extraction backend
+    # llm:
+    #   provider: "openai"         # or "ollama", "anthropic"
+    #   model: "gpt-4o-mini"
+    #   base_url: "http://ollama.ollama.svc.cluster.local:11434/v1"
+    #   api_key: ""                # leave blank for Ollama
+
+    security:
+      # Set to a token if you want to protect the API
+      # Then callers must send: Authorization: Bearer <token>
+      jwt_secret: ""
+
+    logging:
+      level: "INFO"

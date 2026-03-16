@@ -1,4 +1,5 @@
 resources:
+  - crawl4ai/
   - ollama/
   - openwebui/
   - qdrant/

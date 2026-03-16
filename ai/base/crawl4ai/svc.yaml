@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: crawl4ai
+  namespace: ai
+  labels:
+    app: crawl4ai
+    app.kubernetes.io/component: crawler
+    app.kubernetes.io/name: crawl4ai
+    app.kubernetes.io/part-of: ai
+spec:
+  type: ClusterIP
+  selector:
+    app: crawl4ai
+  ports:
+    - name: http
+      port: 11235
+      targetPort: http
+      protocol: TCP
