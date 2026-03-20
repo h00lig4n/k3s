@@ -86,7 +86,7 @@ spec:
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
       nodeSelector:
-        node-role.kubernetes.io/worker: "true"
+        node-role.kubernetes.io/ai: "true"
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
