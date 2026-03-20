@@ -19,6 +19,8 @@ spec:
       labels:
         app: crawl4ai
     spec:
+      nodeSelector:
+        node-role.kubernetes.io/ai: "true"
       # Crawl4AI runs Chromium — it needs a real /dev/shm
       # On Kubernetes we emulate --shm-size=1g via an emptyDir volume
       volumes:
