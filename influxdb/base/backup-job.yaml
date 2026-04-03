@@ -28,7 +28,7 @@ spec:
               - name: INFLUX_TOKEN
                 valueFrom:
                   secretKeyRef:
-                    name: influx-reader
+                    name: influx-admin
                     key: token
             volumeMounts:
               - name: backup
