@@ -18,7 +18,7 @@ spec:
               - |
                 influx backup /backup/$(date +%F)
             env:
-              - name: INFLUX_URL
+              - name: INFLUX_HOST
                 value: http://influxdb:8086
               - name: INFLUX_ORG
                 valueFrom:
