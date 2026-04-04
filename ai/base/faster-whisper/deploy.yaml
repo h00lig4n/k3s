@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: faster-whisper
+  namespace: ai-tools
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: faster-whisper
+  template:
+    metadata:
+      labels:
+        app: faster-whisper
+    spec:
+      # Ensure it only runs on your GPU node
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: nvidia.com/gpu.present
+                operator: In
+                values:
+                - "true"
+      containers:
+      - name: whisper
+        image: fedirz/faster-whisper-server:latest-cuda
+        ports:
+        - containerPort: 8000
+        env:
+        - name: WHISPER_MODEL
+          value: "distil-large-v3" # Fast & accurate
+        - name: WHISPER_DEVICE
+          value: "cuda"
+        resources:
+          limits:
+            nvidia.com/gpu: 1 
+        volumeMounts:
+        - name: model-cache
+          mountPath: /root/.cache/huggingface
+      volumes:
+      - name: model-cache
+        hostPath:
+          path: /mnt/data/whisper-models
+          type: DirectoryOrCreate
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: whisper-service
+  namespace: ai-tools
+spec:
+  selector:
+    app: faster-whisper
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8000
