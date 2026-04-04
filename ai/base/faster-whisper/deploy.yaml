@@ -58,16 +58,3 @@ spec:
         hostPath:
           path: /mnt/data/whisper-models
           type: DirectoryOrCreate
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: whisper-service
-  namespace: ai-tools
-spec:
-  selector:
-    app: faster-whisper
-  ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 8000
