@@ -2,27 +2,36 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: faster-whisper
-  namespace: ai-tools
+  namespace: ai
+  labels:
+    app: faster-whisper
+    app.kubernetes.io/component: tts
+    app.kubernetes.io/name: faster-whisper
+    app.kubernetes.io/part-of: ai
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: faster-whisper
+      app.kubernetes.io/component: tts
+      app.kubernetes.io/name: faster-whisper
+      app.kubernetes.io/part-of: ai
   template:
     metadata:
       labels:
         app: faster-whisper
+        app.kubernetes.io/component: tts
+        app.kubernetes.io/name: faster-whisper
+        app.kubernetes.io/part-of: ai
     spec:
-      # Ensure it only runs on your GPU node
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: nvidia.com/gpu.present
-                operator: In
-                values:
-                - "true"
+      runtimeClassName: nvidia
+      nodeSelector:
+        node-role.kubernetes.io/ai: "true"
+      tolerations:
+        - key: nvidia.com/gpu
+          operator: "Equal"
+          value: "true"
+          effect: "NoSchedule"
       containers:
       - name: whisper
         image: fedirz/faster-whisper-server:latest-cuda
@@ -34,7 +43,12 @@ spec:
         - name: WHISPER_DEVICE
           value: "cuda"
         resources:
+          requests:
+            memory: "2Gi"
+            cpu: "1"
           limits:
+            memory: "16Gi"
+            cpu: "4"
             nvidia.com/gpu: 1 
         volumeMounts:
         - name: model-cache
