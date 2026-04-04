@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: whisper-service
+  namespace: ai
+  lables:
+    app: faster-whisper
+    app.kubernetes.io/component: tts
+    app.kubernetes.io/name: faster-whisper
+    app.kubernetes.io/part-of: ai
+spec:
+  selector:
+    app: faster-whisper
+    app.kubernetes.io/component: tts
+    app.kubernetes.io/name: faster-whisper
+    app.kubernetes.io/part-of: ai
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8000
