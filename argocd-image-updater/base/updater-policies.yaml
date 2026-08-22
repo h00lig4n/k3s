@@ -40,6 +40,8 @@ spec:
           imageName: "ollama/ollama:0.x.x"
         - alias: "openwebui" 
           imageName: "ghcr.io/open-webui/open-webui:0.x.x"
+        - alias: "crawl4ai" 
+          imageName: "unclecode/crawl4ai:0.x.x"
         - alias: "wyomingPiper" 
           imageName: "rhasspy/wyoming-piper:2.x.x"
         - alias: "adminer" 
