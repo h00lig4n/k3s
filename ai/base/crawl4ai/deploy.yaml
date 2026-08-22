@@ -39,6 +39,11 @@ spec:
           env:
             - name: CRAWL4AI_PORT
               value: "11235"
+            - name: CRAWL4AI_API_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: crawl4ai
+                  key: api-token
           ports:
             - name: http
               containerPort: 11235
