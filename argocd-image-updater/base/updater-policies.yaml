@@ -39,7 +39,7 @@ spec:
         - alias: "ollama" 
           imageName: "ollama/ollama:0.x.x"
         - alias: "openwebui" 
-          imageName: "ghcr.io/open-webui/open-webui:0.8.x"
+          imageName: "ghcr.io/open-webui/open-webui:0.x.x"
         - alias: "wyomingPiper" 
           imageName: "rhasspy/wyoming-piper:2.x.x"
         - alias: "adminer" 
