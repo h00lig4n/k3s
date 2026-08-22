@@ -36,11 +36,13 @@ spec:
         - name: crawl4ai
           image: unclecode/crawl4ai:latest
           imagePullPolicy: Always
+          env:
+            - name: CRAWL4AI_PORT
+              value: "11235"
           ports:
             - name: http
               containerPort: 11235
               protocol: TCP
-
           volumeMounts:
             - name: shm
               mountPath: /dev/shm
