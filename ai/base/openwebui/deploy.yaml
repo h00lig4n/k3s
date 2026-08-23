@@ -65,6 +65,8 @@ spec:
               secretKeyRef:
                 name: openai
                 key: api-key
+          - name: USER_AGENT
+            value: "OpenWebUI (thomason)"
           #OIDC
           - name: WEBUI_SECRET_KEY
             valueFrom:
