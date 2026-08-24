@@ -19,3 +19,25 @@ spec:
     name: http
     targetPort: http
   type: ClusterIP
+  ---
+  apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: ollama-tools
+    app.kubernetes.io/component: agent
+    app.kubernetes.io/name: ollama-tools
+    app.kubernetes.io/part-of: ai
+  name: ollama-tools
+  namespace: ai
+spec:
+  selector:
+    app: ollama-tools
+    app.kubernetes.io/component: agent
+    app.kubernetes.io/name: ollama-tools
+    app.kubernetes.io/part-of: ai
+  ports:
+  - port: 11434
+    name: http
+    targetPort: http
+  type: ClusterIP
