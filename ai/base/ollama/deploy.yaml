@@ -84,3 +84,79 @@ spec:
         - name: localtime
           hostPath:
             path: /etc/localtime
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ollama-tools
+  namespace: ai
+  labels:
+    app: ollama-tools
+    app.kubernetes.io/component: agent
+    app.kubernetes.io/name: ollama-tools
+    app.kubernetes.io/part-of: ai
+spec:
+  revisionHistoryLimit: 2
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ollama-tools
+      app.kubernetes.io/component: agent
+      app.kubernetes.io/name: ollama-tools
+      app.kubernetes.io/part-of: ai
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: ollama-tools
+        app.kubernetes.io/component: agent
+        app.kubernetes.io/name: ollama-tools
+        app.kubernetes.io/part-of: ai
+    spec:
+      containers:
+      - name: ollama-tools
+        image: ollama/ollama:0.16.0
+        imagePullPolicy: IfNotPresent
+        ports:
+          - name: http
+            protocol: TCP
+            containerPort: 11434
+        env:
+          - name: OLLAMA_NUM_PARALLEL
+            value: "4"
+          - name: OLLAMA_MAX_LOADED_MODELS
+            value: "2" 
+          - name: OLLAMA_KEEP_ALIVE
+            value: "5m"
+          - name: OLLAMA_FLASH_ATTENTION
+            value: "1"
+        volumeMounts:
+          - name: ollama-tools-local
+            mountPath: /root/.ollama
+          - name: localtime
+            mountPath: /etc/localtime
+            readOnly: true
+        livenessProbe:
+          failureThreshold: 3
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 11434
+          timeoutSeconds: 1
+        securityContext: {}
+        resources:
+          requests:
+            memory: "768Mi"
+            cpu: "300m"
+          limits:
+            memory: "1500Mi"
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: ollama-tools-local
+          persistentVolumeClaim:
+            claimName: ollama-tools-local
+        - name: localtime
+          hostPath:
+            path: /etc/localtime
