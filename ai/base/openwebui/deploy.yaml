@@ -116,6 +116,14 @@ spec:
             value: "S256"
           - name: ENABLE_OAUTH_ROLE_MANAGEMENT
             value: "true"
+          - name: ENABLE_BASE_MODELS_CACHE
+            value: "true"
+          - name: MODELS_CACHE_TTL
+            value: "300"
+          - name: ENABLE_QUERIES_CACHE
+            value: "true"
+          - name: DATABASE_USER_ACTIVE_STATUS_UPDATE_INTERVAL
+            value: "120"
         startupProbe:
           httpGet:
             path: /
@@ -135,11 +143,11 @@ spec:
         securityContext: {}
         resources:
           requests:
-            memory: "700Mi"
-            cpu: "700m"
+            memory: "1000Mi"
+            cpu: "2000m"
           limits:
-            memory: "1500Mi"
-            cpu: "1500m"
+            memory: "400Mi"
+            cpu: "4000m"
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       nodeSelector:
