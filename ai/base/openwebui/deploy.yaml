@@ -36,8 +36,6 @@ spec:
             containerPort: 8080
             protocol: TCP
         env:
-          - name: CORS_ALLOW_ORIGIN
-            value: "https://mydomain"
           - name: OLLAMA_BASE_URL
             value: "http://ollama:11434"
           - name: RAG_EMBEDDING_ENGINE
