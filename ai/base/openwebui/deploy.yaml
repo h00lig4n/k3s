@@ -54,7 +54,7 @@ spec:
             value: "searxng"
           - name: SEARXNG_QUERY_URL
             value: "http://searxng:8080/search?q=<query>"
-          - name: WEB_SEARCH_RESULT_COUNT: 
+          - name: WEB_SEARCH_RESULT_COUNT
             value: "5"
           - name: WEB_SEARCH_CONCURRENT_REQUESTS
             value: "3"
