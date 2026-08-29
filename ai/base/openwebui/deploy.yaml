@@ -72,7 +72,7 @@ spec:
                 name: openai
                 key: api-key
           - name: USER_AGENT
-            value: "OpenWebUI (thomason)"
+            value: "OpenWebUI (home)"
           #OIDC
           - name: WEBUI_SECRET_KEY
             valueFrom:
