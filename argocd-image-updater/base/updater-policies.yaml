@@ -1,7 +1,7 @@
 apiVersion: argocd-image-updater.argoproj.io/v1alpha1
 kind: ImageUpdater
 metadata:
-  name: esphome-updater
+  name: argocd-updater
   namespace: argocd
 spec:
   commonUpdateSettings:
