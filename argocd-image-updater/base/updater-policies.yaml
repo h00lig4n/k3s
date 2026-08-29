@@ -58,4 +58,8 @@ spec:
           imageName: "searxng/searxng:latest"
           commonUpdateSettings:
             updateStrategy: "digest"
+        - alias: "qdrant"
+          imageName: "qdrant/qdrant:latest"
+          commonUpdateSettings:
+            updateStrategy: "digest"
 # When fixing th GPU node don't forget to override platforms: "linux/amd64"
