@@ -48,6 +48,8 @@ spec:
               value: tcp
             - name: SERVER_COUNTRIES
               value: Sweden
+            - name: HTTPPROXY
+              value: "on"
           ports:
             - name: http-proxy
               containerPort: 8888
