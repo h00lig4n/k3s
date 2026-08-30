@@ -43,7 +43,7 @@ spec:
                   name: nordvpn
                   key: password
             - name: OPENVPN_PROTOCOL
-              value: udp
+              value: tcp
             - name: SERVER_COUNTRIES
               value: Sweden
             - name: HTTPPROXY
