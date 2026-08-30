@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nordvpn-proxy
+  namespace: common
+spec:
+  selector:
+    app: nordvpn-proxy
+  ports:
+    - name: http-proxy
+      port: 8888
+      targetPort: 8888
