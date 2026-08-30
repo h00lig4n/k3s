@@ -50,6 +50,8 @@ spec:
               value: Sweden
             - name: HTTPPROXY
               value: "on"
+            - name: FIREWALL_INPUT_PORTS
+              value: "8888"
           ports:
             - name: http-proxy
               containerPort: 8888
