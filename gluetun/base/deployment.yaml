@@ -52,6 +52,8 @@ spec:
 #             value: se536.nordvpn.com
             - name: UPDATER_VPN_SERVICE_PROVIDERS
               value: nordvpn
+            - name: UPDATER_PREFER_DIRECT_DOWNLOAD
+              value: "yes"
             - name: UPDATER_PERIOD
               value: "480h"
             - name: HTTPPROXY
