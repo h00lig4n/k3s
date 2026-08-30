@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nordvpn-proxy
+  namespace: common
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nordvpn-proxy
+  template:
+    metadata:
+      labels:
+        app: nordvpn-proxy
+    spec:
+      containers:
+        - name: gluetun
+          image: qmcgaw/gluetun:latest
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
+          env:
+            - name: VPN_SERVICE_PROVIDER
+              value: nordvpn
+            - name: VPN_TYPE
+              value: openvpn
+            - name: OPENVPN_USER
+              valueFrom:
+                secretKeyRef:
+                  name: nordvpn
+                  key: username
+            - name: OPENVPN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: nordvpn
+                  key: password
+            - name: OPENVPN_PROTOCOL
+              value: udp
+            - name: SERVER_COUNTRIES
+              value: Sweden
+            - name: HTTPPROXY
+              value: "on"
+          ports:
+            - name: http-proxy
+              containerPort: 8888
