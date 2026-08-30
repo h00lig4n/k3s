@@ -48,12 +48,16 @@ spec:
               value: tcp
             - name: SERVER_COUNTRIES
               value: Sweden
+#            - name: SERVER_HOSTNAMES
+#             value: se536.nordvpn.com
+            - name: UPDATER_VPN_SERVICE_PROVIDERS
+              value: nordvpn
+            - name: UPDATER_PERIOD
+              value: "480h"
             - name: HTTPPROXY
               value: "on"
             - name: FIREWALL_INPUT_PORTS
               value: "8888"
-#            - name: SERVER_HOSTNAMES
-#             value: se536.nordvpn.com
           ports:
             - name: http-proxy
               containerPort: 8888
