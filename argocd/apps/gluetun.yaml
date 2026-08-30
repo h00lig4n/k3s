@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gluetun
+  namespace: argocd
+  labels:
+    image-policy: semver
+spec:
+  destination:
+    namespace: common
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: true
+  project: applications
+  sources:
+    - path: gluetun/overlays/prod
+      repoURL: https://github.com/h00lig4n/k3s-private.git
+      targetRevision: HEAD
