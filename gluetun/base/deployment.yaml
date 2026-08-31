@@ -63,3 +63,21 @@ spec:
           ports:
             - name: http-proxy
               containerPort: 8888
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 9999
+              host: 127.0.0.1
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 9999
+              host: 127.0.0.1
+            initialDelaySeconds: 30
+            periodSeconds: 20
+            timeoutSeconds: 5
+            failureThreshold: 3
