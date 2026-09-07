@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: signal
+  namespace: common
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: signal
+  template:
+    metadata:
+      labels:
+        app: signal
+    spec:
+      containers:
+        - name: signal
+          image: bbernhard/signal-cli-rest-api:latest
+          env:
+            - name: MODE
+              value: "json-rpc"
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: data
+              mountPath: /home/.local/share/signal-cli
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: signal-cli-data
