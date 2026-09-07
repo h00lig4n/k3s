@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: signal
   namespace: common
+  labels:
+    app.kubernetes.io/name: signal
 spec:
   type: ClusterIP
   selector:
