@@ -64,4 +64,8 @@ spec:
           imageName: "qdrant/qdrant:latest"
           commonUpdateSettings:
             updateStrategy: "digest"
+        - alias: "signal"
+          imageName: "bbernhard/signal-cli-rest-api:latest"
+          commonUpdateSettings:
+            updateStrategy: "digest"
 # When fixing th GPU node don't forget to override platforms: "linux/amd64"
