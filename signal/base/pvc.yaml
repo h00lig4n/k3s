@@ -1,0 +1,15 @@
+kind: PersistentVolumeClaim
+metadata:
+  name: signal
+  namespace: common
+  labels:
+    app: signal
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: nfs
+  resources:
+    requests:
+      storage: 256Mi
