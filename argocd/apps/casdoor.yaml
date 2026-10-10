@@ -3,8 +3,6 @@ kind: Application
 metadata:
   name: casdoor
   namespace: argocd
-  labels:
-    image-policy: semver
 spec:
   destination:
     namespace: auth
